@@ -6,3 +6,4 @@ ranger/bookmarks
 ranger/history
 nvim/tags*
 nvim/spell/
+nvim/sessions/
