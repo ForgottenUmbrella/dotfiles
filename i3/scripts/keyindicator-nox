@@ -1,0 +1,108 @@
+#!/usr/bin/env python3.6
+# coding=utf-8
+"""i3blocks extension compatible with Sway and Wayland that gets a
+keyboard toggle status without using the X11-only `xset` command.
+
+Forked from:
+https://gist.github.com/WolfangAukang/b4d7fa03efa97c5cfeacc542567dec7c
+
+Changes:
+    * Make code more/less pythonic.
+    * Make code unnecessarily object-oriented.
+    * Implement missing argument parsing, so now different keys and
+    colours can be used.
+    * Follow PEP8 more closely.
+    * "Fix" spelling (jk).
+    * Document stuff.
+    * Handle permission and third-party module errors.
+"""
+
+import sys
+import argparse
+
+try:
+    import evdev
+except PermissionError:
+    print("You need to be a member of the `input` group to use this.")
+    print("Run `sudo gpasswd -a $(whoami) input` to become a member.")
+    sys.exit(1)
+except ModuleNotFoundError:
+    print("Please install the `evdev` module.")
+    print("Run `pip3 install evdev` to do so.")
+    sys.exit(1)
+
+
+class MyArgparser(argparse.ArgumentParser):
+    """ArgumentParser suited for this script."""
+    def __init__(self):
+        super().__init__(description="print the status of a key in colour")
+        self.add_argument(
+            "-0", "--off", metavar="colour", dest="off_colour",
+            default="#222222",
+            help="RGB colour to use if key is off (default: %(default)s)")
+        self.add_argument(
+            "-1", "--on", metavar="colour", dest="on_colour",
+            default="#00FF00",
+            help="RGB colour to use if key is on (default: %(default)s)")
+        self.add_argument(
+            "-k", "--key", type=str.upper, default="CAPS",
+            help="toggle key to get status of (default: %(default)s)")
+        self.add_argument(
+            "-d", "--device", metavar="INPUT_DEVICE_CODE", dest="device_code",
+            type=int, default=0,
+            help="device code to get key states from (default: %(default)s)")
+
+
+class Keyboard:
+    """Provide an organised method of getting key states."""
+    def __init__(self, device_code):
+        self.device_code = str(device_code)
+        self.path = self._get_keyboard_path()
+        self.input_device = evdev.InputDevice(self.path)
+        self.available_toggles = self._all_toggles()
+        self.active_toggles = self.input_device.toggles()
+
+    def _get_keyboard_path(self):
+        """Return the path of the keyboard device."""
+        KEYBOARD_EVENTS = "/dev/input/event"
+        return KEYBOARD_EVENTS + self.device_code
+
+    def _all_toggles(self):
+        """Return dictionary of toggle keys.
+
+        These are internally referred to as LED keys, even if they don't
+        actually have physical LEDs.
+        """
+        full_toggle_list = self.input_device.capabilities(verbose=True)[
+            ("EV_LED", evdev.ecodes.EV_LED)]
+        return dict(full_toggle_list)
+
+    def keystate(self, key):
+        """Return the state of a toggle key."""
+        toggle_name = f"LED_{key}L"
+        if self.available_toggles[toggle_name] in self.active_toggles:
+            return True
+        return False
+
+    def coloured_keystate(self, key, off_colour, on_colour):
+        """Return key name in colour, representing its state."""
+        keystate_base = f"{key}\n{key}\n"
+        if self.keystate(key):
+            return keystate_base + on_colour
+        return keystate_base + off_colour
+
+
+def main(argv=None):
+    """Print the state of a given key in colour."""
+    if argv is None:
+        argv = sys.argv[1:]
+    argparser = MyArgparser()
+    args = argparser.parse_args(argv)
+    keyboard = Keyboard(args.device_code)
+    state = keyboard.coloured_keystate(
+        args.key, args.off_colour, args.on_colour)
+    print(state)
+
+
+if __name__== "__main__":
+    main()

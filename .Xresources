@@ -1,0 +1,10 @@
+URxvt.font: xft:InconsolataForPowerline\ NF:size=14:antialias=true:hinting=true
+URxvt.scrollBar: false
+URxvt*transparent: true
+URxvt*shading: 30
+URxvt.saveLines: 8192
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
