@@ -1,14 +1,7 @@
-.themes
-.qt
-nvim/*.otf
-nvim/colors
-nvim/autoload/plug.vim
 *.swp
 *~
 nvim/.netrwhist
-nvim/spell
 nvim/undo
-nvim/thesaurus/mthesaur.txt
-nvim/tags*
 ranger/bookmarks
 ranger/history
+nvim/tags*
