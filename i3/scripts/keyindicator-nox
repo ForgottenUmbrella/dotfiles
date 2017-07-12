@@ -35,7 +35,8 @@ except ModuleNotFoundError:
 class MyArgparser(argparse.ArgumentParser):
     """ArgumentParser suited for this script."""
     def __init__(self):
-        super().__init__(description="print the status of a key in colour")
+        super().__init__(
+            description="i3block to print the status of a key in colour")
         self.add_argument(
             "-0", "--off", metavar="colour", dest="off_colour",
             default="#222222",
