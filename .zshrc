@@ -4,7 +4,7 @@ SAVEHIST=1000
 setopt autocd
 unsetopt beep
 setopt correct
-setopt no_bang_hist
+# setopt no_bang_hist
 
 bindkey -e
 zstyle :compinstall filename "~/.zshrc"
