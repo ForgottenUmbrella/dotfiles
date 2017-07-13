@@ -295,7 +295,7 @@ exec --no-startup-id volnoti --timeout 2 --alpha 0.8 --corner-radius 15
 exec --no-startup-id indicator-kdeconnect
 exec_always --no-startup-id ~/.fehbg
 # output "*" background ~/Pictures/current/* fill
-exec --no-startup-id i3-msg '$workspace1; exec chromium'
-exec --no-startup-id i3-msg '$workspace2; exec i3-sensible-terminal'
+exec --no-startup-id i3-msg "workspace $workspace1; exec chromium"
+exec --no-startup-id i3-msg "$workspace workspace2; exec i3-sensible-terminal"
 
 # vim: set nospell:
