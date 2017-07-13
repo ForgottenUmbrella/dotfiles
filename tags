@@ -460,7 +460,7 @@ focused	compton.conf	/^mark-wmwin-focused = true;$/;"	k
 front	compton.conf	/^glx-copy-from-front = false;$/;"	k
 full_text	i3/i3blocks.conf	/^full_text= $/;"	k	section:separator
 full_text	i3/i3blocks.conf	/^full_text=Lock$/;"	k	section:lock
-full_text	nvim/undo/%home%forgottenumbrella%Dropbox%Sync%dotfiles%i3%i3blocks.conf	/^VimüUnDoÂr5Å_–full_text=5Å_–full_text=5Å_–full_text=5Å_–full_text=5Å_–/;"	k
+full_text	nvim/undo/%home%forgottenumbrella%Dropbox%Sync%dotfiles%i3%i3blocks.conf	/^VimüUnDoÂr5Å_–full_text=5Å_–full_text=5Å_–full_text=5Å_–full_text=5Å_–interval=15Å_–/;"	k
 g:NERDTreeMapToggleHidden	nvim/extra/plugged/settings.vim	/^let g:NERDTreeMapToggleHidden = 'h'$/;"	v
 g:NERDTreeMapUpdir	nvim/extra/plugged/settings.vim	/^let g:NERDTreeMapUpdir = '..'$/;"	v
 g:ViewDoc_DEFAULT	nvim/extra/plugged/settings.vim	/^let g:ViewDoc_DEFAULT = 'ViewDoc_help'$/;"	v
@@ -676,6 +676,7 @@ g:viewdoc_openempty	nvim/extra/plugged/settings.vim	/^let g:viewdoc_openempty = 
 g:vim_indent_cont	nvim/plugin/settings.vim	/^let g:vim_indent_cont = &shiftwidth$/;"	v
 g:vimroom_sidebar_height	nvim/extra/plugged/settings.vim	/^let g:vimroom_sidebar_height = 0$/;"	v
 g:vimroom_width	nvim/extra/plugged/settings.vim	/^let g:vimroom_width = 79$/;"	v
+g:vimwiki_global_ext	nvim/extra/plugged/settings.vim	/^let g:vimwiki_global_ext = 0$/;"	v
 g:vimwiki_list	nvim/extra/plugged/settings.vim	/^let g:vimwiki_list = [{ 'path': glob('~\/Dropbox\/Wiki'), 'syntax': 'markdown',$/;"	v
 g:ycm_autoclose_preview_window_after_completion	nvim/extra/not_init.vim	/^let g:ycm_autoclose_preview_window_after_completion = 1$/;"	v
 g:ycm_server_python_interpreter	nvim/extra/not_init.vim	/^    let g:ycm_server_python_interpreter = '\/usr\/bin\/python2'$/;"	v
