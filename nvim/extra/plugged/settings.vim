@@ -57,6 +57,7 @@ let g:neomake_help_enabled_linters = []
 " Vimwiki
 let g:vimwiki_list = [{ 'path': glob('~/Dropbox/Wiki'), 'syntax': 'markdown',
     \ 'path_html': glob('~/Dropbox/Wiki/export'), 'ext': '.md' }]
+let g:vimwiki_global_ext = 0
 
 " Solarized
 let g:solarized_termtrans = 1
