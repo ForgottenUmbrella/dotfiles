@@ -1,6 +1,6 @@
 #!/usr/bin/env python3.6
 # coding=utf-8
-"""i3blocks extension compatible with Sway and Wayland that gets a
+"""i3block blocklet compatible with Sway and Wayland that gets a
 keyboard toggle status without using the X11-only `xset` command.
 
 Forked from:
@@ -36,7 +36,7 @@ class MyArgparser(argparse.ArgumentParser):
     """ArgumentParser suited for this script."""
     def __init__(self):
         super().__init__(
-            description="i3block to print the status of a key in colour")
+            description="blocklet to print the status of a key in colour")
         self.add_argument(
             "-0", "--off", metavar="colour", dest="off_colour",
             default="#222222",
@@ -61,7 +61,7 @@ class Keyboard:
         self.path = self._get_keyboard_path()
         self.input_device = evdev.InputDevice(self.path)
         self.available_toggles = self._all_toggles()
-        self.active_toggles = self.input_device.toggles()
+        self.active_toggles = self.input_device.leds()
 
     def _get_keyboard_path(self):
         """Return the path of the keyboard device."""
@@ -105,5 +105,5 @@ def main(argv=None):
     print(state)
 
 
-if __name__== "__main__":
+if __name__ == "__main__":
     main()
