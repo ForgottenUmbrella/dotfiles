@@ -8,7 +8,7 @@ augroup END
 
 augroup windoze
     autocmd!
-    autocmd BufWritePre * setlocal fileformat=unix
+    autocmd BufWritePre * setlocal fileformat=unix endofline
     if has('win32')
         autocmd GuiEnter * simalt ~x
     endif

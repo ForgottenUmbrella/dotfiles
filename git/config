@@ -1,0 +1,8 @@
+[core]
+	autocrlf = input
+	excludesfile = --unset
+[user]
+	email = regretfulumbrella@gmail.com
+	name = Leo Pham
+[credential]
+	helper = cache --timeout=3600

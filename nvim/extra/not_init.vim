@@ -33,6 +33,11 @@ Plug 'jwhitley/vim-colors-solarized'
     \ { 'dir': '~/.config/nvim/colors/vim-colors-solarized' }
 " Replaced with vim-qf
 Plug 'yssl/QFEnter'
+" Replaced with powerline-status
+Plug 'edkolev/promptline.vim'
+" Replaced with git
+Plug 'airblade/vim-gitgutter'
+
 
 " Plug Settings
 " YouCompleteMe
@@ -49,6 +54,8 @@ let g:scratch_autohide = 1
 let airline_section_c = '%{@%}'
 let airline_section_b = '%{split(PWD(), '/')[-1]}'
 let airline_section_z = '%3p%% %#__accent_bold#%{airline_symbols.linenr}%4l%#__restore__#%#__accent_bold#/%L%{airline_symbols.maxlinenr}%#__restore__# :%3v'
+let g:airline#extensions#promptline#snapshot_file =
+    \ '~/Dropbox/Code/Shell/shell_prompt.sh'
 
 
 " Autocmds

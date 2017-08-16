@@ -19,11 +19,14 @@ endif
 nnoremap <F3> :FZF ~<CR>
 nnoremap <S-F3> :FZF<CR>
 
+" Toggle colourschemes
+noremap <F4> :call ToggleColours()<CR>
+
 " Solarized
 if exists(':SolarizedOptions')
     call togglebg#map('<S-F4>')
 else
-    nnoremap <S-F4>
+    nnoremap <silent> <S-F4>
         \ :if g:colors_name == 'solarized8_dark' <Bar>
             \ colorscheme solarized8_light <Bar>
         \ elseif g:colors_name == 'solarized8_light' <Bar>
@@ -31,13 +34,14 @@ else
         \ endif <CR>
 endif
 
-" Tagbar
-nnoremap <F9> :TagbarOpen<CR>
-nnoremap <S-F9> :TagbarClose<CR>
+" Mundo
+nnoremap <F5> :MundoShow<CR>
+nnoremap <S-F5> :MundoHide<CR>
 
 " Colorizer
 nnoremap <F6> :ColorToggle<CR>
 
-" Mundo
-nnoremap <F5> :MundoShow<CR>
-nnoremap <S-F5> :MundoHide<CR>
+" Tagbar
+nnoremap <F9> :TagbarOpen<CR>
+nnoremap <S-F9> :TagbarClose<CR>
+

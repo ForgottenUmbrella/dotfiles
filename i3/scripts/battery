@@ -46,11 +46,13 @@ if ($status eq 'Discharging') {
         $icon = '  ';
     } elsif ($percent < 88) {
         $icon = '  ';
-    } elsif ($percent < 100) {
+    } elsif ($percent <= 100) {
         $icon = '  ';
     }
 } elsif ($status eq 'Charging') {
     $icon = '  ';
+} elsif ($status eq 'Full') {
+    $icon = '  ';
 }
 
 $full_text = $icon . "$percent%";

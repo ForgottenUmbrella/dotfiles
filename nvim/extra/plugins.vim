@@ -32,9 +32,10 @@ call plug#begin('~/.config/nvim_plugged')
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'scrooloose/nerdtree'
-Plug 'airblade/vim-gitgutter'
 Plug 'majutsushi/tagbar'
-Plug 'kshenoy/vim-signature'
+" XXX
+" Plug 'kshenoy/vim-signature'
+Plug 'vim-scripts/ShowMarks'
 if has('win32')
     Plug 'PProvost/vim-ps1'
 endif
@@ -57,6 +58,8 @@ Plug 'Ron89/thesaurus_query.vim'
 Plug 'vim-scripts/argtextobj.vim'
 Plug 'airblade/vim-matchquote'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'wellle/visual-split.vim'
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 
 " Other
 Plug 'maxbrunsfeld/vim-yankstack'
@@ -64,7 +67,9 @@ Plug 'junegunn/fzf.vim' | Plug 'junegunn/fzf', {
     \ 'dir': '~/.fzf',
     \ 'do': './install --all' }
 if executable('ctags')
-    Plug 'ludovicchabant/vim-gutentags'
+    if !has('win32')
+        Plug 'ludovicchabant/vim-gutentags'
+    endif
 else
     echo 'Download ctags.'
 endif
@@ -83,8 +88,6 @@ Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
-" NOTE: Using `on` key breaks this
-Plug 'edkolev/promptline.vim'
 Plug 'mikewest/vimroom', { 'on': 'VimroomToggle' }
 
 " Neovim

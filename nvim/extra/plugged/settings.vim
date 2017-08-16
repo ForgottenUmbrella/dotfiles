@@ -9,12 +9,10 @@ let g:indent_guides_exclude_filetypes = [
 
 " Airline
 let g:airline_extensions = [
-    \ 'tagbar', 'tabline', 'quickfix', 'wordcount', 'promptline', 'neomake']
+    \ 'tagbar', 'tabline', 'quickfix', 'wordcount', 'neomake']
 let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#promptline#snapshot_file =
-    \ '~/Dropbox/Code/Shell/shell_prompt.sh'
-let g:airline#extensions#wordcount#filetypes =
-    \'\vmarkdown|rst|org|text|asciidoc|tex|mail|vimwiki'
+let g:airline#extensions#wordcount#filetype =
+    \ 'markdown\|rst\|org\|text\|asciidoc\|tex\|mail\|vimwiki'
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 0
 let g:airline_theme = 'solarized'

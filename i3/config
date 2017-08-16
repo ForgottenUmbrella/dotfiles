@@ -41,7 +41,8 @@ set $workspace6 "6"
 set $workspace7 "7"
 set $workspace8 "8"
 set $workspace9 "9"
-set $workspace10 "10"
+# set $workspace10 "10 "
+set $workspace10 "10 &#xf001;"
 
 set $font pango:Awesome 10
 
@@ -109,9 +110,9 @@ font $font
 
 ## Colours
 # client_type border background text indicator child_border
-client.focused $base2 $base2 $base03 $orange $base2
+client.focused $base2 $base2 $base03 $green $base2
 client.unfocused $base03 $base03 $base2 $red $base03
-client.urgent $red $red $base2 $orange $red
+client.urgent $red $red $base2 $green $red
 client.focused_inactive $base02 $base02 $base2 $red $base02
 
 
@@ -157,11 +158,11 @@ bindsym $mod+Shift+Right move right
 ## "Horizontal" (vertical in Vim).
 bindsym $mod+v split h
 ## "Vertical" (horizontal in Vim).
-bindsym $mod+n split v
+bindsym $mod+s split v
 
 
 # Layout
-bindsym $mod+s layout stacking
+bindsym $mod+Shift+w layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -240,7 +241,7 @@ mode "resize" {
         bindsym Right resize grow width 10 px or 10 ppt
         # bindsym Return mode "default"
         bindsym Escape mode "default"
-        bindsym Control+[ mode "default"
+        bindsym Control+bracketleft mode "default"
 }
 bindsym $mod+r mode "resize"
 
@@ -268,8 +269,8 @@ bindsym Control+$mod+l exec i3lock-fancy
 
 
 # KeyLock
-bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
-bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
+bindsym --release Caps_Lock exec pkill -RTMIN+11 i3blocks
+bindsym --release Num_Lock  exec pkill -RTMIN+11 i3blocks
 
 
 # # Input
@@ -285,6 +286,14 @@ bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 
 
 # Autostart
+exec i3-msg "workspace $workspace1; append_layout \
+    ~/.config/i3/workspaces/workspace-1.json"
+exec --no-startup-id firefox
+exec i3-msg "workspace $workspace2; append_layout \
+    ~/.config/i3/workspaces/workspace-2.json"
+exec --no-startup-id i3-sensible-terminal
+exec i3-msg "workspace $workspace10; append_layout \
+    ~/.config/i3/workspaces/workspace-10.json"
 exec --no-startup-id xautolock -time 30 -locker "i3lock-fancy"
 exec --no-startup-id compton --config ~/.config/compton.conf
 exec --no-startup-id dropbox start
@@ -295,7 +304,5 @@ exec --no-startup-id volnoti --timeout 2 --alpha 0.8 --corner-radius 15
 exec --no-startup-id indicator-kdeconnect
 exec_always --no-startup-id ~/.fehbg
 # output "*" background ~/Pictures/current/* fill
-exec --no-startup-id i3-msg "workspace $workspace1; exec chromium"
-exec --no-startup-id i3-msg "$workspace workspace2; exec i3-sensible-terminal"
 
 # vim: set nospell:

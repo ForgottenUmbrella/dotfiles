@@ -1,4 +1,3 @@
-HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 setopt autocd
@@ -7,26 +6,20 @@ setopt correct
 # setopt no_bang_hist
 
 bindkey -e
-zstyle :compinstall filename "~/.zshrc"
+zstyle :compinstall filename "$XDG_CONFIG_HOME/zsh/.zshrc"
 zstyle ":completion:*" menu select
 autoload -Uz compinit
 compinit
 # autoload -Uz promptinit
 # promptinit
 
-# autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
-# zle -N up-line-or-beginning-search
-# zle -N down-line-or-beginning-search
-# [[ -n "$key[Up]" ]] && bindkey -- "$key[Up]" up-line-or-beginning-search
-# [[ -n "$key[Down]" ]] && bindkey -- "$key[Down]" down-line-or-beginning-search
-
 unsetopt MULTIBYTE
 autoload zkbd
 # Removed ":-$VENDOR-$OSTYPE" from after "t}".
-# [[ ! -f ~/.zkbd/$TERM-${DISPLAY:t} ]] && zkbd
-[[ ! -f ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE} ]] && zkbd
-# source ~/.zkbd/$TERM-${DISPLAY:t}
-source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
+# [[ ! -f ~/.config/zsh/.zkbd/$TERM-${DISPLAY:t} ]] && zkbd
+[[ ! -f ~/.config/zsh/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE} ]] && zkbd
+# source ~/.config/zsh/.zkbd/$TERM-${DISPLAY:t}
+source ~/.config/zsh/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
 [[ -n ${key[Backspace]} ]] && bindkey "${key[Backspace]}" backward-delete-char
 [[ -n ${key[Insert]} ]] && bindkey "${key[Insert]}" overwrite-mode
 [[ -n ${key[Home]} ]] && bindkey "${key[Home]}" beginning-of-line
@@ -39,16 +32,36 @@ source ~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}
 [[ -n ${key[Down]} ]] && bindkey "${key[Down]}" down-line-or-search
 [[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
 
+bindkey "\e\e[D" backword-word
+bindkey "\e\e[C" forward-word
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-[ -f ~/Dropbox/Code/Shell/shell_prompt.sh ] \
-    && source ~/Dropbox/Code/Shell/shell_prompt.sh
+# [ -f ~/Dropbox/Code/Shell/shell_prompt.sh ] \
+#     && source ~/Dropbox/Code/Shell/shell_prompt.sh
+
+if [ "$TERM" != "linux" ]; then
+    powerline-daemon -q
+    source ~/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+fi
+
+if [ -n "${NVIM_LISTEN_ADDRESS+x}" ]; then
+    export EDITOR="nvr"
+    alias hh="nvr -o"
+    alias vv="nvr -O"
+    alias tt="nvr --remote-tab"
+else
+    export EDITOR="nvim"
+fi
+export GIT_EDITOR="$EDITOR"
+export VISUAL="$EDITOR"
 
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent > ~/.ssh-agent-thing
+    # ssh-agent > ~/.ssh-agent-thing
+    ssh-agent > "$XDG_CONFIG_HOME/ssh-agent"
 fi
 if [[ "$SSH_AGENT_PID" == "" ]]; then
-    eval "$(<~/.ssh-agent-thing)" > /dev/null 2>&1
+    eval "$(<$XDG_CONFIG_HOME/ssh-agent)" > /dev/null 2>&1
 fi
 
 alias ls="ls --color=auto"
@@ -57,21 +70,9 @@ alias grep="grep --color=auto"
 
 alias la="ls -a"
 alias ll="ls -l"
-alias shh="shutdown -P now"
-alias SHH="systemctl poweroff -i"
+alias shhh="shutdown -P now"
 alias ag="ag --hidden"
 alias please="sudo"
 alias fuck="sudo $(history -p \!\!)"
-
-if [ -n "${NVIM_LISTEN_ADDRESS+x}" ]; then
-    export EDITOR='nvr'
-    alias hh='nvr -o'
-    alias vv='nvr -O'
-    alias tt='nvr --remote-tab'
-else
-    export EDITOR='nvim'
-fi
-export GIT_EDITOR="$EDITOR"
-export VISUAL="$EDITOR"
-
-export PATH=$PATH:$HOME/bin:$HOME/.local/bin
+alias av="deactivate &> /dev/null; source venv/bin/activate"
+alias dv="deactivate"

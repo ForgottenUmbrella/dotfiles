@@ -1,5 +1,17 @@
 " extra/plugged/functions.vim: defines functions for plugins
 
+function! ToggleColours()
+    if exists('g:colors_name') && g:colors_name ==# 'monokai'
+        set background=dark
+        colorscheme solarized8_dark
+        AirlineTheme solarized
+    else
+        colorscheme monokai
+        AirlineTheme molokai
+    endif
+endfunction
+
+
 function! IDEOpen()
     ScratchOpen
     Minimap

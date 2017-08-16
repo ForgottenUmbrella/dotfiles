@@ -5,7 +5,7 @@ nnoremap <Leader>b :buffers<CR>:b
 
 " Search
 noremap <C-l> :Refresh<CR>
-nnoremap <Leader>. /\.<CR><C-o>
+nnoremap <Leader>. \(\.\|?\|!\)\(\s\|\n\)\@=<CR><C-o>
 
 " System clipboard
 noremap =y "+y
@@ -22,13 +22,13 @@ nnoremap Y y$
 
 " Get help
 nnoremap <S-F1> :call FHelp()<CR>
-
-" Toggle colourschemes
-noremap <F4> :call ToggleColours()<CR>
+if has('win32')
+    nnoremap K :execute ":help" expand("<cword>")<CR>
+endif
 
 " Windows
-for char in split('hjklHJKL=Tqsv+-<>_]fwW', '\zs')
-    execute 'noremap <A-' . char . '> <C-w>' . char
+for s:char in split('hjklHJKL=Tqsv+-<>_]fwW', '\zs')
+    execute 'noremap <A-' . s:char . '> <C-w>' . s:char
 endfor
 noremap <A-Q> :quit!<CR>
 noremap <A-n> :new<Space>
@@ -53,10 +53,10 @@ nnoremap <S-F8> :call ScratchClose()<CR>
 cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
 cnoremap <expr> / wildmenumode() ? '<BS>/' : '/'
-nnoremap <C-]> :try <Bar>
+nnoremap <silent> <C-]> :try <Bar>
     \ execute 'tag' expand('<cword>') <Bar>
     \ catch <Bar>
-    \ execute '/' . expand('<cword>') . '\(\s\{-}=\)\@=' <Bar>
+    \ execute 'silent! /' . expand('<cword>') . '\(\s\{-}=\s{-}\)\@=' <Bar>
     \ endtry <CR>
 
 

@@ -1,22 +1,11 @@
 " plugin/functions.vim: defines functions
 
-
-function! ToggleColours()
-    if exists('g:colors_name') && g:colors_name ==# 'monokai'
-        set background=dark
-        colorscheme solarized
-        AirlineTheme solarized
-    else
-        colorscheme monokai
-        AirlineTheme molokai
-    endif
-endfunction
-
 function! FHelp()
     for l:i in range(1,12)
         execute 'map <F' . l:i . '>'
     endfor
 endfunction
+
 
 function! WindowList()
     " Return a list of names of open windows.
@@ -24,6 +13,7 @@ function! WindowList()
     windo call add(windows, bufname('%'))
     return l:windows
 endfunction
+
 
 function! WindowMatchList(pattern)
     " Return a list of names of open windows that matches `pattern`.
@@ -37,14 +27,16 @@ function! WindowMatchList(pattern)
     return l:matches
 endfunction
 
+
 function! ScratchOpen()
     let l:scratch_windows = WindowMatchList('Scratch')
     if !len(l:scratch_windows)
-        topleft 10split ~/Dropbox/Wiki/scratch.md
+        topleft 5split ~/Dropbox/Wiki/scratch.md
     else
         execute bufwinnr(l:scratch_windows[-1]) 'wincmd w'
     endif
 endfunction
+
 
 function! ScratchClose()
     let l:scratch_windows = WindowMatchList('Scratch')
@@ -55,6 +47,7 @@ function! ScratchClose()
     endfor
 endfunction
 
+
 function! ScratchToggle()
     let l:scratch_windows = WindowMatchList('Scratch')
     if len(l:scratch_windows)
@@ -63,6 +56,7 @@ function! ScratchToggle()
         call ScratchOpen()
     endif
 endfunction
+
 
 function! Refresh()
     let @/ = ''
