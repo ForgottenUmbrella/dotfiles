@@ -1,0 +1,309 @@
+# i3 config file (v4)
+# Should you change your keyboard layout some time, delete
+# this file and re-run i3-config-wizard(1).
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+
+# Dependencies:
+# * i3-gaps
+# * i3blocks
+# * rofi
+# * amixer
+# * playerctl
+# * i3lock-fancy-git
+# * ttf-font-awesome
+# * lm_sensors
+# * sysstat
+# * acpi
+# * volnoti-brightness-git
+# * acpilight
+
+# * xautolock
+# * feh
+# * compton
+
+
+# Variables
+# Mod1 = Alt, Mod4 = Win (Alt conflicts with Vim).
+set $mod Mod4
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $workspace1 "1 "
+set $workspace2 "2 "
+set $workspace3 "3 "
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+# set $workspace10 "10 "
+set $workspace10 "10 &#xf001;"
+
+set $font pango:Awesome 10
+
+set $base03 #002b36
+set $base02 #073642
+set $base01 #586e75
+set $base00 #657b83
+set $base0 #839496
+set $base1 #93a1a1
+set $base2 #eee8d5
+set $base3 #fdf6e3
+set $yellow #b58900
+set $orange #cb4b16
+set $red #dc322f
+set $magenta #d33682
+set $violet #6c71c4
+set $blue #268bd2
+set $cyan #2aa198
+set $green #859900
+
+
+# Aesthetics
+## Status
+bar {
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    position top
+    tray_output primary
+    # tray_padding 0
+    # separator_symbol <
+    font $font
+    colors {
+        separator $cyan
+        background $base03
+        # statusline $blue
+        statusline $base3
+        # workspace_type border background text
+        focused_workspace $base2 $base2 $base03
+        inactive_workspace $base03 $base03 $base2
+        urgent_workspace $orange $orange $base2
+        # Only exists if on multi-monitor setup.
+        active_workspace $base00 $base00 $base2
+    }
+}
+
+## Disable titlebars
+# default border pixel 1
+for_window [class="^.*"] border pixel 1
+
+## Gaps
+gaps inner 10
+gaps outer 5
+
+## Fonts
+### Window titles
+font $font
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 8
+
+# This font is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitm.ap
+# font, it doesn’t scale on retina/hidpi displays.
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+
+## Colours
+# client_type border background text indicator child_border
+client.focused $base2 $base2 $base03 $green $base2
+client.unfocused $base03 $base03 $base2 $red $base03
+client.urgent $red $red $base2 $green $red
+client.focused_inactive $base02 $base02 $base2 $red $base02
+
+
+# Terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+
+# Kill
+bindsym $mod+Shift+q kill
+
+
+# Dmenu
+# bindsym $mod+d exec dmenu_run
+# Only lists GUIs.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# bindsym $mod+d exec dmenu_extended_run
+bindsym $mod+d exec rofi -show run -config ~/.config/rofi/config
+
+
+# Movement
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+
+# Splits
+## "Horizontal" (vertical in Vim).
+bindsym $mod+v split h
+## "Vertical" (horizontal in Vim).
+bindsym $mod+s split v
+
+
+# Layout
+bindsym $mod+Shift+w layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+## Toggle tiling/floating.
+bindsym $mod+Shift+space floating toggle
+
+## Change focus between tiling/floating windows.
+bindsym $mod+space focus mode_toggle
+
+## Focus the parent container.
+bindsym $mod+a focus parent
+
+## Focus the child container (conflicts with dmenu).
+#bindsym $mod+d focus child
+
+## Sticky/"permanent"
+bindsym $mod+p sticky toggle
+## Use Mouse+$mod to drag floating windows to their wanted position.
+floating_modifier $mod
+
+## Fullscreen
+bindsym $mod+f fullscreen toggle
+
+
+# Workspaces
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+## Applications
+# assign [class="Chromium"] $workspace1
+# assign [class="Gnome-terminal"] $workspace2
+
+
+# Restarts
+## Hard
+bindsym $mod+Shift+c reload
+
+## Preserved
+bindsym $mod+Shift+r restart
+
+
+# Exit
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit \
+    shortcut. Do you really want to exit i3? This will end your X session.' \
+    -b 'Yes, exit i3' 'i3-msg exit'"
+
+
+# Resize
+mode "resize" {
+        bindsym $left resize shrink width 10 px or 10 ppt
+        bindsym $up resize grow height 10 px or 10 ppt
+        bindsym $down resize shrink height 10 px or 10 ppt
+        bindsym $right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+        # bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym Control+bracketleft mode "default"
+}
+bindsym $mod+r mode "resize"
+
+
+# Volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/vol up
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/bin/vol down
+bindsym XF86AudioMute exec --no-startup-id ~/bin/vol mute
+
+
+# Media
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+
+# Brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/bin/bright up
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/bin/bright down
+
+
+# Lock
+bindsym Control+$mod+l exec i3lock-fancy
+
+
+# KeyLock
+bindsym --release Caps_Lock exec pkill -RTMIN+11 i3blocks
+bindsym --release Num_Lock  exec pkill -RTMIN+11 i3blocks
+
+
+# # Input
+# input "2:14:ETPS/2_Elantech_Touchpad" {
+#     accel_profile flat
+#     click_method clickfinger
+#     dwt enabled
+#     # middle_emulation enabled
+#     natural_scroll enabled
+#     scroll_method two_finger
+#     tap enabled
+# }
+
+
+# Autostart
+exec i3-msg "workspace $workspace1; append_layout \
+    ~/.config/i3/workspaces/workspace-1.json"
+exec --no-startup-id firefox-nightly
+exec i3-msg "workspace $workspace2; append_layout \
+    ~/.config/i3/workspaces/workspace-2.json"
+exec --no-startup-id i3-sensible-terminal
+exec i3-msg "workspace $workspace10; append_layout \
+    ~/.config/i3/workspaces/workspace-10.json"
+# exec --no-startup-id xautolock -time 30 -locker "i3lock-fancy"
+exec --no-startup-id compton --config ~/.config/compton.conf
+exec --no-startup-id dropbox start
+exec --no-startup-id nm-applet
+exec --no-startup-id redshift-gtk
+exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
+exec --no-startup-id volnoti --timeout 2 --alpha 0.8 --corner-radius 15
+exec --no-startup-id indicator-kdeconnect
+exec_always --no-startup-id ~/.fehbg
+# output "*" background ~/Pictures/current/* fill
+
+# vim: set nospell:
