@@ -5,6 +5,9 @@ nvim/undo/
 ranger/bookmarks
 ranger/history
 nvim/tags*
-nvim/spell/
-nvim/sessions/
+nvim/.config/nvim/spell/
+nvim/.config/nvim/sessions/
 i3blocks-contrib/
+tags
+gnome/.themes/
+
