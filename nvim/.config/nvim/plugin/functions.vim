@@ -31,7 +31,8 @@ endfunction
 function! ScratchOpen()
     let l:scratch_windows = WindowMatchList('Scratch')
     if !len(l:scratch_windows)
-        topleft 5split ~/Dropbox/Wiki/scratch.md
+        " Now using todo.txt.
+        topleft 5split ~/Dropbox/Wiki/todo.txt
     else
         execute bufwinnr(l:scratch_windows[-1]) 'wincmd w'
     endif

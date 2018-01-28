@@ -15,6 +15,8 @@ command! DeleteNewlines global/^\n/delete
 command! W w !sudo tee % >/dev/null
 
 " Scratch
+command! ScratchOpen call ScratchOpen()
+command! ScratchClose call ScratchClose()
 command! ScratchToggle call ScratchToggle()
 
 " Refresh

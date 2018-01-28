@@ -74,22 +74,32 @@ bar {
     # separator_symbol <
     font $font
     colors {
-        separator $cyan
-        background $base03
-        # statusline $blue
-        statusline $base3
+        separator $base3
+        background $base02
+        statusline $base1
         # workspace_type border background text
-        focused_workspace $base2 $base2 $base03
-        inactive_workspace $base03 $base03 $base2
+        focused_workspace $base2 $base2 $base02
+        inactive_workspace $base02 $base02 $base2
         urgent_workspace $orange $orange $base2
         # Only exists if on multi-monitor setup.
         active_workspace $base00 $base00 $base2
     }
 }
 
-## Disable titlebars
+## Window rules
 # default border pixel 1
 for_window [class="^.*"] border pixel 1
+# https://github.com/ValveSoftware/steam-for-linux/issues/1040
+for_window [class="^Steam$" title="^Friends$"] floating enable
+for_window [class="^Steam$" title="Steam - News"] floating enable
+for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
+for_window [class="^Steam$" title=".* CD key"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+for_window [title="^Steam Keyboard$"] floating enable
 
 ## Gaps
 gaps inner 10
@@ -300,9 +310,10 @@ exec --no-startup-id compton --config ~/.config/compton.conf
 exec --no-startup-id dropbox start
 exec --no-startup-id nm-applet
 exec --no-startup-id redshift-gtk
+exec --no-startup-id blueman-applet
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id volnoti --timeout 2 --alpha 0.8 --corner-radius 15
-exec --no-startup-id indicator-kdeconnect
+# exec --no-startup-id indicator-kdeconnect
 exec_always --no-startup-id ~/.fehbg
 # output "*" background ~/Pictures/current/* fill
 

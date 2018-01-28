@@ -14,8 +14,6 @@ Plug 'tomasr/molokai', { 'dir': '~/.config/nvim/colors/molokai' }
 Plug 'mtth/scratch.vim'
 " Replaced because this is annoying
 Plug 'Raimondi/delimitMate'
-" Unused
-Plug 'tpope/vim-fugitive'
 " Replaced with Airline tabline
 Plug 'bling/vim-bufferline'
 " Replaced with tagbar
@@ -43,8 +41,14 @@ Plug 'Ron89/thesaurus_query.vim'
 Plug 'vim-scripts/ShowMarks'
 " Buggy
 Plug 'termhn/i3-vim-nav', { 'do': 'go get -u github.com/termhn/i3-vim-nav' }
+" Buggy
+Plug 'vim-scripts/argtextobj.vim'
 " Unused
 Plug 'kshenoy/vim-signature'
+" Unused
+Plug 'dhruvasagar/vim-table-mode'
+" Unused
+Plug 'vimwiki/vimwiki'
 
 
 " Plug Settings
@@ -66,6 +70,11 @@ let g:airline#extensions#promptline#snapshot_file =
     \ '~/Dropbox/Code/Shell/shell_prompt.sh'
 let g:airline_section_z = '%3p%% %#__acent_bold#%#__restore__#
     \%{airline_symbols.linenr}%#__restore__# :%3v'
+
+" Vimwiki
+let g:vimwiki_list = [{ 'path': glob('~/Dropbox/Wiki'), 'syntax': 'markdown',
+    \ 'path_html': glob('~/Dropbox/Wiki/export'), 'ext': '.md' }]
+let g:vimwiki_global_ext = 0
 
 " i3 vim nav
 nnoremap <silent> <M-h> :call Focus('left', 'h')<CR>

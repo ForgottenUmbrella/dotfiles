@@ -30,7 +30,7 @@ call plug#begin()
 
 " Visual grepping
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'bronson/vim-trailing-whitespace'
+Plug 'bronson/vim-trailing-whitespace'  " :FixWhitespace
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 if has('win32')
@@ -51,9 +51,7 @@ if !has('win32')
     Plug 'powerman/vim-plugin-viewdoc'
 endif
 Plug 'airblade/vim-rooter'
-Plug 'vim-scripts/argtextobj.vim'
 Plug 'airblade/vim-matchquote'
-Plug 'dhruvasagar/vim-table-mode'
 Plug 'wellle/visual-split.vim'
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'sheerun/vim-polyglot'
@@ -70,7 +68,6 @@ if executable('ctags')
 else
     echo 'Download ctags.'
 endif
-Plug 'vimwiki/vimwiki'
 Plug 'neomake/neomake', { 'do': ':UpdateRemotePluginsAndKnuckles <Bar>
     \ !pip3 install vim-vint --user; pip3 install pylint --user;
     \ sudo npm install -g eslint; sudo npm install -g write-good' }
@@ -87,6 +84,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mikewest/vimroom', { 'on': 'VimroomToggle' }
 Plug 'drzel/vim-line-no-indicator'
+Plug 'tpope/vim-fugitive'
 
 " Neovim
 if has('nvim')

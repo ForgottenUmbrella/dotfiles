@@ -73,6 +73,16 @@ alias la="ls -a"
 alias ll="ls -l"
 alias shhh="shutdown -P now"
 alias please="sudo"
-alias fuck="sudo $(history -p \!\!)"
+# Single quotes to prevent evaluating history within this file.
+alias fuck='sudo $(history -p !!)'
 alias av="deactivate &> /dev/null; source venv/bin/activate"
 alias dv="deactivate"
+alias copy="xsel -ib"
+alias sake="LC_ALL=ja_JP.UTF-8 wine"
+alias fullsystemupgrade="pacaur -Syu --noconfirm --noedit"
+alias pupdate="fullsystemupgrade; paccache -r"
+alias pinstall="fullsystemupgrade; pacaur -S"
+
+quietly () {
+    nohup "$*" >/dev/null 2>&1 &
+}

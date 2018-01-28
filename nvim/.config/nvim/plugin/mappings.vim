@@ -48,8 +48,8 @@ nnoremap <Leader>u :update<CR>
 nnoremap <Leader>W :write!<CR>
 
 " Scratch
-nnoremap <F8> :call ScratchOpen()<CR>
-nnoremap <S-F8> :call ScratchClose()<CR>
+nnoremap <F8> :ScratchOpen<CR>
+nnoremap <S-F8> :ScratchClose<CR>
 
 " Movement
 cnoremap <C-n> <Down>
@@ -92,3 +92,7 @@ nnoremap <Leader>j Jxxs<CR><Esc>
 " Completion
 inoremap <expr> <Tab> pumvisible() ? '<C-n>' : '<Tab>'
 inoremap <expr> <S-Tab> pumvisible() ? '<C-p>' : '<S-Tab>'
+
+" Casing
+nnoremap -c :%s#_\(\l\)#\u\1#g<CR>
+nnoremap c- :%s/\v%(\$%(\k+))@<=_(\k)/\u\1/g<CR>

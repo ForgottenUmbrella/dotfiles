@@ -46,8 +46,9 @@ set clipboard=unnamedplus
 " Files
 set fileformats=unix,dos
 if has('win32')
-    let $TMP = "C:/tmp"
+    let $TMP = 'C:/tmp'
 endif
+set path+=**
 
 " Folding
 set foldmethod=syntax

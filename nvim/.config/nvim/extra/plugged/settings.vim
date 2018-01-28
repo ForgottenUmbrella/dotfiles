@@ -52,11 +52,6 @@ let g:neomake_autolint_sign_column_always = 1
 " Neomake
 let g:neomake_help_enabled_makers = []
 
-" Vimwiki
-let g:vimwiki_list = [{ 'path': glob('~/Dropbox/Wiki'), 'syntax': 'markdown',
-    \ 'path_html': glob('~/Dropbox/Wiki/export'), 'ext': '.md' }]
-let g:vimwiki_global_ext = 0
-
 " Solarized
 let g:solarized_termtrans = 1
 let g:solarized_term_italics = 1

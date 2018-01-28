@@ -16,3 +16,13 @@ export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export HISTFILE="$XDG_DATA_HOME/zsh/history"
 export ICEAUTHORITY="$XDG_RUNTIME_DIR/ICEauthority"
+
+export GTK_THEME=Adwaita
+# export QT_STYLE_OVERRIDE=GTK+
+# export QT_STYLE_OVERRIDE=adwaita
+export QT_STYLE_OVERRIDE=gtk2
+# export QT_QPA_PLATFORMTHEME=gtk2
+export ANKI_BASE="$XDG_DATA_HOME/anki"
+export GIMP2_DIRECTORY="$XDG_CONFIG_HOME/gimp"
+export GTK_RC_FILES="$XDG_CONFIG_HOME/gtk-1.0/gtkrc"
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
