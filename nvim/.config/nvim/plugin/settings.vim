@@ -49,6 +49,7 @@ if has('win32')
     let $TMP = 'C:/tmp'
 endif
 set path+=**
+set fileencodings+=sjis
 
 " Folding
 set foldmethod=syntax

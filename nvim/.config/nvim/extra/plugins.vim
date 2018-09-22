@@ -72,7 +72,7 @@ Plug 'neomake/neomake', { 'do': ':UpdateRemotePluginsAndKnuckles <Bar>
     \ !pip3 install vim-vint --user; pip3 install pylint --user;
     \ sudo npm install -g eslint; sudo npm install -g write-good' }
 Plug 'dojoteef/neomake-autolint'
-Plug 'simnalamburt/vim-mundo', { 'on': 'Mundo' }
+Plug 'simnalamburt/vim-mundo'
 
 " Aesthetic
 Plug 'lifepillar/vim-solarized8',
