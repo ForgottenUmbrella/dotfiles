@@ -1,0 +1,17 @@
+#!/bin/sh
+# Inspired by https://bbs.archlinux.org/viewtopic.php?id=132218.
+
+STEP=5
+
+if [ "$1" = "up" ]; then
+    pulseaudio-ctl up $STEP
+elif [ "$1" = "down" ]; then
+    pulseaudio-ctl down $STEP
+elif [ "$1" = "set" ]; then
+    pulseaudio-ctl set "$2"
+elif [ "$1" = "mute" ]; then
+    pulseaudio-ctl mute
+    exit
+fi
+
+paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga

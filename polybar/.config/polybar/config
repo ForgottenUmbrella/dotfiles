@@ -1,0 +1,332 @@
+[colors]
+include-file = ~/.cache/wal/colors-polybar
+
+[bar/main]
+width = 100%
+height = 30
+; TODO: Revisit once i3-gaps has landed rounded-corners support.
+;radius = 5.0
+fixed-center = false
+;padding = 2
+padding-right = 2
+module-margin = 1
+background = ${colors.background}
+foreground = ${colors.foreground}
+line-size = 2
+line-color = ${colors.active}
+; Uncomment for floating bar.
+;border-size = 10
+;border-bottom-size = 0
+; Uncomment for opaque border.
+;border-color = ${colors.active}
+font-0 = bitmap:size=13
+; Aligned bars.
+font-1 = Terminus (TTF)
+; Japanese fonts.
+font-2 = Noto Sans CJK JP:pixelsize=10;-1
+; Unicode icons.
+font-3 = Symbola
+; Up-to-date FA icons.
+font-4 = Font Awesome 5 Free:size=8
+font-5 = Font Awesome 5 Free Solid:size=8
+font-6 = Font Awesome 5 Brands:size=8
+; All the other icons.
+font-7 = FuraMono Nerd Font
+cursor-click = pointer
+;cursor-scroll = ns-resize
+modules-left = i3 xwindow pomodoro
+modules-center =
+modules-right = mpd cpu ram swap kdeconnect redshift dropbox updates wifi bluetooth backlight pulseaudio battery time powermenu
+tray-position = none
+tray-padding = 2
+
+[module/separator]
+type = custom/text
+content = |
+
+[module/i3]
+type = internal/i3
+index-sort = true
+wrapping-scroll = false
+strip-wsnumbers = true
+label-focused = %name%
+label-unfocused = ${self.label-focused}
+label-visible = ${self.label-focused}
+label-urgent = ${self.label-focused}
+label-focused-background = ${colors.active}
+label-focused-foreground = ${colors.background}
+label-urgent-background = ${colors.alert}
+label-urgent-foreground = ${colors.background}
+label-focused-padding = 2
+label-unfocused-padding = ${self.label-focused-padding}
+label-visible-padding = ${self.label-focused-padding}
+label-urgent-padding = ${self.label-focused-padding}
+;label-mode-padding = 2
+label-mode-background = ${colors.active}
+; Separator in between workspaces
+;label-separator = " "
+
+[module/pomodoro]
+type = custom/script
+interval = 5
+exec = ~/.config/polybar/scripts/isrunning-pomodoro.sh
+
+[module/mpd]
+type = internal/mpd
+format-online = <icon-prev> <toggle> <icon-next>  <label-song>  <label-time> <bar-progress>
+icon-prev = ⏪
+icon-stop = ⏹
+icon-play = ⏵
+icon-pause = ⏸
+icon-next = ⏩
+icon-random = 🔀
+icon-repeat = 🔁
+;label-song = %title%
+;label-song-maxlen = 16
+label-song-ellipsis = true
+label-time = %elapsed%/%total%
+bar-progress-width = 8
+bar-progress-indicator = |
+bar-progress-fill = ─
+bar-progress-fill-foreground = ${colors.transient}
+bar-progress-empty = ─
+bar-progress-empty-foreground = ${colors.foreground-alt}
+toggle-off-foreground = ${colors.inactive}
+
+[module/xwindow]
+type = internal/xwindow
+label-maxlen = 64
+;label-background = ${colors.active}
+label-padding = 2
+
+[module/kdeconnect]
+type = custom/script
+exec = ~/.config/polybar/scripts/kdeconnect.sh -d
+tail = true
+
+[module/redshift]
+type = custom/script
+exec = ~/.config/polybar/scripts/isrunning-redshift.sh
+interval = 3600
+click-left = ~/.config/polybar/scripts/isrunning-redshift.sh --toggle
+
+[module/dropbox]
+type = custom/script
+exec = ~/.config/polybar/scripts/isrunning-dropbox.sh
+interval = 30
+click-left = ~/.config/polybar/scripts/isrunning-dropbox.sh --toggle
+
+[module/updates]
+type = custom/script
+exec = ~/.config/polybar/scripts/updates-arch-combined.sh
+interval = 1800
+click-left = ~/.config/polybar/scripts/updates-arch-combined.sh
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+format = <ramp> <label>
+format-warn = <label-warn>
+format-warn-prefix = " "
+format-warn-background = ${colors.alert}
+format-warn-foreground = ${colors.background}
+label = %temperature-c%
+label-warn = %temperature-c%
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-foreground = ${colors.foreground-alt}
+
+[module/cpu]
+type = internal/cpu
+interval = 30
+format = <ramp-load>
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+;label = %percentage:2%%
+ramp-load-0 = ▁
+ramp-load-1 = ▂
+ramp-load-2 = ▃
+ramp-load-3 = ▄
+ramp-load-4 = ▅
+ramp-load-5 = ▆
+ramp-load-6 = ▇
+ramp-load-7 = █
+ramp-load-foreground = ${colors.inactive}
+
+[module/ram]
+type = internal/memory
+interval = 30
+format = <ramp-used>
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+;label = %percentage_used%%
+ramp-used-0 = ▁
+ramp-used-1 = ▂
+ramp-used-2 = ▃
+ramp-used-3 = ▄
+ramp-used-4 = ▅
+ramp-used-5 = ▆
+ramp-used-6 = ▇
+ramp-used-7 = █
+ramp-used-foreground = ${colors.inactive}
+
+[module/swap]
+type = internal/memory
+interval = 30
+format = <ramp-swap-used>
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+;label = %percentage_swap_used%%
+ramp-swap-used-0 = ▁
+ramp-swap-used-1 = ▂
+ramp-swap-used-2 = ▃
+ramp-swap-used-3 = ▄
+ramp-swap-used-4 = ▅
+ramp-swap-used-5 = ▆
+ramp-swap-used-6 = ▇
+ramp-swap-used-7 = █
+ramp-swap-used-foreground = ${colors.inactive}
+
+[module/keyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+blacklist-1 = scroll lock
+format-prefix = "⌨ "
+format-prefix-foreground = ${colors.foreground-alt}
+
+[module/wifi]
+type = internal/network
+interface = wlp2s0
+label-connected = %{A1:wifi toggle:}%{A3:networkmanager_dmenu &:}%{A}%{A}
+label-connected-foreground = ${colors.foreground-alt}
+label-disconnected = %{A1:wifi toggle:}%{A3:networkmanager_dmenu &:}睊%{A}%{A}
+label-disconnected-foreground = ${colors.inactive}
+;ramp-signal-0 = ▁
+;ramp-signal-1 = ▂
+;ramp-signal-2 = ▃
+;ramp-signal-3 = ▄
+;ramp-signal-4 = ▅
+;ramp-signal-5 = ▆
+;ramp-signal-6 = ▇
+;ramp-signal-7 = █
+;ramp-signal-foreground = ${colors.inactive}
+
+[module/bluetooth]
+type = custom/script
+exec = ~/.config/polybar/scripts/isrunning-bluetooth.sh
+click-left = ~/.config/polybar/scripts/isrunning-bluetooth.sh --toggle
+click-right = btmenu
+interval = 10
+
+[module/backlight]
+type = internal/xbacklight
+card = intel_backlight
+format = <ramp> <bar>
+label = %percentage%%
+bar-width = 8
+bar-indicator = |
+bar-fill = ─
+bar-fill-foreground = ${colors.transient}
+bar-empty = ─
+bar-empty-foreground = ${colors.foreground-alt}
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+ramp-foreground = ${colors.foreground-alt}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+format-volume = <ramp-volume> <bar-volume>
+label-volume = %{A3:pa-device-menu &:}%percentage%%%{A}
+format-muted-prefix = "🔇 "
+format-muted-prefix-foreground = ${colors.inactive}
+label-muted = %{A3:pa-device-menu &:}muted%{A}
+bar-volume-width = 8
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-fill = ─
+bar-volume-fill-foreground = ${colors.transient}
+bar-volume-empty = ─
+bar-volume-empty-foreground = ${colors.foreground-alt}
+ramp-volume-0 = 🔈
+ramp-volume-1 = 🔉
+ramp-volume-2 = 🔊
+ramp-volume-foreground = ${colors.foreground-alt}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 99
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full-prefix = " "
+format-full-background = ${colors.alert}
+format-full-prefix-foreground = ${colors.background}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.transient}
+animation-charging-framerate = 512
+
+[module/time]
+type = internal/date
+interval = 15
+time = %H:%M
+date-alt = %a %F
+;format-prefix = "🕓 "
+format-prefix-foreground = ${colors.foreground-alt}
+label = %{A3:notify-send "$(date '+%a %F')" "$(cal)":}%date% %time%%{A}
+
+[module/powermenu]
+type = custom/menu
+expand-right = true
+format-spacing = 1
+label-open = ⏻
+label-open-foreground = ${colors.foreground-alt}
+label-close = cancel
+label-close-foreground = ${colors.inactive}
+label-separator = |
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = shutdown
+menu-0-1-exec = menu-open-2
+menu-0-2 = log out
+menu-0-2-exec = menu-open-3
+menu-0-3 = lock
+menu-0-3-exec = menu-open-4
+menu-1-0 = reboot
+menu-1-0-exec = shutdown -r now
+menu-2-0 = shutdown
+menu-2-0-exec = shutdown now
+menu-3-0 = log out
+menu-3-0-exec = i3-msg exit
+menu-4-0 = lock
+menu-4-0-exec = lock
+
+[settings]
+screenchange-reload = true
+pseudo-transparency = true
+format-foreground = ${colors.foreground}
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0

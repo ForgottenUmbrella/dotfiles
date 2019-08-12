@@ -1,0 +1,7 @@
+# Zoom with mousewheel.
+zoom_in 4
+zoom_out 5
+
+# Flip through images with C-scroll.
+prev_img C-4
+next_img C-5

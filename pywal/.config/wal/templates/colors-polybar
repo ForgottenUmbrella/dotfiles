@@ -1,0 +1,10 @@
+; -*- mode: conf -*-
+; ff is full transparency, 00 is no transparency.
+background = #cc{background.strip}
+background-alt = {color8}
+foreground = {foreground}
+foreground-alt = {color6}
+active = {color2}
+inactive = {color1}
+transient = {color3}
+alert = {color5}

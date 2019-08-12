@@ -1,0 +1,7 @@
+#!/bin/sh
+# Update my system. btw i use arch
+
+yay -Sc --noconfirm
+yay -Syu --noconfirm $argv
+fwupdmgr refresh
+fwupdmgr update

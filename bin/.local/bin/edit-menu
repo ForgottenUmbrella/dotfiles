@@ -1,0 +1,8 @@
+#!/bin/sh
+# Find and edit a file in the home directory.
+
+path=$(locate "$HOME" | rofi -dmenu -i -p "Edit")
+if [ -z "$path" ]; then
+    exit
+fi
+${VISUAL:-${EDITOR:-vi}} "$path"

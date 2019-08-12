@@ -1,0 +1,9 @@
+#!/bin/sh
+# Unmount drives through Rofi.
+
+path=$(find /run/media -maxdepth 1 | rofi -dmenu -i -p "Unmount")
+if [ -z "$path" ]; then
+    exit
+fi
+udisksctl unmount -b "$path"
+notify-send "Unmount" "Unmounted drive at $path."

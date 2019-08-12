@@ -1,0 +1,4 @@
+#!/usr/bin/sh
+# Run the Rofi emoji search plugin.
+
+rofi -show emoji

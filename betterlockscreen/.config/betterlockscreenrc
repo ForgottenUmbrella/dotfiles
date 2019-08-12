@@ -1,0 +1,26 @@
+#!/bin/sh
+# shellcheck disable=SC1090,SC2034,SC2154
+# configuration file for betterlockscreen
+
+. ~/.cache/wal/colors.sh
+bgalpha=66
+alpha=ff
+primary=$(echo "$color2" | tr -d "#")
+secondary=$(echo "$color1" | tr -d "#")
+alert=$(echo "$color5" | tr -d "#")
+success=$(echo "$color3" | tr -d "#")
+
+insidecolor=$(echo "$background" | tr -d "#")$bgalpha
+ringcolor=$(echo "$foreground" | tr -d "#")$alpha
+keyhlcolor=$primary$alpha
+bshlcolor=$secondary$alpha
+insidevercolor=$success$alpha
+insidewrongcolor=$alert$alpha
+
+separatorcolor=$ringcolor
+ringvercolor=$ringcolor
+ringwrongcolor=$ringcolor
+verifcolor=$ringcolor
+timecolor=$ringcolor
+datecolor=$ringcolor
+loginbox=$(echo "$background" | tr -d "#")$bgalpha

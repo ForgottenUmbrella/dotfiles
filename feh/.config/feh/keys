@@ -1,0 +1,44 @@
+# Flip through images.
+next_img C-n C-j C-Right space Right
+prev_img C-p C-k C-Left BackSpace Left
+jump_first asciicircum Home
+jump_last dollar End
+
+# Panning.
+scroll_left h Left
+scroll_down j Down
+scroll_up k Up
+scroll_right l Right
+scroll_left_page B
+scroll_down_page C-d
+scroll_up_page C-u
+scroll_right_page W
+
+# Zooming.
+zoom_in C-plus
+zoom_out C-minus
+zoom_default C-equal
+zoom_fit C-0
+
+# Hiding and deleting.
+remove d Delete
+delete D C-Delete
+
+# Information toggles.
+toggle_actions question a
+toggle_filenames f
+toggle_fullscreen F F11
+
+# Menu navigation.
+menu_close Escape C-bracketleft
+menu_parent H
+menu_down J
+menu_up K
+menu_child L
+
+# Unbind conflicts.
+toggle_pause
+toggle_keep_vp
+save_filelist
+reload_plus
+reload_minus

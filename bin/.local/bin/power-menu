@@ -1,0 +1,27 @@
+#!/bin/sh
+# Show a power menu to shutdown, logout, etc.
+
+lock="Lock"
+logout="Logout"
+hibernate="Hibernate"
+shutdown="Shutdown"
+reboot="Reboot"
+cancel="Cancel"
+
+case $(echo "$lock|$logout|$hibernate|$shutdown|$reboot|$cancel" | rofi -sep "|" -dmenu -i -p "Power Menu") in
+    "$lock")
+        lock
+        ;;
+    "$logout")
+        i3-msg exit
+        ;;
+    "$hibernate")
+        systemctl hibernate
+        ;;
+    "$shutdown")
+        systemctl poweroff
+        ;;
+    "$reboot")
+        systemctl reboot
+        ;;
+esac

@@ -1,0 +1,21 @@
+#!/bin/sh
+# Mount drives through Rofi.
+
+devices=$(lsblk -rnpo "name,label,type,mountpoint" | awk '
+    /part $/ {
+        printf $1;
+        if ($2 != "part") {
+            print "\t" $2;
+        } else {
+            print "";
+        }
+    }
+')
+device=$(printf "$devices" | rofi -dmenu -i -p "Mount")
+if [ -z "$device" ]; then
+    exit
+fi
+device_path=$(echo "$device" | cut -f 1)
+label=$(echo "$device" | cut -f 2)
+mount_path=$(udisksctl mount -b "$device_path")
+notify-send "Mount" "Mounted $label at $mount_path."

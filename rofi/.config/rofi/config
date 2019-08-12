@@ -1,12 +1,11 @@
-rofi.color-enabled: true
-# argb:80 (50%) -> argb:cc (80%)
-rofi.color-window: argb:cc002b37, #002b37, #003642
-rofi.color-normal: argb:cc002b37, #819396, argb:cc002b37, #003642, #819396
-rofi.color-active: argb:cc002b37, #008ed4, argb:cc002b37, #003642, #008ed4
-rofi.color-urgent: argb:cc002b37, #da4281, argb:cc002b37, #003642, #da4281
-rofi.font: InconsolataForPowerline NF 12
-rofi.lines: 3
-rofi.eh: 2
-rofi.width: 100
-rofi.padding: 500
-rofi.bw: 0
+rofi.run-command: fish -c '{cmd}'
+rofi.run-list-command: 'fish -c functions'
+
+rofi.theme: ~/.cache/wal/colors-rofi-dark.rasi
+rofi.fullscreen: true
+rofi.font: Monospace 13
+
+rofi.kb-accept-entry: Control+m,Return,KP_Enter
+rofi.kb-row-down: Control+j,Control+n,Down
+rofi.kb-remove-to-eol:
+rofi.kb-row-up: Control+k,Control+p,Up

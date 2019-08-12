@@ -1,0 +1,1365 @@
+	500px
+	Accessible Icon (accessibility, handicap, person, wheelchair, wheelchair-alt)
+	Accusoft
+	Acquisitions Incorporated (Dungeons & Dragons, d&d, dnd, fantasy, game, gaming, tabletop)
+	Ad (advertisement, media, newspaper, promotion, publicity)
+	Address Book (contact, directory, index, little black book, rolodex)
+	Address Card (about, contact, id, identification, postcard, profile)
+	adjust (contrast, dark, light, saturation)
+	App.net
+	Adobe (acrobat, app, design, illustrator, indesign, photoshop)
+	Adversal
+	affiliatetheme
+	Air Freshener (car, deodorize, fresh, pine, scent)
+	Airbnb
+	Algolia
+	align-center (format, middle, paragraph, text)
+	align-justify (format, paragraph, text)
+	align-left (format, paragraph, text)
+	align-right (format, paragraph, text)
+	Alipay
+	Allergies (allergy, freckles, hand, hives, pox, skin, spots)
+	Amazon
+	Amazon Pay
+	ambulance (emergency, emt, er, help, hospital, support, vehicle)
+	American Sign Language Interpreting (asl, deaf, finger, hand, interpret, speak)
+	Amilia
+	Anchor (berth, boat, dock, embed, link, maritime, moor, secure)
+	Android (robot)
+	AngelList
+	Angle Double Down (arrows, caret, download, expand)
+	Angle Double Left (arrows, back, caret, laquo, previous, quote)
+	Angle Double Right (arrows, caret, forward, more, next, quote, raquo)
+	Angle Double Up (arrows, caret, collapse, upload)
+	angle-down (arrow, caret, download, expand)
+	angle-left (arrow, back, caret, less, previous)
+	angle-right (arrow, care, forward, more, next)
+	angle-up (arrow, caret, collapse, upload)
+	Angry Face (disapprove, emoticon, face, mad, upset)
+	Angry Creative
+	Angular
+	Ankh (amulet, copper, coptic christianity, copts, crux ansata, egypt, venus)
+	App Store
+	iOS App Store
+	Apper Systems AB
+	Apple (fruit, ios, mac, operating system, os, osx)
+	Fruit Apple (fall, fruit, fuji, macintosh, orchard, seasonal, vegan)
+	Apple Pay
+	Archive (box, package, save, storage)
+	Archway (arc, monument, road, street, tunnel)
+	Alternate Arrow Circle Down (arrow-circle-o-down, download)
+	Alternate Arrow Circle Left (arrow-circle-o-left, back, previous)
+	Alternate Arrow Circle Right (arrow-circle-o-right, forward, next)
+	Alternate Arrow Circle Up (arrow-circle-o-up)
+	Arrow Circle Down (download)
+	Arrow Circle Left (back, previous)
+	Arrow Circle Right (forward, next)
+	Arrow Circle Up (upload)
+	arrow-down (download)
+	arrow-left (back, previous)
+	arrow-right (forward, next)
+	arrow-up (forward, upload)
+	Alternate Arrows (arrow, arrows, bigger, enlarge, expand, fullscreen, move, position, reorder, resize)
+	Alternate Arrows Horizontal (arrows-h, expand, horizontal, landscape, resize, wide)
+	Alternate Arrows Vertical (arrows-v, expand, portrait, resize, tall, vertical)
+	Artstation
+	Assistive Listening Systems (amplify, audio, deaf, ear, headset, hearing, sound)
+	asterisk (annotation, details, reference, star)
+	Asymmetrik, Ltd.
+	At (address, author, e-mail, email, handle)
+	Atlas (book, directions, geography, globe, map, travel, wayfinding)
+	Atlassian
+	Atom (atheism, chemistry, ion, nuclear, science)
+	Audible
+	Audio Description (blind, narration, video, visual)
+	Autoprefixer
+	avianex
+	Aviato
+	Award (honor, praise, prize, recognition, ribbon, trophy)
+	Amazon Web Services (AWS)
+	Baby (child, diaper, doll, human, infant, kid, offspring, person, sprout)
+	Baby Carriage (buggy, carrier, infant, push, stroller, transportation, walk, wheels)
+	Backspace (command, delete, erase, keyboard, undo)
+	backward (previous, rewind)
+	Bacon (blt, breakfast, ham, lard, meat, pancetta, pork, rasher)
+	Balance Scale (balanced, justice, legal, measure, weight)
+	ban (abort, ban, block, cancel, delete, hide, prohibit, remove, stop, trash)
+	Band-Aid (bandage, boo boo, first aid, ouch)
+	Bandcamp
+	barcode (info, laser, price, scan, upc)
+	Bars (checklist, drag, hamburger, list, menu, nav, navigation, ol, reorder, settings, todo, ul)
+	Baseball Ball (foul, hardball, league, leather, mlb, softball, sport)
+	Basketball Ball (dribble, dunk, hoop, nba)
+	Bath (clean, shower, tub, wash)
+	Battery Empty (charge, dead, power, status)
+	Battery Full (charge, power, status)
+	Battery 1/2 Full (charge, power, status)
+	Battery 1/4 Full (charge, low, power, status)
+	Battery 3/4 Full (charge, power, status)
+	Battle.net
+	Bed (lodging, rest, sleep, travel)
+	beer (alcohol, ale, bar, beverage, brewery, drink, lager, liquor, mug, stein)
+	Behance
+	Behance Square
+	bell (alarm, alert, chime, notification, reminder)
+	Bell Slash (alert, cancel, disabled, notification, off, reminder)
+	Bezier Curve (curves, illustrator, lines, path, vector)
+	Bible (book, catholicism, christianity, god, holy)
+	Bicycle (bike, gears, pedal, transportation, vehicle)
+	BIMobject
+	Binoculars (glasses, magnify, scenic, spyglass, view)
+	Biohazard (danger, dangerous, hazmat, medical, radioactive, toxic, waste, zombie)
+	Birthday Cake (anniversary, bakery, candles, celebration, dessert, frosting, holiday, party, pastry)
+	Bitbucket (atlassian, bitbucket-square, git)
+	Bitcoin
+	Bity
+	Font Awesome Black Tie
+	BlackBerry
+	Blender (cocktail, milkshake, mixer, puree, smoothie)
+	Blender Phone (appliance, cocktail, communication, fantasy, milkshake, mixer, puree, silly, smoothie)
+	Blind (cane, disability, person, sight)
+	Blog (journal, log, online, personal, post, web 2.0, wordpress, writing)
+	Blogger
+	Blogger B
+	Bluetooth
+	Bluetooth
+	bold (emphasis, format, text)
+	Lightning Bolt (electricity, lightning, weather, zap)
+	Bomb (error, explode, fuse, grenade, warning)
+	Bone (calcium, dog, skeletal, skeleton, tibia)
+	Bong (aparatus, cannabis, marijuana, pipe, smoke, smoking)
+	book (diary, documentation, journal, library, read)
+	Book of the Dead (Dungeons & Dragons, crossbones, d&d, dark arts, death, dnd, documentation, evil, fantasy, halloween, holiday, necronomicon, read, skull, spell)
+	Medical Book (diary, documentation, health, history, journal, library, read, record)
+	Book Open (flyer, library, notebook, open book, pamphlet, reading)
+	Book Reader (flyer, library, notebook, open book, pamphlet, reading)
+	bookmark (favorite, marker, read, remember, save)
+	Bootstrap
+	Bowling Ball (alley, candlepin, gutter, lane, strike, tenpin)
+	Box (archive, container, package, storage)
+	Box Open (archive, container, package, storage, unpack)
+	Boxes (archives, inventory, storage, warehouse)
+	Braille (alphabet, blind, dots, raised, vision)
+	Brain (cerebellum, gray matter, intellect, medulla oblongata, mind, noodle, wit)
+	Bread Slice (bake, bakery, baking, dough, flour, gluten, grain, sandwich, sourdough, toast, wheat, yeast)
+	Briefcase (bag, business, luggage, office, work)
+	Medical Briefcase (doctor, emt, first aid, health)
+	Broadcast Tower (airwaves, antenna, radio, reception, waves)
+	Broom (clean, firebolt, fly, halloween, nimbus 2000, quidditch, sweep, witch)
+	Brush (art, bristles, color, handle, paint)
+	BTC
+	Buffer
+	Bug (beetle, error, insect, report)
+	Building (apartment, business, city, company, office, work)
+	bullhorn (announcement, broadcast, louder, megaphone, share)
+	Bullseye (archery, goal, objective, target)
+	Burn (caliente, energy, fire, flame, gas, heat, hot)
+	Büromöbel-Experte GmbH & Co. KG.
+	Bus (public transportation, transportation, travel, vehicle)
+	Bus Alt (mta, public transportation, transportation, travel, vehicle)
+	Business Time (alarm, briefcase, business socks, clock, flight of the conchords, reminder, wednesday)
+	BuySellAds
+	Calculator (abacus, addition, arithmetic, counting, math, multiplication, subtraction)
+	Calendar (calendar-o, date, event, schedule, time, when)
+	Alternate Calendar (calendar, date, event, schedule, time, when)
+	Calendar Check (accept, agree, appointment, confirm, correct, date, done, event, ok, schedule, select, success, tick, time, todo, when)
+	Calendar with Day Focus (date, detail, event, focus, schedule, single day, time, today, when)
+	Calendar Minus (calendar, date, delete, event, negative, remove, schedule, time, when)
+	Calendar Plus (add, calendar, create, date, event, new, positive, schedule, time, when)
+	Calendar Times (archive, calendar, date, delete, event, remove, schedule, time, when, x)
+	Calendar with Week Focus (date, detail, event, focus, schedule, single week, time, today, when)
+	camera (image, lens, photo, picture, record, shutter, video)
+	Retro Camera (image, lens, photo, picture, record, shutter, video)
+	Campground (camping, fall, outdoors, teepee, tent, tipi)
+	Canadian Maple Leaf (canada, flag, flora, nature, plant)
+	Candy Cane (candy, christmas, holiday, mint, peppermint, striped, xmas)
+	Cannabis (bud, chronic, drugs, endica, endo, ganja, marijuana, mary jane, pot, reefer, sativa, spliff, weed, whacky-tabacky)
+	Capsules (drugs, medicine, pills, prescription)
+	Car (auto, automobile, sedan, transportation, travel, vehicle)
+	Alternate Car (auto, automobile, sedan, transportation, travel, vehicle)
+	Car Battery (auto, electric, mechanic, power)
+	Car Crash (accident, auto, automobile, insurance, sedan, transportation, vehicle, wreck)
+	Car Side (auto, automobile, sedan, transportation, travel, vehicle)
+	Caret Down (arrow, dropdown, expand, menu, more, triangle)
+	Caret Left (arrow, back, previous, triangle)
+	Caret Right (arrow, forward, next, triangle)
+	Caret Square Down (arrow, caret-square-o-down, dropdown, expand, menu, more, triangle)
+	Caret Square Left (arrow, back, caret-square-o-left, previous, triangle)
+	Caret Square Right (arrow, caret-square-o-right, forward, next, triangle)
+	Caret Square Up (arrow, caret-square-o-up, collapse, triangle, upload)
+	Caret Up (arrow, collapse, triangle)
+	Carrot (bugs bunny, orange, vegan, vegetable)
+	Shopping Cart Arrow Down (download, save, shopping)
+	Add to Shopping Cart (add, create, new, positive, shopping)
+	Cash Register (buy, cha-ching, change, checkout, commerce, leaerboard, machine, pay, payment, purchase, store)
+	Cat (feline, halloween, holiday, kitten, kitty, meow, pet)
+	Amazon Pay Credit Card
+	American Express Credit Card (amex)
+	Apple Pay Credit Card
+	Diner's Club Credit Card
+	Discover Credit Card
+	JCB Credit Card
+	MasterCard Credit Card
+	Paypal Credit Card
+	Stripe Credit Card
+	Visa Credit Card
+	Centercode
+	Centos (linux, operating system, os)
+	certificate (badge, star, verified)
+	Chair (furniture, seat, sit)
+	Chalkboard (blackboard, learning, school, teaching, whiteboard, writing)
+	Chalkboard Teacher (blackboard, instructor, learning, professor, school, whiteboard, writing)
+	Charging Station (electric, ev, tesla, vehicle)
+	Area Chart (analytics, area, chart, graph)
+	Bar Chart (analytics, bar, chart, graph)
+	Line Chart (activity, analytics, chart, dashboard, gain, graph, increase, line)
+	Pie Chart (analytics, chart, diagram, graph, pie)
+	Check (accept, agree, checkmark, confirm, correct, done, notice, notification, notify, ok, select, success, tick, todo, yes)
+	Check Circle (accept, agree, confirm, correct, done, ok, select, success, tick, todo, yes)
+	Double Check (accept, agree, checkmark, confirm, correct, done, notice, notification, notify, ok, select, success, tick, todo)
+	Check Square (accept, agree, checkmark, confirm, correct, done, ok, select, success, tick, todo, yes)
+	Cheese (cheddar, curd, gouda, melt, parmesan, sandwich, swiss, wedge)
+	Chess (board, checkmate, game, strategy, tournament)
+	Chess Bishop (board, checkmate, game, strategy)
+	Chess Board (board, checkmate, game, strategy)
+	Chess King (board, checkmate, game, strategy)
+	Chess Knight (board, checkmate, game, horse, strategy)
+	Chess Pawn (board, checkmate, game, strategy)
+	Chess Queen (board, checkmate, game, strategy)
+	Chess Rook (board, castle, checkmate, game, strategy)
+	Chevron Circle Down (arrow, download, dropdown, menu, more)
+	Chevron Circle Left (arrow, back, previous)
+	Chevron Circle Right (arrow, forward, next)
+	Chevron Circle Up (arrow, collapse, upload)
+	chevron-down (arrow, download, expand)
+	chevron-left (arrow, back, bracket, previous)
+	chevron-right (arrow, bracket, forward, next)
+	chevron-up (arrow, collapse, upload)
+	Child (boy, girl, kid, toddler, young)
+	Chrome (browser)
+	Chromecast
+	Church (building, cathedral, chapel, community, religion)
+	Circle (circle-thin, diameter, dot, ellipse, notification, round)
+	Circle Notched (circle-o-notch, diameter, dot, ellipse, round, spinner)
+	City (buildings, busy, skyscrapers, urban, windows)
+	Medical Clinic (doctor, general practitioner, hospital, infirmary, medicine, office, outpatient)
+	Clipboard (copy, notes, paste, record)
+	Clipboard with Check (accept, agree, confirm, done, ok, select, success, tick, todo, yes)
+	Clipboard List (checklist, completed, done, finished, intinerary, ol, schedule, tick, todo, ul)
+	Clock (date, late, schedule, time, timer, timestamp, watch)
+	Clone (arrange, copy, duplicate, paste)
+	Closed Captioning (cc, deaf, hearing, subtitle, subtitling, text, video)
+	Cloud (atmosphere, fog, overcast, save, upload, weather)
+	Alternate Cloud Download (download, export, save)
+	Cloud with (a chance of) Meatball (FLDSMDFR, food, spaghetti, storm)
+	Cloud with Moon (crescent, evening, lunar, night, partly cloudy, sky)
+	Cloud with Moon and Rain (crescent, evening, lunar, night, partly cloudy, precipitation, rain, sky, storm)
+	Cloud with Rain (precipitation, rain, sky, storm)
+	Cloud with Heavy Showers (precipitation, rain, sky, storm)
+	Cloud with Sun (clear, day, daytime, fall, outdoors, overcast, partly cloudy)
+	Cloud with Sun and Rain (day, overcast, precipitation, storm, summer, sunshower)
+	Alternate Cloud Upload (cloud-upload, import, save, upload)
+	cloudscale.ch
+	Cloudsmith
+	cloudversify
+	Cocktail (alcohol, beverage, drink, gin, glass, margarita, martini, vodka)
+	Code (brackets, code, development, html)
+	Code Branch (branch, code-fork, fork, git, github, rebase, svn, vcs, version)
+	Codepen
+	Codie Pie
+	Coffee (beverage, breakfast, cafe, drink, fall, morning, mug, seasonal, tea)
+	cog (gear, mechanical, settings, sprocket, wheel)
+	cogs (gears, mechanical, settings, sprocket, wheel)
+	Coins (currency, dime, financial, gold, money, penny)
+	Columns (browser, dashboard, organize, panes, split)
+	comment (bubble, chat, commenting, conversation, feedback, message, note, notification, sms, speech, texting)
+	Alternate Comment (bubble, chat, commenting, conversation, feedback, message, note, notification, sms, speech, texting)
+	Comment Dollar (bubble, chat, commenting, conversation, feedback, message, money, note, notification, pay, sms, speech, spend, texting, transfer)
+	Comment Dots (bubble, chat, commenting, conversation, feedback, message, more, note, notification, reply, sms, speech, texting)
+	Alternate Medical Chat (advice, bubble, chat, commenting, conversation, diagnose, feedback, message, note, notification, prescription, sms, speech, texting)
+	Comment Slash (bubble, cancel, chat, commenting, conversation, feedback, message, mute, note, notification, quiet, sms, speech, texting)
+	comments (bubble, chat, commenting, conversation, feedback, message, note, notification, sms, speech, texting)
+	Comments Dollar (bubble, chat, commenting, conversation, feedback, message, money, note, notification, pay, sms, speech, spend, texting, transfer)
+	Compact Disc (album, bluray, cd, disc, dvd, media, movie, music, record, video, vinyl)
+	Compass (directions, directory, location, menu, navigation, safari, travel)
+	Compress (collapse, fullscreen, minimize, move, resize, shrink, smaller)
+	Alternate Compress Arrows (collapse, fullscreen, minimize, move, resize, shrink, smaller)
+	Concierge Bell (attention, hotel, receptionist, service, support)
+	Confluence (atlassian)
+	Connect Develop
+	Contao
+	Cookie (baked good, chips, chocolate, eat, snack, sweet, treat)
+	Cookie Bite (baked good, bitten, chips, chocolate, eat, snack, sweet, treat)
+	Copy (clone, duplicate, file, files-o, paper, paste)
+	Copyright (brand, mark, register, trademark)
+	Couch (chair, cushion, furniture, relax, sofa)
+	cPanel
+	Creative Commons
+	Creative Commons Attribution
+	Creative Commons Noncommercial
+	Creative Commons Noncommercial (Euro Sign)
+	Creative Commons Noncommercial (Yen Sign)
+	Creative Commons No Derivative Works
+	Creative Commons Public Domain
+	Alternate Creative Commons Public Domain
+	Creative Commons Remix
+	Creative Commons Share Alike
+	Creative Commons Sampling
+	Creative Commons Sampling +
+	Creative Commons Share
+	Creative Commons CC0
+	Credit Card (buy, checkout, credit-card-alt, debit, money, payment, purchase)
+	Critical Role (Dungeons & Dragons, d&d, dnd, fantasy, game, gaming, tabletop)
+	crop (design, frame, mask, resize, shrink)
+	Alternate Crop (design, frame, mask, resize, shrink)
+	Cross (catholicism, christianity, church, jesus)
+	Crosshairs (aim, bullseye, gpd, picker, position)
+	Crow (bird, bullfrog, fauna, halloween, holiday, toad)
+	Crown (award, favorite, king, queen, royal, tiara)
+	Crutch (cane, injury, mobility, wheelchair)
+	CSS 3 Logo (code)
+	Alternate CSS3 Logo
+	Cube (3d, block, dice, package, square, tesseract)
+	Cubes (3d, block, dice, package, pyramid, square, stack, tesseract)
+	Cut (clip, scissors, snip)
+	Cuttlefish
+	Dungeons & Dragons
+	D&D Beyond (Dungeons & Dragons, d&d, dnd, fantasy, gaming, tabletop)
+	DashCube
+	Database (computer, development, directory, memory, storage)
+	Deaf (ear, hearing, sign language)
+	Delicious
+	Democrat (american, democratic party, donkey, election, left, left-wing, liberal, politics, usa)
+	deploy.dog
+	Deskpro
+	Desktop (computer, cpu, demo, desktop, device, imac, machine, monitor, pc, screen)
+	DEV
+	deviantART
+	Dharmachakra (buddhism, buddhist, wheel of dharma)
+	DHL (Dalsey, Hillblom and Lynn, german, package, shipping)
+	Diagnoses (analyze, detect, diagnosis, examine, medicine)
+	Diaspora
+	Dice (chance, gambling, game, roll)
+	Dice D20 (Dungeons & Dragons, chance, d&d, dnd, fantasy, gambling, game, roll)
+	Dice D6 (Dungeons & Dragons, chance, d&d, dnd, fantasy, gambling, game, roll)
+	Dice Five (chance, gambling, game, roll)
+	Dice Four (chance, gambling, game, roll)
+	Dice One (chance, gambling, game, roll)
+	Dice Six (chance, gambling, game, roll)
+	Dice Three (chance, gambling, game, roll)
+	Dice Two (chance, gambling, game, roll)
+	Digg Logo
+	Digital Ocean
+	Digital Tachograph (data, distance, speed, tachometer)
+	Directions (map, navigation, sign, turn)
+	Discord
+	Discourse
+	Divide (arithmetic, calculus, division, math)
+	Dizzy Face (dazed, dead, disapprove, emoticon, face)
+	DNA (double helix, genetic, helix, molecule, protein)
+	DocHub
+	Docker
+	Dog (animal, canine, fauna, mammal, pet, pooch, puppy, woof)
+	Dollar Sign ($, cost, dollar-sign, money, price, usd)
+	Dolly (carry, shipping, transport)
+	Dolly Flatbed (carry, inventory, shipping, transport)
+	Donate (contribute, generosity, gift, give)
+	Door Closed (enter, exit, locked)
+	Door Open (enter, exit, welcome)
+	Dot Circle (bullseye, notification, target)
+	Dove (bird, fauna, flying, peace, war)
+	Download (export, hard drive, save, transfer)
+	Draft2digital
+	Drafting Compass (design, map, mechanical drawing, plot, plotting)
+	Dragon (Dungeons & Dragons, d&d, dnd, fantasy, fire, lizard, serpent)
+	Draw Polygon (anchors, lines, object, render, shape)
+	Dribbble
+	Dribbble Square
+	Dropbox
+	Drum (instrument, music, percussion, snare, sound)
+	Drum Steelpan (calypso, instrument, music, percussion, reggae, snare, sound, steel, tropical)
+	Drumstick with Bite Taken Out (bone, chicken, leg, meat, poultry, turkey)
+	Drupal Logo
+	Dumbbell (exercise, gym, strength, weight, weight-lifting)
+	Dumpster (alley, bin, commercial, trash, waste)
+	Dumpster Fire (alley, bin, commercial, danger, dangerous, euphemism, flame, heat, hot, trash, waste)
+	Dungeon (Dungeons & Dragons, building, d&d, dnd, door, entrance, fantasy, gate)
+	Dyalog
+	Earlybirds
+	eBay
+	Edge Browser (browser, ie)
+	Edit (edit, pen, pencil, update, write)
+	Egg (breakfast, chicken, easter, shell, yolk)
+	eject (abort, cancel, cd, discharge)
+	Elementor
+	Horizontal Ellipsis (dots, drag, kebab, list, menu, nav, navigation, ol, reorder, settings, ul)
+	Vertical Ellipsis (dots, drag, kebab, list, menu, nav, navigation, ol, reorder, settings, ul)
+	Ello
+	Ember
+	Galactic Empire
+	Envelope (e-mail, email, letter, mail, message, notification, support)
+	Envelope Open (e-mail, email, letter, mail, message, notification, support)
+	Envelope Open-text (e-mail, email, letter, mail, message, notification, support)
+	Envelope Square (e-mail, email, letter, mail, message, notification, support)
+	Envira Gallery (leaf)
+	Equals (arithmetic, even, match, math)
+	eraser (art, delete, remove, rubber)
+	Erlang
+	Ethereum
+	Ethernet (cable, cat 5, cat 6, connection, hardware, internet, network, wired)
+	Etsy
+	Euro Sign (currency, dollar, exchange, money)
+	Evernote
+	Alternate Exchange (arrow, arrows, exchange, reciprocate, return, swap, transfer)
+	exclamation (alert, danger, error, important, notice, notification, notify, problem, warning)
+	Exclamation Circle (alert, danger, error, important, notice, notification, notify, problem, warning)
+	Exclamation Triangle (alert, danger, error, important, notice, notification, notify, problem, warning)
+	Expand (arrow, bigger, enlarge, resize)
+	Alternate Expand Arrows (arrows-alt, bigger, enlarge, move, resize)
+	ExpeditedSSL
+	Alternate External Link (external-link, new, open, share)
+	Alternate External Link Square (external-link-square, new, open, share)
+	Eye (look, optic, see, seen, show, sight, views, visible)
+	Eye Dropper (beaker, clone, color, copy, eyedropper, pipette)
+	Eye Slash (blind, hide, show, toggle, unseen, views, visible, visiblity)
+	Facebook (facebook-official, social network)
+	Facebook F (facebook)
+	Facebook Messenger
+	Facebook Square (social network)
+	Fantasy Flight-games (Dungeons & Dragons, d&d, dnd, fantasy, game, gaming, tabletop)
+	fast-backward (beginning, first, previous, rewind, start)
+	fast-forward (end, last, next)
+	Fax (business, communicate, copy, facsimile, send)
+	Feather (bird, light, plucked, quill, write)
+	Alternate Feather (bird, light, plucked, quill, write)
+	FedEx (Federal Express, package, shipping)
+	Fedora (linux, operating system, os)
+	Female (human, person, profile, user, woman)
+	fighter-jet (airplane, fast, fly, goose, maverick, plane, quick, top gun, transportation, travel)
+	Figma (app, design, interface)
+	File (document, new, page, pdf, resume)
+	Alternate File (document, file-text, invoice, new, page, pdf)
+	Archive File (.zip, bundle, compress, compression, download, zip)
+	Audio File (document, mp3, music, page, play, sound)
+	Code File (css, development, document, html)
+	File Contract (agreement, binding, document, legal, signature)
+	File CSV (document, excel, numbers, spreadsheets, table)
+	File Download (document, export, save)
+	Excel File (csv, document, numbers, spreadsheets, table)
+	File Export (download, save)
+	Image File (document, image, jpg, photo, png)
+	File Import (copy, document, send, upload)
+	File Invoice (account, bill, charge, document, payment, receipt)
+	File Invoice with US Dollar ($, account, bill, charge, document, dollar-sign, money, payment, receipt, usd)
+	Medical File (document, health, history, prescription, record)
+	Alternate Medical File (document, health, history, prescription, record)
+	PDF File (acrobat, document, preview, save)
+	Powerpoint File (display, document, keynote, presentation)
+	File Prescription (document, drugs, medical, medicine, rx)
+	File Signature (John Hancock, contract, document, name)
+	File Upload (document, import, page, save)
+	Video File (document, m4v, movie, mp4, play)
+	Word File (document, edit, page, text, writing)
+	Fill (bucket, color, paint, paint bucket)
+	Fill Drip (bucket, color, drop, paint, paint bucket, spill)
+	Film (cinema, movie, strip, video)
+	Filter (funnel, options, separate, sort)
+	Fingerprint (human, id, identification, lock, smudge, touch, unique, unlock)
+	fire (burn, caliente, flame, heat, hot, popular)
+	Alternate Fire (burn, caliente, flame, heat, hot, popular)
+	fire-extinguisher (burn, caliente, fire fighter, flame, heat, hot, rescue)
+	Firefox (browser)
+	First Aid (emergency, emt, health, medical, rescue)
+	First Order
+	Alternate First Order
+	firstdraft
+	Fish (fauna, gold, seafood, swimming)
+	Raised Fist (Dungeons & Dragons, d&d, dnd, fantasy, hand, ki, monk, resist, strength, unarmed combat)
+	flag (country, notice, notification, notify, pole, report, symbol)
+	flag-checkered (notice, notification, notify, pole, racing, report, symbol)
+	United States of America Flag (betsy ross, country, old glory, stars, stripes, symbol)
+	Flask (beaker, experimental, labs, science)
+	Flickr
+	Flipboard
+	Flushed Face (embarrassed, emoticon, face)
+	Fly
+	Folder (archive, directory, document, file)
+	Folder Minus (archive, delete, directory, document, file, negative, remove)
+	Folder Open (archive, directory, document, empty, file, new)
+	Folder Plus (add, archive, create, directory, document, file, new, positive)
+	font (alphabet, glyph, text, type, typeface)
+	Font Awesome (meanpath)
+	Alternate Font Awesome
+	Font Awesome Flag
+	Font Awesome Full Logo
+	Fonticons
+	Fonticons Fi
+	Football Ball (ball, fall, nfl, pigskin, seasonal)
+	Fort Awesome (castle)
+	Alternate Fort Awesome (castle)
+	Forumbee
+	forward (forward, next, skip)
+	Foursquare
+	Free Code Camp
+	FreeBSD
+	Frog (amphibian, bullfrog, fauna, hop, kermit, kiss, prince, ribbit, toad, wart)
+	Frowning Face (disapprove, emoticon, face, rating, sad)
+	Frowning Face With Open Mouth (disapprove, emoticon, face, rating, sad)
+	Fulcrum
+	Funnel Dollar (filter, money, options, separate, sort)
+	Futbol (ball, football, mls, soccer)
+	Galactic Republic (politics, star wars)
+	Galactic Senate (star wars)
+	Gamepad (controller, d-pad, joystick, video)
+	Gas Pump (car, fuel, gasoline, petrol)
+	Gavel (hammer, judge, law, lawyer, opinion)
+	Gem (diamond, jewelry, sapphire, stone, treasure)
+	Genderless (androgynous, asexual, sexless)
+	Get Pocket
+	GG Currency
+	GG Currency Circle
+	Ghost (apparition, blinky, clyde, floating, halloween, holiday, inky, pinky, spirit)
+	gift (christmas, generosity, giving, holiday, party, present, wrapped, xmas)
+	Gifts (christmas, generosity, giving, holiday, party, present, wrapped, xmas)
+	Git
+	Git Alt
+	Git Square
+	GitHub (octocat)
+	Alternate GitHub (octocat)
+	GitHub Square (octocat)
+	GitKraken
+	GitLab (Axosoft)
+	Gitter
+	Glass Cheers (alcohol, bar, beverage, celebration, champagne, clink, drink, holiday, new year's eve, party, toast)
+	Martini Glass (alcohol, bar, beverage, drink, liquor)
+	Alternate Glass Martini (alcohol, bar, beverage, drink, liquor)
+	Glass Whiskey (alcohol, bar, beverage, bourbon, drink, liquor, neat, rye, scotch, whisky)
+	Glasses (hipster, nerd, reading, sight, spectacles, vision)
+	Glide
+	Glide G
+	Globe (all, coordinates, country, earth, global, gps, language, localize, location, map, online, place, planet, translate, travel, world)
+	Globe with Africa shown (all, country, earth, global, gps, language, localize, location, map, online, place, planet, translate, travel, world)
+	Globe with Americas shown (all, country, earth, global, gps, language, localize, location, map, online, place, planet, translate, travel, world)
+	Globe with Asia shown (all, country, earth, global, gps, language, localize, location, map, online, place, planet, translate, travel, world)
+	Globe with Europe shown (all, country, earth, global, gps, language, localize, location, map, online, place, planet, translate, travel, world)
+	Gofore
+	Golf Ball (caddy, eagle, putt, tee)
+	Goodreads
+	Goodreads G
+	Google Logo
+	Google Drive
+	Google Play
+	Google Plus (google-plus-circle, google-plus-official)
+	Google Plus G (google-plus, social network)
+	Google Plus Square (social network)
+	Google Wallet
+	Gopuram (building, entrance, hinduism, temple, tower)
+	Graduation Cap (ceremony, college, graduate, learning, school, student)
+	Gratipay (Gittip) (favorite, heart, like, love)
+	Grav
+	Greater Than (arithmetic, compare, math)
+	Greater Than Equal To (arithmetic, compare, math)
+	Grimacing Face (cringe, emoticon, face, teeth)
+	Grinning Face (emoticon, face, laugh, smile)
+	Alternate Grinning Face (emoticon, face, laugh, smile)
+	Grinning Face With Smiling Eyes (emoticon, face, laugh, smile)
+	Grinning Face With Sweat (embarass, emoticon, face, smile)
+	Smiling Face With Heart-Eyes (emoticon, face, love, smile)
+	Grinning Squinting Face (emoticon, face, laugh, smile)
+	Rolling on the Floor Laughing (emoticon, face, happy, smile)
+	Star-Struck (emoticon, face, star-struck)
+	Face With Tears of Joy (LOL, emoticon, face)
+	Face With Tongue (LOL, emoticon, face)
+	Squinting Face With Tongue (LOL, emoticon, face)
+	Winking Face With Tongue (LOL, emoticon, face)
+	Grinning Winking Face (emoticon, face, flirt, laugh, smile)
+	Grip Horizontal (affordance, drag, drop, grab, handle)
+	Grip Lines (affordance, drag, drop, grab, handle)
+	Grip Lines Vertical (affordance, drag, drop, grab, handle)
+	Grip Vertical (affordance, drag, drop, grab, handle)
+	Gripfire, Inc.
+	Grunt
+	Guitar (acoustic, instrument, music, rock, rock and roll, song, strings)
+	Gulp
+	H Square (directions, emergency, hospital, hotel, map)
+	Hacker News
+	Hacker News Square
+	Hackerrank
+	Hamburger (bacon, beef, burger, burger king, cheeseburger, fast food, grill, ground beef, mcdonalds, sandwich)
+	Hammer (admin, fix, repair, settings, tool)
+	Hamsa (amulet, christianity, islam, jewish, judaism, muslim, protection)
+	Hand Holding (carry, lift)
+	Hand Holding Heart (carry, charity, gift, lift, package)
+	Hand Holding US Dollar ($, carry, dollar sign, donation, giving, lift, money, price)
+	Lizard (Hand) (game, roshambo)
+	Hand with Middle Finger Raised (flip the bird, gesture, hate, rude)
+	Paper (Hand) (game, halt, roshambo, stop)
+	Peace (Hand) (rest, truce)
+	Hand Pointing Down (finger, hand-o-down, point)
+	Hand Pointing Left (back, finger, hand-o-left, left, point, previous)
+	Hand Pointing Right (finger, forward, hand-o-right, next, point, right)
+	Hand Pointing Up (finger, hand-o-up, point)
+	Pointer (Hand) (arrow, cursor, select)
+	Rock (Hand) (fist, game, roshambo)
+	Scissors (Hand) (cut, game, roshambo)
+	Spock (Hand) (live long, prosper, salute, star trek, vulcan)
+	Hands (carry, hold, lift)
+	Helping Hands (aid, assistance, handshake, partnership, volunteering)
+	Handshake (agreement, greeting, meeting, partnership)
+	Hanukiah (candle, hanukkah, jewish, judaism, light)
+	Hard Hat (construction, hardhat, helmet, safety)
+	Hashtag (Twitter, instagram, pound, social media, tag)
+	Wizard's Hat (Dungeons & Dragons, accessory, buckle, clothing, d&d, dnd, fantasy, halloween, head, holiday, mage, magic, pointy, witch)
+	Haykal (bahai, bahá'í, star)
+	HDD (cpu, hard drive, harddrive, machine, save, storage)
+	heading (format, header, text, title)
+	headphones (audio, listen, music, sound, speaker)
+	Alternate Headphones (audio, listen, music, sound, speaker)
+	Headset (audio, gamer, gaming, listen, live chat, microphone, shot caller, sound, support, telemarketer)
+	Heart (favorite, like, love, relationship, valentine)
+	Heart Broken (breakup, crushed, dislike, dumped, grief, love, lovesick, relationship, sad)
+	Heartbeat (ekg, electrocardiogram, health, lifeline, vital signs)
+	Helicopter (airwolf, apache, chopper, flight, fly, travel)
+	Highlighter (edit, marker, sharpie, update, write)
+	Hiking (activity, backpack, fall, fitness, outdoors, person, seasonal, walking)
+	Hippo (animal, fauna, hippopotamus, hungry, mammal)
+	Hips
+	HireAHelper
+	History (Rewind, clock, reverse, time, time machine)
+	Hockey Puck (ice, nhl, sport)
+	Holly Berry (catwoman, christmas, decoration, flora, halle, holiday, ororo munroe, plant, storm, xmas)
+	home (abode, building, house, main)
+	Hooli
+	Hornbill
+	Horse (equus, fauna, mammmal, mare, neigh, pony)
+	Horse Head (equus, fauna, mammmal, mare, neigh, pony)
+	hospital (building, emergency room, medical center)
+	Alternate Hospital (building, emergency room, medical center)
+	Hospital Symbol (clinic, emergency, map)
+	Hot Tub (bath, jacuzzi, massage, sauna, spa)
+	Hot Dog (bun, chili, frankfurt, frankfurter, kosher, polish, sandwich, sausage, vienna, weiner)
+	Hotel (building, inn, lodging, motel, resort, travel)
+	Hotjar
+	Hourglass (hour, minute, sand, stopwatch, time)
+	Hourglass End (hour, minute, sand, stopwatch, time)
+	Hourglass Half (hour, minute, sand, stopwatch, time)
+	Hourglass Start (hour, minute, sand, stopwatch, time)
+	Damaged House (building, devastation, disaster, home, insurance)
+	Houzz
+	Hryvnia (currency, money, ukraine, ukrainian)
+	HTML 5 Logo
+	HubSpot
+	I Beam Cursor (editing, i-beam, type, writing)
+	Ice Cream (chocolate, cone, dessert, frozen, scoop, sorbet, vanilla, yogurt)
+	Icicles (cold, frozen, hanging, ice, seasonal, sharp)
+	Identification Badge (address, contact, identification, license, profile)
+	Identification Card (contact, demographics, document, identification, issued, profile)
+	Alternate Identification Card (contact, demographics, document, identification, issued, profile)
+	Igloo (dome, dwelling, eskimo, home, house, ice, snow)
+	Image (album, landscape, photo, picture)
+	Images (album, landscape, photo, picture)
+	IMDB
+	inbox (archive, desk, email, mail, message)
+	Indent (align, justify, paragraph, tab)
+	Industry (building, factory, industrial, manufacturing, mill, warehouse)
+	Infinity (eternity, forever, math)
+	Info (details, help, information, more, support)
+	Info Circle (details, help, information, more, support)
+	Instagram
+	Intercom (app, customer, messenger)
+	Internet-explorer (browser, ie)
+	InVision (app, design, interface)
+	ioxhost
+	italic (edit, emphasis, font, format, text, type)
+	itch.io
+	iTunes
+	Itunes Note
+	Java
+	Jedi (crest, force, sith, skywalker, star wars, yoda)
+	Jedi Order (star wars)
+	Jenkis
+	Jira (atlassian)
+	Joget
+	Joint (blunt, cannabis, doobie, drugs, marijuana, roach, smoke, smoking, spliff)
+	Joomla Logo
+	Journal of the Whills (book, force, jedi, sith, star wars, yoda)
+	JavaScript (JS)
+	JavaScript (JS) Square
+	jsFiddle
+	Kaaba (building, cube, islam, muslim)
+	Kaggle
+	key (lock, password, private, secret, unlock)
+	Keybase
+	Keyboard (accessory, edit, input, text, type, write)
+	KeyCDN
+	Khanda (chakkar, sikh, sikhism, sword)
+	Kickstarter
+	Kickstarter K
+	Kissing Face (beso, emoticon, face, love, smooch)
+	Kissing Face With Smiling Eyes (beso, emoticon, face, love, smooch)
+	Face Blowing a Kiss (beso, emoticon, face, love, smooch)
+	Kiwi Bird (bird, fauna, new zealand)
+	KORVUE
+	Landmark (building, historic, memorable, monument, politics)
+	Language (dialect, idiom, localize, speech, translate, vernacular)
+	Laptop (computer, cpu, dell, demo, device, mac, macbook, machine, pc)
+	Laptop Code (computer, cpu, dell, demo, develop, device, mac, macbook, machine, pc)
+	Laptop Medical (computer, device, ehr, electronic health records, history)
+	Laravel
+	last.fm
+	last.fm Square
+	Grinning Face With Big Eyes (LOL, emoticon, face, laugh, smile)
+	Laugh Face with Beaming Eyes (LOL, emoticon, face, happy, smile)
+	Laughing Squinting Face (LOL, emoticon, face, happy, smile)
+	Laughing Winking Face (LOL, emoticon, face, happy, smile)
+	Layer Group (arrange, develop, layers, map, stack)
+	leaf (eco, flora, nature, plant, vegan)
+	Leanpub
+	Lemon (citrus, lemonade, lime, tart)
+	Less
+	Less Than (arithmetic, compare, math)
+	Less Than Equal To (arithmetic, compare, math)
+	Alternate Level Down (arrow, level-down)
+	Alternate Level Up (arrow, level-up)
+	Life Ring (coast guard, help, overboard, save, support)
+	Lightbulb (energy, idea, inspiration, light)
+	Line
+	Link (attach, attachment, chain, connect)
+	LinkedIn (linkedin-square)
+	LinkedIn In (linkedin)
+	Linode
+	Linux (tux)
+	Turkish Lira Sign (currency, money, try, turkish)
+	List (checklist, completed, done, finished, ol, todo, ul)
+	Alternate List (checklist, completed, done, finished, ol, todo, ul)
+	list-ol (checklist, completed, done, finished, numbers, ol, todo, ul)
+	list-ul (checklist, completed, done, finished, ol, todo, ul)
+	location-arrow (address, compass, coordinate, direction, gps, map, navigation, place)
+	lock (admin, lock, open, password, private, protect, security)
+	Lock Open (admin, lock, open, password, private, protect, security)
+	Alternate Long Arrow Down (download, long-arrow-down)
+	Alternate Long Arrow Left (back, long-arrow-left, previous)
+	Alternate Long Arrow Right (forward, long-arrow-right, next)
+	Alternate Long Arrow Up (long-arrow-up, upload)
+	Low Vision (blind, eye, sight)
+	Luggage Cart (bag, baggage, suitcase, travel)
+	lyft
+	Magento
+	magic (autocomplete, automatic, mage, magic, spell, wand, witch, wizard)
+	magnet (Attract, lodestone, tool)
+	Mail Bulk (archive, envelope, letter, post office, postal, postcard, send, stamp, usps)
+	Mailchimp
+	Male (human, man, person, profile, user)
+	Mandalorian
+	Map (address, coordinates, destination, gps, localize, location, map, navigation, paper, pin, place, point of interest, position, route, travel)
+	Map Marked (address, coordinates, destination, gps, localize, location, map, navigation, paper, pin, place, point of interest, position, route, travel)
+	Alternate Map Marked (address, coordinates, destination, gps, localize, location, map, navigation, paper, pin, place, point of interest, position, route, travel)
+	map-marker (address, coordinates, destination, gps, localize, location, map, navigation, paper, pin, place, point of interest, position, route, travel)
+	Alternate Map Marker (address, coordinates, destination, gps, localize, location, map, navigation, paper, pin, place, point of interest, position, route, travel)
+	Map Pin (address, agree, coordinates, destination, gps, localize, location, map, marker, navigation, pin, place, position, travel)
+	Map Signs (directions, directory, map, signage, wayfinding)
+	Markdown
+	Marker (design, edit, sharpie, update, write)
+	Mars (male)
+	Mars Double
+	Mars Stroke
+	Mars Stroke Horizontal
+	Mars Stroke Vertical
+	Mask (carnivale, costume, disguise, halloween, secret, super hero)
+	Mastodon
+	MaxCDN
+	Medal (award, ribbon, star, trophy)
+	MedApps
+	Medium
+	Medium M
+	medkit (first aid, firstaid, health, help, support)
+	MRT
+	Meetup
+	Megaport
+	Neutral Face (emoticon, face, neutral, rating)
+	Face Without Mouth (emoticon, face, neutral, rating)
+	Face With Rolling Eyes (emoticon, face, neutral, rating)
+	Memory (DIMM, RAM, hardware, storage, technology)
+	Mendeley
+	Menorah (candle, hanukkah, jewish, judaism, light)
+	Mercury (transgender)
+	Meteor (armageddon, asteroid, comet, shooting star, space)
+	Microchip (cpu, hardware, processor, technology)
+	microphone (audio, podcast, record, sing, sound, voice)
+	Alternate Microphone (audio, podcast, record, sing, sound, voice)
+	Alternate Microphone Slash (audio, disable, mute, podcast, record, sing, sound, voice)
+	Microphone Slash (audio, disable, mute, podcast, record, sing, sound, voice)
+	Microscope (electron, lens, optics, science, shrink)
+	Microsoft
+	minus (collapse, delete, hide, minify, negative, remove, trash)
+	Minus Circle (delete, hide, negative, remove, shape, trash)
+	Minus Square (collapse, delete, hide, minify, negative, remove, shape, trash)
+	Mitten (clothing, cold, glove, hands, knitted, seasonal, warmth)
+	Mix
+	Mixcloud
+	Mizuni
+	Mobile Phone (apple, call, cell phone, cellphone, device, iphone, number, screen, telephone)
+	Alternate Mobile (apple, call, cell phone, cellphone, device, iphone, number, screen, telephone)
+	MODX
+	Monero
+	Money Bill (buy, cash, checkout, money, payment, price, purchase)
+	Alternate Money Bill (buy, cash, checkout, money, payment, price, purchase)
+	Wavy Money Bill (buy, cash, checkout, money, payment, price, purchase)
+	Alternate Wavy Money Bill (buy, cash, checkout, money, payment, price, purchase)
+	Money Check (bank check, buy, checkout, cheque, money, payment, price, purchase)
+	Alternate Money Check (bank check, buy, checkout, cheque, money, payment, price, purchase)
+	Monument (building, historic, landmark, memorable)
+	Moon (contrast, crescent, dark, lunar, night)
+	Mortar Pestle (crush, culinary, grind, medical, mix, pharmacy, prescription, spices)
+	Mosque (building, islam, landmark, muslim)
+	Motorcycle (bike, machine, transportation, vehicle)
+	Mountain (glacier, hiking, hill, landscape, travel, view)
+	Mouse Pointer (arrow, cursor, select)
+	Mug Hot (caliente, cocoa, coffee, cup, drink, holiday, hot chocolate, steam, tea, warmth)
+	Music (lyrics, melody, note, sing, sound)
+	Napster
+	Neos
+	Wired Network (computer, connect, ethernet, internet, intranet)
+	Neuter
+	Newspaper (article, editorial, headline, journal, journalism, news, press)
+	Nimblr
+	Nintendo Switch
+	Node.js
+	Node.js JS
+	Not Equal (arithmetic, compare, math)
+	Medical Notes (clipboard, doctor, ehr, health, history, records)
+	npm
+	NS8
+	Nutritionix
+	Object Group (combine, copy, design, merge, select)
+	Object Ungroup (copy, design, merge, select, separate)
+	Odnoklassniki
+	Odnoklassniki Square
+	Oil Can (auto, crude, gasoline, grease, lubricate, petroleum)
+	Old Republic (politics, star wars)
+	Om (buddhism, hinduism, jainism, mantra)
+	OpenCart
+	OpenID
+	Opera
+	Optin Monster
+	Open Source Initiative
+	Otter (animal, badger, fauna, fur, mammal, marten)
+	Outdent (align, justify, paragraph, tab)
+	page4 Corporation
+	Pagelines (eco, flora, leaf, leaves, nature, plant, tree)
+	Pager (beeper, cellphone, communication)
+	Paint Brush (acrylic, art, brush, color, fill, paint, pigment, watercolor)
+	Paint Roller (acrylic, art, brush, color, fill, paint, pigment, watercolor)
+	Palette (acrylic, art, brush, color, fill, paint, pigment, watercolor)
+	Palfed
+	Pallet (archive, box, inventory, shipping, warehouse)
+	Paper Plane (air, float, fold, mail, paper, send)
+	Paperclip (attach, attachment, connect, link)
+	Parachute Box (aid, assistance, rescue, supplies)
+	paragraph (edit, format, text, writing)
+	Parking (auto, car, garage, meter)
+	Passport (document, id, identification, issued, travel)
+	Pastafarianism (agnosticism, atheism, flying spaghetti monster, fsm)
+	Paste (clipboard, copy, document, paper)
+	Patreon
+	pause (hold, wait)
+	Pause Circle (hold, wait)
+	Paw (animal, cat, dog, pet, print)
+	Paypal
+	Peace (serenity, tranquility, truce, war)
+	Pen (design, edit, update, write)
+	Alternate Pen (design, edit, update, write)
+	Pen Fancy (design, edit, fountain pen, update, write)
+	Pen Nib (design, edit, fountain pen, update, write)
+	Pen Square (edit, pencil-square, update, write)
+	Alternate Pencil (design, edit, pencil, update, write)
+	Pencil Ruler (design, draft, draw, pencil)
+	Penny Arcade (Dungeons & Dragons, d&d, dnd, fantasy, game, gaming, pax, tabletop)
+	People Carry (box, carry, fragile, help, movers, package)
+	Hot Pepper (buffalo wings, capsicum, chili, chilli, habanero, jalapeno, mexican, spicy, tabasco, vegetable)
+	Percent (discount, fraction, proportion, rate, ratio)
+	Percentage (discount, fraction, proportion, rate, ratio)
+	Periscope
+	Person Entering Booth (changing, changing room, election, human, person, vote, voting)
+	Phabricator
+	Phoenix Framework
+	Phoenix Squadron
+	Phone (call, earphone, number, support, telephone, voice)
+	Phone Slash (call, cancel, earphone, mute, number, support, telephone, voice)
+	Phone Square (call, earphone, number, support, telephone, voice)
+	Phone Volume (call, earphone, number, sound, support, telephone, voice, volume-control-phone)
+	PHP
+	Pied Piper Logo
+	Alternate Pied Piper Logo
+	Pied Piper-hat (clothing)
+	Pied Piper PP Logo (Old)
+	Piggy Bank (bank, save, savings)
+	Pills (drugs, medicine, prescription, tablets)
+	Pinterest
+	Pinterest P
+	Pinterest Square
+	Pizza Slice (cheese, chicago, italian, mozzarella, new york, pepperoni, pie, slice, teenage mutant ninja turtles, tomato)
+	Place of Worship (building, church, holy, mosque, synagogue)
+	plane (airplane, destination, fly, location, mode, travel, trip)
+	Plane Arrival (airplane, arriving, destination, fly, land, landing, location, mode, travel, trip)
+	Plane Departure (airplane, departing, destination, fly, location, mode, take off, taking off, travel, trip)
+	play (audio, music, playing, sound, start, video)
+	Play Circle (audio, music, playing, sound, start, video)
+	PlayStation
+	Plug (connect, electric, online, power)
+	plus (add, create, expand, new, positive, shape)
+	Plus Circle (add, create, expand, new, positive, shape)
+	Plus Square (add, create, expand, new, positive, shape)
+	Podcast (audio, broadcast, music, sound)
+	Poll (results, survey, trend, vote, voting)
+	Poll H (results, survey, trend, vote, voting)
+	Poo (crap, poop, shit, smile, turd)
+	Poo Storm (bolt, cloud, euphemism, lightning, mess, poop, shit, turd)
+	Poop (crap, poop, shit, smile, turd)
+	Portrait (id, image, photo, picture, selfie)
+	Pound Sign (currency, gbp, money)
+	Power Off (cancel, computer, on, reboot, restart)
+	Pray (kneel, preach, religion, worship)
+	Praying Hands (kneel, preach, religion, worship)
+	Prescription (drugs, medical, medicine, pharmacy, rx)
+	Prescription Bottle (drugs, medical, medicine, pharmacy, rx)
+	Alternate Prescription Bottle (drugs, medical, medicine, pharmacy, rx)
+	print (business, copy, document, office, paper)
+	Procedures (EKG, bed, electrocardiogram, health, hospital, life, patient, vital)
+	Product Hunt
+	Project Diagram (chart, graph, network, pert)
+	Pushed
+	Puzzle Piece (add-on, addon, game, section)
+	Python
+	QQ
+	qrcode (barcode, info, information, scan)
+	Question (help, information, support, unknown)
+	Question Circle (help, information, support, unknown)
+	Quidditch (ball, bludger, broom, golden snitch, harry potter, hogwarts, quaffle, sport, wizard)
+	QuinScape
+	Quora
+	quote-left (mention, note, phrase, text, type)
+	quote-right (mention, note, phrase, text, type)
+	Quran (book, islam, muslim, religion)
+	R Project
+	Radiation (danger, dangerous, deadly, hazard, nuclear, radioactive, warning)
+	Alternate Radiation (danger, dangerous, deadly, hazard, nuclear, radioactive, warning)
+	Rainbow (gold, leprechaun, prism, rain, sky)
+	random (arrows, shuffle, sort, swap, switch, transfer)
+	Raspberry Pi
+	Ravelry
+	React
+	ReactEurope
+	ReadMe
+	Rebel Alliance
+	Receipt (check, invoice, money, pay, table)
+	Recycle (Waste, compost, garbage, reuse, trash)
+	red river
+	reddit Logo
+	reddit Alien
+	reddit Square
+	Redhat (linux, operating system, os)
+	Redo (forward, refresh, reload, repeat)
+	Alternate Redo (forward, refresh, reload, repeat)
+	Registered Trademark (copyright, mark, trademark)
+	Renren
+	Reply (mail, message, respond)
+	reply-all (mail, message, respond)
+	replyd
+	Republican (american, conservative, election, elephant, politics, republican party, right, right-wing, usa)
+	Researchgate
+	Resolving
+	Restroom (bathroom, john, loo, potty, washroom, waste, wc)
+	Retweet (refresh, reload, share, swap)
+	Rev.io
+	Ribbon (badge, cause, lapel, pin)
+	Ring (Dungeons & Dragons, Gollum, band, binding, d&d, dnd, engagement, fantasy, gold, jewelry, marriage, precious)
+	road (highway, map, pavement, route, street, travel)
+	Robot (android, automate, computer, cyborg)
+	rocket (aircraft, app, jet, launch, nasa, space)
+	Rocket.Chat
+	Rockrms
+	Route (directions, navigation, travel)
+	rss (blog, feed, journal, news, writing)
+	RSS Square (blog, feed, journal, news, writing)
+	Ruble Sign (currency, money, rub)
+	Ruler (design, draft, length, measure, planning)
+	Ruler Combined (design, draft, length, measure, planning)
+	Ruler Horizontal (design, draft, length, measure, planning)
+	Ruler Vertical (design, draft, length, measure, planning)
+	Running (exercise, health, jog, person, run, sport, sprint)
+	Indian Rupee Sign (currency, indian, inr, money)
+	Crying Face (emoticon, face, tear, tears)
+	Loudly Crying Face (emoticon, face, tear, tears)
+	Safari (browser)
+	Salesforce
+	Sass
+	Satellite (communications, hardware, orbit, space)
+	Satellite Dish (SETI, communications, hardware, receiver, saucer, signal)
+	Save (disk, download, floppy, floppy-o)
+	SCHLIX
+	School (building, education, learn, student, teacher)
+	Screwdriver (admin, fix, mechanic, repair, settings, tool)
+	Scribd
+	Scroll (Dungeons & Dragons, announcement, d&d, dnd, fantasy, paper, script)
+	Sd Card (image, memory, photo, save)
+	Search (bigger, enlarge, find, magnify, preview, zoom)
+	Search Dollar (bigger, enlarge, find, magnify, money, preview, zoom)
+	Search Location (bigger, enlarge, find, magnify, preview, zoom)
+	Search Minus (minify, negative, smaller, zoom, zoom out)
+	Search Plus (bigger, enlarge, magnify, positive, zoom, zoom in)
+	Searchengin
+	Seedling (flora, grow, plant, vegan)
+	Sellcast (eercast)
+	Sellsy
+	Server (computer, cpu, database, hardware, network)
+	Servicestack
+	Shapes (blocks, build, circle, square, triangle)
+	Share (forward, save, send, social)
+	Alternate Share (forward, save, send, social)
+	Alternate Share Square (forward, save, send, social)
+	Share Square (forward, save, send, social)
+	Shekel Sign (currency, ils, money)
+	Alternate Shield (achievement, award, block, defend, security, winner)
+	Ship (boat, sea, water)
+	Shipping Fast (express, fedex, mail, overnight, package, ups)
+	Shirts in Bulk
+	Shoe Prints (feet, footprints, steps, walk)
+	Shopping Bag (buy, checkout, grocery, payment, purchase)
+	Shopping Basket (buy, checkout, grocery, payment, purchase)
+	shopping-cart (buy, checkout, grocery, payment, purchase)
+	Shopware
+	Shower (bath, clean, faucet, water)
+	Shuttle Van (airport, machine, public-transportation, transportation, travel, vehicle)
+	Sign (directions, real estate, signage, wayfinding)
+	Alternate Sign In (arrow, enter, join, log in, login, sign in, sign up, sign-in, signin, signup)
+	Sign Language (Translate, asl, deaf, hands)
+	Alternate Sign Out (arrow, exit, leave, log out, logout, sign-out)
+	signal (bars, graph, online, reception, status)
+	Signature (John Hancock, cursive, name, writing)
+	SIM Card (hard drive, hardware, portable, storage, technology, tiny)
+	SimplyBuilt
+	SISTRIX
+	Sitemap (directory, hierarchy, ia, information architecture, organization)
+	Sith
+	Skating (activity, figure skating, fitness, ice, person, winter)
+	Sketch (app, design, interface)
+	Skiing (activity, downhill, fast, fitness, olympics, outdoors, person, seasonal, slalom)
+	Skiing Nordic (activity, cross country, fitness, outdoors, person, seasonal)
+	Skull (bones, skeleton, x-ray, yorick)
+	Skull & Crossbones (Dungeons & Dragons, alert, bones, d&d, danger, dead, deadly, death, dnd, fantasy, halloween, holiday, jolly-roger, pirate, poison, skeleton, warning)
+	skyatlas
+	Skype
+	Slack Logo (anchor, hash, hashtag)
+	Slack Hashtag (anchor, hash, hashtag)
+	Slash (cancel, close, mute, off, stop, x)
+	Sleigh (christmas, claus, fly, holiday, santa, sled, snow, xmas)
+	Horizontal Sliders (adjust, settings, sliders, toggle)
+	Slideshare
+	Smiling Face (approve, emoticon, face, happy, rating, satisfied)
+	Beaming Face With Smiling Eyes (emoticon, face, happy, positive)
+	Winking Face (emoticon, face, happy, hint, joke)
+	Smog (dragon, fog, haze, pollution, smoke, weather)
+	Smoking (cancer, cigarette, nicotine, smoking status, tobacco)
+	Smoking Ban (ban, cancel, no smoking, non-smoking)
+	SMS (chat, conversation, message, mobile, notification, phone, sms, texting)
+	Snapchat
+	Snapchat Ghost
+	Snapchat Square
+	Snowboarding (activity, fitness, olympics, outdoors, person)
+	Snowflake (precipitation, rain, winter)
+	Snowman (decoration, frost, frosty, holiday)
+	Snowplow (clean up, cold, road, storm, winter)
+	Socks (business socks, business time, clothing, feet, flight of the conchords, wednesday)
+	Solar Panel (clean, eco-friendly, energy, green, sun)
+	Sort (filter, order)
+	Sort Alpha Down (filter, order, sort-alpha-asc)
+	Sort Alpha Up (filter, order, sort-alpha-desc)
+	Sort Amount Down (filter, order, sort-amount-asc)
+	Sort Amount Up (filter, order, sort-amount-desc)
+	Sort Down (Descending) (arrow, descending, filter, order, sort-desc)
+	Sort Numeric Down (filter, numbers, order, sort-numeric-asc)
+	Sort Numeric Up (filter, numbers, order, sort-numeric-desc)
+	Sort Up (Ascending) (arrow, ascending, filter, order, sort-asc)
+	SoundCloud
+	Sourcetree
+	Spa (flora, massage, mindfulness, plant, wellness)
+	Space Shuttle (astronaut, machine, nasa, rocket, transportation)
+	Speakap
+	Speaker Deck
+	Spider (arachnid, bug, charlotte, crawl, eight, halloween)
+	Spinner (circle, loading, progress)
+	Splotch (Ink, blob, blotch, glob, stain)
+	Spotify
+	Spray Can (Paint, aerosol, design, graffiti, tag)
+	Square (block, box, shape)
+	Square Full (block, box, shape)
+	Alternate Square Root (arithmetic, calculus, division, math)
+	Squarespace
+	Stack Exchange
+	Stack Overflow
+	Stackpath
+	Stamp (art, certificate, imprint, rubber, seal)
+	Star (achievement, award, favorite, important, night, rating, score)
+	Star and Crescent (islam, muslim, religion)
+	star-half (achievement, award, rating, score, star-half-empty, star-half-full)
+	Alternate Star Half (achievement, award, rating, score, star-half-empty, star-half-full)
+	Star of David (jewish, judaism, religion)
+	Star of Life (doctor, emt, first aid, health, medical)
+	StayLinked
+	Steam
+	Steam Square
+	Steam Symbol
+	step-backward (beginning, first, previous, rewind, start)
+	step-forward (end, last, next)
+	Stethoscope (diagnosis, doctor, general practitioner, hospital, infirmary, medicine, office, outpatient)
+	Sticker Mule
+	Sticky Note (message, note, paper, reminder, sticker)
+	stop (block, box, square)
+	Stop Circle (block, box, circle, square)
+	Stopwatch (clock, reminder, time)
+	Store (building, buy, purchase, shopping)
+	Alternate Store (building, buy, purchase, shopping)
+	Strava
+	Stream (flow, list, timeline)
+	Street View (directions, location, map, navigation)
+	Strikethrough (cancel, edit, font, format, text, type)
+	Stripe
+	Stripe S
+	Stroopwafel (caramel, cookie, dessert, sweets, waffle)
+	Studio Vinari
+	StumbleUpon Logo
+	StumbleUpon Circle
+	subscript (edit, font, format, text, type)
+	Subway (machine, railway, train, transportation, vehicle)
+	Suitcase (baggage, luggage, move, suitcase, travel, trip)
+	Suitcase Rolling (baggage, luggage, move, suitcase, travel, trip)
+	Sun (brighten, contrast, day, lighter, sol, solar, star, weather)
+	Superpowers
+	superscript (edit, exponential, font, format, text, type)
+	Supple
+	Hushed Face (emoticon, face, shocked)
+	Suse (linux, operating system, os)
+	Swatchbook (Pantone, color, design, hue, palette)
+	Swimmer (athlete, head, man, olympics, person, pool, water)
+	Swimming Pool (ladder, recreation, swim, water)
+	Symfony
+	Synagogue (building, jewish, judaism, religion, star of david, temple)
+	Sync (exchange, refresh, reload, rotate, swap)
+	Alternate Sync (exchange, refresh, reload, rotate, swap)
+	Syringe (doctor, immunizations, medical, needle)
+	table (data, excel, spreadsheet)
+	Table Tennis (ball, paddle, ping pong)
+	tablet (apple, device, ipad, kindle, screen)
+	Alternate Tablet (apple, device, ipad, kindle, screen)
+	Tablets (drugs, medicine, pills, prescription)
+	Alternate Tachometer (dashboard, fast, odometer, speed, speedometer)
+	tag (discount, label, price, shopping)
+	tags (discount, label, price, shopping)
+	Tape (design, package, sticky)
+	Tasks (checklist, downloading, downloads, loading, progress, project management, settings, to do)
+	Taxi (cab, cabbie, car, car service, lyft, machine, transportation, travel, uber, vehicle)
+	TeamSpeak
+	Teeth (bite, dental, dentist, gums, mouth, smile, tooth)
+	Teeth Open (dental, dentist, gums bite, mouth, smile, tooth)
+	Telegram
+	Telegram Plane
+	High Temperature (cook, mercury, summer, thermometer, warm)
+	Low Temperature (cold, cool, mercury, thermometer, winter)
+	Tencent Weibo
+	Tenge (currency, kazakhstan, money, price)
+	Terminal (code, command, console, development, prompt)
+	text-height (edit, font, format, text, type)
+	text-width (edit, font, format, text, type)
+	th (blocks, boxes, grid, squares)
+	th-large (blocks, boxes, grid, squares)
+	th-list (checklist, completed, done, finished, ol, todo, ul)
+	The Red Yeti
+	Theater Masks (comedy, perform, theatre, tragedy)
+	Themeco
+	ThemeIsle
+	Thermometer (mercury, status, temperature)
+	Thermometer Empty (cold, mercury, status, temperature)
+	Thermometer Full (fever, hot, mercury, status, temperature)
+	Thermometer 1/2 Full (mercury, status, temperature)
+	Thermometer 1/4 Full (mercury, status, temperature)
+	Thermometer 3/4 Full (mercury, status, temperature)
+	Think Peaks
+	thumbs-down (disagree, disapprove, dislike, hand, social, thumbs-o-down)
+	thumbs-up (agree, approve, favorite, hand, like, ok, okay, social, success, thumbs-o-up, yes, you got it dude)
+	Thumbtack (coordinates, location, marker, pin, thumb-tack)
+	Alternate Ticket (movie, pass, support, ticket)
+	Times (close, cross, error, exit, incorrect, notice, notification, notify, problem, wrong, x)
+	Times Circle (close, cross, exit, incorrect, notice, notification, notify, problem, wrong, x)
+	tint (color, drop, droplet, raindrop, waterdrop)
+	Tint Slash (color, drop, droplet, raindrop, waterdrop)
+	Tired Face (angry, emoticon, face, grumpy, upset)
+	Toggle Off (switch)
+	Toggle On (switch)
+	Toilet (bathroom, flush, john, loo, pee, plumbing, poop, porcelain, potty, restroom, throne, washroom, waste, wc)
+	Toilet Paper (bathroom, halloween, holiday, lavatory, prank, restroom, roll)
+	Toolbox (admin, container, fix, repair, settings, tools)
+	Tools (admin, fix, repair, screwdriver, settings, tools, wrench)
+	Tooth (bicuspid, dental, dentist, molar, mouth, teeth)
+	Torah (book, jewish, judaism, religion)
+	Torii Gate (building, shintoism)
+	Tractor (agriculture, farm, vehicle)
+	Trade Federation
+	Trademark (copyright, register, symbol)
+	Traffic Light (direction, road, signal, travel)
+	Train (bullet, commute, locomotive, railway, subway)
+	Tram (crossing, machine, mountains, seasonal, transportation)
+	Transgender (intersex)
+	Alternate Transgender (intersex)
+	Trash (delete, garbage, hide, remove)
+	Alternate Trash (delete, garbage, hide, remove, trash-o)
+	Trash Restore (back, control z, oops, undo)
+	Alternative Trash Restore (back, control z, oops, undo)
+	Tree (bark, fall, flora, forest, nature, plant, seasonal)
+	Trello (atlassian)
+	TripAdvisor
+	trophy (achievement, award, cup, game, winner)
+	truck (cargo, delivery, shipping, vehicle)
+	Truck Loading (box, cargo, delivery, inventory, moving, rental, vehicle)
+	Truck Monster (offroad, vehicle, wheel)
+	Truck Moving (cargo, inventory, rental, vehicle)
+	Truck Side (cargo, vehicle)
+	T-Shirt (clothing, fashion, garment, shirt)
+	TTY (communication, deaf, telephone, teletypewriter, text)
+	Tumblr
+	Tumblr Square
+	Television (computer, display, monitor, television)
+	Twitch
+	Twitter (social network, tweet)
+	Twitter Square (social network, tweet)
+	Typo3
+	Uber
+	Ubuntu (linux, operating system, os)
+	UIkit
+	Umbrella (protection, rain, storm, wet)
+	Umbrella Beach (protection, recreation, sand, shade, summer, sun)
+	Underline (edit, emphasis, format, text, writing)
+	Undo (back, control z, exchange, oops, return, rotate, swap)
+	Alternate Undo (back, control z, exchange, oops, return, swap)
+	Uniregistry
+	Universal Access (accessibility, hearing, person, seeing, visual impairment)
+	University (bank, building, college, higher education - students, institution)
+	unlink (attachment, chain, chain-broken, remove)
+	unlock (admin, lock, password, private, protect)
+	Alternate Unlock (admin, lock, password, private, protect)
+	Untappd
+	Upload (hard drive, import, publish)
+	UPS (United Parcel Service, package, shipping)
+	USB
+	User (account, avatar, head, human, man, person, profile)
+	Alternate User (account, avatar, head, human, man, person, profile)
+	Alternate User Slash (account, avatar, head, human, man, person, profile)
+	User Astronaut (avatar, clothing, cosmonaut, nasa, space, suit)
+	User Check (accept, check, person, verified)
+	User Circle (account, avatar, head, human, man, person, profile)
+	User Clock (alert, person, remind, time)
+	User Cog (admin, cog, person, settings)
+	User Edit (edit, pen, pencil, person, update, write)
+	User Friends (group, people, person, team, users)
+	User Graduate (cap, clothing, commencement, gown, graduation, person, student)
+	User Injured (cast, injury, ouch, patient, person, sling)
+	User Lock (admin, lock, person, private, unlock)
+	Doctor (job, medical, nurse, occupation, physician, profile, surgeon)
+	User Minus (delete, negative, remove)
+	User Ninja (assassin, avatar, dangerous, deadly, sneaky)
+	Nurse (doctor, midwife, practitioner, surgeon)
+	User Plus (add, avatar, positive, sign up, signup, team)
+	User Secret (clothing, coat, hat, incognito, person, privacy, spy, whisper)
+	User Shield (admin, person, private, protect, safe)
+	User Slash (ban, delete, remove)
+	User Tag (avatar, discount, label, person, role, special)
+	User Tie (avatar, business, clothing, formal, professional, suit)
+	Remove User (archive, delete, remove, x)
+	Users (friends, group, people, persons, profiles, team)
+	Users Cog (admin, cog, group, person, settings, team)
+	United States Postal Service (american, package, shipping, usa)
+	us-Sunnah Foundation
+	Utensil Spoon (cutlery, dining, scoop, silverware, spoon)
+	Utensils (cutlery, dining, dinner, eat, food, fork, knife, restaurant)
+	Vaadin
+	Vector Square (anchors, lines, object, render, shape)
+	Venus (female)
+	Venus Double (female)
+	Venus Mars (Gender)
+	Viacoin
+	Video
+	Video Square
+	Vial (experiment, lab, sample, science, test, test tube)
+	Vials (experiment, lab, sample, science, test, test tube)
+	Viber
+	Video (camera, film, movie, record, video-camera)
+	Video Slash (add, create, film, new, positive, record, video)
+	Vihara (buddhism, buddhist, building, monastery)
+	Vimeo
+	Vimeo Square
+	Vimeo (vimeo)
+	Vine
+	VK
+	VNV
+	Volleyball Ball (beach, olympics, sport)
+	Volume Down (audio, lower, music, quieter, sound, speaker)
+	Volume Mute (audio, music, quiet, sound, speaker)
+	Volume Off (audio, ban, music, mute, quiet, silent, sound)
+	Volume Up (audio, higher, louder, music, sound, speaker)
+	Vote Yea (accept, cast, election, politics, positive, yes)
+	Cardboard VR (3d, augment, google, reality, virtual)
+	Vue.js
+	Walking (exercise, health, pedometer, person, steps)
+	Wallet (billfold, cash, currency, money)
+	Warehouse (building, capacity, garage, inventory, storage)
+	Water (lake, liquid, ocean, sea, swim, wet)
+	Square Wave (frequency, pulse, signal)
+	Waze
+	Weebly
+	Weibo
+	Weight (health, measurement, scale, weight)
+	Hanging Weight (anvil, heavy, measurement)
+	Weixin (WeChat)
+	What's App
+	What's App Square
+	Wheelchair (accessible, handicap, person)
+	WHMCS
+	WiFi (connection, hotspot, internet, network, wireless)
+	Wikipedia W
+	Wind (air, blow, breeze, fall, seasonal, weather)
+	Window Close (browser, cancel, computer, development)
+	Window Maximize (browser, computer, development, expand)
+	Window Minimize (browser, collapse, computer, development)
+	Window Restore (browser, computer, development)
+	Windows (microsoft, operating system, os)
+	Wine Bottle (alcohol, beverage, cabernet, drink, glass, grapes, merlot, sauvignon)
+	Wine Glass (alcohol, beverage, cabernet, drink, grapes, merlot, sauvignon)
+	Alternate Wine Glas (alcohol, beverage, cabernet, drink, grapes, merlot, sauvignon)
+	Wix
+	Wizards of the Coast (Dungeons & Dragons, d&d, dnd, fantasy, game, gaming, tabletop)
+	Wolf Pack Battalion
+	Won Sign (currency, krw, money)
+	WordPress Logo
+	Wordpress Simple
+	WPBeginner
+	WPExplorer
+	WPForms
+	wpressr (rendact)
+	Wrench (construction, fix, mechanic, plumbing, settings, spanner, tool, update)
+	X-Ray (health, medical, radiological images, radiology, skeleton)
+	Xbox
+	Xing
+	Xing Square
+	Y Combinator
+	Yahoo Logo
+	Yammer
+	Yandex
+	Yandex International
+	Yarn
+	Yelp
+	Yen Sign (currency, jpy, money)
+	Yin Yang (daoism, opposites, taoism)
+	Yoast
+	YouTube (film, video, youtube-play, youtube-square)
+	YouTube Square
+	Zhihu

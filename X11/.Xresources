@@ -1,10 +1,23 @@
-URxvt.font: xft:InconsolataForPowerline\ NF:size=14:antialias=true:hinting=true
-URxvt.scrollBar: false
-URxvt*transparent: true
-URxvt*shading: 30
-URxvt.saveLines: 8192
+! Scrolling options
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
+! Aesthetics
+URxvt.scrollBar: false
+URxvt.font: xft:bitmap:size=12,xft:FuraCode Nerd Font Mono
+URxvt*depth: 0
+! True transparency means no nice blur effect.
+URxvt*transparent: true
+URxvt*shading: 30
+URxvt*blurRadius: 16
+URxvt*cursorBlink: true
+URxvt*internalBorder: 10
+!URxvt*letterSpace: -1
+! Functionality
+URxvt.perl-ext-common: default,url-select,resize-font,fullscreen
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.launcher: /usr/bin/xdg-open
+URxvt.url-select.underline: true
+URxvt.keysym.Super-f: perl:fullscreen:switch

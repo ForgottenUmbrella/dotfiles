@@ -1,0 +1,22 @@
+[Desktop Entry]
+Categories=Development;TextEditor;
+Comment[en_AU]=Edit text
+Comment=Edit text
+Exec=emacsclient -nc %F
+GenericName[en_AU]=Text Editor
+GenericName=Text Editor
+Icon=emacs
+Keywords=Text;Editor;
+MimeType=text/x-tex;text/x-tcl;text/x-pascal;text/x-moc;text/x-makefile;text/x-java;text/x-csrc;text/x-csrc;text/x-chdr;text/x-c++src;text/x-c++hdr;text/plain;application/x-shellscript;
+Name[en_AU]=Emacs
+Name=Emacs
+Path=
+StartupNotify=true
+StartupWMClass=Emacs
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=

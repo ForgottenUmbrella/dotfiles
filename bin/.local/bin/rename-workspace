@@ -1,0 +1,4 @@
+#!/bin/sh
+# Rename current workspace.
+
+i3-input -F 'rename workspace to "%s"' -P 'Workspace: '

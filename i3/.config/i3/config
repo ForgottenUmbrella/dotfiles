@@ -3,27 +3,29 @@
 # this file and re-run i3-config-wizard(1).
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-
 # Dependencies:
-# * i3-gaps
-# * i3blocks
-# * rofi
-# * amixer
-# * playerctl
-# * i3lock-fancy-git
-# * ttf-font-awesome
-# * lm_sensors
-# * sysstat
-# * acpi
-# * volnoti-brightness-git
-# * acpilight
+# i3-gaps
+# rofi
+# polybar
+# compton
+# dunst
+# brillo/xbacklight
+# playerctl
+# pulseaudio-ctl
+# feh
+# python-pywal
+# wpgtk-git
+# terminus-font-ttf
+# ttf-symbola
+# nerd-fonts-fira-mono
+# ttf-font-awesome
+# noto-fonts-cjk
+# betterlockscreen
+# xautolock
 
-# * xautolock
-# * feh
-# * compton
+# Font.
+font bitmap 13
 
-
-# Variables
 # Mod1 = Alt, Mod4 = Win (Alt conflicts with Vim).
 set $mod Mod4
 
@@ -32,64 +34,162 @@ set $down j
 set $up k
 set $right l
 
-set $workspace1 "1 "
-set $workspace2 "2 "
-set $workspace3 "3 "
-set $workspace4 "4"
-set $workspace5 "5"
-set $workspace6 "6"
-set $workspace7 "7"
-set $workspace8 "8"
-set $workspace9 "9"
-# set $workspace10 "10 "
-set $workspace10 "10 &#xf001;"
+# Use Mouse+$mod to drag floating windows to their wanted position.
+floating_modifier $mod
 
-set $font pango:Awesome 10
+# Kill focused window.
+bindsym $mod+q kill
 
-set $base03 #002b36
-set $base02 #073642
-set $base01 #586e75
-set $base00 #657b83
-set $base0 #839496
-set $base1 #93a1a1
-set $base2 #eee8d5
-set $base3 #fdf6e3
-set $yellow #b58900
-set $orange #cb4b16
-set $red #dc322f
-set $magenta #d33682
-set $violet #6c71c4
-set $blue #268bd2
-set $cyan #2aa198
-set $green #859900
+# Start the application launcher.
+set $dmenu rofi -combi-modi drun#run -show combi -show-icons
+bindsym $mod+d split v; exec $dmenu
+bindsym $mod+Shift+d split h; exec $dmenu
+# Switch between open applications.
+bindsym $mod+Tab exec rofi -show window -show-icons
+# Application hotkeys.
+bindsym $mod+Return split v; exec --no-startup-id i3-sensible-terminal
+bindsym $mod+Shift+Return split h; exec --no-startup-id i3-sensible-terminal
+bindsym $mod+i split v; exec --no-startup-id $BROWSER
+bindsym $mod+Shift+i split h; exec --no-startup-id $BROWSER
+bindsym $mod+n split v; exec --no-startup-id $VISUAL
+bindsym $mod+Shift+n split h; exec --no-startup-id $VISUAL
+bindsym $mod+e split v; exec open-menu
+bindsym $mod+Shift+e split h; exec open-menu
 
+# Change focus.
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
 
-# Aesthetics
-## Status
-bar {
-    status_command i3blocks -c ~/.config/i3/i3blocks.conf
-    position top
-    tray_output primary
-    # tray_padding 0
-    # separator_symbol <
-    font $font
-    colors {
-        separator $base3
-        background $base02
-        statusline $base1
-        # workspace_type border background text
-        focused_workspace $base2 $base2 $base02
-        inactive_workspace $base02 $base02 $base2
-        urgent_workspace $orange $orange $base2
-        # Only exists if on multi-monitor setup.
-        active_workspace $base00 $base00 $base2
-    }
+# Move focused window.
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# Swithc to vertically stacked splits.
+bindsym $mod+v split v
+# Switch to horizontally stacked splits.
+bindsym $mod+Shift+v split h
+
+# Toggle fullscreen.
+bindsym $mod+f fullscreen toggle
+
+# Change container layout.
+set $mode_layout "Layout: [w] tabbed [s]tacking [e] toggle split [q]uit"
+bindsym $mod+w mode $mode_layout
+mode $mode_layout {
+    bindsym w layout tabbed; mode "default"
+    bindsym s layout stacking; mode "default"
+    bindsym e layout toggle split; mode "default"
+    bindsym q mode "default"
+    bindsym Control+bracketleft mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
 }
 
-## Window rules
-# default border pixel 1
-for_window [class="^.*"] border pixel 1
-# https://github.com/ValveSoftware/steam-for-linux/issues/1040
+# Toggle tiling/floating.
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling/floating windows.
+bindsym $mod+space focus mode_toggle
+
+# Focus the parent container.
+bindsym $mod+a focus parent
+
+# Focus the child container.
+bindsym $mod+Shift+a focus child
+
+# Move to scratchpad.
+bindsym $mod+Shift+minus move scratchpad
+
+# Cycle through scratchpad windows.
+bindsym $mod+minus scratchpad show
+bindsym XF86Search scratchpad show
+
+# Marks.
+bindsym $mod+m exec --no-startup-id i3-input -F 'mark %s' -l 1 -P 'Mark: '
+bindsym $mod+quote exec --no-startup-id i3-input -F '[con_mark="%s"] focus' -P 'Mark: '
+bindsym $mod+Shift+quote exec --no-startup-id i3-input -F 'swap container with mark %s' -P 'Mark: '
+
+# Workspaces.
+set $ws1 "1:I"
+set $ws2 "2:II"
+set $ws3 "3:III"
+set $ws4 "4:IV"
+set $ws5 "5:V"
+set $ws6 "6:VI"
+set $ws7 "7:VII"
+set $ws8 "8:VIII"
+set $ws9 "9:IX"
+set $ws10 "10:X"
+
+# Switch to workspace.
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+bindsym Mod1+Tab workspace next
+bindsym Mod1+Shift+Tab workspace prev
+
+workspace_auto_back_and_forth yes
+
+# Move to workspace.
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Control+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Control+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Control+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Control+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Control+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Control+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Control+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Control+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Control+Shift+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Control+Shift+0 move container to workspace $ws10; workspace $ws10
+
+# Reload configuration file.
+bindsym $mod+r reload
+# Restart i3 in-place (preserves session).
+bindsym $mod+Shift+r restart
+
+# Log out.
+bindsym $mod+Shift+q exec power-menu
+
+# Resize the window.
+set $resize_delta 3
+bindsym $mod+Control+$left resize grow left $resize_delta px or $resize_delta ppt
+bindsym $mod+Control+$down resize grow down $resize_delta px or $resize_delta ppt
+bindsym $mod+Control+$up resize grow up $resize_delta px or $resize_delta ppt
+bindsym $mod+Control+$right resize grow right $resize_delta px or $resize_delta ppt
+bindsym $mod+Control+Shift+$left resize shrink right $resize_delta px or $resize_delta ppt
+bindsym $mod+Control+Shift+$down resize shrink up $resize_delta px or $resize_delta ppt
+bindsym $mod+Control+Shift+$up resize shrink down $resize_delta px or $resize_delta ppt
+bindsym $mod+Control+Shift+$right resize shrink left $resize_delta px or $resize_delta ppt
+bindsym $mod+Up resize grow height $resize_delta px or $resize_delta ppt
+bindsym $mod+Down resize shrink height $resize_delta px or $resize_delta ppt
+bindsym $mod+Left resize shrink width $resize_delta px or $resize_delta ppt
+bindsym $mod+Right resize grow width $resize_delta px or $resize_delta ppt
+
+# Hide titlebar.
+default_border pixel 2
+
+# Steam window glitches: https://github.com/ValveSoftware/steam-for-linux/issues/1040.
 for_window [class="^Steam$" title="^Friends$"] floating enable
 for_window [class="^Steam$" title="Steam - News"] floating enable
 for_window [class="^Steam$" title=".* - Chat"] floating enable
@@ -101,220 +201,77 @@ for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
 for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
 for_window [title="^Steam Keyboard$"] floating enable
 
-## Gaps
-gaps inner 10
-gaps outer 5
-
-## Fonts
-### Window titles
-font $font
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-# This font is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitm.ap
-# font, it doesn’t scale on retina/hidpi displays.
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-
-## Colours
-# client_type border background text indicator child_border
-client.focused $base2 $base2 $base03 $green $base2
-client.unfocused $base03 $base03 $base2 $red $base03
-client.urgent $red $red $base2 $green $red
-client.focused_inactive $base02 $base02 $base2 $red $base02
-
-
-# Terminal
-bindsym $mod+Return exec i3-sensible-terminal
-
-
-# Kill
-bindsym $mod+Shift+q kill
-
-
-# Dmenu
-# bindsym $mod+d exec dmenu_run
-# Only lists GUIs.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-# bindsym $mod+d exec dmenu_extended_run
-bindsym $mod+d exec rofi -show run -config ~/.config/rofi/config
-
-
-# Movement
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
-
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
-
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-
-
-# Splits
-## "Horizontal" (vertical in Vim).
-bindsym $mod+v split h
-## "Vertical" (horizontal in Vim).
-bindsym $mod+s split v
-
-
-# Layout
-bindsym $mod+Shift+w layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
-## Toggle tiling/floating.
-bindsym $mod+Shift+space floating toggle
-
-## Change focus between tiling/floating windows.
-bindsym $mod+space focus mode_toggle
-
-## Focus the parent container.
-bindsym $mod+a focus parent
-
-## Focus the child container (conflicts with dmenu).
-#bindsym $mod+d focus child
-
-## Sticky/"permanent"
-bindsym $mod+p sticky toggle
-## Use Mouse+$mod to drag floating windows to their wanted position.
-floating_modifier $mod
-
-## Fullscreen
-bindsym $mod+f fullscreen toggle
-
-
-# Workspaces
-bindsym $mod+1 workspace $workspace1
-bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace $workspace4
-bindsym $mod+5 workspace $workspace5
-bindsym $mod+6 workspace $workspace6
-bindsym $mod+7 workspace $workspace7
-bindsym $mod+8 workspace $workspace8
-bindsym $mod+9 workspace $workspace9
-bindsym $mod+0 workspace $workspace10
-
-bindsym $mod+Shift+1 move container to workspace $workspace1
-bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace $workspace3
-bindsym $mod+Shift+4 move container to workspace $workspace4
-bindsym $mod+Shift+5 move container to workspace $workspace5
-bindsym $mod+Shift+6 move container to workspace $workspace6
-bindsym $mod+Shift+7 move container to workspace $workspace7
-bindsym $mod+Shift+8 move container to workspace $workspace8
-bindsym $mod+Shift+9 move container to workspace $workspace9
-bindsym $mod+Shift+0 move container to workspace $workspace10
-
-## Applications
-# assign [class="Chromium"] $workspace1
-# assign [class="Gnome-terminal"] $workspace2
-
-
-# Restarts
-## Hard
-bindsym $mod+Shift+c reload
-
-## Preserved
-bindsym $mod+Shift+r restart
-
-
-# Exit
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit \
-    shortcut. Do you really want to exit i3? This will end your X session.' \
-    -b 'Yes, exit i3' 'i3-msg exit'"
-
-
-# Resize
-mode "resize" {
-        bindsym $left resize shrink width 10 px or 10 ppt
-        bindsym $up resize grow height 10 px or 10 ppt
-        bindsym $down resize shrink height 10 px or 10 ppt
-        bindsym $right resize grow width 10 px or 10 ppt
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-        # bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym Control+bracketleft mode "default"
+# Gaps.
+set $default_inner 9
+set $default_outer 0
+set $gap_delta 2
+gaps inner $default_inner
+gaps outer $default_outer
+set $mode_gaps "Gaps: [j] -outer [k] +outer [J] -inner [K] +inner [0] none [=] default [q]uit"
+bindsym $mod+g mode $mode_gaps
+mode $mode_gaps {
+    bindsym j gaps outer all minus $gap_delta
+    bindsym k gaps outer all plus $gap_delta
+    bindsym Shift+j gaps inner all minus $gap_delta
+    bindsym Shift+k gaps inner all plus $gap_delta
+    bindsym 0 gaps inner all set 0; gaps outer all set 0
+    bindsym equal gaps outer all set $default_outer; gaps inner all set $default_inner
+    bindsym q mode "default"
+    bindsym Control+bracketleft mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
 }
-bindsym $mod+r mode "resize"
 
+# Colours.
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color0 #f0f0f0
+set_from_resource $main i3wm.color2 #f0f0f0
+set_from_resource $alt i3wm.color1 #f0f0f0
+set_from_resource $alert i3wm.color5 #f0f0f0
+# Only child_border actually matters.
+# <colorclass>		<border>	<bg>	<text>	<indicator>	<child_border>
+client.focused		$main		$main	$fg	$fg        	$main
+client.focused_inactive	$alt		$main	$fg	$alt		$alt
+client.unfocused	$alt		$alt	$fg	$alt		$alt
+client.urgent		$alert		$alert	$bg	$alt		$alert
+client.placeholder	NULL		$bg	$fg	NULL		$alt
+client.background $bg
 
-# Volume
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/vol up
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/bin/vol down
-bindsym XF86AudioMute exec --no-startup-id ~/bin/vol mute
+# Xbindkeys candidates.
+# Volume keys.
+bindsym XF86AudioRaiseVolume exec --no-startup-id vol up
+bindsym XF86AudioLowerVolume exec --no-startup-id vol down
+bindsym XF86AudioMute exec --no-startup-id vol mute
 
+# Media keys.
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPause exec --no-startup-id playerctl pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
-# Media
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+# Brightness keys.
+set $brightness_delta 5
+# `brillo` requires user to be in video group (`usermod -a -G video $USER`).
+#bindsym XF86MonBrightnessUp exec --no-startup-id brillo -A $brightness_delta
+#bindsym XF86MonBrightnessDown exec --no-startup-id brillo -U $brightness_delta
+bindsym XF86MonBrightnessUp exec --no-startup-id brightness -inc $brightness_delta
+bindsym XF86MonBrightnessDown exec --no-startup-id brightness -dec $brightness_delta
 
+# Lock screen.
+bindsym Control+Mod1+l exec --no-startup-id lock
 
-# Brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id ~/bin/bright up
-bindsym XF86MonBrightnessDown exec --no-startup-id ~/bin/bright down
+# Autostart.
+exec --no-startup-id xautolock -time 30 -locker lock
+exec_always --no-startup-id xmodmap ~/.Xmodmap
+exec --no-startup-id fcitx
+# Need the alpha option because wal doesn't remember it.
+exec_always --no-startup-id wal -R -a 80
+exec_always --no-startup-id killall compton; compton -b
+exec_always --no-startup-id killall dunst; dunst
+exec_always --no-startup-id killall polybar; polybar main
+exec --no-startup-id systemctl --user start wallplug.timer
 
-
-# Lock
-bindsym Control+$mod+l exec i3lock-fancy
-
-
-# KeyLock
-bindsym --release Caps_Lock exec pkill -RTMIN+11 i3blocks
-bindsym --release Num_Lock  exec pkill -RTMIN+11 i3blocks
-
-
-# # Input
-# input "2:14:ETPS/2_Elantech_Touchpad" {
-#     accel_profile flat
-#     click_method clickfinger
-#     dwt enabled
-#     # middle_emulation enabled
-#     natural_scroll enabled
-#     scroll_method two_finger
-#     tap enabled
-# }
-
-
-# Autostart
-exec i3-msg "workspace $workspace1; append_layout \
-    ~/.config/i3/workspaces/workspace-1.json"
-exec --no-startup-id firefox-nightly
-exec i3-msg "workspace $workspace2; append_layout \
-    ~/.config/i3/workspaces/workspace-2.json"
-exec --no-startup-id i3-sensible-terminal
-exec i3-msg "workspace $workspace10; append_layout \
-    ~/.config/i3/workspaces/workspace-10.json"
-# exec --no-startup-id xautolock -time 30 -locker "i3lock-fancy"
-exec --no-startup-id compton --config ~/.config/compton.conf
-exec --no-startup-id dropbox start
-exec --no-startup-id nm-applet
-exec --no-startup-id redshift-gtk
-exec --no-startup-id blueman-applet
-exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
-exec --no-startup-id volnoti --timeout 2 --alpha 0.8 --corner-radius 15
-# exec --no-startup-id indicator-kdeconnect
-exec_always --no-startup-id ~/.fehbg
-# output "*" background ~/Pictures/current/* fill
-
-# vim: set nospell:
+# Dropdown terminal.
+exec --no-startup-id i3-sensible-terminal -t "dropdown"
+for_window [title="dropdown"] move scratchpad
+for_window [title="dropdown"] sticky enable

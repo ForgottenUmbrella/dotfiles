@@ -1,0 +1,4 @@
+#!/bin/sh
+# Rofi script to configure KDE Connect.
+
+~/.config/polybar/scripts/kdeconnect.sh -d | cut -d ":" -f 2 | sh

@@ -1,8 +1,8 @@
 [core]
 	autocrlf = input
-	excludesfile = /home/leo/.config/git/ignore
+	excludesfile = ~/.config/git/ignore
 [user]
-	email = regretfulumbrella@gmail.com
+	email = forgottenumbrella@tutanota.com
 	name = Leo Pham
 [credential]
 	helper = cache --timeout=3600
