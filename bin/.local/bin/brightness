@@ -4,9 +4,9 @@
 
 # If current brightness is equal to DELTA and the -dec argument is specified, or
 # current brightness is equal to 0 and the -inc argument is specified, then
-# brightness is set to 0.1 instead.
+# brightness is set to 0.01 instead.
 
-# Likewise, the current brightness is equal to 0.1 and the -inc argument is
+# Likewise, the current brightness is equal to 0.01 and the -inc argument is
 # specified, brightness is set to DELTA instead.
 
 # Depends on xbacklight.
@@ -14,6 +14,7 @@
 command=$1
 delta=$2
 current_brightness=$(xbacklight -get)
+min=0.01
 
 # Return whether two floating point numbers are equal.
 feq() {
@@ -24,8 +25,8 @@ if [ -z "$delta" ]; then
     xbacklight "$@"
 elif { feq "$current_brightness" "$delta" && [ "$command" = '-dec' ]; } ||
          { feq "$current_brightness" 0 && [ "$command" = '-inc' ]; } then
-     xbacklight -set 0.1
-elif feq "$current_brightness" 0.1 && [ "$command" = '-inc' ]; then
+     xbacklight -set $min
+elif feq "$current_brightness" $min && [ "$command" = '-inc' ]; then
     xbacklight -set "$delta"
 else
     xbacklight "$@"

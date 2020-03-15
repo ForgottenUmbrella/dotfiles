@@ -14,12 +14,6 @@ do
         echo 'Invalid keymap'
     fi
 done
-if [ "$keymap" = 'us' ]
-then
-    is_default_keymap=true
-else
-    is_default_keymap=false
-fi
 loadkeys "$keymap"
 
 # Networking
@@ -61,6 +55,7 @@ mkfs.ext2 "/dev/$disk$boot_partnum"
 sgdisk --new "$root_partnum:0:$(sgdisk --end-of-largest "$disk")" \
     --typecode $root_partnum:8e00 "$disk"
 mkfs.ext4 "/dev/$disk$root_partnum"
+# TODO home partition
 
 # Encryption (LVM on LUKS)
 cryptsetup luksFormat --type luks2 "/dev/$disk$root_partnum"
@@ -71,6 +66,7 @@ lvcreate --size "$(awk '/MemTotal/ {print $2}' /proc/meminfo)"K vg0 --name swap
 mkswap /dev/vg0/swap
 lvcreate --size 100%FREE vg0 --name root
 mkfs.ext4 /dev/vg0/root
+# TODO encrypt boot
 
 # Mounting
 mount /dev/vg0/root /mnt
@@ -94,13 +90,16 @@ awk "/^## $country$/{f=1}f==0{next}/^$/{exit}{print substr(\$0, 2)}" \
     /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 
 # Base installation
-pacstrap /mnt base base-devel pkgstats efibootmgr grub fish git iptables fwupd \
-    xorg pulseaudio pulseaudio-bluetooth gnome-keyring networkmanager nm-connection-editor \
-    cups sane stow trash-cli xsel \
-    compton dunst rofi polybar python-pywal xautolock redshift \
-    playerctl \
-    termite feh mpv kdeconnect skanlite zathura zathura-pdf-mupdf mpd ncmpcpp \
-    wine wine_gecko wine-mono
+pacstrap /mnt base linux linux-firmware base-devel pkgstats efibootmgr grub \
+         fish git iptables fwupd man-db man-pages zsh zsh-autosuggestions mlocate \
+         xorg pulseaudio pulseaudio-bluetooth pulsemixer gnome-keyring \
+         networkmanager nm-connection-editor cups nss-mdns gutenprint sane \
+         ghostscript gsfonts foomatic-db-engine foomatic-db foomatic-db-ppds \
+         foomatic-db-nonfree foomatic-db-nonfree-ppds foomatic-db-gutenprint-ppds \
+         system-config-printer stow trash-cli xsel \
+         picom dunst rofi polybar python-pywal xautolock redshift playerctl \
+         termite feh mpv kdeconnect skanlite zathura zathura-pdf-mupdf mpd ncmpcpp \
+         wine-staging wine-gecko wine-mono wine-nine lib32-mpg123 earlyoom
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 
@@ -125,7 +124,7 @@ vim /etc/locale.gen
 locale-gen
 echo 'Set the LANG variable accordingly (e.g. en_US.UTF8)'
 vim /etc/locale.conf
-if [ "$is_default_keymap" != true ]
+if [ "$keymap" != 'us' ]
 then
     echo "KEYMAP=$keymap" >> /etc/vconsole.conf
     keymap_hook='keymap'
@@ -237,7 +236,8 @@ systemctl enable iptables
 yay --sync codecs
 
 # Printing
-systemctl enable org.cups.cupsd
+systemctl enable org.cups.cupsd.socket avahi-daemon.service
+sed --in-place 's/resolve/mdns_minimal [NOTFOUND=return]/' /etc/nsswitch.conf
 
 # Graphics
 while true
@@ -279,7 +279,7 @@ do
                 break
             elif [ "$nvidia_driver" = 'nvidia' ]
             then
-                pacman --sync nvidia lib32-nvidia-utils nvidia-utils
+                pacman --sync nvidia lib32-nvidia-utils nvidia-utils nvidia-settings
                 break
             else
                 echo 'Invalid driver name'
@@ -290,13 +290,25 @@ do
     fi
 done
 
-# Personal apps and AUR
-yay --sync --refresh --sysupgrade keepassxc dropbox gpmdp anki firefox-nightly \
-    texlive-most emacs-lucid \
-    i3-gaps wpgtk-git betterlockscreen \
-    network-manager-dmenu-git btmenu keepmenu clerk-git \
+# Personal apps and AUR TODO move all personals and optionals from pacstrap
+yay --sync --refresh --sysupgrade keepassxc dropbox anki firefox-nightly \
+    emacs-lucid i3-gaps wpgtk-git mantablockscreen \
+    rofi-dmenu network-manager-dmenu-git btmenu keepmenu clerk-git \
     tamsyn-font terminus-font-ttf ttf-symbola nerd-fonts-fira-mono font-awesome ttf-ms-fonts noto-fonts-cjk \
-    brillo playerctl pulseaudio-ctl mpdris2 mpd-notification ranger-git ueberzug
-git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+    brillo pulseaudio-ctl mpdris2 mpd-notification kunst-git \
+    ranger-git ueberzug dxvk-bin
+
+# Optimisations
+systemctl enable fstrim.timer
+systemctl enable earlyoom.service
+# TODO install linux-zen if desktop not laptop
+
+# Program setup TODO
+
+reboot
+emctl enable fstrim.timer
+# TODO install linux-zen if desktop not laptop
+
+# Program setup TODO
 
 reboot

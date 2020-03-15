@@ -1,0 +1,4 @@
+#!/bin/sh
+# Alias for emacsclient because it's too long.
+
+emacsclient -nc "$@"

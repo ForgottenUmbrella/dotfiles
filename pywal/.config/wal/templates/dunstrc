@@ -58,7 +58,7 @@
     # Set to 0 to disable.
     # A client can set the 'transient' hint to bypass this. See the rules
     # section for how to disable this if necessary
-    idle_threshold = 300
+    idle_threshold = 0
 
     # Font
     font = Monospace 8
@@ -119,7 +119,7 @@
     dmenu = /usr/bin/rofi -p Dunst
 
     # Browser for opening urls in context menu.
-    browser = /usr/bin/firefox -new-tab
+    browser = /usr/bin/firefox-nightly --new-tab
 
     # Define the corner radius of the notification window
     # in pixel size. If the radius is 0, you have no rounded

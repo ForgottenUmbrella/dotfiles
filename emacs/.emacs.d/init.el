@@ -1,14 +1,11 @@
 ;;;; Customisation setup.
 (setq custom-file (concat user-emacs-directory "custom.el"))
-(load custom-file)
+(load custom-file t)
 
 ;;;; Package setup.
 ;; Enable additional package repos.
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-;; Workaround for Emacs 26.2 bug preventing use of GNU ELPA.
-(when (< (string-to-number emacs-version) 26.3)
-  (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
 (package-initialize)
 ;; Bootstrap, load and configure use-package.
 (unless (package-installed-p 'use-package)
@@ -21,12 +18,12 @@
   (advice-remove 'package-install 'before-install-refresh-contents))
 (advice-add 'package-install :before 'before-install-refresh-contents)
 (use-package use-package-ensure-system-package :ensure t)
-(use-package auto-package-update :ensure t :demand t
-  :init
-  (setq-default auto-package-update-hide-results t
-                auto-package-update-delete-old-version t)
-  :config
-  (auto-package-update-maybe))
+;;(use-package auto-package-update :ensure t
+;;   :init
+;;   (setq-default auto-package-update-hide-results t
+;;                 auto-package-update-delete-old-version t)
+;;   :config
+;;   (auto-package-update-maybe))
 
 ;;;; Install packages.
 ;;; Make binding keys sane.
@@ -43,6 +40,9 @@
   :non-normal-prefix "M-,"
   "" '(:ignore t :which-key "major"))
 (use-package pretty-hydra :ensure t)
+;; NOTE: :ensure is for external (not built-in) packages, and
+;; :demand is needed if you :general-bind keys or
+;; :g(f)hook but still need the external package to be loaded
 
 ;;; Join the dark side.
 (use-package evil :ensure t :demand t
@@ -76,7 +76,6 @@ to `evil-lookup'. Based on Spacemacs."
   :general
   ("C-l" 'evil-ex-nohighlight)
   (:states 'motion
-           "TAB" 'evil-toggle-fold
            "_" (lambda ()
                  "Use black-hole register for deletion."
                  (interactive)
@@ -92,15 +91,14 @@ to `evil-lookup'. Based on Spacemacs."
            "k" 'evil-previous-visual-line)
   (:states 'visual
            "<" "<gv"
-           ">" ">gv"
-           "," 'evil-repeat-find-char-reverse)
+           ">" ">gv")
   (leader-def "TAB" 'evil-switch-to-windows-last-buffer)
 
   (:keymaps 'leader-files-map
             "S" 'evil-write-all)
   (:keymaps 'leader-search-map
             "c" 'evil-ex-nohighlight))
-(use-package evil-escape :ensure t :demand t
+(use-package evil-escape :ensure t
   :init
   (setq-default evil-escape-key-sequence "<escape>")
   :config
@@ -127,13 +125,13 @@ to `evil-lookup'. Based on Spacemacs."
   :config
   (general-unbind '(normal visual operator) evil-cleverparens-mode-map
     "_" "s" "x"))
-(use-package evil-snipe :ensure t :demand t
-  :init
-  (setq-default evil-snipe-repeat-keys nil
-                evil-snipe-smart-case nil
-                evil-snipe-show-prompt nil)
-  :config
-  (evil-snipe-mode t))
+;; (use-package evil-snipe :ensure t
+;;   :init
+;;   (setq-default evil-snipe-repeat-keys nil
+;;                 evil-snipe-smart-case nil
+;;                 evil-snipe-show-prompt nil)
+;;   :config
+;;   (evil-snipe-mode t))
 (use-package evil-org :ensure t
   :ghook
   'org-mode-hook
@@ -146,10 +144,10 @@ to `evil-lookup'. Based on Spacemacs."
                             calendar))
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys))
-(use-package evil-indent-plus :ensure t :demand t
+(use-package evil-indent-plus :ensure t
   :config
   (evil-indent-plus-default-bindings))
-(use-package evil-commentary :ensure t :demand t
+(use-package evil-commentary :ensure t
   :config
   (evil-commentary-mode))
 (use-package evil-args :ensure t
@@ -160,8 +158,7 @@ to `evil-lookup'. Based on Spacemacs."
   :general
   (:keymaps 'evil-inner-text-objects-map "a" 'evil-inner-arg)
   (:keymaps 'evil-outer-text-objects-map "a" 'evil-outer-arg))
-(use-package evil-collection :ensure t :demand t
-  :init
+(use-package evil-collection :ensure t
   :config
   (evil-collection-init)
   (general-unbind 'normal evil-collection-unimpaired-mode-map "] l" "[ l")
@@ -169,23 +166,22 @@ to `evil-lookup'. Based on Spacemacs."
 (use-package evil-magit :ensure t
   :init
   (setq-default evil-magit-want-horizontal-movement t))
-(use-package evil-surround :ensure t :demand t
+(use-package evil-surround :ensure t
   :config
   (global-evil-surround-mode))
-(use-package evil-matchit :ensure t :demand t
+(use-package evil-matchit :ensure t
   :config
   (global-evil-matchit-mode))
-(use-package evil-visualstar :ensure t :demand t
+(use-package evil-visualstar :ensure t
   :config
   (global-evil-visualstar-mode))
 
 ;;; Aesthetics.
-(use-package spaceline :ensure t :demand t
+(use-package spaceline :ensure t
   :init
   (setq-default spaceline-buffer-size-p nil
                 spaceline-minor-modes-p nil
                 spaceline-buffer-encoding-p nil
-                spaceline-version-control-p nil
                 spaceline-buffer-encoding-abbrev-p nil
                 spaceline-window-numbers-unicode t
                 spaceline-workspace-numbers-unicode t
@@ -212,16 +208,17 @@ to `evil-lookup'. Based on Spacemacs."
   :general
   (:keymaps 'leader-toggles-colours-map
             "i" 'rainbow-identifiers-mode))
-(use-package fill-column-indicator :ensure t
-  :ghook
-  ('(text-mode-hook prog-mode-hook) 'fci-mode)
+(use-package fill-column-indicator :ensure t :demand t
+  :config
+  (define-globalized-minor-mode global-fci-mode fci-mode turn-on-fci-mode)
+  (global-fci-mode)
   :general
   (:keymaps 'leader-toggles-map
             "f" 'fci-mode))
-(use-package hl-line :demand t
+(use-package hl-line
   :config
   (global-hl-line-mode))
-(use-package whitespace :demand t
+(use-package whitespace
   :init
   (setq-default whitespace-style '(face trailing tabs empty))
   :config
@@ -278,22 +275,27 @@ to `evil-lookup'. Based on Spacemacs."
   :general
   (:keymaps 'leader-toggles-map
             "i" 'highlight-indent-guides-mode))
-(use-package git-gutter-fringe :ensure t)
+(use-package git-gutter :ensure t
+  :init
+  (setq-default git-gutter:hide-gutter t)
+  :config
+  (global-git-gutter-mode)
+  (git-gutter:linum-setup))
 (use-package face-remap
   :general
   (:keymaps 'leader-zoom-map
             "x" 'text-scale-adjust))
-(use-package dashboard :ensure t :demand t
-  :init
-  (setq-default dashboard-startup-banner 'logo
-                dashboard-center-content t
-                show-week-agenda-p t
-                initial-buffer-choice (lambda ()
-                                        "Open `*dashboard*' in new frames."
-                                        (get-buffer "*dashboard*")))
-  :config
-  (dashboard-setup-startup-hook)
-  (add-to-list 'dashboard-items '(projects) t))
+;;(use-package dashboard :ensure t
+;;  :init
+;;  (setq-default dashboard-startup-banner 'logo
+;;                dashboard-center-content t
+;;                show-week-agenda-p t
+;;                initial-buffer-choice (lambda ()
+;;                                        "Open `*dashboard*' in new frames."
+;;                                        (get-buffer "*dashboard*")))
+;;  :config
+;;  (dashboard-setup-startup-hook)
+;;  (add-to-list 'dashboard-items '(projects) t))
 ;; Themes. Defer all but the selected.
 (use-package doom-themes :ensure t :defer t)
 (use-package nord-theme :ensure t :defer t)
@@ -309,16 +311,24 @@ to `evil-lookup'. Based on Spacemacs."
   :init
   (setq-default ewal-use-built-in-on-failure-p t
                 ewal-high-contrast-p t))
-(use-package ewal-spacemacs-themes :ensure t :demand t
+(use-package ewal-spacemacs-themes :ensure t
   :config
   (load-theme 'ewal-spacemacs-modern t)
   (enable-theme 'ewal-spacemacs-modern)
   :custom-face
   (highlight ((t (:background unspecified))))
   (org-todo ((t (:background unspecified)))))
-(use-package ewal-evil-cursors :ensure t :demand t
+(use-package ewal-evil-cursors :ensure t
   :init
   (setq-default ewal-evil-cursors-obey-evil-p t))
+(use-package zone
+  :general
+  (:keymaps 'leader-applications-map
+            "z" 'zone))
+(use-package multi-line :ensure t
+  :general
+  (:keymaps 'prog-mode-map
+            "C-q" 'multi-line))
 
 ;;; Navigation.
 (use-package which-key :ensure t :demand t
@@ -333,7 +343,7 @@ to `evil-lookup'. Based on Spacemacs."
             "m" 'which-key-show-major-mode)
   (:keymaps 'leader-toggles-map
             "K" 'which-key))
-(use-package evil-anzu :ensure t :demand t
+(use-package evil-anzu :ensure t
   :init
   (setq-default anzu-cons-mode-line-p nil)
   :config
@@ -355,7 +365,7 @@ to `evil-lookup'. Based on Spacemacs."
     "8" '(winum-select-window-8 :which-key t)
     "9" '(winum-select-window-9 :which-key t)
     "0" '(winum-select-window-0-or-10 :which-key t)))
-(use-package winner :demand t
+(use-package winner
   :config
   (winner-mode)
   :general
@@ -381,7 +391,7 @@ to `evil-lookup'. Based on Spacemacs."
   :general
   (:states 'motion
            "C-]" 'dumb-jump-go))
-(use-package display-line-numbers :demand t
+(use-package display-line-numbers
   :init
   (setq-default display-line-numbers-type 'visual)
   :config
@@ -402,7 +412,7 @@ to `evil-lookup'. Based on Spacemacs."
   :general
   (:keymaps 'leader-applications-map
             "u" 'undo-tree-visualize))
-(use-package recentf :demand t
+(use-package recentf
   :init
   (setq-default recentf-max-saved-items 1024)
   :config
@@ -413,7 +423,7 @@ to `evil-lookup'. Based on Spacemacs."
   :general
   (:keymaps 'leader-buffers-map
             "X" 'clean-buffer-list))
-(use-package origami :ensure t :demand t
+(use-package origami :ensure t
   :config
   (global-origami-mode))
 (use-package hideshow
@@ -422,6 +432,8 @@ to `evil-lookup'. Based on Spacemacs."
 (use-package outline
   :ghook
   ('prog-mode-hook 'outline-minor-mode)
+  :config
+  (general-unbind 'normal outline-mode-map "z b")
   :general
   (:states 'normal :keymaps 'outline-minor-mode-map
            "M-h" 'outline-promote
@@ -443,7 +455,7 @@ to `evil-lookup'. Based on Spacemacs."
             "o" 'outshine-imenu)
   (:keymaps 'leader-narrow-map
             "n" 'outshine-narrow-to-subtree))
-(use-package saveplace :demand t
+(use-package saveplace
   :config
   (save-place-mode))
 
@@ -472,8 +484,7 @@ to `evil-lookup'. Based on Spacemacs."
   (:keymaps 'ivy-switch-buffer-map
             "C-x" 'ivy-switch-buffer-kill))
 (use-package ivy-hydra :ensure t)
-(use-package ivy-rich :ensure t :demand t
-  :init
+(use-package ivy-rich :ensure t
   :config
   (ivy-rich-mode t))
 (use-package counsel :ensure t :demand t
@@ -482,10 +493,6 @@ to `evil-lookup'. Based on Spacemacs."
   (setq-default counsel-grep-base-command "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
   :config
   (counsel-mode t)
-  (defun fzf-home ()
-    "Fuzzy-find file in home directory."
-    (interactive)
-    (counsel-fzf "" "~"))
   (defun todo-list ()
     "Navigate to a TODO item."
     (interactive)
@@ -506,7 +513,7 @@ to `evil-lookup'. Based on Spacemacs."
   (:keymaps 'leader-files-map
             "l" 'counsel-locate
             "r" 'counsel-recentf
-            "F" 'fzf-home)
+            "F" 'counsel-file-jump)
   (:keymaps 'leader-help-map
             "RET" 'counsel-minor)
   (:keymaps 'leader-jumps-map
@@ -517,9 +524,11 @@ to `evil-lookup'. Based on Spacemacs."
             "s" 'counsel-grep-or-swiper)
   (:keymaps 'leader-themes-map
             "t" 'counsel-load-theme))
-(use-package ivy-prescient :ensure t :demand t
+(use-package ivy-prescient :ensure t
   :config
-  (ivy-prescient-mode))
+  (ivy-prescient-mode)
+  (add-to-list 'ivy-sort-functions-alist
+               '(read-file-name-internal . ivy-sort-file-function-default)))
 (use-package yasnippet :ensure t :demand t
   :config
   (yas-global-mode)
@@ -539,20 +548,20 @@ to `evil-lookup'. Based on Spacemacs."
 (use-package company-quickhelp :ensure t
   :ghook
   'company-mode-hook)
-(use-package company-statistics :ensure t :demand t
+(use-package company-statistics :ensure t
   :config
   (company-statistics-mode))
-(use-package company-auctex :ensure t :demand t
+(use-package company-auctex :ensure t
   :config
   (company-auctex-init))
-(use-package company-shell :ensure t :demand t
+(use-package company-shell :ensure t
   :config
   (add-to-list 'company-backends
                '(company-shell company-shell-env company-fish-shell)))
-(use-package company-c-headers :ensure t :demand t
+(use-package company-c-headers :ensure t
   :config
   (add-to-list 'company-backends 'company-c-headers))
-(use-package company-tern :ensure t :demand t
+(use-package company-tern :ensure t
   :config
   (if (executable-find "tern")
       (add-to-list 'company-backends 'company-tern)
@@ -567,7 +576,7 @@ to `evil-lookup'. Based on Spacemacs."
   (:keymaps 'major-python-goto-map
             "a" 'anaconda-mode-find-assignments
             "u" 'anaconda-mode-find-references))
-(use-package company-anaconda :ensure t :demand t
+(use-package company-anaconda :ensure t
   :config
   (add-to-list 'company-backends 'company-anaconda))
 (use-package eldoc
@@ -585,6 +594,7 @@ to `evil-lookup'. Based on Spacemacs."
   :config
   (add-to-list 'insert-shebang-file-types '("py" . "python3"))
   (remove-hook 'find-file-hook 'insert-shebang))
+(use-package cdlatex :ensure t)
 
 ;;; Correction.
 (use-package flycheck :ensure t :demand t
@@ -651,7 +661,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
             "y" 'flycheck-copy-errors-as-kill)
   (:keymaps 'leader-toggles-map
             "s" 'flycheck-mode))
-(use-package flycheck-checkbashisms :ensure t :demand t
+(use-package flycheck-checkbashisms :ensure t
   :config
   (flycheck-checkbashisms-setup)
   (add-hook 'sh-mode-hook
@@ -659,7 +669,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
               "Warn missing POSIX shell linters."
               (unless (executable-find "checkbashisms")
                 (message "checkbashisms is not installed; install for POSIX compatibility checking")))))
-(use-package flycheck-pos-tip :ensure t :demand t
+(use-package flycheck-pos-tip :ensure t
   :config
   (flycheck-pos-tip-mode))
 (use-package aggressive-indent :ensure t :demand t
@@ -671,7 +681,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package smartparens :ensure t :demand t
   :ghook
   'eval-expression-minibuffer-setup-hook
-  ;; Tag handling is broken.
+  ;; XXX: Tag handling is broken.
   ('nxml-mode-hook 'turn-off-smartparens-mode)
   :init
   (setq-default sp-escape-quotes-after-insert nil
@@ -714,12 +724,12 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (:keymaps 'major-python-map
             "=" 'yapfify-buffer))
 (use-package py-isort :ensure t
-  :config
-  (add-to-list 'python-mode-hook
-               (lambda ()
-                 "Warn missing Python isort import-sorter."
-                 (unless (executable-find "isort")
-                   (message "isort is not installed; install for automatic Python import sorting"))))
+  :ghook
+  ('python-mode-hook
+   (lambda ()
+     "Warn missing Python isort import-sorter."
+     (unless (executable-find "isort")
+       (message "isort is not installed; install for automatic Python import sorting"))))
   :general
   (:keymaps 'major-python-refactor-map
             "I" 'py-isort-buffer))
@@ -752,13 +762,14 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :general
   (:keymaps 'major-js-map
             "=" 'web-beautify-js))
-(use-package autorevert :demand t
+(use-package autorevert
   :config
   (global-auto-revert-mode))
-(use-package python-docstring :ensure t
-  :ghook
-  'python-mode-hook)
-(use-package electric :demand t
+;; XXX: Probably unnecessary and problematic because it uses double-spaces.
+;; (use-package python-docstring :ensure t
+;;   :ghook
+;;   'python-mode-hook)
+(use-package electric
   :ghook
   ('python-mode-hook
    (lambda ()
@@ -781,12 +792,20 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package org
   :gfhook
   'turn-off-fci-mode
+  'turn-on-org-cdlatex
   :init
   (setq-default org-startup-indented t
                 org-startup-folded nil
                 org-startup-truncated nil
                 org-startup-with-latex-preview t
-                org-agenda-files '("~/Dropbox/Wiki/uni/"))
+                org-agenda-files '("~/Dropbox/Wiki/uni/")
+                org-src-tab-acts-natively t
+                org-confirm-babel-evaluate (lambda (lang body)
+                                             "Don't confirm Python evaluation"
+                                             (not (string= lang "python"))))
+  :config
+  (org-babel-do-load-languages 'org-babel-load-languages
+                               '((python . t) (emacs-lisp . t)))
   :general
   (:prefix-command 'leader-applications-org-map
                    :keymaps 'leader-applications-map :prefix "o"
@@ -819,6 +838,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
     "," 'org-ctrl-c-ctrl-c
     "*" 'org-ctrl-c-star
     "RET" 'ogr-ctrl-c-ret
+    "SPC" 'org-toggle-checkbox
     "-" 'org-ctrl-c-minus
     "^" 'org-sort
     "/" 'org-sparse-tree
@@ -843,6 +863,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
     "N" 'widen
     "O" 'org-clock-out
     "P" 'org-set-property
+    "p" 'org-toggle-latex-fragment
     "q" 'org-clock-cancel
     "R" 'org-refile
     "s" 'org-schedule
@@ -908,11 +929,13 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                    "" '(:ignore t :whick-key "toggle")
                    "f" 'org-table-toggle-formula-debugger
                    "o" 'org-table-toggle-coordinate-overlays))
-(use-package kotlin-mode :ensure t
+(use-package kotlin-mode :ensure t :demand t
   :gfhook
   (nil (lambda ()
          "Set Kotlin mode `fill-column' to 120."
          (setq fill-column 120)))
+  :init
+  (setq-default kotlin-tab-width 4)
   :general
   (major-prefix-def :prefix-command 'major-kotlin-map :keymaps 'kotlin-mode-map)
   (:prefix-command 'major-kotlin-repl-map :keymaps 'major-kotlin-map
@@ -936,7 +959,10 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package fish-mode :ensure t)
 (use-package auctex :ensure t
   :gfhook
-  ('latex-mode-hook 'latex-electric-env-pair-mode)
+  ('LaTeX-mode-hook 'latex-electric-env-pair-mode)
+  ('LaTeX-mode-hook 'turn-on-org-cdlatex)
+  ;; ('LaTeX-mode-hook 'turn-on-auto-fill) ; XXX: Shouldn't be necessary
+  :mode ("\\.tex\\'" . LaTeX-mode)
   :init
   (setq-default TeX-view-program-list '(("Evince" "xdg-open"))
                 TeX-insert-macro-default-style 'mandatory-args-only)
@@ -1023,9 +1049,15 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                    "t" 'reftex-toc
                    "v" 'reftex-view-crossref))
 (use-package python
+  :gfhook
+  (nil (lambda ()
+         "Set Python mode `fill-column' to 72 for comments."
+         (setq fill-column 72)))
   :init
-  (setq major-python-virtualenv-map (make-sparse-keymap))
+  (setq-default major-python-virtualenv-map (make-sparse-keymap)
+                python-fill-docstring-style 'pep-257-nn)
   :general
+  (:keymaps python-mode-map "RET" 'newline-and-indent)
   (major-prefix-def :prefix-command 'major-python-map :keymaps 'python-mode-map
     "'" 'run-python)
   (:prefix-command 'major-python-goto-map :keymaps 'major-python-map :prefix "g"
@@ -1055,18 +1087,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package nxml-mode
   :init
   (setq-default nxml-slash-auto-complete-flag t))
-(use-package mips-mode :ensure t ; TODO: Remove after 2019 semester 2. Also
-                                 ; uninstall MARS and logisim-(evolution).
-  :mode "\\.asm\\'"
-  :config
-  (defun mips-indent-line (&optional suppress-gook) "Disable indent line." nil)
-  (defun mips-indent-region (start end) "Disable auto-indent." nil)
-  :general
-  (major-prefix-def :prefix-command 'major-mips-map :keymaps 'mips-mode-map
-    "g" 'mips-goto-label-at-cursor)
-  (:prefix-command 'major-mips-eval-map :keymaps 'major-mips-map :prefix "e"
-                   "b" 'mips-run-buffer
-                   "r" 'mips-run-region))
 ;; Emacs Lisp.
 (major-prefix-def :prefix-command 'major-emacs-lisp-map
   :keymaps 'emacs-lisp-mode-map
@@ -1109,7 +1129,13 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                    "s" 'magit-status
                    "C-s" 'magit-stage
                    "m" 'magit-dispatch
-                   "U" 'magit-unstage-file))
+                   "U" 'magit-unstage-file)
+  (major-prefix-def :prefix-command 'major-with-editor-map
+    :keymaps 'with-editor-mode-map
+    "," 'with-editor-finish
+    "a" 'with-editor-cancel
+    "c" 'with-editor-finish
+    "k" 'with-editor-cancel))
 (use-package projectile :ensure t :demand t
   :init
   (setq-default projectile-completion-system 'ivy
@@ -1171,24 +1197,35 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :general
   (:keymaps 'major-emacs-lisp-help-map
             "h" 'elisp-slime-nav-describe-elisp-thing-at-point))
-(use-package pipenv :ensure t :demand t
+(use-package pipenv :ensure t
   :ghook
   'python-mode-hook
   :config
   (set-keymap-parent major-python-virtualenv-map pipenv-command-map))
 (use-package eshell
+  :gfhook
+  (nil (lambda ()
+         "Workaround to define custom key-bindings for `eshell'."
+         (general-define-key :keymaps 'eshell-mode-map :states 'insert
+                             "C-j" 'eshell-next-prompt
+                             "C-k" 'eshell-previous-prompt
+                             "C-n" 'eshell-next-matching-input-from-input
+                             "C-p" 'eshell-previous-matching-input-from-input)))
   :general
   (:keymaps 'leader-applications-shell-map
             "e" 'eshell))
+(use-package vc
+  :init
+  (setq-default vc-handled-backends '(Git)
+                vc-follow-symlinks t))
 
 ;;;; Define overriding key bindings.
 (general-define-key :states 'insert
                     "C-q" 'quoted-insert
                     "C-S-q" 'insert-char
-                    "C-i" (lambda ()
-                            "Insert a tab or multiple spaces."
-                            (interactive)
-                            (insert-tab)))
+                    ;; "C-i" 'evil-shift-right-line ;; XXX perhaps overrides TAB
+                    ;; "C-S-i" 'evil-shift-left-line
+                    "<backtab>" 'evil-shift-left-line)
 (general-define-key :keymaps 'isearch-mode-map
                     "<escape>" 'isearch-cancel
                     "C-w" 'backward-kill-word
@@ -1198,6 +1235,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                     "C-j" 'isearch-repeat-forward
                     "C-t" 'isearch-repeat-backward
                     "C-k" 'isearch-repeat-backward)
+(general-define-key :keymaps 'transient-map "<escape>" 'transient-quit-one)
 ;;; Leader key.
 (leader-def "SPC" 'execute-extended-command
   "?" 'describe-bindings
@@ -1216,7 +1254,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                     "" '(:ignore t :which-key "buffers")
                     "C" 'clone-indirect-buffer
                     "c" 'clone-buffer
-                    "d" 'kill-this-buffer
+                    "d" 'kill-buffer
                     "h" 'switch-to-help-buffer
                     "m" 'switch-to-messages-buffer
                     "n" 'next-buffer
@@ -1537,28 +1575,28 @@ current file by the default explorer. Based on Spacemacs."
         (start-process "" nil "xdg-open" file-path)
       (message "No file associated with this buffer."))))
 (defun rename-current-buffer-file ()
-  "Rename current buffer and file it is visiting. From Spacemacs."
+  "Rename current buffer and associated file (if it exists). Based on Spacemacs."
   (interactive)
   (let* ((name (buffer-name))
-         (filename (buffer-file-name)))
-    (if (not (and filename (file-exists-p filename)))
-        (error "Buffer '%s' is not visiting a file!" name)
-      (let* ((dir (file-name-directory filename))
-             (new-name (read-file-name "New name: " dir)))
-        (cond ((get-buffer new-name)
-               (error "A buffer named '%s' already exists!" new-name))
-              (t
-               (let ((dir (file-name-directory new-name)))
-                 (when (and (not (file-exists-p dir)) (yes-or-no-p (format "Create directory '%s'?" dir)))
-                   (make-directory dir t)))
-               (rename-file filename new-name 1)
-               (rename-buffer new-name)
-               (set-visited-file-name new-name)
-               (set-buffer-modified-p nil)
-               (when (fboundp 'recentf-add-file)
-                 (recentf-add-file new-name)
-                 (recentf-remove-if-non-kept filename))
-               (message "File '%s' successfully renamed to '%s'" name (file-name-nondirectory new-name))))))))
+         (filename (buffer-file-name))
+         (dir (file-name-directory filename))
+         (new-name (read-file-name "New name: " dir)))
+    (cond ((get-buffer new-name)
+           (error "A buffer named '%s' already exists!" new-name))
+          ((not (and filename (file-exists-p filename)))
+           (rename-buffer new-name))
+          (t
+           (let ((dir (file-name-directory new-name)))
+             (when (and (not (file-exists-p dir)) (yes-or-no-p (format "Create directory '%s'?" dir)))
+               (make-directory dir t)))
+           (rename-file filename new-name 1)
+           (rename-buffer new-name)
+           (set-visited-file-name new-name)
+           (set-buffer-modified-p nil)
+           (when (fboundp 'recentf-add-file)
+             (recentf-add-file new-name)
+             (recentf-remove-if-non-kept filename))
+           (message "File '%s' successfully renamed to '%s'" name (file-name-nondirectory new-name))))))
 (defun toggle-whitespace-cleanup ()
   "Toggle deleting trailing whitespace on save."
   (interactive)
@@ -1636,6 +1674,15 @@ current frame. From Spacemacs."
   (dolist (prompt-p '(yes-or-no-p y-or-n-p))
     (defalias prompt-p (lambda (prompt) nil)))
   (kill-emacs))
+(defun unfill-region (beg end)
+  "Unfill the region, joining text paragraphs into a single
+    logical line.  This is useful, e.g., for use with
+    `visual-line-mode'.
+
+   From https://www.emacswiki.org/emacs/UnfillRegion"
+  (interactive "*r")
+  (let ((fill-column (point-max)))
+    (fill-region beg end)))
 
 ;;;; Generic settings.
 (add-to-list 'default-frame-alist (cons 'alpha my-transparency))
@@ -1655,11 +1702,10 @@ current frame. From Spacemacs."
               prettify-symbols-unprettify-at-point t
               indicate-empty-lines t
               fill-column 80
-              vc-handled-backends nil
               indent-tabs-mode nil
               read-quoted-char-radix 16
               frame-resize-pixelwise t
-              initial-major-mode 'fundamental-mode
+              initial-major-mode 'text-mode
               require-final-newline t
               help-window-select t
               delete-by-moving-to-trash t
@@ -1672,4 +1718,6 @@ current frame. From Spacemacs."
               delete-old-versions t
               version-control t
               comment-auto-fill-only-comments t
-              use-dialog-box nil)
+              use-dialog-box nil
+              ring-bell-function 'ignore
+              display-buffer-alist '(("\\*help" (display-buffer-same-window))))

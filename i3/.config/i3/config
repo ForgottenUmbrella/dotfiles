@@ -7,7 +7,7 @@
 # i3-gaps
 # rofi
 # polybar
-# compton
+# picom
 # dunst
 # brillo/xbacklight
 # playerctl
@@ -76,6 +76,8 @@ bindsym $mod+Shift+v split h
 # Toggle fullscreen.
 bindsym $mod+f fullscreen toggle
 
+# Toggle sticky.
+bindsym $mod+s sticky toggle
 # Change container layout.
 set $mode_layout "Layout: [w] tabbed [s]tacking [e] toggle split [q]uit"
 bindsym $mod+w mode $mode_layout
@@ -202,7 +204,7 @@ for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Require
 for_window [title="^Steam Keyboard$"] floating enable
 
 # Gaps.
-set $default_inner 9
+set $default_inner 25
 set $default_outer 0
 set $gap_delta 2
 gaps inner $default_inner
@@ -261,17 +263,23 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightness -dec $brightness_d
 bindsym Control+Mod1+l exec --no-startup-id lock
 
 # Autostart.
-exec --no-startup-id xautolock -time 30 -locker lock
+exec --no-startup-id xautolock -time 30 -locker "lock && systemctl suspend-then-hibernate"
+exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
 exec_always --no-startup-id xmodmap ~/.Xmodmap
 exec --no-startup-id fcitx
 # Need the alpha option because wal doesn't remember it.
 exec_always --no-startup-id wal -R -a 80
-exec_always --no-startup-id killall compton; compton -b
+exec_always --no-startup-id killall picom; picom -b --experimental-backends
 exec_always --no-startup-id killall dunst; dunst
 exec_always --no-startup-id killall polybar; polybar main
 exec --no-startup-id systemctl --user start wallplug.timer
+exec --no-startup-id systemctl --user start battery-monitor.timer
+exec --no-startup-id systemctl --user start mpd-notification.service
 
 # Dropdown terminal.
 exec --no-startup-id i3-sensible-terminal -t "dropdown"
 for_window [title="dropdown"] move scratchpad
 for_window [title="dropdown"] sticky enable
+
+# Disable inactive transparency for current window.
+bindsym $mod+t exec picom-trans -c 100

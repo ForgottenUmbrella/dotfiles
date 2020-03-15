@@ -37,6 +37,7 @@ cursor-click = pointer
 modules-left = i3 xwindow pomodoro
 modules-center =
 modules-right = mpd cpu ram swap kdeconnect redshift dropbox updates wifi bluetooth backlight pulseaudio battery time powermenu
+; modules-right = mpd cpu ram swap redshift dropbox updates wifi bluetooth backlight pulseaudio battery time powermenu
 tray-position = none
 tray-padding = 2
 

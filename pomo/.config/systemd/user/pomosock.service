@@ -4,7 +4,7 @@ Description=Delete pomo.sock before shutdown.
 [Service]
 Type=oneshot
 RemainAfterExit=true
-ExecStop=rm -f %h/.pomo/pomo.sock
+ExecStop=-rm %h/.pomo/pomo.sock
 
 [Install]
 WantedBy=multi-user.target

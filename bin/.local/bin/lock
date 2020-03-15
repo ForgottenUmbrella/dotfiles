@@ -1,4 +1,5 @@
 #!/bin/sh
 # Lock the screen.
 
-betterlockscreen -l dimblur
+# betterlockscreen -l dimblur
+mantablockscreen
