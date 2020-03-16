@@ -91,15 +91,16 @@ awk "/^## $country$/{f=1}f==0{next}/^$/{exit}{print substr(\$0, 2)}" \
 
 # Base installation
 pacstrap /mnt base linux linux-firmware base-devel pkgstats efibootmgr grub \
-         fish git iptables fwupd man-db man-pages zsh zsh-autosuggestions mlocate \
-         xorg pulseaudio pulseaudio-bluetooth pulsemixer gnome-keyring \
-         networkmanager nm-connection-editor cups nss-mdns gutenprint sane \
+         fish git fwupd man-db man-pages zsh zsh-autosuggestions zsh-syntax-highlighting \
+         mlocate apparmor \
+         texinfo pulseaudio pulseaudio-bluetooth pulsemixer gnome-keyring \
+         networkmanager cups nss-mdns gutenprint sane chrony pacman-contrib \
          ghostscript gsfonts foomatic-db-engine foomatic-db foomatic-db-ppds \
          foomatic-db-nonfree foomatic-db-nonfree-ppds foomatic-db-gutenprint-ppds \
          system-config-printer stow trash-cli xsel \
-         picom dunst rofi polybar python-pywal xautolock redshift playerctl \
+         picom dunst rofi python-pywal xautolock redshift playerctl \
          termite feh mpv kdeconnect skanlite zathura zathura-pdf-mupdf mpd ncmpcpp \
-         wine-staging wine-gecko wine-mono wine-nine lib32-mpg123 earlyoom
+         lib32-mpg123 earlyoom
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 
@@ -116,7 +117,10 @@ do
 done
 ln --symbolic --force "/usr/share/zoneinfo/$country/$city" /etc/localtime
 hwclock --systohc
-systemctl enable systemd-timesyncd
+systemctl enable chronyd
+
+# Networking
+systemctl enable NetworkManager.service
 
 # Locale
 echo 'Uncomment the needed locales'
@@ -163,10 +167,10 @@ pacman --sync "$cpu_brand-ucode"
 # Bootloader
 mount "/dev/$disk$efi_partnum" /efi
 grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
-sed --in-place
-    "s#^\(GRUB_CMDLINE_LINUX\)=.*\
-#\1=/dev/$disk$root_partnum:root:allow-discards \
-resume=/dev/$disk$root_partnum/swap#" /etc/default/grub
+sed --in-place \
+    "s#^\(GRUB_CMDLINE_LINUX\)=\"\
+#\1=\"/dev/$disk$root_partnum:root:allow-discards \
+resume=/dev/$disk$root_partnum/swap#\"" /etc/default/grub
 grub-mkconfig --output /boot/grub/grub.cfg
 
 # Initial ramdisk
@@ -181,12 +185,6 @@ passwd
 # Multilib
 sed --in-place 's/^#\(\[multilib\]\)$/\1/' /etc/pacman.conf
 sed --in-place '/^\[multilib\]$/{n;s/#//}' /etc/pacman.conf
-
-# AUR
-git clone https://aur.archlinux.org/yay.git
-pushd yay
-makepkg --syncdeps --install
-popd
 
 # Users
 username_regex='[a-z_][a-z0-9_]{0,30}'
@@ -206,6 +204,12 @@ usermod --append --gid wheel "$username"
 sed --in-place 's/^#\(auth	required	pam_wheel.so use_sid\)$/\1/' /etc/pam.d/su
 sed --in-place 's/^#\(auth	required	pam_wheel.so use_sid\)$/\1/' \
     /etc/pam.d/su-1
+
+# AUR
+git clone https://aur.archlinux.org/yay.git
+pushd yay
+su -- "$username" -c makepkg --syncdeps --install
+popd
 
 # Firewall
 iptables --new-chain TCP
@@ -227,7 +231,7 @@ iptables --append INPUT --protocol udp --jump REJECT \
 iptables --append INPUT --protocol tcp --jump REJECT --reject-with tcp-reset
 iptables --append INPUT --jump REJECT --reject-with icmp-proto-unreachable
 iptables --append TCP --protocol tcp --dport 22 --jump ACCEPT
-iptables --table raw --in-interface PREROUTING --match rpfilter --invert \
+iptables --table raw --insert PREROUTING --match rpfilter --invert \
     --jump DROP
 iptables-save > /etc/iptables/iptables.rules
 systemctl enable iptables
@@ -290,23 +294,24 @@ do
     fi
 done
 
+# Security
+sed --in-place \
+    "s#^\(GRUB_CMDLINE_LINUX\)="\"\
+    #\1=\"apparmor=1 security=apparmor\"" /etc/default/grub
+
+    systemctl enable apparmor.service
+
 # Personal apps and AUR TODO move all personals and optionals from pacstrap
 yay --sync --refresh --sysupgrade keepassxc dropbox anki firefox-nightly \
-    emacs-lucid i3-gaps wpgtk-git mantablockscreen \
-    rofi-dmenu network-manager-dmenu-git btmenu keepmenu clerk-git \
-    tamsyn-font terminus-font-ttf ttf-symbola nerd-fonts-fira-mono font-awesome ttf-ms-fonts noto-fonts-cjk \
+    wine-staging wine-nine wine-gecko wine-mono emacs-lucid i3-gaps wpgtk-git \
+    mantablockscreen rofi-dmenu btmenu keepmenu clerk-git polybar noto-fonts-cjk \
+    tamsyn-font terminus-font-ttf ttf-symbola nerd-fonts-fira-mono ttf-font-awesome ttf-ms-fonts \
     brillo pulseaudio-ctl mpdris2 mpd-notification kunst-git \
-    ranger-git ueberzug dxvk-bin
+    ranger-git python-ueberzug dxvk-bin
 
 # Optimisations
 systemctl enable fstrim.timer
 systemctl enable earlyoom.service
-# TODO install linux-zen if desktop not laptop
-
-# Program setup TODO
-
-reboot
-emctl enable fstrim.timer
 # TODO install linux-zen if desktop not laptop
 
 # Program setup TODO
