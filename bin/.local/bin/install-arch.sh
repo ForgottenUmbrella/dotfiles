@@ -307,7 +307,7 @@ yay --sync --refresh --sysupgrade keepassxc dropbox anki firefox-nightly \
     mantablockscreen rofi-dmenu btmenu keepmenu clerk-git polybar noto-fonts-cjk \
     tamsyn-font terminus-font-ttf ttf-symbola nerd-fonts-fira-mono ttf-font-awesome ttf-ms-fonts \
     brillo pulseaudio-ctl mpdris2 mpd-notification kunst-git \
-    ranger-git python-ueberzug dxvk-bin
+    ranger-git python-ueberzug dxvk-bin ashuffle
 
 # Optimisations
 systemctl enable fstrim.timer
