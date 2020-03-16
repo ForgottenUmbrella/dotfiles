@@ -1049,10 +1049,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                    "t" 'reftex-toc
                    "v" 'reftex-view-crossref))
 (use-package python
-  :gfhook
-  (nil (lambda ()
-         "Set Python mode `fill-column' to 72 for comments."
-         (setq fill-column 72)))
   :init
   (setq-default major-python-virtualenv-map (make-sparse-keymap)
                 python-fill-docstring-style 'pep-257-nn)
