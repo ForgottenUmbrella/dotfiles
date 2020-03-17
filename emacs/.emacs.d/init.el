@@ -42,7 +42,8 @@
 (use-package pretty-hydra :ensure t)
 ;; NOTE: :ensure is for external (not built-in) packages, and
 ;; :demand is needed if you :general-bind keys or
-;; :g(f)hook but still need the external package to be loaded
+;; :g(f)hook but still need the external package to be loaded.
+;; Also, some built-in packages also need :demand when :general-binding.
 
 ;;; Join the dark side.
 (use-package evil :ensure t :demand t
@@ -391,7 +392,7 @@ to `evil-lookup'. Based on Spacemacs."
   :general
   (:states 'motion
            "C-]" 'dumb-jump-go))
-(use-package display-line-numbers
+(use-package display-line-numbers :demand t
   :init
   (setq-default display-line-numbers-type 'visual)
   :config
