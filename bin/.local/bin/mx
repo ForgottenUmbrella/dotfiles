@@ -1,4 +1,7 @@
 #!/bin/sh
 # Alias for emacsclient because it's too long.
 
-emacsclient -nc "$@"
+# -n prevents blocking
+# -c creates a new frame instead of reusing existing
+# -e ... focuses the frame
+emacsclient -nce '(select-frame-set-input-focus (selected-frame))' "$@"
