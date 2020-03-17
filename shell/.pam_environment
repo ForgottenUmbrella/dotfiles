@@ -51,9 +51,9 @@ ALTERNATE_EDITOR DEFAULT=""
 #XMODIFIERS DEFAULT="@im=fcitx"
 #QT_IM_MODULE DEFAULT="fcitx"
 #GTK_IM_MODULE DEFAULT="fcitx"
-#GTK_IM_MODULE DEFAULT="ibus"
-#QT_IM_MODULE DEFAULT="ibus"
-#XMODIFIERS DEFAULT="@im=ibus"
+GTK_IM_MODULE DEFAULT="ibus"
+QT_IM_MODULE DEFAULT="ibus"
+XMODIFIERS DEFAULT="@im=ibus"
 
 # Temp
 # Replace when libreoffice gets their shit together.
