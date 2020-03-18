@@ -1084,6 +1084,9 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package nxml-mode
   :init
   (setq-default nxml-slash-auto-complete-flag t))
+(use-package doc-view
+  :init
+  (setq-default doc-view-continuous t))
 ;; Emacs Lisp.
 (major-prefix-def :prefix-command 'major-emacs-lisp-map
   :keymaps 'emacs-lisp-mode-map
