@@ -313,6 +313,7 @@ yay --sync --refresh --sysupgrade keepassxc dropbox anki firefox-nightly \
 systemctl enable fstrim.timer
 systemctl enable earlyoom.service
 # TODO install linux-zen if desktop not laptop
+# TODO install tlp if laptop not desktop
 
 # Program setup TODO
 
