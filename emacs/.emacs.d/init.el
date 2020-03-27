@@ -776,9 +776,9 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :config
   (global-auto-revert-mode))
 ;; XXX: Probably unnecessary and problematic because it uses double-spaces.
-;; (use-package python-docstring :ensure t
-;;   :ghook
-;;   'python-mode-hook)
+;;(use-package python-docstring :ensure t
+;;  :ghook
+;;  'python-mode-hook)
 (use-package electric
   :ghook
   ('python-mode-hook
@@ -971,7 +971,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :gfhook
   ('LaTeX-mode-hook 'latex-electric-env-pair-mode)
   ('LaTeX-mode-hook 'turn-on-org-cdlatex)
-  ;; ('LaTeX-mode-hook 'turn-on-auto-fill) ; XXX: Shouldn't be necessary
+  ;;('LaTeX-mode-hook 'turn-on-auto-fill) ; XXX: Shouldn't be necessary
   :mode ("\\.tex\\'" . LaTeX-mode)
   :init
   (setq-default TeX-view-program-list '(("Evince" "xdg-open"))
@@ -1227,13 +1227,28 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :init
   (setq-default vc-handled-backends '(Git)
                 vc-follow-symlinks t))
+(use-package lsp-mode :ensure t
+  :ghook
+  ('(prog-mode-hook lsp))
+  :gfhook
+  ('(lsp-mode lsp-enable-which-key-integration))
+  ;; NOTE: Install {kotlin,python}-language-server, clang for language support
+  )
+(use-package lsp-ui :ensure t)
+(use-package company-lsp :ensure t
+  :gfhook
+  ('(lsp (lambda ()
+           "Reduce company delay"
+           (setq company-idle-delay 0))))
+  :config
+  (add-to-list 'company-backends 'company-lsp))
 
 ;;;; Define overriding key bindings.
 (general-define-key :states 'insert
                     "C-q" 'quoted-insert
                     "C-S-q" 'insert-char
-                    ;; "C-i" 'evil-shift-right-line ;; XXX perhaps overrides TAB
-                    ;; "C-S-i" 'evil-shift-left-line
+                    ;;"C-i" 'evil-shift-right-line ;; XXX perhaps overrides TAB
+                    ;;"C-S-i" 'evil-shift-left-line
                     "<backtab>" 'evil-shift-left-line)
 (general-define-key :keymaps 'isearch-mode-map
                     "<escape>" 'isearch-cancel
