@@ -88,8 +88,12 @@ to `evil-lookup'. Based on Spacemacs."
            "Q" (lambda ()
                  "Execute macro q."
                  (interactive)
-                 (evil-execute-macro 1 "@q"))
-           "K" 'evil-smart-doc-lookup)
+                 (evil-execute-macro evil-repeat-count "@q"))
+           "K" 'evil-smart-doc-lookup
+           "M--" 'evil-window-decrease-height
+           "M-+" 'evil-window-increase-height
+           "M-<" 'evil-window-decrease-width
+           "M->" 'evil-window-increase-width)
   (:states 'normal
            "j" 'evil-next-visual-line
            "k" 'evil-previous-visual-line)
