@@ -726,7 +726,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (setq-default flyspell-correct-interface 'flyspell-correct-ivy)
   :general
   (leader-def :keymaps 'flyspell-mode-map
-    "S" 'flyspell-correct-wrapper))
+    "S" 'flyspell-correct-next))
 (use-package yapfify :ensure t
   :config
   (if (executable-find "yapf")
