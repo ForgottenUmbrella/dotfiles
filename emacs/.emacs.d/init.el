@@ -283,11 +283,20 @@ to `evil-lookup'. Based on Spacemacs."
   :general
   (:keymaps 'leader-toggles-map
             "i" 'highlight-indent-guides-mode))
-(use-package git-gutter :ensure t
+(use-package git-gutter :ensure t :demand t
   :init
   (setq-default git-gutter:hide-gutter t)
   :config
-  (global-git-gutter-mode))
+  (global-git-gutter-mode)
+  :general
+  (:keymaps 'leader-git-map
+            "h" 'git-gutter:stage-hunk
+            "n" 'git-gutter:next-hunk
+            "p" 'git-gutter:previous-hunk
+            "x" 'git-gutter:revert-hunk)
+  (:states 'motion
+           "[ h" 'git-gutter-previous-hunk
+           "] h" 'git-gutter-next-hunk))
 (use-package face-remap
   :general
   (:keymaps 'leader-zoom-map
@@ -1142,11 +1151,12 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (:prefix-command 'leader-git-map :keymaps 'leader-map :prefix "g"
                    :wk-full-keys nil
                    "" '(:ignore t :which-key "git")
+                   "c" 'magit-commit
                    "i" 'magit-init
+                   "m" 'magit-dispatch
                    "S" 'magit-stage-file
                    "s" 'magit-status
                    "C-s" 'magit-stage
-                   "m" 'magit-dispatch
                    "U" 'magit-unstage-file)
   (major-prefix-def :prefix-command 'major-with-editor-map
     :keymaps 'with-editor-mode-map
