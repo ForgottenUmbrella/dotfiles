@@ -476,7 +476,8 @@ to `evil-lookup'. Based on Spacemacs."
                 ivy-initial-inputs-alist nil)
   :config
   (ivy-mode t)
-  (add-to-list 'ivy-re-builders-alist '(t . ivy--regex-ignore-order))
+  ;; XXX maybe no longer required
+  ;;(add-to-list 'ivy-re-builders-alist '(t . ivy--regex-ignore-order))
   (add-to-list 'ivy-format-functions-alist '(t . ivy-format-function-line))
   :general
   (:keymaps '(ivy-minibuffer-map
