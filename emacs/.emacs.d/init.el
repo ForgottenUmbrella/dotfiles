@@ -814,7 +814,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                 org-src-tab-acts-natively t
                 org-confirm-babel-evaluate (lambda (lang body)
                                              "Don't confirm Python evaluation"
-                                             (not (string= lang "python"))))
+                                             (not (string= lang "python")))
+                org-export-with-smart-quotes t)
   :config
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((python . t) (emacs-lisp . t)))
