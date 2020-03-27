@@ -407,6 +407,8 @@ to `evil-lookup'. Based on Spacemacs."
   (:keymaps 'leader-toggles-map
             "n" 'display-line-numbers-mode))
 (use-package ffap
+  :init
+  (setq-default ffap-machine-p-known 'reject)
   :general
   (:states 'motion
            "g f" 'find-file-at-point))
