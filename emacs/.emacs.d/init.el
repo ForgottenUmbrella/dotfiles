@@ -44,6 +44,8 @@
 ;; :demand is needed if you :general-bind keys or
 ;; :g(f)hook but still need the external package to be loaded.
 ;; Also, some built-in packages also need :demand when :general-binding.
+;; NOTE: :ghook enables the package mode;
+;; :gfhook calls function when the package mode is enabled
 
 ;;; Join the dark side.
 (use-package evil :ensure t :demand t
@@ -76,6 +78,7 @@ to `evil-lookup'. Based on Spacemacs."
         (evil-lookup))))
   :general
   ("C-l" 'evil-ex-nohighlight)
+  ;; NOTE: 'motion is for commands useful even when not modifying text
   (:states 'motion
            "_" (lambda ()
                  "Use black-hole register for deletion."
