@@ -287,8 +287,7 @@ to `evil-lookup'. Based on Spacemacs."
   :init
   (setq-default git-gutter:hide-gutter t)
   :config
-  (global-git-gutter-mode)
-  (git-gutter:linum-setup))
+  (global-git-gutter-mode))
 (use-package face-remap
   :general
   (:keymaps 'leader-zoom-map
