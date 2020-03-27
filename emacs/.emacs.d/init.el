@@ -1249,17 +1249,17 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                 vc-follow-symlinks t))
 (use-package lsp-mode :ensure t
   :ghook
-  ('(prog-mode-hook lsp))
+  ('prog-mode-hook 'lsp)
   :gfhook
-  ('(lsp-mode lsp-enable-which-key-integration))
+  ('lsp-mode 'lsp-enable-which-key-integration)
   ;; NOTE: Install {kotlin,python}-language-server, clang for language support
   )
 (use-package lsp-ui :ensure t)
 (use-package company-lsp :ensure t
   :gfhook
-  ('(lsp (lambda ()
-           "Reduce company delay"
-           (setq company-idle-delay 0))))
+  ('lsp (lambda ()
+          "Reduce company delay"
+          (setq company-idle-delay 0)))
   :config
   (add-to-list 'company-backends 'company-lsp))
 
