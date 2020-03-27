@@ -92,7 +92,7 @@ awk "/^## $country$/{f=1}f==0{next}/^$/{exit}{print substr(\$0, 2)}" \
 # Base installation
 pacstrap /mnt base linux linux-firmware base-devel pkgstats efibootmgr grub \
          fish git fwupd man-db man-pages zsh zsh-autosuggestions zsh-syntax-highlighting \
-         mlocate apparmor \
+         mlocate apparmor emacs \
          texinfo pulseaudio pulseaudio-bluetooth pulsemixer gnome-keyring \
          networkmanager cups nss-mdns gutenprint sane chrony pacman-contrib \
          ghostscript gsfonts foomatic-db-engine foomatic-db foomatic-db-ppds \
@@ -303,7 +303,7 @@ sed --in-place \
 
 # Personal apps and AUR TODO move all personals and optionals from pacstrap
 yay --sync --refresh --sysupgrade keepassxc dropbox anki firefox-nightly \
-    wine-staging wine-nine wine-gecko wine-mono emacs-lucid i3-gaps wpgtk-git \
+    wine-staging wine-nine wine-gecko wine-mono i3-gaps wpgtk-git \
     mantablockscreen rofi-dmenu btmenu keepmenu clerk-git polybar noto-fonts-cjk \
     tamsyn-font terminus-font-ttf ttf-symbola nerd-fonts-fira-mono ttf-font-awesome ttf-ms-fonts \
     brillo pulseaudio-ctl mpdris2 kunst-git \
