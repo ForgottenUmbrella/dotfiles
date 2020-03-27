@@ -1077,6 +1077,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :config
   (defun fill-paragraph-72 ()
     "Fill paragraph at column 72."
+    (interactive)
     (let ((fill-column 72))
       (fill-paragraph)))
   :general
