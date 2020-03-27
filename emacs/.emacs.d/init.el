@@ -548,6 +548,8 @@ to `evil-lookup'. Based on Spacemacs."
             "y" 'yas-minor-mode))
 (use-package yasnippet-snippets :ensure t)
 (use-package company :ensure t :demand t
+  :init
+  (setq-default company-minimum-prefix-length 1)
   :config
   (global-company-mode)
   :general
@@ -1744,4 +1746,7 @@ current frame. From Spacemacs."
               comment-auto-fill-only-comments t
               use-dialog-box nil
               ring-bell-function 'ignore
-              display-buffer-alist '(("\\*help" (display-buffer-same-window))))
+              display-buffer-alist '(("\\*help" (display-buffer-same-window)))
+              ;; NOTE: Increase the power of two until performance no longer improves.
+              gc-cons-threshold (* (expt 2 1) 800000)
+              read-process-output-max (* 1024 1024))
