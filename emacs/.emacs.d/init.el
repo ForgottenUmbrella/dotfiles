@@ -1081,7 +1081,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
     (let ((fill-column 72))
       (fill-paragraph)))
   :general
-  (:keymaps python-mode-map "RET" 'newline-and-indent)
+  (:keymaps 'python-mode-map "RET" 'newline-and-indent)
   (major-prefix-def :prefix-command 'major-python-map :keymaps 'python-mode-map
     "'" 'run-python
     "q" 'fill-paragraph-72)
