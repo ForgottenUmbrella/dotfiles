@@ -1163,7 +1163,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :general
   (:keymaps 'major-cc-goto-map
             "a" 'projectile-find-other-file
-            "A" 'projectile-find-other-file-other-window))
+            "A" 'projectile-find-other-file-other-window
+            "f" 'ff-find-other-file))
 (use-package counsel-projectile :ensure t :demand t
   :config
   (counsel-projectile-mode)
