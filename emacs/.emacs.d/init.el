@@ -1060,14 +1060,20 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                    "T" 'reftex-toc-recenter
                    "t" 'reftex-toc
                    "v" 'reftex-view-crossref))
-(use-package python
+(use-package python :demand t
   :init
   (setq-default major-python-virtualenv-map (make-sparse-keymap)
                 python-fill-docstring-style 'pep-257-nn)
+  :config
+  (defun fill-paragraph-72 ()
+    "Fill paragraph at column 72."
+    (let ((fill-column 72))
+      (fill-paragraph)))
   :general
   (:keymaps python-mode-map "RET" 'newline-and-indent)
   (major-prefix-def :prefix-command 'major-python-map :keymaps 'python-mode-map
-    "'" 'run-python)
+    "'" 'run-python
+    "q" 'fill-paragraph-72)
   (:prefix-command 'major-python-goto-map :keymaps 'major-python-map :prefix "g"
                    :wk-full-keys nil
                    "" '(:ignore t :which-key "goto"))
