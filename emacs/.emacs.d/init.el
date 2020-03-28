@@ -1258,6 +1258,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :gfhook
   ('lsp-mode 'lsp-enable-which-key-integration)
   ;; NOTE: Install {kotlin,python}-language-server, clang for language support
+  ;; See https://github.com/emacs-lsp/lsp-mode#supported-languages.
   )
 (use-package lsp-ui :ensure t)
 (use-package company-lsp :ensure t
