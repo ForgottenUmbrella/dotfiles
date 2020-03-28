@@ -822,7 +822,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                 org-agenda-files '("~/Dropbox/Wiki/uni/")
                 org-src-tab-acts-natively t
                 org-confirm-babel-evaluate (lambda (lang body)
-                                             "Don't confirm Python evaluation"
+                                             "Don't confirm Python evaluation."
                                              (not (string= lang "python")))
                 org-export-with-smart-quotes t)
   :config
