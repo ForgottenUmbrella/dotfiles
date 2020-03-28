@@ -826,10 +826,12 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                 org-confirm-babel-evaluate (lambda (lang body)
                                              "Don't confirm Python evaluation."
                                              (not (string= lang "python")))
-                org-export-with-smart-quotes t)
+                org-export-with-smart-quotes t
+                org-latex-listings t)
   :config
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((python . t) (emacs-lisp . t)))
+  (add-to-list 'org-latex-packages-alist '("" "listingsutf8"))
   :general
   (:prefix-command 'leader-applications-org-map
                    :keymaps 'leader-applications-map :prefix "o"
