@@ -85,10 +85,12 @@ to `evil-lookup'. Based on Spacemacs."
                  (interactive)
                  (evil-use-register ?_))
            "C-_" 'my-append-to-register
-           "Q" (lambda ()
-                 "Execute macro q."
-                 (interactive)
-                 (evil-execute-macro evil-repeat-count "@q"))
+           ;; XXX: Doesn't respect count?
+           ;;"Q" (lambda ()
+           ;;      "Execute macro q."
+           ;;      (interactive)
+           ;;      (evil-execute-macro evil-repeat-count "@q"))
+           "Q" (kbd "@q")
            "K" 'evil-smart-doc-lookup
            "M--" 'evil-window-decrease-height
            "M-+" 'evil-window-increase-height
