@@ -1,0 +1,166 @@
+# -*- mode: snippet -*-
+# name: analysis
+# key: anal
+# --
+#!/usr/bin/env python3
+"""Analysis of ${1:some experiment.}
+
+Author: Leo Long Pham (30620929)
+"""
+
+import sys
+from typing import Callable, Mapping, Optional, Union
+
+import lmfit
+import matplotlib.pyplot as plt
+import monashspa.PHS2061 as spa
+import numpy as np
+import sympy as sp
+
+# Useful for embedding in LaTeX with a nicer caption font.
+if "--no-titles" in sys.argv:
+    plt.title = lambda title: None
+
+
+def plot_raw(
+        x: np.ndarray, y: np.ndarray,
+        xerr: Union[np.ndarray, float] = 0, yerr: Union[np.ndarray, float] = 0,
+        title="y(x)", xlabel="x", ylabel="y", legend="",
+        xlog=False, ylog=False, final=True
+) -> None:
+    """Create a plot of raw data.
+
+    Arguments `xlog` and `ylog` enable logarithmic plots.
+    If `final` is True, the plot is saved and shown, otherwise the caller
+    must call `spa.savefig` and `plt.show` themselves.
+    """
+    plt.figure()
+    plt.title(title)
+    plt.errorbar(
+        x, y, xerr=xerr, yerr=yerr, marker="o", linestyle="None",
+        label=legend
+    )
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    # plt.ylim([1.2 * np.min(y) if np.min(y) < 0 else 0, 1.2 * np.max(y)])
+    if legend:
+        plt.legend(bbox_to_anchor=(1, 1))
+    if xlog:
+        plt.xscale("log")
+    if ylog:
+        plt.yscale("symlog")
+    if final:
+        spa.savefig(normalise_filename(f"{title}.png"))
+        plt.show()
+
+
+# TODO Allow configuring whether to start new plot or not in plot_raw
+# TODO group parameters logically/reduce number of parameters
+# TODO rename err params back to u_
+# TODO take additional kwargs for any other options
+# TODO leave saving, showing to user/allow configuring
+def plot_fit(
+        x: np.ndarray, y: np.ndarray,
+        xerr: Union[np.ndarray, float] = 0, yerr: Union[np.ndarray, float] = 0,
+        title="Linearised", xlabel="x", ylabel="y", raw_legend="",
+        legend="Line of best fit",
+        u_legend=r"\$1 - \sigma\$ spread in fit",
+        model: Optional[str] = None, guess: Optional[Mapping[str, float]] = None
+) -> lmfit.model.ModelResult:
+    """Plot data with line of best fit and return fit data.
+
+    Argument `raw_legend` is the legend for the raw data.
+    Argument `legend` is the legend for the line of best fit.
+    Argument `u_legend` is the legend for the spread in fit.
+    Argument `model`, if provided, gives a non-linear model to fit to.
+    By default, a linear model is used.
+    When `model` is given, `guess` must be a dictionary of initial
+    guesses for the parameters in `model`.
+    """
+    plot_raw(
+        x, y, xerr=xerr, yerr=yerr, title=title, xlabel=xlabel, ylabel=ylabel,
+        legend=raw_legend, final=False
+    )
+    if model is None:
+        fit_results = spa.linear_fit(x, y, u_y=yerr)
+    else:
+        lmfit_model = spa.make_lmfit_model(model)
+        params = lmfit_model.make_params(**guess)
+        fit_results = spa.model_fit(lmfit_model, params, x, y, u_y=yerr)
+    fit = fit_results.best_fit
+    try:
+        u_fit = fit_results.eval_uncertainty()
+    except TypeError:
+        # Linear fit is too perfect (no uncertainty).
+        print("Linearisation has no uncertainty!")
+        u_fit = 0
+    plt.plot(
+        x, fit, marker="None", linestyle="-", color="black", label=legend
+    )
+    plt.fill_between(
+        x, fit - u_fit, fit + u_fit, label=u_legend, color="lightgrey"
+    )
+    plt.legend(bbox_to_anchor=(1, 1))
+    spa.savefig(normalise_filename(f"{title}.png"))
+    plt.show()
+    return fit_results
+
+
+def u_lambdify(expr: sp.Symbol, *args: sp.Symbol) -> Callable[..., sp.Symbol]:
+    """Return an uncertainty function for `expr`.
+
+    The lambda takes a value for each positional argument immediately
+    followed by its uncertainty.
+
+    Each positional argument in `*args` is a symbol involved in
+    computing `expr`.
+    """
+    symbols = np.array([*args])
+    derivatives = np.array(expr.diff(symbols))
+    u_symbols = np.array([sp.Symbol(f"u({symbol.name})") for symbol in symbols])
+    terms = derivatives * u_symbols
+    u_expr = sp.sqrt(np.dot(terms, terms))
+    print("Uncertainty equation:", u_expr)
+    return sp.lambdify(
+        [arg for pair in zip(symbols, u_symbols) for arg in pair],
+        u_expr
+    )
+
+
+def agree(
+        value_1: float, u_value_1: float, value_2: float, u_value_2: float,
+        standard_deviations=3
+) -> bool:
+    """Return if two values agree within given standard deviations."""
+    left_1 = value_1 - standard_deviations*u_value_1
+    right_1 = value_1 + standard_deviations*u_value_1
+    left_2 = value_2 - standard_deviations*u_value_1
+    right_2 = value_2 + standard_deviations*u_value_2
+    return left_2 <= value_1 <= right_2 or left_1 <= value_2 <= right_1
+
+
+def print_agree(
+        experimental: float, u_experimental: float,
+        expected: float, u_expected: float,
+        sd=3
+) -> None:
+    """Print whether experimental value is as expected."""
+    print(
+        "Agree?",
+        agree(experimental, u_experimental, expected, u_expected, sd=sd)
+    )
+    print(f"(Expected {expected} +/- {u_expected})")
+
+
+def normalise_filename(filename: str) -> str:
+    """Return a filename without problematic characters."""
+    return "".join(filter(lambda char: char not in "\$^{}/", filename))
+
+
+def main():
+    """${2:Analyse data.}"""
+    $0
+
+
+if __name__ == "__main__":
+    main()
