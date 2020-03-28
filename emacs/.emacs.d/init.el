@@ -820,7 +820,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (setq-default org-startup-indented t
                 org-startup-folded nil
                 org-startup-truncated nil
-                org-startup-with-latex-preview t
                 org-agenda-files '("~/Dropbox/Wiki/uni/")
                 org-src-tab-acts-natively t
                 org-confirm-babel-evaluate (lambda (lang body)
