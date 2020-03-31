@@ -563,6 +563,7 @@ to `evil-lookup'. Based on Spacemacs."
   (setq-default company-minimum-prefix-length 1)
   :config
   (global-company-mode)
+  (general-unbind 'insert company-active-map "TAB")
   :general
   (:keymaps 'company-mode-map :states 'insert
             "C-n" 'company-complete)
