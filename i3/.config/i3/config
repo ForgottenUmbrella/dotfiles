@@ -26,8 +26,9 @@
 # Font.
 font bitmap 13
 
-# Mod1 = Alt, Mod4 = Win (Alt conflicts with Vim).
+# Mod1 = Alt, Mod4 = Super (Alt conflicts with Vim).
 set $mod Mod4
+set $alt Mod1
 
 set $left h
 set $down j
@@ -138,8 +139,10 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
-bindsym Mod1+Tab workspace next
-bindsym Mod1+Shift+Tab workspace prev
+bindsym $alt+Tab workspace next
+bindsym $alt+Shift+Tab workspace prev
+bindsym Control+$alt+Down workspace next
+bindsym Control+$alt+Up workspace prev
 
 workspace_auto_back_and_forth yes
 
@@ -228,15 +231,15 @@ mode $mode_gaps {
 set_from_resource $fg i3wm.color7 #f0f0f0
 set_from_resource $bg i3wm.color0 #f0f0f0
 set_from_resource $main i3wm.color2 #f0f0f0
-set_from_resource $alt i3wm.color1 #f0f0f0
+set_from_resource $altc i3wm.color1 #f0f0f0
 set_from_resource $alert i3wm.color5 #f0f0f0
 # Only child_border actually matters.
 # <colorclass>		<border>	<bg>	<text>	<indicator>	<child_border>
 client.focused		$main		$main	$fg	$fg        	$main
-client.focused_inactive	$alt		$main	$fg	$alt		$alt
-client.unfocused	$alt		$alt	$fg	$alt		$alt
-client.urgent		$alert		$alert	$bg	$alt		$alert
-client.placeholder	NULL		$bg	$fg	NULL		$alt
+client.focused_inactive	$altc		$main	$fg	$altc		$altc
+client.unfocused	$altc		$altc	$fg	$altc		$altc
+client.urgent		$alert		$alert	$bg	$altc		$alert
+client.placeholder	NULL		$bg	$fg	NULL		$altc
 client.background $bg
 
 # Xbindkeys candidates.
@@ -257,7 +260,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightness -inc $brightness_del
 bindsym XF86MonBrightnessDown exec --no-startup-id brightness -dec $brightness_delta
 
 # Lock screen.
-bindsym Control+Mod1+l exec --no-startup-id lock
+bindsym Control+$alt+l exec --no-startup-id lock
 
 # Autostart.
 exec --no-startup-id xautolock -time 30 -locker "lock && systemctl suspend-then-hibernate"
