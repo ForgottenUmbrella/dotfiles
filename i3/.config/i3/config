@@ -266,7 +266,7 @@ bindsym Control+$alt+l exec --no-startup-id lock
 exec --no-startup-id xautolock -time 30 -locker "lock && systemctl suspend-then-hibernate"
 exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
 exec_always --no-startup-id xmodmap ~/.Xmodmap
-exec --no-startup-id fcitx
+exec --no-startup-id ibus-daemon -drx
 # Need the alpha option because wal doesn't remember it.
 exec_always --no-startup-id wal -R -a 80
 exec_always --no-startup-id killall picom; picom -b --experimental-backends
