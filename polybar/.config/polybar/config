@@ -5,18 +5,16 @@ include-file = ~/.cache/wal/colors-polybar
 width = 100%
 height = 30
 ; TODO: Revisit once i3-gaps has landed rounded-corners support.
-;radius = 5.0
+radius = 5.0
 fixed-center = false
-;padding = 2
-padding-right = 2
-module-margin = 1
 background = ${colors.background}
 foreground = ${colors.foreground}
-line-size = 2
+line-size = 5
 line-color = ${colors.active}
 ; Uncomment for floating bar.
-;border-size = 10
-;border-bottom-size = 0
+border-size = 5
+;border-bottom-size = 5
+border-top-size = 0
 ; Uncomment for opaque border.
 ;border-color = ${colors.active}
 font-0 = bitmap:size=13
@@ -36,10 +34,36 @@ cursor-click = pointer
 ;cursor-scroll = ns-resize
 modules-left = i3 xwindow pomodoro
 modules-center =
-; modules-right = mpd cpu ram swap kdeconnect redshift dropbox updates wifi bluetooth backlight pulseaudio battery time powermenu
-modules-right = mpd cpu ram swap redshift dropbox wifi bluetooth backlight pulseaudio battery time powermenu
+;modules-right = mpd cpu ram swap keyboard kdeconnect redshift dropbox updates wifi bluetooth backlight pulseaudio battery time powermenu
+modules-right = mpd cpu ram swap keyboard redshift dropbox wifi bluetooth backlight pulseaudio battery time powermenu
 tray-position = none
 tray-padding = 2
+bottom = true
+override-redirect = true
+
+[bar/left]
+modules-left = i3 xwindow pomodoro
+modules-center =
+modules-right =
+width = 30%
+inherit = bar/main
+
+[bar/mid]
+modules-left =
+modules-center = mpd
+modules-right =
+width = 40%
+offset-x = 30%
+fixed-center = true
+inherit = bar/main
+
+[bar/right]
+modules-left =
+modules-center =
+modules-right = cpu ram swap keyboard redshift dropbox wifi bluetooth backlight pulseaudio battery time powermenu
+width = 30%
+offset-x = 70%
+inherit = bar/main
 
 [module/separator]
 type = custom/text
@@ -54,8 +78,9 @@ label-focused = %name%
 label-unfocused = ${self.label-focused}
 label-visible = ${self.label-focused}
 label-urgent = ${self.label-focused}
-label-focused-background = ${colors.active}
-label-focused-foreground = ${colors.background}
+;label-focused-background = ${colors.active}
+;label-focused-foreground = ${colors.background}
+label-focused-underline = ${colors.active}
 label-urgent-background = ${colors.alert}
 label-urgent-foreground = ${colors.background}
 label-focused-padding = 2
@@ -83,7 +108,7 @@ icon-next = ⏩
 icon-random = 🔀
 icon-repeat = 🔁
 ;label-song = %title%
-;label-song-maxlen = 16
+label-song-maxlen = 64
 label-song-ellipsis = true
 label-time = %elapsed%/%total%
 bar-progress-width = 8
@@ -244,10 +269,10 @@ ramp-foreground = ${colors.foreground-alt}
 [module/pulseaudio]
 type = internal/pulseaudio
 format-volume = <ramp-volume> <bar-volume>
-label-volume = %{A3:pa-device-menu &:}%percentage%%%{A}
+label-volume = %{A3:pulse-device-menu &:}%percentage%%%{A}
 format-muted-prefix = "🔇 "
 format-muted-prefix-foreground = ${colors.inactive}
-label-muted = %{A3:pa-device-menu &:}muted%{A}
+label-muted = %{A3:pulse-device-menu &:}muted%{A}
 bar-volume-width = 8
 bar-volume-gradient = false
 bar-volume-indicator = |
@@ -323,6 +348,8 @@ menu-4-0-exec = lock
 screenchange-reload = true
 pseudo-transparency = true
 format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-padding = 1
 ;compositing-background = xor
 ;compositing-background = screen
 ;compositing-foreground = source

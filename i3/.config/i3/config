@@ -15,14 +15,17 @@
 # feh
 # python-pywal
 # wpgtk-git
+# tamsyn-font
 # terminus-font-ttf
 # ttf-symbola
 # nerd-fonts-fira-mono
 # ttf-font-awesome
 # noto-fonts-cjk
-# betterlockscreen
+# mantablockscreen
 # xautolock
 # polkit-gnome
+# networkmanager-dmenu-git
+# btmenu
 
 # Font.
 font bitmap 13
@@ -118,16 +121,16 @@ bindsym $mod+quote exec --no-startup-id i3-input -F '[con_mark="%s"] focus' -P '
 bindsym $mod+Shift+quote exec --no-startup-id i3-input -F 'swap container with mark %s' -P 'Mark: '
 
 # Workspaces.
-set $ws1 "1:I"
-set $ws2 "2:II"
-set $ws3 "3:III"
-set $ws4 "4:IV"
-set $ws5 "5:V"
-set $ws6 "6:VI"
-set $ws7 "7:VII"
-set $ws8 "8:VIII"
-set $ws9 "9:IX"
-set $ws10 "10:X"
+set $ws1 "1:一"
+set $ws2 "2:二"
+set $ws3 "3:三"
+set $ws4 "4:四"
+set $ws5 "5:五"
+set $ws6 "6:六"
+set $ws7 "7:七"
+set $ws8 "8:八"
+set $ws9 "9:九"
+set $ws10 "10:十"
 
 # Switch to workspace.
 bindsym $mod+1 workspace $ws1
@@ -193,7 +196,7 @@ bindsym $mod+Left resize shrink width $resize_delta px or $resize_delta ppt
 bindsym $mod+Right resize grow width $resize_delta px or $resize_delta ppt
 
 # Hide titlebar.
-default_border pixel 2
+default_border pixel 5
 
 # Steam window glitches: https://github.com/ValveSoftware/steam-for-linux/issues/1040.
 for_window [class="^Steam$" title="^Friends$"] floating enable
@@ -208,11 +211,12 @@ for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Require
 for_window [title="^Steam Keyboard$"] floating enable
 
 # Gaps.
-set $default_inner 25
+set $default_inner 20
 set $default_outer 0
 set $gap_delta 2
 gaps inner $default_inner
 gaps outer $default_outer
+gaps bottom 30
 set $mode_gaps "Gaps: [j] -outer [k] +outer [J] -inner [K] +inner [0] none [=] default [q]uit"
 bindsym $mod+g mode $mode_gaps
 mode $mode_gaps {
@@ -236,7 +240,7 @@ set_from_resource $altc i3wm.color1 #f0f0f0
 set_from_resource $alert i3wm.color5 #f0f0f0
 # Only child_border actually matters.
 # <colorclass>		<border>	<bg>	<text>	<indicator>	<child_border>
-client.focused		$main		$main	$fg	$fg        	$main
+client.focused		$main		$main	$fg	$alert        	$main
 client.focused_inactive	$altc		$main	$fg	$altc		$altc
 client.unfocused	$altc		$altc	$fg	$altc		$altc
 client.urgent		$alert		$alert	$bg	$altc		$alert
@@ -272,7 +276,7 @@ exec --no-startup-id ibus-daemon -drx
 exec_always --no-startup-id wal -R -a 80
 exec_always --no-startup-id killall picom; picom -b --experimental-backends
 exec_always --no-startup-id killall dunst; dunst
-exec_always --no-startup-id killall polybar; polybar main
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id systemctl --user start wallplug.timer
 exec --no-startup-id systemctl --user start battery-monitor.timer
 exec --no-startup-id systemctl --user start mpd-notification.service
