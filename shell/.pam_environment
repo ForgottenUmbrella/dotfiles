@@ -1,7 +1,7 @@
 # Standard
 HOME DEFAULT="/home/@{PAM_USER}"
 PATH DEFAULT="${HOME}/.local/bin:${PATH}"
-BROWSER DEFAULT="firefox-nightly"
+BROWSER DEFAULT="firefox"
 TERMINAL DEFAULT="termite"
 XDG_CONFIG_HOME DEFAULT="${HOME}/.config"
 XDG_CACHE_HOME DEFAULT="${HOME}/.cache"
