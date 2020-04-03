@@ -9,7 +9,7 @@
 # polybar
 # picom
 # dunst
-# brillo/xbacklight
+# xbacklight
 # playerctl
 # pulseaudio-ctl
 # feh
@@ -253,9 +253,6 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 # Brightness keys.
 set $brightness_delta 5
-# `brillo` requires user to be in video group (`usermod -a -G video $USER`).
-#bindsym XF86MonBrightnessUp exec --no-startup-id brillo -A $brightness_delta
-#bindsym XF86MonBrightnessDown exec --no-startup-id brillo -U $brightness_delta
 bindsym XF86MonBrightnessUp exec --no-startup-id brightness -inc $brightness_delta
 bindsym XF86MonBrightnessDown exec --no-startup-id brightness -dec $brightness_delta
 
