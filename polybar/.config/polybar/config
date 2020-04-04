@@ -4,7 +4,6 @@ include-file = ~/.cache/wal/colors-polybar
 [bar/main]
 width = 100%
 height = 30
-; TODO: Revisit once i3-gaps has landed rounded-corners support.
 radius = 5.0
 fixed-center = false
 background = ${colors.background}
@@ -33,16 +32,15 @@ font-7 = FuraMono Nerd Font
 cursor-click = pointer
 ;cursor-scroll = ns-resize
 modules-left = i3 xwindow pomodoro
-modules-center =
-;modules-right = mpd cpu ram swap keyboard kdeconnect redshift dropbox updates wifi bluetooth backlight pulseaudio battery time powermenu
-modules-right = mpd cpu ram swap keyboard redshift dropbox wifi bluetooth backlight pulseaudio battery time powermenu
+modules-center = mpd
+;modules-right = cpu ram swap keyboard kdeconnect redshift dropbox updates wifi bluetooth backlight pulseaudio battery time
+modules-right = cpu ram swap keyboard redshift dropbox wifi bluetooth backlight pulseaudio battery time
 tray-position = none
 tray-padding = 2
 bottom = true
 override-redirect = true
 
 [bar/left]
-modules-left = i3 xwindow pomodoro
 modules-center =
 modules-right =
 width = 30%
@@ -50,17 +48,14 @@ inherit = bar/main
 
 [bar/mid]
 modules-left =
-modules-center = mpd
 modules-right =
-width = 40%
-offset-x = 30%
-fixed-center = true
+width = 36%
+offset-x = 32%
 inherit = bar/main
 
 [bar/right]
 modules-left =
 modules-center =
-modules-right = cpu ram swap keyboard redshift dropbox wifi bluetooth backlight pulseaudio battery time powermenu
 width = 30%
 offset-x = 70%
 inherit = bar/main
@@ -121,7 +116,7 @@ toggle-off-foreground = ${colors.inactive}
 
 [module/xwindow]
 type = internal/xwindow
-label-maxlen = 64
+label-maxlen = 32
 ;label-background = ${colors.active}
 label-padding = 2
 
@@ -313,7 +308,8 @@ animation-charging-framerate = 512
 type = internal/date
 interval = 15
 time = %H:%M
-date-alt = %a %F
+date = %a %F
+;date-alt = %a %F
 ;format-prefix = "🕓 "
 format-prefix-foreground = ${colors.foreground-alt}
 label = %{A3:notify-send "$(date '+%a %F')" "$(cal)":}%date% %time%%{A}
