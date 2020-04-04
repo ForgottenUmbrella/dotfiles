@@ -9,7 +9,7 @@
 # Likewise, the current brightness is equal to 0.01 and the -inc argument is
 # specified, brightness is set to DELTA instead.
 
-# Depends on xbacklight.
+# Depends on acpilight.
 
 command=$1
 delta=$2
