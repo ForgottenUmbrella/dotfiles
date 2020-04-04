@@ -297,8 +297,8 @@ to `evil-lookup'. Based on Spacemacs."
             "p" 'git-gutter:previous-hunk
             "x" 'git-gutter:revert-hunk)
   (:states 'motion
-           "[ h" 'git-gutter-previous-hunk
-           "] h" 'git-gutter-next-hunk))
+           "[ h" 'git-gutter:previous-hunk
+           "] h" 'git-gutter:next-hunk))
 (use-package face-remap
   :general
   (:keymaps 'leader-zoom-map
@@ -563,7 +563,7 @@ to `evil-lookup'. Based on Spacemacs."
   (setq-default company-minimum-prefix-length 1)
   :config
   (global-company-mode)
-  (general-unbind 'insert company-active-map "TAB")
+  (general-unbind company-active-map "TAB")
   :general
   (:keymaps 'company-mode-map :states 'insert
             "C-n" 'company-complete)
