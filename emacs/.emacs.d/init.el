@@ -1773,4 +1773,7 @@ current frame. From Spacemacs."
               display-buffer-alist '(("\\*help" (display-buffer-same-window)))
               ;; NOTE: Increase the power of two until performance no longer improves.
               gc-cons-threshold (* (expt 2 1) 800000)
-              read-process-output-max (* 1024 1024))
+              read-process-output-max (* 1024 1024)
+              initial-buffer-choice (lambda ()
+                                      "Get current buffer."
+                                      (window-buffer (selected-window))))
