@@ -306,7 +306,7 @@ yay --sync --refresh --sysupgrade keepassxc dropbox anki firefox-nightly \
     wine-staging wine-nine wine-gecko wine-mono i3-gaps wpgtk-git \
     mantablockscreen rofi-dmenu btmenu keepmenu clerk-git polybar noto-fonts-cjk \
     tamsyn-font terminus-font-ttf ttf-symbola nerd-fonts-fira-mono ttf-font-awesome ttf-ms-fonts \
-    acpilight pulseaudio-ctl mpdris2 kunst-git \
+    acpilight pulseaudio-ctl mpdris2 kunst-git xorg-xwininfo \
     ranger-git python-ueberzug dxvk-bin ashuffle kvantum-qt5 lxappearance
 
 # Optimisations

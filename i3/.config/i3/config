@@ -27,6 +27,7 @@
 # networkmanager-dmenu-git
 # btmenu
 # redshift
+# xorg-xwininfo
 
 # Font.
 font bitmap 13
@@ -268,6 +269,12 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightness -dec $brightness_d
 # Lock screen.
 bindsym Control+$alt+l exec --no-startup-id lock
 
+# Help.
+bindsym $mod+Shift+slash exec i3-keys-menu
+
+# Disable inactive transparency for current window.
+bindsym $mod+t exec picom-trans -c 100
+
 # Autostart.
 exec --no-startup-id xautolock -time 30 -locker "lock && systemctl suspend-then-hibernate"
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -287,6 +294,3 @@ exec --no-startup-id systemctl --user start redshift-gtk.service
 exec --no-startup-id i3-sensible-terminal -t "dropdown"
 for_window [title="dropdown"] move scratchpad
 for_window [title="dropdown"] sticky enable
-
-# Disable inactive transparency for current window.
-bindsym $mod+t exec picom-trans -c 100
