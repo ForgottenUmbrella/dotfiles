@@ -39,6 +39,7 @@ tray-position = none
 tray-padding = 2
 bottom = true
 override-redirect = true
+wm-restack = true
 
 [bar/left]
 modules-center =
@@ -49,8 +50,8 @@ inherit = bar/main
 [bar/mid]
 modules-left =
 modules-right =
-width = 36%
-offset-x = 32%
+width = 40%
+offset-x = 30%
 inherit = bar/main
 
 [bar/right]
@@ -95,6 +96,8 @@ exec = ~/.config/polybar/scripts/isrunning-pomodoro.sh
 [module/mpd]
 type = internal/mpd
 format-online = <icon-prev> <toggle> <icon-next>  <label-song>  <label-time> <bar-progress>
+format-offline = <label-offline>
+label-offline = %{A1:ashuffle &}🎜 mpd is offline%{A}
 icon-prev = ⏪
 icon-stop = ⏹
 icon-play = ⏵
@@ -113,10 +116,11 @@ bar-progress-fill-foreground = ${colors.transient}
 bar-progress-empty = ─
 bar-progress-empty-foreground = ${colors.foreground-alt}
 toggle-off-foreground = ${colors.inactive}
+interval = 10
 
 [module/xwindow]
 type = internal/xwindow
-label-maxlen = 32
+label-maxlen = 56
 ;label-background = ${colors.active}
 label-padding = 2
 
@@ -312,7 +316,7 @@ date = %a %F
 ;date-alt = %a %F
 ;format-prefix = "🕓 "
 format-prefix-foreground = ${colors.foreground-alt}
-label = %{A3:notify-send "$(date '+%a %F')" "$(cal)":}%date% %time%%{A}
+label = %{A1:notify-send "$(date '+%a %F')" "$(cal)":}%date% %time%%{A}
 
 [module/powermenu]
 type = custom/menu
