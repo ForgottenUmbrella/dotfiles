@@ -5,34 +5,27 @@
 # - wpgtk-git
 # - mantablockscreen
 # - jq
+# shellcheck disable=SC1090,SC2154
 
-# Cache directory.
-cache=${XDG_CACHE_HOME:-$HOME/.cache}
-# File storing image URL.
-url_file=$cache/wallplug/current-url
-# Config directory.
-config=${XDG_CONFIG_HOME:-$HOME/.config}
+# Import definitions ($cache, $config, $lib, $url_file, log, die and wait_display).
+. "$HOME/.local/lib/wallplug/defs.sh"
 
-# Configuration variables.
-# Wallpaper file.
-image=$cache/wallplug/image
-# Command that modifies wallpaper file and optionally image URL.
-#command='safebooru_plug touhou pool:scenery_porn'
-#command='safebooru_plug "touhou aoha_(twintail)"'
-#command='safebooru_plug "touhou akyuun"'
-#command='safebooru_plug "touhou landscape"'
-# command='safebooru_plug "touhou alcxome"'
-# command='safebooru_plug "touhou mikado_(winters)"'
-# command='safebooru_plug "touhou asakura_masatoki"'
-# command='safebooru_plug "touhou mifuru"'
-command='safebooru_plug "touhou risutaru"'
-#command='safebooru_plug "touhou y7j"'
-#command='safebooru_plug "touhou motsuba"'
-#command='safebooru_plug "touhou ultimate_asuka"'
-# Alpha of colour scheme.
-alpha=80
-# IP to ping to check for network access.
-test_ip=8.8.8.8
+# Import configuration variables.
+# $image is the path to the wallpaper.
+# $command is a command that will modify the $image
+# and optionally store the URL at $url_file.
+# $alpha is the alpha for the colour scheme, from 0 to 100.
+. "$config/wallplug/config.sh"
+# Default values.
+image=${image:-$cache/wallplug/image}
+command=${command:-'safebooru_plug "touhou pool:scenery_porn"'}
+alpha=${alpha:-80}
+
+# Import plugins.
+# Plugins should be named in the form ${name}_plug.sh and any global definitions
+# within should be prefixed with $name to avoid conflicts.
+# (At this point I should use a real programming language...)
+. "$lib"/wallplug/*_plug.sh
 
 # Echo help message.
 usage() {
@@ -60,26 +53,6 @@ and optionally write a source URL to \$XDG_CACHE_HOME/wallplug/current-url.
 "
 }
 
-# Echo information for user; used to differentiate from pipeline.
-log() {
-    echo "$@"
-}
-
-# Echo error message and exit with last exit code.
-die() {
-    exit_code=$?
-    echo 'Error:' "$@" 1>&2
-    exit "$exit_code"
-}
-
-# Wait until X DISPLAY is available.
-wait_display() {
-    while [ -z "$DISPLAY" ]; do
-        log 'DISPLAY temporarily unavailable, sleeping...'
-        sleep 10
-    done
-}
-
 # Set the wallpaper, colour scheme and notify change.
 set_wallpaper() {
     image=$1
@@ -100,75 +73,6 @@ set_wallpaper() {
     mantablockscreen -i "$image"
     url=$(cat "$url_file" 2>/dev/null || printf '')
     notify-send 'New wallpaper' "$url" -i "$image" -u low
-}
-
-# Return whether the posts.json cache no longer satisifies the tags requested.
-outdated_tags() {
-    tag_string=$1
-    shift; tags=$*
-    [ "$(python -c "print(all(word in $tag_string for word in '$tags'.split()))")" != 'True' ]
-}
-
-# Return whether the given data is of sufficient quality.
-filter_tags() {
-    data=$1
-    tag_string=$(echo "$data" | jq '.tag_string')
-    [ "$(python -c "print('highres' in $tag_string and 'monochrome' not in $tag_string)")" = 'True' ]
-}
-
-# Wait for network access via rudimentary exponential backoff.
-wait_network() {
-    test_ip=$1
-    attempts=0
-    while ! ping -c1 "$test_ip" > /dev/null; do
-        log 'Network temporarily unavailable, sleeping...'
-        sleep "$(echo "2^$attempts" | bc)"m
-        attempts=$((attempts+1))
-    done
-}
-
-# Purge posts until one with a valid URL is found, and echo its data.
-filter_data() {
-    posts=$1
-    until
-        data=$(jq '.[0]' "$posts")
-        # Remove the image from the URL cache.
-        id=$(echo "$data" | jq '.id')
-        temp=$(mktemp)
-        jq '.[1:]' "$posts" > "$temp" && mv "$temp" "$posts"
-        new_id=$(jq '.[0].id' "$posts")
-        [ "$new_id" != "$id" ] ||
-            die 'Failed to remove image from URL cache'
-        # Check URL is not null and data is of sufficient quality.
-        echo "$data" | jq '.file_url' -e > /dev/null && filter_tags "$data"
-    do
-        :
-    done
-    echo "$data"
-}
-
-# Modify wallpaper file and set image URL from a safebooru.donmai.us search.
-safebooru_plug() {
-    tags=$*
-    posts=$cache/wallplug/posts.json
-    wait_network "$test_ip"
-    # Cache image URLs so we don't waste the extra images returned from the API.
-    if [ ! -f "$posts" ] || [ "$(wc -m < "$posts")" -le 3 ] ||
-           [ "$(jq '.|type' "$posts")" = 'object' ] ||
-           outdated_tags "$(jq '.[0].tag_string' "$posts")" "$tags"; then
-        log 'Downloading posts...'
-        curl 'https://safebooru.donmai.us/posts.json' -G \
-             --data-urlencode "tags=$tags" --data-urlencode random=true \
-             -o "$posts" --create-dirs || die 'Failed to download posts'
-    fi
-    data=$(filter_data "$posts")
-    # Download the image.
-    log "Downloading image..."
-    url=$(echo "$data" | jq '.file_url' -r)
-    curl "$url" -o "$image" || die 'Failed to download image'
-    # Note where it can be viewed.
-    id=$(echo "$data" | jq '.id')
-    echo "https://safebooru.donmai.us/posts/$id" > "$url_file"
 }
 
 while getopts ':ui:c:a:h?' option; do
