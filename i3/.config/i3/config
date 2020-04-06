@@ -217,9 +217,10 @@ for_window [title="^Steam Keyboard$"] floating enable
 set $default_inner 20
 set $default_outer 0
 set $gap_delta 2
+set $gap_bot 30
 gaps inner $default_inner
 gaps outer $default_outer
-gaps bottom 30
+gaps bottom $gap_bot
 set $mode_gaps "Gaps: [j] -outer [k] +outer [J] -inner [K] +inner [0] none [=] default [q]uit"
 bindsym $mod+g mode $mode_gaps
 mode $mode_gaps {
@@ -228,7 +229,7 @@ mode $mode_gaps {
     bindsym Shift+j gaps inner all minus $gap_delta
     bindsym Shift+k gaps inner all plus $gap_delta
     bindsym 0 gaps inner all set 0; gaps outer all set 0
-    bindsym equal gaps outer all set $default_outer; gaps inner all set $default_inner
+    bindsym equal gaps outer all set $default_outer; gaps inner all set $default_inner; gaps bottom all set $gap_bot
     bindsym q mode "default"
     bindsym Control+bracketleft mode "default"
     bindsym Escape mode "default"
