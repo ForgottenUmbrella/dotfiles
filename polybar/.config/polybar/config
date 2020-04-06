@@ -44,14 +44,14 @@ wm-restack = true
 [bar/left]
 modules-center =
 modules-right =
-width = 30%
+width = 40%
 inherit = bar/main
 
 [bar/mid]
 modules-left =
 modules-right =
-width = 40%
-offset-x = 30%
+width = 30%
+offset-x = 40%
 inherit = bar/main
 
 [bar/right]
@@ -83,7 +83,7 @@ label-focused-padding = 2
 label-unfocused-padding = ${self.label-focused-padding}
 label-visible-padding = ${self.label-focused-padding}
 label-urgent-padding = ${self.label-focused-padding}
-;label-mode-padding = 2
+label-mode-padding = 2
 label-mode-background = ${colors.active}
 ; Separator in between workspaces
 ;label-separator = " "
@@ -120,7 +120,7 @@ interval = 10
 
 [module/xwindow]
 type = internal/xwindow
-label-maxlen = 56
+label-maxlen = 48
 ;label-background = ${colors.active}
 label-padding = 2
 
@@ -249,8 +249,8 @@ interval = 10
 
 [module/backlight]
 type = internal/xbacklight
-card = intel_backlight
-format = <ramp> <bar>
+;card = intel_backlight
+format = <ramp> <label>
 label = %percentage%%
 bar-width = 8
 bar-indicator = |
@@ -267,7 +267,7 @@ ramp-foreground = ${colors.foreground-alt}
 
 [module/pulseaudio]
 type = internal/pulseaudio
-format-volume = <ramp-volume> <bar-volume>
+format-volume = <ramp-volume> <label-volume>
 label-volume = %{A3:pulse-device-menu &:}%percentage%%%{A}
 format-muted-prefix = "🔇 "
 format-muted-prefix-foreground = ${colors.inactive}
