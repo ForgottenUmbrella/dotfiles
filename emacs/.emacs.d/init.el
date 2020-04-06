@@ -614,7 +614,8 @@ to `evil-lookup'. Based on Spacemacs."
                                     "Insert shebang and return nil."
                                     (insert-shebang)))
   :init
-  (setq-default insert-shebang-track-ignored-filename nil)
+  (setq-default insert-shebang-track-ignored-filename nil
+                insert-shebang-custom-headers '(("sh" . "#!/bin/sh")))
   :config
   (add-to-list 'insert-shebang-file-types '("py" . "python3"))
   (remove-hook 'find-file-hook 'insert-shebang))
