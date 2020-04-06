@@ -14,7 +14,7 @@
 command=$1
 delta=$2
 current_brightness=$(xbacklight -get)
-min=0.01
+min=1
 
 # Return whether two floating point numbers are equal.
 feq() {
