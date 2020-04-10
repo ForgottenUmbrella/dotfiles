@@ -2,5 +2,4 @@
 Description=Notify sudo request (eventually)
 
 [Service]
-ExecStartPre=-killall sudo-notify.py
 ExecStart=%h/.local/bin/sudo-notify.py
