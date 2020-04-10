@@ -1,0 +1,9 @@
+[Unit]
+Description=Notify sudo request (eventually)
+
+[Timer]
+OnBootSec=10min
+OnUnitActiveSec=10min
+
+[Install]
+WantedBy=timers.target
