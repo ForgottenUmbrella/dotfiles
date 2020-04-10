@@ -198,7 +198,7 @@ bindsym $mod+Down resize shrink height $resize_delta px or $resize_delta ppt
 bindsym $mod+Left resize shrink width $resize_delta px or $resize_delta ppt
 bindsym $mod+Right resize grow width $resize_delta px or $resize_delta ppt
 
-# Hide titlebar.
+# Hide titlebar and set border.
 default_border pixel 5
 
 # Steam window glitches: https://github.com/ValveSoftware/steam-for-linux/issues/1040.

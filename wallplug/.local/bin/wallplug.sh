@@ -24,6 +24,7 @@ alpha=${alpha:-80}
 # Import plugins.
 # Plugins should be named in the form ${name}_plug.sh and any global definitions
 # within should be prefixed with $name to avoid conflicts.
+# (Note that this $name is unrelated to the $name variable within this script.)
 # (At this point I should use a real programming language...)
 . "$lib"/wallplug/*_plug.sh
 
@@ -59,6 +60,10 @@ set_wallpaper() {
     alpha=$2
     wait_display
     log 'Setting via wal...'
+    # XXX: script/feh only fails to set wallpaper when run through systemd
+    # (colorscheme is successfully changed), but works fine when run from
+    # terminal.
+    # Further note that this only happens occasionally. Currently working.
     wal -c; wal -i "$image" -a "$alpha" -e
     # python-pillow-simd is a drop-in replacement for pillow that isn't a
     # drop-in replacement, so anything depending on pillow is broken.
