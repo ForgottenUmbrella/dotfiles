@@ -18,8 +18,7 @@ image=$cache/wallplug/image
 #command='safebooru_plug "touhou asakura_masatoki"'
 #command='safebooru_plug "touhou mifuru"'
 #command='safebooru_plug "touhou risutaru"'
-command='safebooru_plug "touhou y7j"'
-#command='safebooru_plug "touhou motsuba"'
+command='safebooru_plug "touhou motsuba"'
 #command='safebooru_plug "touhou ultimate_asuka"'
 
 # Alpha of colour scheme.
