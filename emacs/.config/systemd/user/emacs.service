@@ -4,9 +4,9 @@ Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs/
 
 [Service]
 Type=forking
+ExecStartPre=systemctl --user import-environment PATH
 ExecStart=/usr/bin/emacs --daemon
 ExecStop=/usr/bin/emacsclient --eval "(kill-emacs)"
-PassEnvironment=PATH
 Restart=always
 
 [Install]
