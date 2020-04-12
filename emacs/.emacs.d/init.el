@@ -18,6 +18,8 @@
   (advice-remove 'package-install 'before-install-refresh-contents))
 (advice-add 'package-install :before 'before-install-refresh-contents)
 (use-package use-package-ensure-system-package :ensure t)
+;; Auto-update packages (disabled, run auto-package-update-now when you feel
+;; like it.)
 ;;(use-package auto-package-update :ensure t
 ;;   :init
 ;;   (setq-default auto-package-update-hide-results t
