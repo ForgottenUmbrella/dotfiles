@@ -2,10 +2,11 @@
 # name: exam
 # key: exam
 # --
-\documentclass[a4paper,margin=11in,answers]{exam}
+\documentclass[answers]{exam}
 \title{${1:Assignment}}
 \author{Leo Long Pham}
 \usepackage[T1]{fontenc}
+\usepackage[a4paper,margin=1in]{geometry}
 \usepackage{physics}
 \usepackage{mathtools}
 \usepackage{amssymb}
