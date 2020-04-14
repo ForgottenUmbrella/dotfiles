@@ -122,7 +122,7 @@ bar-progress-fill-foreground = ${colors.transient}
 bar-progress-empty = ─
 bar-progress-empty-foreground = ${colors.foreground-alt}
 toggle-off-foreground = ${colors.inactive}
-interval = 10
+interval = 1
 
 [module/xwindow]
 type = internal/xwindow
@@ -320,7 +320,7 @@ interval = 15
 time = %H:%M
 date = %a %d
 ;date-alt = %a %F
-;format-prefix = "🕓 "
+format-prefix = "🕓 "
 format-prefix-foreground = ${colors.foreground-alt}
 label = %{A1:notify-send "$(date '+%a %F')" "$(cal)":}%date% %time%%{A}
 
