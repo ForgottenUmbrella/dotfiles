@@ -1748,6 +1748,11 @@ current frame. From Spacemacs."
 (set-scroll-bar-mode nil)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(add-hook 'find-file-not-found-functions
+          (lambda ()
+            "Create parent directories and return nil."
+            (make-directory default-directory t)
+            nil))
 (setq-default scroll-conservatively 101
               scroll-margin 5
               mouse-wheel-progressive-speed nil
