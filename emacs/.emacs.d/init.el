@@ -1272,6 +1272,11 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
           (setq company-idle-delay 0)))
   :config
   (add-to-list 'company-backends 'company-lsp))
+(use-package exec-path-from-shell :ensure t
+  :init
+  (setq-default exec-path-from-shell-arguments nil)
+  :config
+  (exec-path-from-shell-initialize))
 
 ;;;; Define overriding key bindings.
 (general-define-key :states 'insert
