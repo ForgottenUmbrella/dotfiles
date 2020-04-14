@@ -1738,12 +1738,15 @@ current frame. From Spacemacs."
     (fill-region beg end)))
 
 ;;;; Generic settings.
+;; Enable transparency.
 (add-to-list 'default-frame-alist (cons 'alpha my-transparency))
+;; Use custom bitmap font set in fontconfig.
 (add-to-list 'default-frame-alist
              (cons 'font
                    (concat (substring
                             (shell-command-to-string "fc-match bitmap family")
                             0 -1) " 13")))
+;; Use Symbola for all other symbols.
 (set-fontset-font t nil (font-spec :name "Symbola" :size 13))
 (set-scroll-bar-mode nil)
 (menu-bar-mode -1)
