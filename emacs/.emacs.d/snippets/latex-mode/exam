@@ -19,6 +19,7 @@
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 
 \begin{document}
+\maketitle{}
 \begin{questions}
   \question{} $0
 \end{questions}
