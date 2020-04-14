@@ -614,7 +614,8 @@ to `evil-lookup'. Based on Spacemacs."
   :ghook
   ('find-file-not-found-functions (lambda ()
                                     "Insert shebang and return nil."
-                                    (insert-shebang)))
+                                    (insert-shebang)
+                                    nil))
   :init
   (setq-default insert-shebang-track-ignored-filename nil
                 insert-shebang-custom-headers '(("sh" . "#!/bin/sh")))
