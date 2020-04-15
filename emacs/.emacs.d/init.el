@@ -1757,8 +1757,10 @@ current frame. From Spacemacs."
 (tool-bar-mode -1)
 (add-hook 'find-file-not-found-functions
           (lambda ()
-            "Create parent directories and return nil."
-            (make-directory default-directory t)
+            "Create non-existent parent directories and return nil."
+            (let ((parent-dir (file-name-directory buffer-file-name)))
+              (when (not (file-exists-p parent-dir))
+                (make-directory parent-dir t)))
             nil))
 (setq-default scroll-conservatively 101
               scroll-margin 5
