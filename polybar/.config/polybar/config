@@ -126,7 +126,7 @@ interval = 1
 
 [module/xwindow]
 type = internal/xwindow
-label-maxlen = 80
+label-maxlen = 88
 ;label-background = ${colors.active}
 label-padding = 2
 
