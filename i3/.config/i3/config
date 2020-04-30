@@ -124,28 +124,28 @@ bindsym $mod+quote exec --no-startup-id i3-input -F '[con_mark="%s"] focus' -P '
 bindsym $mod+Shift+quote exec --no-startup-id i3-input -F 'swap container with mark %s' -P 'Mark: '
 
 # Workspaces.
-set $ws1 "1:一"
-set $ws2 "2:二"
-set $ws3 "3:三"
-set $ws4 "4:四"
-set $ws5 "5:五"
-set $ws6 "6:六"
-set $ws7 "7:七"
-set $ws8 "8:八"
-set $ws9 "9:九"
-set $ws10 "10:十"
+set $ws1 "1: 一"
+set $ws2 "2: 二"
+set $ws3 "3: 三"
+set $ws4 "4: 四"
+set $ws5 "5: 五"
+set $ws6 "6: 六"
+set $ws7 "7: 七"
+set $ws8 "8: 八"
+set $ws9 "9: 九"
+set $ws10 "10: 十"
 
 # Switch to workspace.
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
 bindsym $alt+Tab workspace next
 bindsym $alt+Shift+Tab workspace prev
 bindsym Control+$alt+Down workspace next
@@ -154,26 +154,26 @@ bindsym Control+$alt+Up workspace prev
 workspace_auto_back_and_forth yes
 
 # Move to workspace.
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
-bindsym $mod+Control+Shift+1 move container to workspace $ws1; workspace $ws1
-bindsym $mod+Control+Shift+2 move container to workspace $ws2; workspace $ws2
-bindsym $mod+Control+Shift+3 move container to workspace $ws3; workspace $ws3
-bindsym $mod+Control+Shift+4 move container to workspace $ws4; workspace $ws4
-bindsym $mod+Control+Shift+5 move container to workspace $ws5; workspace $ws5
-bindsym $mod+Control+Shift+6 move container to workspace $ws6; workspace $ws6
-bindsym $mod+Control+Shift+7 move container to workspace $ws7; workspace $ws7
-bindsym $mod+Control+Shift+8 move container to workspace $ws8; workspace $ws8
-bindsym $mod+Control+Shift+9 move container to workspace $ws9; workspace $ws9
-bindsym $mod+Control+Shift+0 move container to workspace $ws10; workspace $ws10
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Control+Shift+1 move container to number workspace $ws1; workspace number $ws1
+bindsym $mod+Control+Shift+2 move container to number workspace $ws2; workspace number $ws2
+bindsym $mod+Control+Shift+3 move container to number workspace $ws3; workspace number $ws3
+bindsym $mod+Control+Shift+4 move container to number workspace $ws4; workspace number $ws4
+bindsym $mod+Control+Shift+5 move container to number workspace $ws5; workspace number $ws5
+bindsym $mod+Control+Shift+6 move container to number workspace $ws6; workspace number $ws6
+bindsym $mod+Control+Shift+7 move container to number workspace $ws7; workspace number $ws7
+bindsym $mod+Control+Shift+8 move container to number workspace $ws8; workspace number $ws8
+bindsym $mod+Control+Shift+9 move container to number workspace $ws9; workspace number $ws9
+bindsym $mod+Control+Shift+0 move container to number workspace $ws10; workspace number $ws10
 
 # Reload configuration file.
 bindsym $mod+r reload
