@@ -11,7 +11,8 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
 (defun before-install-refresh-contents (&rest args)
   "Refresh package archive before installing to avoid outdated files."
   (package-refresh-contents)
