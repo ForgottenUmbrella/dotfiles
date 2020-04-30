@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: nodate
+# key: nodate
+# --
+\usepackage{titling}
+\predate{}
+\date{}
+\postdate{}

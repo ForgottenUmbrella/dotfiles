@@ -1,0 +1,23 @@
+# -*- mode: snippet -*-
+# name: report
+# key: report
+# --
+\documentclass{article}
+\title{$1}
+\author{${2:Leo Long Pham}}
+\date{$3}  % chktex 8
+\usepackage[T1]{fontenc}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{babel}
+\usepackage{csquotes}
+\usepackage{biblatex}
+\usepackage{url}
+\addbibresource{bib.bib}
+
+\begin{document}
+\maketitle{}
+
+$0
+
+\printbibliography{}
+\end{document}

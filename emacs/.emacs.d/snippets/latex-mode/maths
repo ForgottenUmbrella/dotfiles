@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: maths
+# key: maths
+# --
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\newcommand*{\nats}{\mathbb{N}}
+\newcommand*{\ints}{\mathbb{I}}
+\newcommand*{\rats}{\mathbb{Q}}
+\newcommand*{\reals}{\mathbb{R}}
+\newcommand*{\comps}{\mathbb{C}}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\mathtoolsset{showonlyrefs}

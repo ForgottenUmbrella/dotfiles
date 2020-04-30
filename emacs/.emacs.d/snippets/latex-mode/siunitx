@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: siunitx
+# key: si
+# --
+\usepackage[separate-uncertainty,multi-part-units=single]{siunitx}

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: solution
+# key: sol
+# --
+\begin{solution}
+  TODO
+\end{solution}
