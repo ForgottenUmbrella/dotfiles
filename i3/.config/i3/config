@@ -277,6 +277,9 @@ bindsym $mod+Shift+slash exec i3-keys-menu
 # Disable inactive transparency for current window.
 bindsym $mod+t exec picom-trans -c 100
 
+# Take a screenshot.
+bindsym Print exec scrot 'Screenshot %F '
+
 # Autostart.
 exec --no-startup-id xautolock -time 30 -locker "lock && systemctl suspend-then-hibernate"
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
