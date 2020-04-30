@@ -87,11 +87,6 @@ to `evil-lookup'. Based on Spacemacs."
                  (interactive)
                  (evil-use-register ?_))
            "C-_" 'my-append-to-register
-           ;; XXX: Doesn't respect count?
-           ;;"Q" (lambda ()
-           ;;      "Execute macro q."
-           ;;      (interactive)
-           ;;      (evil-execute-macro evil-repeat-count "@q"))
            "Q" (kbd "@q")
            "K" 'evil-smart-doc-lookup
            "M--" 'evil-window-decrease-height
@@ -489,8 +484,6 @@ to `evil-lookup'. Based on Spacemacs."
                 ivy-initial-inputs-alist nil)
   :config
   (ivy-mode t)
-  ;; XXX maybe no longer required
-  ;;(add-to-list 'ivy-re-builders-alist '(t . ivy--regex-ignore-order))
   (add-to-list 'ivy-format-functions-alist '(t . ivy-format-function-line))
   :general
   (:keymaps '(ivy-minibuffer-map
@@ -791,10 +784,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package autorevert
   :config
   (global-auto-revert-mode))
-;; XXX: Probably unnecessary and problematic because it uses double-spaces.
-;;(use-package python-docstring :ensure t
-;;  :ghook
-;;  'python-mode-hook)
 (use-package electric
   :ghook
   ('python-mode-hook
@@ -1271,8 +1260,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :config
   (add-to-list 'company-backends 'company-lsp))
 (use-package exec-path-from-shell :ensure t
-  :init
-  (setq-default exec-path-from-shell-arguments nil)
   :config
   (exec-path-from-shell-initialize))
 
