@@ -559,10 +559,19 @@ to `evil-lookup'. Based on Spacemacs."
   (setq-default company-minimum-prefix-length 1)
   :config
   (global-company-mode)
-  (general-unbind company-mode-map "TAB")
+  ;; (general-unbind company-active-map "TAB" "C-i" [tab])
+  ;; ;; TODO bind to default command instead of being hijacked
+  ;; (general-unbind company-mode-map "TAB")
   :general
   (:keymaps 'company-active-map
-            "C-l" 'company-complete-selection))
+            "C-l" 'company-complete-selection
+            "TAB" nil
+            "C-i" nil
+            [tab] nil
+            ;; 'company-complete-common nil ;; XXX
+            )
+  (:keymaps 'company-mode-map
+            "TAB" nil))
 (use-package company-quickhelp :ensure t
   :ghook
   'company-mode-hook)
