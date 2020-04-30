@@ -1246,7 +1246,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                 vc-follow-symlinks t))
 (use-package lsp-mode :ensure t
   :ghook
-  ('prog-mode-hook 'lsp)
+  ('(kotlin-mode-hook c++-mode-hook) 'lsp)
   :gfhook
   ('lsp-mode 'lsp-enable-which-key-integration)
   ;; NOTE: Install {kotlin,python}-language-server, clang for language support
