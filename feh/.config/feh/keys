@@ -15,10 +15,10 @@ scroll_up_page C-u
 scroll_right_page W
 
 # Zooming.
-zoom_in C-plus
-zoom_out C-minus
-zoom_default C-equal
-zoom_fit C-0
+zoom_in plus
+zoom_out minus
+zoom_default equal
+zoom_fit 0
 
 # Hiding and deleting.
 remove d Delete
@@ -37,8 +37,15 @@ menu_up K
 menu_child L
 
 # Unbind conflicts.
+# h
 toggle_pause
+# k
 toggle_keep_vp
+# L
 save_filelist
+# plus
 reload_plus
+# minus
 reload_minus
+# 0
+action_0
