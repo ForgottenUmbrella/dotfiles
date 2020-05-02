@@ -497,6 +497,7 @@ to `evil-lookup'. Based on Spacemacs."
             "C-j" 'ivy-next-line
             "C-k" 'ivy-previous-line
             "C-l" 'ivy-alt-done
+            "TAB" 'ivy-alt-done
             "C-d" 'ivy-scroll-down-command
             "C-u" 'ivy-scroll-up-command)
   (:keymaps 'ivy-switch-buffer-map
