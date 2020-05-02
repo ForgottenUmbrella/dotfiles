@@ -994,7 +994,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :mode ("\\.tex\\'" . LaTeX-mode)
   :init
   (setq-default TeX-view-program-list '(("Evince" "xdg-open"))
-                TeX-insert-macro-default-style 'mandatory-args-only)
+                TeX-insert-macro-default-style 'mandatory-args-only
+                TeX-parse-self t)
   (defun latex/build ()
     "Save and build the current LaTeX file. Based on Spacemacs."
     (interactive)
