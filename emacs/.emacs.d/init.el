@@ -486,6 +486,7 @@ to `evil-lookup'. Based on Spacemacs."
   :config
   (ivy-mode t)
   (add-to-list 'ivy-format-functions-alist '(t . ivy-format-function-line))
+  (add-to-list 'ivy-re-builders-alist '(t . ivy--regex-fuzzy))
   :general
   (:keymaps '(ivy-minibuffer-map
               ivy-occur-grep-mode-map
