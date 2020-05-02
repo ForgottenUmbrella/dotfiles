@@ -401,7 +401,7 @@ to `evil-lookup'. Based on Spacemacs."
 (use-package dumb-jump :ensure t
   :init
   (setq-default dumb-jump-selectory 'ivy
-                dumb-jump-prefer-searcher 'ag)
+                dumb-jump-prefer-searcher 'rg)
   :config
   (dumb-jump-mode)
   :general
