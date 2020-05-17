@@ -9,7 +9,7 @@
 image=$cache/wallplug/image
 
 # Command that modifies wallpaper file and optionally image URL.
-#command='safebooru_plug touhou pool:scenery_porn'
+command='safebooru_plug touhou pool:scenery_porn'
 #command='safebooru_plug "touhou aoha_(twintail)"'
 #command='safebooru_plug "touhou akyuun"'
 #command='safebooru_plug "touhou landscape"'
@@ -18,7 +18,7 @@ image=$cache/wallplug/image
 #command='safebooru_plug "touhou asakura_masatoki"'
 #command='safebooru_plug "touhou mifuru"'
 #command='safebooru_plug "touhou risutaru"'
-command='safebooru_plug "touhou motsuba"'
+#command='safebooru_plug "touhou motsuba"'
 #command='safebooru_plug "touhou ultimate_asuka"'
 
 # Alpha of colour scheme.
