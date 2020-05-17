@@ -278,7 +278,8 @@ bindsym $mod+Shift+slash exec i3-keys-menu
 bindsym $mod+t exec picom-trans -c 100
 
 # Take a screenshot.
-bindsym Print exec scrot 'Screenshot %F '
+bindsym Print exec scrot ~/Pictures/'Screenshot %F %T.png'
+bindsym --release Shift+Print exec scrot -s ~/Pictures/'Screenshot %F %T.png'
 
 # Autostart.
 exec --no-startup-id xautolock -time 30 -locker "lock && systemctl suspend-then-hibernate"
