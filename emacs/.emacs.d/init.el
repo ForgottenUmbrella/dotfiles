@@ -118,7 +118,7 @@ to `evil-lookup'. Based on Spacemacs."
            "C-x" 'evil-numbers/dec-at-pt))
 (use-package evil-unimpaired :load-path "lisp/" :demand t
   :config
-  (general-unbind 'normal "] l" "[ l" "] q" "[ q")
+  (general-unbind 'normal "] l" "[ l" "] q" "[ q" "] f" "[ f")
   :general
   (:states 'motion
            "[ c" 'previous-comment
@@ -1121,6 +1121,11 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :init
   (setq-default nxml-slash-auto-complete-flag t))
 (use-package doc-view
+  :mode ("\\.pdf\\'" . fundamental-mode)
+  :gfhook
+  (nil (lambda ()
+         "Disable laggy display-line-numbers-mode in DocView."
+         (display-line-numbers-mode -1)))
   :init
   (setq-default doc-view-continuous t))
 ;; Emacs Lisp.
@@ -1789,8 +1794,9 @@ current frame. From Spacemacs."
               ring-bell-function 'ignore
               display-buffer-alist '(("\\*help" (display-buffer-same-window)))
               ;; NOTE: Increase the power of two until performance no longer improves.
-              gc-cons-threshold (* (expt 2 1) 800000)
+              gc-cons-threshold (* (expt 2 2) 800000)
               read-process-output-max (* 1024 1024)
               initial-buffer-choice (lambda ()
                                       "Get current buffer."
-                                      (window-buffer (selected-window))))
+                                      (window-buffer (selected-window)))
+              large-file-warning-threshold (* 1000 1000))
