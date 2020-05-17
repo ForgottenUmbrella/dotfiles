@@ -7,7 +7,7 @@ from time import sleep
 from typing import List
 
 # A little less than when sudo is expected to time out, in seconds.
-TIMEOUT = 10 * 60
+TIMEOUT = 4 * 60
 
 
 def pids(process_name: str) -> List[int]:
