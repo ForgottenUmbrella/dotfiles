@@ -10,7 +10,7 @@
 \usepackage[a4paper,margin=1in]{geometry}
 \usepackage{babel}
 \usepackage{csquotes}
-\usepackage{biblatex}
+\usepackage[backend=biber]{biblatex}
 \usepackage{url}
 \addbibresource{bib.bib}
 
