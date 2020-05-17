@@ -484,9 +484,8 @@ to `evil-lookup'. Based on Spacemacs."
                 ivy-use-virtual-buffers t
                 ivy-initial-inputs-alist nil)
   :config
-  (ivy-mode t)
   (add-to-list 'ivy-format-functions-alist '(t . ivy-format-function-line))
-  (add-to-list 'ivy-re-builders-alist '(t . ivy--regex-fuzzy))
+  (ivy-mode t)
   :general
   (:keymaps '(ivy-minibuffer-map
               ivy-occur-grep-mode-map
@@ -543,11 +542,12 @@ to `evil-lookup'. Based on Spacemacs."
             "s" 'counsel-grep-or-swiper)
   (:keymaps 'leader-themes-map
             "t" 'counsel-load-theme))
-(use-package ivy-prescient :ensure t
+(use-package ivy-prescient :ensure t :after (counsel)
   :config
   (ivy-prescient-mode)
   (add-to-list 'ivy-sort-functions-alist
-               '(read-file-name-internal . ivy-sort-file-function-default)))
+               '(read-file-name-internal . ivy-sort-file-function-default))
+  (add-to-list 'ivy-re-builders-alist '(t . ivy--regex-fuzzy)))
 (use-package yasnippet :ensure t :demand t
   :config
   (yas-global-mode)
