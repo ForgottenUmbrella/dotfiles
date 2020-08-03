@@ -1,8 +1,0 @@
-[Unit]
-Description=Notify sudo request (eventually)
-
-[Service]
-ExecStart=%h/.local/bin/sudo-notify.py
-
-[Install]
-WantedBy=defaults.target
