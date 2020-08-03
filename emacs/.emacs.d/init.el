@@ -544,10 +544,10 @@ to `evil-lookup'. Based on Spacemacs."
             "t" 'counsel-load-theme))
 (use-package ivy-prescient :ensure t :after (counsel)
   :config
-  (ivy-prescient-mode)
   (add-to-list 'ivy-sort-functions-alist
                '(read-file-name-internal . ivy-sort-file-function-default))
-  (add-to-list 'ivy-re-builders-alist '(t . ivy--regex-fuzzy)))
+  (add-to-list 'ivy-re-builders-alist '(t . ivy--regex-fuzzy))
+  (ivy-prescient-mode))
 (use-package yasnippet :ensure t :demand t
   :config
   (yas-global-mode)
