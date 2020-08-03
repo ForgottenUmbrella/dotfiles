@@ -302,7 +302,7 @@ sed --in-place \
     systemctl enable apparmor.service
 
 # Personal apps and AUR TODO move all personals and optionals from pacstrap
-yay --sync --refresh --sysupgrade keepassxc dropbox anki firefox-nightly \
+yay --sync --refresh --sysupgrade keepassxc dropbox anki firefox-beta \
     wine-staging wine-nine wine-gecko wine-mono i3-gaps wpgtk-git \
     mantablockscreen rofi-dmenu btmenu keepmenu clerk-git polybar noto-fonts-cjk \
     tamsyn-font terminus-font-ttf ttf-symbola nerd-fonts-fira-mono ttf-font-awesome ttf-ms-fonts \
