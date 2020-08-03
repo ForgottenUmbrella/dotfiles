@@ -15,7 +15,7 @@ safebooru_test_ip=8.8.8.8
 safebooru_outdated_tags() {
     tag_string=$1
     shift; tags=$*
-    [ "$(python -c "print(all(word in $tag_string for word in '$tags'.split()))")" != 'True' ]
+    [ "$(python -c "print(all(word in $tag_string for word in '$tags'.split() if ':' not in word))")" != 'True' ]
 }
 
 # Return whether the given data is of sufficient quality.
