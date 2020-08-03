@@ -147,8 +147,8 @@ disable=print-statement,
         subprocess-run-check,
         too-few-public-methods,
         too-many-statements,
-        blacklisted-name
-        # too-many-locals,
+        blacklisted-name,
+        too-many-locals
         # too-many-arguments,
         # broad-except
 
