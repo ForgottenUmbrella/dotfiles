@@ -1123,6 +1123,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
          (display-line-numbers-mode -1)))
   :init
   (setq-default doc-view-continuous t))
+(use-package rustic :ensure t)
 ;; Emacs Lisp.
 (major-prefix-def :prefix-command 'major-emacs-lisp-map
   :keymaps 'emacs-lisp-mode-map
