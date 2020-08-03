@@ -30,9 +30,9 @@ def plot_raw(
 ) -> None:
     """Create a plot of raw data.
 
-    Arguments `xlog` and `ylog` enable logarithmic plots.
-    If `final` is True, the plot is saved and shown, otherwise the caller
-    must call `spa.savefig` and `plt.show` themselves.
+    Arguments \`xlog\` and \`ylog\` enable logarithmic plots.
+    If \`final\` is True, the plot is saved and shown, otherwise the caller
+    must call \`spa.savefig\` and \`plt.show\` themselves.
     """
     plt.figure()
     plt.title(title)
@@ -64,18 +64,18 @@ def plot_fit(
         xerr: Union[np.ndarray, float] = 0, yerr: Union[np.ndarray, float] = 0,
         title="Linearised", xlabel="x", ylabel="y", raw_legend="",
         legend="Line of best fit",
-        u_legend=r"\$1 - \sigma\$ spread in fit",
+        u_legend=r"\$1 - \\sigma\$ spread in fit",
         model: Optional[str] = None, guess: Optional[Mapping[str, float]] = None
 ) -> lmfit.model.ModelResult:
     """Plot data with line of best fit and return fit data.
 
-    Argument `raw_legend` is the legend for the raw data.
-    Argument `legend` is the legend for the line of best fit.
-    Argument `u_legend` is the legend for the spread in fit.
-    Argument `model`, if provided, gives a non-linear model to fit to.
+    Argument \`raw_legend\` is the legend for the raw data.
+    Argument \`legend\` is the legend for the line of best fit.
+    Argument \`u_legend\` is the legend for the spread in fit.
+    Argument \`model\`, if provided, gives a non-linear model to fit to.
     By default, a linear model is used.
-    When `model` is given, `guess` must be a dictionary of initial
-    guesses for the parameters in `model`.
+    When \`model\` is given, \`guess\` must be a dictionary of initial
+    guesses for the parameters in \`model\`.
     """
     plot_raw(
         x, y, xerr=xerr, yerr=yerr, title=title, xlabel=xlabel, ylabel=ylabel,
@@ -107,13 +107,13 @@ def plot_fit(
 
 
 def u_lambdify(expr: sp.Symbol, *args: sp.Symbol) -> Callable[..., sp.Symbol]:
-    """Return an uncertainty function for `expr`.
+    """Return an uncertainty function for \`expr\`.
 
     The lambda takes a value for each positional argument immediately
     followed by its uncertainty.
 
-    Each positional argument in `*args` is a symbol involved in
-    computing `expr`.
+    Each positional argument in \`*args\` is a symbol involved in
+    computing \`expr\`.
     """
     symbols = np.array([*args])
     derivatives = np.array(expr.diff(symbols))
