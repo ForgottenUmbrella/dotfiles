@@ -90,7 +90,7 @@ awk "/^## $country$/{f=1}f==0{next}/^$/{exit}{print substr(\$0, 2)}" \
     /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 
 # Base installation
-pacstrap /mnt base linux linux-firmware base-devel pkgstats efibootmgr grub \
+pacstrap /mnt base linux linux-firmware base-devel pkgstats efibootmgr grub nftables \
          fish git fwupd man-db man-pages zsh zsh-autosuggestions zsh-syntax-highlighting \
          mlocate apparmor emacs \
          texinfo pulseaudio pulseaudio-bluetooth pulsemixer gnome-keyring \
@@ -212,29 +212,7 @@ su -- "$username" -c makepkg --syncdeps --install
 popd
 
 # Firewall
-iptables --new-chain TCP
-iptables --new-chain UDP
-iptables --policy FORWARD DROP
-iptables --policy OUTPUT ACCEPT
-iptables --policy INPUT DROP
-iptables --append INPUT --match conntrack --ctstate RELATED,ESTABLISHED \
-    --jump ACCEPT
-iptables --append INPUT --in-interface lo --jump ACCEPT
-iptables --append INPUT --match conntrack --ctstate INVALID --jump DROP
-iptables --append INPUT --protocol icmp --icmp-type 8 --match conntrack \
-    --ctstate NEW --jump ACCEPT
-iptables --append INPUT --protocol udp --match conntrack --ctstate NEW --jump UDP
-iptables --append INPUT --protocol tcp --syn --match conntrack --ctstate NEW \
-    --jump TCP
-iptables --append INPUT --protocol udp --jump REJECT \
-    --reject-with icmp-port-unreachable
-iptables --append INPUT --protocol tcp --jump REJECT --reject-with tcp-reset
-iptables --append INPUT --jump REJECT --reject-with icmp-proto-unreachable
-iptables --append TCP --protocol tcp --dport 22 --jump ACCEPT
-iptables --table raw --insert PREROUTING --match rpfilter --invert \
-    --jump DROP
-iptables-save > /etc/iptables/iptables.rules
-systemctl enable iptables
+systemctl enable nftables.service
 
 # Codecs
 yay --sync codecs
