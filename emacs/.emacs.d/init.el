@@ -1275,13 +1275,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   ;; See https://emacs-lsp.github.io/lsp-mode/page/languages
   )
 (use-package lsp-ui :ensure t)
-(use-package company-lsp :ensure t
-  :gfhook
-  ('lsp (lambda ()
-          "Reduce company delay"
-          (setq company-idle-delay 0)))
-  :config
-  (add-to-list 'company-backends 'company-lsp))
 (use-package exec-path-from-shell :ensure t
   :config
   (exec-path-from-shell-initialize))
