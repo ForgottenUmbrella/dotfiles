@@ -95,14 +95,7 @@ to `evil-lookup'. Based on Spacemacs."
            "M-+" 'evil-window-increase-height
            "M-<" 'evil-window-decrease-width
            "M->" 'evil-window-increase-width)
-  (:states 'normal
-           "j" 'evil-next-visual-line
-           "k" 'evil-previous-visual-line)
-  (:states 'visual
-           "<" "<gv"
-           ">" ">gv")
   (leader-def "TAB" 'evil-switch-to-windows-last-buffer)
-
   (:keymaps 'leader-files-map
             "S" 'evil-write-all)
   (:keymaps 'leader-search-map
