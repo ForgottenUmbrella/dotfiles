@@ -503,7 +503,9 @@ to `evil-lookup'. Based on Spacemacs."
             "C-d" 'ivy-scroll-down-command
             "C-u" 'ivy-scroll-up-command)
   (:keymaps 'ivy-switch-buffer-map
-            "C-x" 'ivy-switch-buffer-kill))
+            "C-x" 'ivy-switch-buffer-kill)
+  (:keymaps 'ivy-minibuffer-map
+            "C-h" 'ivy-backward-delete-char))
 (use-package ivy-hydra :ensure t)
 (use-package ivy-rich :ensure t
   :config
