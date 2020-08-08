@@ -287,6 +287,7 @@ to `evil-lookup'. Based on Spacemacs."
   (global-git-gutter-mode)
   :general
   (:keymaps 'leader-git-map
+            "d" 'git-gutter:popup-hunk
             "h" 'git-gutter:stage-hunk
             "n" 'git-gutter:next-hunk
             "p" 'git-gutter:previous-hunk
@@ -1162,6 +1163,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (:prefix-command 'leader-git-map :keymaps 'leader-map :prefix "g"
                    :wk-full-keys nil
                    "" '(:ignore t :which-key "git")
+                   "b" 'magit-blame
                    "c" 'magit-commit
                    "i" 'magit-init
                    "m" 'magit-dispatch
