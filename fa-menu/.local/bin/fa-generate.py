@@ -9,14 +9,14 @@ Awesome icons and spaces, creating mojibake. The tab character doesn't
 experience this issue, so it is used instead.
 
 You can copy the icon from Rofi by doing the following in your shell:
-    ./fa-generate.py | rofi -dmenu | cut -f 1 | tr -d "\n" | xsel --clipboard
+    ./fa-generate.py | rofi -dmenu | cut -f 1 | tr -d "\n" | xclip -selection clipboard
 Substitute `rofi -dmenu` with just `dmenu` to use dmenu in place of
 Rofi.
 
 Better yet, you can cache the output for reuse by Rofi by doing:
     ./fa-generate.py > icons.txt
 and then, to use the file to copy an icon:
-    cat icons.txt | rofi -dmenu | cut -f 1 | tr -d "\n" | xsel --clipboard
+    cat icons.txt | rofi -dmenu | cut -f 1 | tr -d "\n" | xclip -selection clipboard
 
 **Notes on the format of the JSON file**
 As of 2019-05-07, the relevant fields of each key of the JSON object are

@@ -1,18 +1,18 @@
 #!/bin/sh
-# Indicate status of redshift.
+# Indicate status of gammastep.
 
 . ~/.cache/wal/colors.sh
 fg_alt=$color6
 inactive=$color1
 
-status=$(systemctl --user is-active redshift)
+status=$(systemctl --user is-active gammastep)
 
 if [ "$1" = --toggle ]; then
     if [ "$status" = active ]; then
-        systemctl --user stop redshift
+        systemctl --user stop gammastep
         status=inactive
     else
-        systemctl --user start redshift
+        systemctl --user start gammastep
         status=active
     fi
 fi

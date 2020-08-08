@@ -7,6 +7,6 @@ dir=${XDG_CONFIG_HOME:-~/.config}/snip-menu/
 file=$(find "$dir" -type f -printf '%f\n' | rofi -dmenu)
 
 if [ -f "$dir/$file" ]; then
-    xsel -b -i < "$dir/$file"
+    xclip -selection clipboard < "$dir/$file"
     xdotool key ctrl+v
 fi

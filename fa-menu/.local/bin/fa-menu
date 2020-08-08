@@ -8,5 +8,5 @@ icon=$(cat "$icon_file" | rofi -dmenu -i -p "Icon" | cut -f 1)
 if [ -z "$icon" ]; then
     exit
 fi
-printf $icon | xsel --clipboard
+printf '%s' "$icon" | xclip -selection clipboard
 notify-send "Font Awesome Menu" "'$icon' copied to clipboard."

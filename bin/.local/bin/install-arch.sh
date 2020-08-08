@@ -97,8 +97,8 @@ pacstrap /mnt base linux linux-firmware base-devel pkgstats efibootmgr grub nfta
          networkmanager cups nss-mdns gutenprint sane chrony pacman-contrib \
          ghostscript gsfonts foomatic-db-engine foomatic-db foomatic-db-ppds \
          foomatic-db-nonfree foomatic-db-nonfree-ppds foomatic-db-gutenprint-ppds \
-         system-config-printer stow trash-cli xsel \
-         picom dunst rofi python-pywal xautolock redshift playerctl \
+         system-config-printer stow trash-cli xclip \
+         i3-gaps picom dunst python-pywal xautolock playerctl \
          termite feh mpv kdeconnect skanlite zathura zathura-pdf-mupdf mpd ncmpcpp \
          lib32-mpg123 earlyoom
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -281,10 +281,11 @@ sed --in-place \
 
 # Personal apps and AUR TODO move all personals and optionals from pacstrap
 yay --sync --refresh --sysupgrade keepassxc dropbox anki firefox-beta \
-    wine-staging wine-nine wine-gecko wine-mono i3-gaps wpgtk-git \
-    mantablockscreen rofi-dmenu btmenu keepmenu clerk-git polybar noto-fonts-cjk \
-    tamsyn-font terminus-font-ttf ttf-symbola nerd-fonts-fira-mono ttf-font-awesome ttf-ms-fonts \
-    acpilight pulseaudio-ctl mpdris2 kunst-git xorg-xwininfo \
+    wine-staging wine-nine wine-gecko wine-mono wpgtk-git mantablockscreen \
+    rofi-lbonn-wayland-git rofi-dmenu btmenu keepmenu clerk-git polybar \
+    noto-fonts-cjk tamsyn-font terminus-font-ttf ttf-symbola nerd-fonts-fira-mono \
+    ttf-font-awesome ttf-ms-fonts \
+    gammastep acpilight pulseaudio-ctl mpdris2 kunst-git xorg-xwininfo \
     ranger-git python-ueberzug dxvk-bin ashuffle kvantum-qt5 lxappearance
 
 # Optimisations
