@@ -63,7 +63,8 @@
                 evil-cross-lines t
                 evil-respect-visual-line-mode t
                 evil-auto-balance-windows nil
-                evil-symbol-word-search t)
+                evil-symbol-word-search t
+                evil-search-module 'evil-search)
   :config
   (evil-mode)
   (defun my-append-to-register ()
