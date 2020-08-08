@@ -1,5 +1,6 @@
 #!/bin/sh
-# Lock the screen.
+# Lock the screen. This indirection exists because I can never remember the name
+# of the flavour-of-the-month.
 
 # betterlockscreen -l dimblur
 mantablockscreen

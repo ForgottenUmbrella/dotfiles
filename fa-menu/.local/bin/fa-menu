@@ -1,10 +1,10 @@
-#!/usr/bin/sh
+#!/bin/sh
 # Search and copy a Font Awesome icon to clipboard via Rofi.
 # Based on https://github.com/brumar/Rofi-Ico-Finder/blob/master/rofi_fa_ico_finder.sh.
 
 icon_file=${XDG_CONFIG_HOME:-~/.config}/fa-menu/icons.txt
 
-icon=$(cat "$icon_file" | rofi -dmenu -i -p "Icon" | cut -f 1)
+icon=$(rofi -dmenu -i -p "Icon" < "$icon_file" | cut -f 1)
 if [ -z "$icon" ]; then
     exit
 fi

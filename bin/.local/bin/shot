@@ -1,0 +1,86 @@
+#!/bin/sh
+# Take a screenshot on X11 or Wayland.
+
+usage() {
+    echo "Usage: $(basename "$0") [--notify] {copy|save|usage} [active|screen|output|area|window] [FILE]
+
+shot - Take a screenshot on X11 or Wayland.
+
+Options:
+  --notify  send a notification of success or failure
+
+Commands:
+  copy      copy the screenshot data into the clipboard
+  save      save the screenshot to a regular file
+  usage     show this help message and exit
+
+Targets:
+  active    currently active window
+  screen    all visible outputs (default)
+  output    currently active output
+  area      manually select a region
+  window    manually select a window
+"
+    exit
+}
+
+notify() {
+    title="$1"
+    msg="$2"
+    shift 2
+    [ -n "$notify" ] && notify-send -t 3000 -a shot "$title" "$msg" "$@"
+}
+
+die() {
+    msg="$1"
+    notify Screenshot "Error: $msg" --urgency critical
+    echo 'Error:' "$msg" 1>&2
+    exit 2
+}
+
+if [ "$XDG_SESSION_TYPE" = 'wayland' ]
+then
+    /usr/share/sway/scripts/grimshot "$@"
+else
+    if [ "$1" = '--notify' ]
+    then
+        notify=1
+        shift
+    fi
+
+    action=${1:-usage}
+    subject=${2:-screen}
+    file=${3:-${XDG_PICTURES_DIR:-$HOME/Pictures}/$(date -Ins).png}
+
+    case "$action" in
+        copy|save);;
+        *) usage
+    esac
+
+    case "$subject" in
+        active) option=--focused;;
+        screen) option=--multidisp;;
+        area|window) option=--select;;
+        output) option='';;
+        *) usage
+    esac
+
+    scrot ${option:+"$option"} "$file" || die 'Error taking screenshot'
+
+    case "$action" in
+        copy)
+            title='Screenshot'
+            msg="$subject copied to buffer"
+            xclip -selection clipboard -target image/png -i "$file" ||
+                die 'Clipboard error'
+            notify Screenshot "$subject copied to buffer" --icon "$file"
+            rm "$file"
+            ;;
+        save)
+            title="Screenshot of $subject"
+            msg=$(basename "$file")
+            notify "Screenshot of $subject" "$(basename "$file")" --icon "$file"
+            echo "$file"
+            ;;
+    esac
+fi

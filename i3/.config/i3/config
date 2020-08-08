@@ -4,67 +4,47 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # Dependencies:
-# i3-gaps
-# rofi
-# polybar
-# picom
-# dunst
+# i3-gaps/sway
+# rofi/rofi-lbonn-wayland-git (AUR)
+# polybar/waybar
+# picom + xorg-xwininfo/NA
+# dunst/mako
 # acpilight
 # playerctl
-# pulseaudio-ctl
-# feh
-# python-pywal
-# wpgtk-git
+# pulseaudio-ctl (AUR)
+# scrot/grim + slurp + jq = grimshot
+# mantablockscreen/alias i3lock=swaylock -f
+# xautolock/swayidle
+# polkit-gnome
+# python-pywal + (feh/NA)
+# wpgtk-git (AUR)
 # tamsyn-font
-# terminus-font-ttf
-# ttf-symbola
-# nerd-fonts-fira-mono
+# terminus-font-ttf (AUR)
+# ttf-symbola (AUR)
+# nerd-fonts-fira-mono (AUR)
 # ttf-font-awesome
 # noto-fonts-cjk
-# mantablockscreen
-# xautolock
-# polkit-gnome
-# networkmanager-dmenu-git
-# btmenu
-# redshift
-# xorg-xwininfo
-# mpdris2
+# redshift/gammastep (AUR)
+# flashfocus-git (AUR)
+# mpd-notification (AUR)
 
-# Font.
-font bitmap 13
-
-# Mod1 = Alt, Mod4 = Super (Alt conflicts with Vim).
-set $mod Mod4
+## i3 bindings.
 set $alt Mod1
+set $super Mod4
+set $mod $super
 
 set $left h
 set $down j
 set $up k
 set $right l
 
-# Use Mouse+$mod to drag floating windows to their wanted position.
+# Use $mod+MouseL to drag floating windows to their wanted position.
 floating_modifier $mod
 
 # Kill focused window.
 bindsym $mod+q kill
 
-# Start the application launcher.
-set $dmenu rofi -combi-modi drun#run -show combi -show-icons
-bindsym $mod+d split v; exec $dmenu
-bindsym $mod+Shift+d split h; exec $dmenu
-# Switch between open applications.
-bindsym $mod+Tab exec rofi -show window -show-icons
-# Application hotkeys.
-bindsym $mod+Return split v; exec --no-startup-id i3-sensible-terminal
-bindsym $mod+Shift+Return split h; exec --no-startup-id i3-sensible-terminal
-bindsym $mod+i split v; exec --no-startup-id $BROWSER
-bindsym $mod+Shift+i split h; exec --no-startup-id $BROWSER
-bindsym $mod+n split v; exec --no-startup-id $VISUAL
-bindsym $mod+Shift+n split h; exec --no-startup-id $VISUAL
-bindsym $mod+e split v; exec open-menu
-bindsym $mod+Shift+e split h; exec open-menu
-
-# Change focus.
+# Change focused window.
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
@@ -76,7 +56,22 @@ bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
 
-# Swithc to vertically stacked splits.
+# Resize window.
+set $resize_delta 3
+bindsym $mod+Control+$left resize grow left $resize_delta px or $resize_delta ppt
+bindsym $mod+Control+$down resize grow down $resize_delta px or $resize_delta ppt
+bindsym $mod+Control+$up resize grow up $resize_delta px or $resize_delta ppt
+bindsym $mod+Control+$right resize grow right $resize_delta px or $resize_delta ppt
+bindsym $mod+Control+Shift+$left resize shrink right $resize_delta px or $resize_delta ppt
+bindsym $mod+Control+Shift+$down resize shrink up $resize_delta px or $resize_delta ppt
+bindsym $mod+Control+Shift+$up resize shrink down $resize_delta px or $resize_delta ppt
+bindsym $mod+Control+Shift+$right resize shrink left $resize_delta px or $resize_delta ppt
+bindsym $mod+Up resize grow height $resize_delta px or $resize_delta ppt
+bindsym $mod+Down resize shrink height $resize_delta px or $resize_delta ppt
+bindsym $mod+Left resize shrink width $resize_delta px or $resize_delta ppt
+bindsym $mod+Right resize grow width $resize_delta px or $resize_delta ppt
+
+# Switch to vertically stacked splits.
 bindsym $mod+v split v
 # Switch to horizontally stacked splits.
 bindsym $mod+Shift+v split h
@@ -86,6 +81,7 @@ bindsym $mod+f fullscreen toggle
 
 # Toggle sticky.
 bindsym $mod+s sticky toggle
+
 # Change container layout.
 set $mode_layout "Layout: [w] tabbed [s]tacking [e] toggle split [q]uit"
 bindsym $mod+w mode $mode_layout
@@ -99,7 +95,7 @@ mode $mode_layout {
     bindsym Return mode "default"
 }
 
-# Toggle tiling/floating.
+# Toggle floating.
 bindsym $mod+Shift+space floating toggle
 
 # Change focus between tiling/floating windows.
@@ -123,7 +119,9 @@ bindsym $mod+m exec --no-startup-id i3-input -F 'mark %s' -l 1 -P 'Mark: '
 bindsym $mod+quote exec --no-startup-id i3-input -F '[con_mark="%s"] focus' -P 'Mark: '
 bindsym $mod+Shift+quote exec --no-startup-id i3-input -F 'swap container with mark %s' -P 'Mark: '
 
-# Workspaces.
+# Cycle workspaces.
+workspace_auto_back_and_forth yes
+
 set $ws1 "1: 一"
 set $ws2 "2: 二"
 set $ws3 "3: 三"
@@ -151,8 +149,6 @@ bindsym $alt+Shift+Tab workspace prev
 bindsym Control+$alt+Down workspace next
 bindsym Control+$alt+Up workspace prev
 
-workspace_auto_back_and_forth yes
-
 # Move to workspace.
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
@@ -178,25 +174,25 @@ bindsym $mod+Control+Shift+0 move container to number workspace $ws10; workspace
 # Reload configuration file.
 bindsym $mod+r reload
 # Restart i3 in-place (preserves session).
-bindsym $mod+Shift+r restart
+bindsym $mod+Shift+r exec --no-startup-id systemctl --user restart i3-session.target; restart
 
-# Log out.
-bindsym $mod+Shift+q exec power-menu
+## Aesthetics.
+font bitmap 13
 
-# Resize the window.
-set $resize_delta 3
-bindsym $mod+Control+$left resize grow left $resize_delta px or $resize_delta ppt
-bindsym $mod+Control+$down resize grow down $resize_delta px or $resize_delta ppt
-bindsym $mod+Control+$up resize grow up $resize_delta px or $resize_delta ppt
-bindsym $mod+Control+$right resize grow right $resize_delta px or $resize_delta ppt
-bindsym $mod+Control+Shift+$left resize shrink right $resize_delta px or $resize_delta ppt
-bindsym $mod+Control+Shift+$down resize shrink up $resize_delta px or $resize_delta ppt
-bindsym $mod+Control+Shift+$up resize shrink down $resize_delta px or $resize_delta ppt
-bindsym $mod+Control+Shift+$right resize shrink left $resize_delta px or $resize_delta ppt
-bindsym $mod+Up resize grow height $resize_delta px or $resize_delta ppt
-bindsym $mod+Down resize shrink height $resize_delta px or $resize_delta ppt
-bindsym $mod+Left resize shrink width $resize_delta px or $resize_delta ppt
-bindsym $mod+Right resize grow width $resize_delta px or $resize_delta ppt
+# Colours.
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color0 #f0f0f0
+set_from_resource $main i3wm.color2 #f0f0f0
+set_from_resource $altc i3wm.color1 #f0f0f0
+set_from_resource $alert i3wm.color5 #f0f0f0
+# Only child_border actually matters.
+# <colorclass>		<border>	<bg>	<text>	<indicator>	<child_border>
+client.focused		$main		$main	$fg	$alert        	$main
+client.focused_inactive	$altc		$main	$fg	$altc		$altc
+client.unfocused	$altc		$altc	$fg	$altc		$altc
+client.urgent		$alert		$alert	$bg	$altc		$alert
+client.placeholder	NULL		$bg	$fg	NULL		$altc
+client.background $bg
 
 # Hide titlebar and set border.
 default_border pixel 5
@@ -236,67 +232,78 @@ mode $mode_gaps {
     bindsym Return mode "default"
 }
 
-# Colours.
-set_from_resource $fg i3wm.color7 #f0f0f0
-set_from_resource $bg i3wm.color0 #f0f0f0
-set_from_resource $main i3wm.color2 #f0f0f0
-set_from_resource $altc i3wm.color1 #f0f0f0
-set_from_resource $alert i3wm.color5 #f0f0f0
-# Only child_border actually matters.
-# <colorclass>		<border>	<bg>	<text>	<indicator>	<child_border>
-client.focused		$main		$main	$fg	$alert        	$main
-client.focused_inactive	$altc		$main	$fg	$altc		$altc
-client.unfocused	$altc		$altc	$fg	$altc		$altc
-client.urgent		$alert		$alert	$bg	$altc		$alert
-client.placeholder	NULL		$bg	$fg	NULL		$altc
-client.background $bg
+## Custom bindings.
+# Use --no-startup-id for apps that don't support startup notifications
+# (e.g. non-graphical apps like scripts).
 
-# Xbindkeys candidates.
+# Lock screen.
+bindsym Control+$alt+l exec --no-startup-id lock
+# Log out.
+bindsym $mod+Shift+q exec --no-startup-id power-menu
+# Help.
+bindsym $mod+Shift+slash exec --no-startup-id i3-keys-menu
+# Flash focused window.
+bindsym $mod+period exec --no-startup-id flash_window
+
+# Application launcher.
+set $menu rofi -modi combi -show combi -combi-modi drun#run -show-icons
+bindsym $mod+d split v; exec $menu
+bindsym $mod+Shift+d split h; exec $menu
+# Window switcher.
+bindsym $mod+Tab exec rofi -show window -show-icons
+# Terminal.
+bindsym $mod+Return split v; exec $TERMINAL
+bindsym $mod+Shift+Return split h; exec $TERMINAL
+# Browser.
+bindsym $mod+i split v; exec $BROWSER
+bindsym $mod+Shift+i split h; exec $BROWSER
+# Editor.
+bindsym $mod+n split v; exec $VISUAL
+bindsym $mod+Shift+n split h; exec $VISUAL
+# Files.
+bindsym $mod+e split v; exec --no-startup-id open-menu
+
 # Volume keys.
 bindsym XF86AudioRaiseVolume exec --no-startup-id vol up
 bindsym XF86AudioLowerVolume exec --no-startup-id vol down
 bindsym XF86AudioMute exec --no-startup-id vol mute
-
 # Media keys.
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPause exec --no-startup-id playerctl pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
-
 # Brightness keys.
 set $brightness_delta 5
 bindsym XF86MonBrightnessUp exec --no-startup-id brightness -inc $brightness_delta
 bindsym XF86MonBrightnessDown exec --no-startup-id brightness -dec $brightness_delta
-
-# Lock screen.
-bindsym Control+$alt+l exec --no-startup-id lock
-
-# Help.
-bindsym $mod+Shift+slash exec i3-keys-menu
+# Take a screenshot.
+bindsym Print exec --no-startup-id shot --notify save output
+bindsym --release Shift+Print exec --no-startup-id shot --notify save active
+bindsym --release Ctrl+Print exec --no-startup-id shot --notify save area
+bindsym --release Ctrl+Shift+Print exec --no-startup-id shot --notify save window
 
 # Disable inactive transparency for current window.
 bindsym $mod+t exec picom-trans -c 100
 
-# Take a screenshot.
-bindsym Print exec scrot ~/Pictures/'Screenshot %F %T.png'
-bindsym --release Shift+Print exec scrot -s ~/Pictures/'Screenshot %F %T.png'
-
-# Autostart.
-exec --no-startup-id xautolock -time 30 -locker "lock && systemctl suspend-then-hibernate"
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec_always --no-startup-id xmodmap ~/.Xmodmap
-exec --no-startup-id ibus-daemon -drx
+## Autostart.
 # Need the alpha option because wal doesn't remember it.
 exec_always --no-startup-id wal -R -a 80
-exec_always --no-startup-id killall picom; picom -b --experimental-backends
-exec_always --no-startup-id killall dunst; dunst
-exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec --no-startup-id systemctl --user start wallplug.timer
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id ibus-daemon -drx
+exec --no-startup-id flashfocus
+exec --no-startup-id systemctl --user start gammastep
+exec --no-startup-id systemctl --user start mpd-notification
 exec --no-startup-id systemctl --user start battery-monitor.timer
-exec --no-startup-id systemctl --user start mpd-notification.service
-exec --no-startup-id systemctl --user start redshift.service
+# systemctl --user enable --now wallplug.timer
+
+# i3-specific autostart.
+# systemctl --user enable --now xautolock.service
+# systemctl --user enable --now xmodmap.service
+# systemctl --user enable --now picom.service
+# systemctl --user enable --now dunst.service
+# systemctl --user enable --now polybar.service
 
 # Dropdown terminal.
-exec --no-startup-id i3-sensible-terminal -t "dropdown"
+exec $TERMINAL -t 'dropdown'
 for_window [title="dropdown"] move scratchpad
 for_window [title="dropdown"] sticky enable

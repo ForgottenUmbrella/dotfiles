@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=i3 session autostart bootstrap
+OnlyShowin=i3
+Exec=sh -c 'systemctl --user import-environment; systemctl --user start i3-session.target'

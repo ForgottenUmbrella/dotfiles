@@ -47,6 +47,8 @@ def main() -> None:
 
 
 class Icon:
+    """Relevant fields for an icon in the JSON file in a printable format."""
+
     def __init__(self, icon: Mapping):
         self.icon = chr(int(icon["unicode"], base=16))
         self.name = icon["label"]

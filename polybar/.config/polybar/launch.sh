@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-# Restart polybar.
+#!/bin/sh
+# (Re)start polybar.
 
 killall polybar
 #polybar main &
