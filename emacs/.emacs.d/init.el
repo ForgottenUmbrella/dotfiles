@@ -239,7 +239,10 @@ to `evil-lookup'. Based on Spacemacs."
             "h" 'hl-todo-mode))
 (use-package semantic
   :ghook
-  'prog-mode-hook
+  'c++-mode-hook
+  'js-mode-hook
+  'kotlin-mode-hook
+  'rustic-mode-hook
   :config
   (dolist (mode '(global-semantic-stickyfunc-mode
                   global-semantic-idle-local-symbol-highlight-mode))
