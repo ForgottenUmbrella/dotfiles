@@ -1278,6 +1278,10 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package exec-path-from-shell :ensure t
   :config
   (exec-path-from-shell-initialize))
+(use-package restart-emacs :ensure t
+  :general
+  (:keymaps 'leader-quit-map
+            "r" 'restart-emacs))
 
 ;;;; Define overriding key bindings.
 (general-define-key :states 'insert
