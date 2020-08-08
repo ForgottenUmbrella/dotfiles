@@ -1262,11 +1262,17 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                 vc-follow-symlinks t))
 (use-package lsp-mode :ensure t
   :ghook
-  ('(kotlin-mode-hook c++-mode-hook) 'lsp)
+  ('(c++-mode-hook
+     js-mode-hook
+     kotlin-mode-hook
+     python-mode-hook
+     rustic-mode-hook)
+   'lsp)
   :gfhook
   ('lsp-mode 'lsp-enable-which-key-integration)
-  ;; NOTE: Install {kotlin,python}-language-server, clang for language support
-  ;; See https://github.com/emacs-lsp/lsp-mode#supported-languages.
+  ;; NOTE: Install clang, javascript-typescript-langserver,
+  ;; {python,kotlin}-language-server for language support.
+  ;; See https://emacs-lsp.github.io/lsp-mode/page/languages
   )
 (use-package lsp-ui :ensure t)
 (use-package company-lsp :ensure t
