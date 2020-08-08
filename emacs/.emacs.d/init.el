@@ -477,6 +477,11 @@ to `evil-lookup'. Based on Spacemacs."
 (use-package saveplace
   :config
   (save-place-mode))
+(use-package isearch+ :load-path "lisp/"
+  :config
+  (dolist (item '(backward-kill-word beginning-of-line end-of-line))
+    (add-to-list 'isearchp-initiate-edit-commands item)))
+(global-visual-line-mode)
 
 ;;; Completion.
 (use-package ivy :ensure t :demand t
@@ -1286,9 +1291,10 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                     "<backtab>" 'evil-shift-left-line)
 (general-define-key :keymaps 'isearch-mode-map
                     "<escape>" 'isearch-cancel
-                    "C-w" 'backward-kill-word
                     "C-n" 'isearch-ring-advance
+                    "<down>" 'isearch-ring-advance
                     "C-p" 'isearch-ring-retreat
+                    "<up>" 'isearch-ring-retreat
                     "C-g" 'isearch-repeat-forward
                     "C-j" 'isearch-repeat-forward
                     "C-t" 'isearch-repeat-backward
