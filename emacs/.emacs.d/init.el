@@ -1396,7 +1396,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                     :prefix "q" :wk-full-keys nil
                     "" '(:ignore t :which-key "quit")
                     "q" 'save-buffers-kill-emacs
-                    "Q" 'kill-emacs)
+                    "Q" 'kill-emacs
+                    "y" 'yank-buffer-delete-frame)
 (general-define-key :prefix-command 'leader-search-map :keymaps 'leader-map
                     :prefix "s" :wk-full-keys nil
                     "" '(:ignore t :which-key "search")
@@ -1750,6 +1751,11 @@ current frame. From Spacemacs."
   (interactive "*r")
   (let ((fill-column (point-max)))
     (fill-region beg end)))
+(defun yank-buffer-delete-frame ()
+  (interactive)
+  (clipboard-kill-region (goto-char (point-min)) (goto-char (point-max)))
+  (delete-file (buffer-file-name))
+  (delete-frame))
 
 ;;;; Generic settings.
 ;; Enable transparency.
