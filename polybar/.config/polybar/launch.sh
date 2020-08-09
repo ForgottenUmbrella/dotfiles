@@ -1,7 +1,6 @@
 #!/bin/sh
-# (Re)start polybar.
+# Start polybar.
 
-killall polybar
 #polybar main &
 polybar left &
 polybar mid &
