@@ -1,5 +1,7 @@
 # Standard
 HOME DEFAULT="/home/@{PAM_USER}"
+# For some reason this gets executed twice.
+# But removing this line means ~/.local/bin isn't added at all.
 PATH DEFAULT="${HOME}/.local/bin:${PATH}"
 BROWSER DEFAULT="firefox"
 TERMINAL DEFAULT="termite"

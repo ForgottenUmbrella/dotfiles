@@ -291,8 +291,8 @@ exec_always --no-startup-id wal -R -a 80
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id ibus-daemon -drx
 exec --no-startup-id flashfocus
-exec --no-startup-id systemctl --user start gammastep
-exec --no-startup-id systemctl --user start mpd-notification
+exec --no-startup-id systemctl --user start gammastep.service
+exec --no-startup-id systemctl --user start mpd-notification.service
 exec --no-startup-id systemctl --user start battery-monitor.timer
 # systemctl --user enable --now wallplug.timer
 exec_always --no-startup-id ~/.config/i3/i3-autostart.sh

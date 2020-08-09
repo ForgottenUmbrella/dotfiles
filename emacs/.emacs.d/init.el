@@ -1279,7 +1279,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package lsp-ui :ensure t)
 (use-package exec-path-from-shell :ensure t
   :config
-  (exec-path-from-shell-initialize))
+  (exec-path-from-shell-initialize)) ;; XXX maybe redundant, maybe not? https://askubuntu.com/questions/1064430/emacs-27-systemd-service-inherit-environment-variables
 (use-package restart-emacs :ensure t
   :general
   (:keymaps 'leader-quit-map
