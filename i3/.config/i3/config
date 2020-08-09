@@ -174,7 +174,7 @@ bindsym $mod+Control+Shift+0 move container to number workspace $ws10; workspace
 # Reload configuration file.
 bindsym $mod+r reload
 # Restart i3 in-place (preserves session).
-bindsym $mod+Shift+r exec --no-startup-id systemctl --user restart i3-session.target; restart
+bindsym $mod+Shift+r exec restart
 
 ## Aesthetics.
 font bitmap 13
@@ -295,13 +295,7 @@ exec --no-startup-id systemctl --user start gammastep
 exec --no-startup-id systemctl --user start mpd-notification
 exec --no-startup-id systemctl --user start battery-monitor.timer
 # systemctl --user enable --now wallplug.timer
-
-# i3-specific autostart.
-# systemctl --user enable --now xautolock.service
-# systemctl --user enable --now xmodmap.service
-# systemctl --user enable --now picom.service
-# systemctl --user enable --now dunst.service
-# systemctl --user enable --now polybar.service
+exec_always --no-startup-id ~/.config/i3/i3-autostart.sh
 
 # Dropdown terminal.
 exec $TERMINAL -t 'dropdown'
