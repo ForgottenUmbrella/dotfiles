@@ -1651,9 +1651,11 @@ current file by the default explorer. Based on Spacemacs."
          (new-name (read-file-name "New name: " dir)))
     (cond ((get-buffer new-name)
            (error "A buffer named '%s' already exists!" new-name))
-          ((not (and filename (file-exists-p filename)))
+          ((not filename)  ; Non-file buffer
            (rename-buffer new-name))
-          (t
+          ((not (file-exists-p filename))  ; New (non-existent) file
+           (set-visited-file-name new-name))
+          (t  ; Existing file
            (let ((dir (file-name-directory new-name)))
              (when (and (not (file-exists-p dir)) (yes-or-no-p (format "Create directory '%s'?" dir)))
                (make-directory dir t)))
