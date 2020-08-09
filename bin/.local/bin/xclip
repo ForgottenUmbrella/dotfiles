@@ -1,0 +1,9 @@
+#!/bin/sh
+# Delegate to xclip or wl-copy depending on if X11 or Wayland.
+
+if [ "$XDG_SESSION_TYPE" = 'wayland' ]
+then
+    /usr/bin/xclip "$@"
+else
+    wl-copy "$(echo "$@" | sed 's/-selection [a-z]\+//')"
+fi

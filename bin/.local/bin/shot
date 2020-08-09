@@ -71,7 +71,7 @@ else
         copy)
             title='Screenshot'
             msg="$subject copied to buffer"
-            xclip -selection clipboard -target image/png -i "$file" ||
+            xclip -selection clipboard -t image/png < "$file" ||
                 die 'Clipboard error'
             notify Screenshot "$subject copied to buffer" --icon "$file"
             rm "$file"
