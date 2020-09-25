@@ -235,6 +235,8 @@ mode $mode_gaps {
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
+smart_gaps on
+hide_edge_borders smart_no_gaps
 
 ## Custom bindings.
 # Use --no-startup-id for apps that don't support startup notifications
