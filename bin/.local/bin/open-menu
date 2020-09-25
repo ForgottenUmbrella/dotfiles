@@ -1,7 +1,10 @@
 #!/bin/sh
 # Find and open a file in the home directory.
 
-path=$(locate "$HOME" | rofi -dmenu -i -p "Open")
+# Narrow down the list of all files first for efficiency.
+# A good choice of initial query might be a directory name.
+search=$(dmenu -p "Initial search query" | tr ' ' '*')
+path=$(locate "$HOME*$search*" | dmenu -i -p "Open")
 if [ -z "$path" ]; then
     exit
 fi
