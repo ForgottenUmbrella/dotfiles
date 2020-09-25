@@ -25,8 +25,8 @@ if [ -z "$delta" ]; then
     xbacklight "$@"
 elif { feq "$current_brightness" "$delta" && [ "$command" = '-dec' ]; } ||
          { feq "$current_brightness" 0 && [ "$command" = '-inc' ]; } then
-     xbacklight -set $min
-elif feq "$current_brightness" $min && [ "$command" = '-inc' ]; then
+     xbacklight -set "$min"
+elif feq "$current_brightness" "$min" && [ "$command" = '-inc' ]; then
     xbacklight -set "$delta"
 else
     xbacklight "$@"

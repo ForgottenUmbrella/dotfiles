@@ -40,7 +40,7 @@ input "type:mouse" {
 
 # Bar.
 bar {
-    swaybar_command waybar
+   swaybar_command waybar
 }
 
 # Sway-specific autostart.

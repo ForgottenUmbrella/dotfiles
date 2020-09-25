@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Launch i3-specific autostart programs.
 
-if [[ $XDG_SESSION_DESKTOP == i3* ]]
+if [[ "$XDG_SESSION_DESKTOP" == i3* ]]
 then
     xautolock -tim 30 -locker 'lock && systemctl suspend-then-hibernate' &
     xmodmap ~/.Xmodmap

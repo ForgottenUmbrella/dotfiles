@@ -3,40 +3,53 @@
 # Based on https://github.com/polybar/polybar-scripts.
 
 outputs() {
-    output=$(pactl list short sinks | cut  -f 2 | rofi -dmenu -i -p "Output device")
+    outputs=$(pactl list short sinks | cut -f2)
+    output=$(echo "$outputs" | dmenu -i -p 'Output device')
     if [ -z "$output" ]; then
         exit
     fi
-    pacmd set-default-sink "$output" >/dev/null 2>&1
+    pactl set-default-sink "$output" >/dev/null 2>&1
 
-    for playing in $(pacmd list-sink-inputs | awk '$1 == "index:" {print $2}'); do
-        pacmd move-sink-input "$playing" "$output" >/dev/null 2>&1
+    # NOTE: Cannot substitute `pacmd` with `pactl` for this.
+    apps=$(pacmd list-sink-inputs | awk '/index:/ {print $2}')
+    for playing in $apps; do
+        pactl move-sink-input "$playing" "$output" >/dev/null 2>&1
+    done
+}
     done
 }
 
 inputs() {
-    input=$(pactl list short sources | cut  -f 2 | grep input | rofi -dmenu -i -p "Input device")
+    inputs=$(pactl list short sources | awk '/input/ {print $2}')
+    input=$(echo "$inputs" | dmenu -i -p 'Input device')
     if [ -z "$input" ]; then
         exit
     fi
-    pacmd set-default-source "$input" >/dev/null 2>&1
+    pactl set-default-source "$input" >/dev/null 2>&1
 
-    for recording in $(pacmd list-source-outputs | awk '$1 == "index:" {print $2}'); do
-        pacmd move-source-output "$recording" "$input" >/dev/null 2>&1
+    # NOTE: Cannot substitute with `pactl`.
+    apps=$(pacmd list-source-outputs | awk '/index:/ {print $2}')
+    for recording in $apps; do
+        pactl move-source-output "$recording" "$input" >/dev/null 2>&1
     done
 }
 
-output_prompt="Change output device"
-input_prompt="Change input device"
-mute_prompt="(Un)mute audio"
+    done
+}
+
 case $(echo "$output_prompt|$input_prompt|$mute_prompt" | rofi -sep "|" -dmenu -i -p "PulseAudio") in
     $output_prompt)
+output_prompt='Change output device'
+input_prompt='Change input device'
+mute_prompt='(Un)mute audio'
+case "$choice" in
+    "$output_prompt")
         outputs
         ;;
-    $input_prompt)
+    "$input_prompt")
         inputs
         ;;
-    $mute_prompt)
+    "$mute_prompt")
         pulseaudio-ctl mute
         ;;
 esac
