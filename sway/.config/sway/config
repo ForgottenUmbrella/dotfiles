@@ -19,7 +19,7 @@ client.background $background
 input "type:keyboard" {
     xkb_layout us
     xkb_variant colemak
-    xkb_option ctrl:nocaps
+    xkb_options ctrl:nocaps,compose:menu
 }
 
 input "type:touchpad" {
