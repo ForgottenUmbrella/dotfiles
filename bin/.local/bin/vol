@@ -4,15 +4,27 @@
 
 STEP=5
 
-if [ "$1" = "up" ]; then
-    pulseaudio-ctl up $STEP
-elif [ "$1" = "down" ]; then
-    pulseaudio-ctl down $STEP
-elif [ "$1" = "set" ]; then
-    pulseaudio-ctl set "$2"
-elif [ "$1" = "mute" ]; then
-    pulseaudio-ctl mute
-    exit
-fi
+case "$1" in
+    up|down|set)
+        pulseaudio-ctl "$1" "$step"
+        paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga &
+        current=$(pulseaudio-ctl current)
+        icon=multimedia-volume-control
+        title=Volume
+        hints="-h int:value:$current -h string:synchronous:volume"
+        ;;
+    mute)
+        pulseaudio-ctl mute
+        current=$(pulseaudio-ctl current)
+        if [ "$(pulseaudio-ctl full-status | cut -d' ' -f2)" = yes ]
+        then
+            icon=audio-volume-muted
+            title='Volume muted'
+        else
+            icon=multimedia-volume-control
+            title='Volume unmuted'
+        fi
+        ;;
+esac
 
-paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+notify-send -a vol -t 1000 -i "$icon" -h int:transient:1 ${hints:+$hints} "$title" "$current"
