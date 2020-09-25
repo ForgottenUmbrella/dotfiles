@@ -3,11 +3,11 @@
 
 if [[ "$XDG_SESSION_DESKTOP" == i3* ]]
 then
-    xautolock -tim 30 -locker 'lock && systemctl suspend-then-hibernate' &
+    pgrep xautolock || xautolock -time 30 -locker 'lock && systemctl suspend-then-hibernate' &
     xmodmap ~/.Xmodmap
-    killall picom; picom -b --experimental-backends
-    killall polybar; ~/.config/polybar/launch.sh
-    killall dunst; dunst &
+    killall -q picom; picom -b --experimental-backends
+    killall -q polybar; ~/.config/polybar/launch.sh
+    killall -q dunst; millfeed &
     # wal does not remember the alpha.
     wal -R -a 80
 fi
