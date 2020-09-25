@@ -1,0 +1,31 @@
+#!/bin/sh
+# Switch microphone for all sources.
+
+usage="Usage: $(basename "$0") DEVICE - switch the microphone to DEVICE
+
+Options:
+  -l, --list  print available microphone devices and exit
+  -h, --help  show this help message and exit
+"
+sources=$(pactl list short sources | awk '/input/ {print $1}')
+devices=$(pactl list sources |
+              awk 'match($0, /([a-z]+)-mic:/, captures) {print captures[1]}' |
+              tr '\n' ' ')
+
+
+if [ "$1" = --list ] || [ "$1" = -l ]
+then
+    echo "$devices" | tr ' ' '\n'
+elif [ -n "$1" ] && python -c "exit('$1' not in '$devices'.split())"
+then
+    for source in $sources
+    do
+        pactl set-source-port "$source" "analog-input-$1-mic"
+    done
+elif [ "$1" = --help ] || [ "$1" = -h ]
+then
+    echo "$usage"
+else
+    echo "Unrecognised device or option '$1'"
+    echo "$usage"
+fi
