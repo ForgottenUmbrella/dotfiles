@@ -34,6 +34,10 @@ bar {
    swaybar_command waybar
 }
 
+# Application configuration.
+for_window [class="zoom"] inhibit_idle focus
+for_window [app_id="totem"] inhibit_idle focus
+
 # Custom bindings.
 bindsym $mod+Ctrl+space exec ime-menu
 
