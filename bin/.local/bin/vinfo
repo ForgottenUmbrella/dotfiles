@@ -1,4 +1,0 @@
-#!/bin/sh
-# Evil info.
-
-info --vi-keys "$@"
