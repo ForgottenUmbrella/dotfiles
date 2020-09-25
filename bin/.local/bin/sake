@@ -1,4 +1,0 @@
-#!/bin/sh
-# Open a Windows program in Japanese locale through Wine.
-
-LC_ALL=ja_JP.UTF-8 wine "$@"

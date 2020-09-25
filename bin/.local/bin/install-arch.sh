@@ -91,12 +91,11 @@ awk "/^## $country$/{f=1}f==0{next}/^$/{exit}{print substr(\$0, 2)}" \
 
 # Base installation
 pacstrap /mnt base linux linux-firmware base-devel pkgstats efibootmgr grub nftables \
-         fish git fwupd man-db man-pages zsh zsh-autosuggestions zsh-syntax-highlighting \
-         mlocate apparmor emacs \
+         git fwupd man-db man-pages zsh \
+         mlocate apparmor chrony pacman-contrib emacs \
          texinfo pulseaudio pulseaudio-bluetooth pulsemixer gnome-keyring \
-         networkmanager cups nss-mdns gutenprint sane chrony pacman-contrib \
-         ghostscript gsfonts foomatic-db-engine foomatic-db foomatic-db-ppds \
-         foomatic-db-nonfree foomatic-db-nonfree-ppds foomatic-db-gutenprint-ppds \
+         networkmanager cups cups-pdf nss-mdns sane-airscan ipp-usb \
+         ghostscript gsfonts foomatic-db-engine foomatic-db-ppds foomatic-db-nonfree-ppds \
          system-config-printer stow trash-cli xclip \
          i3-gaps picom dunst python-pywal xautolock playerctl \
          termite feh mpv kdeconnect skanlite zathura zathura-pdf-mupdf mpd ncmpcpp \
@@ -198,7 +197,7 @@ do
         echo 'Invalid username'
     fi
 done
-useradd --create-home "$username" --shell /bin/fish
+useradd --create-home "$username" --shell /usr/bin/zsh
 passwd "$username"
 usermod --append --gid wheel "$username"
 sed --in-place 's/^#\(auth	required	pam_wheel.so use_sid\)$/\1/' /etc/pam.d/su
@@ -280,7 +279,7 @@ sed --in-place \
     systemctl enable apparmor.service
 
 # Personal apps and AUR TODO move all personals and optionals from pacstrap
-yay --sync --refresh --sysupgrade keepassxc dropbox anki firefox-beta \
+yay --sync --refresh --sysupgrade keepassxc dropbox anki firefox-beta antibody-bin \
     wine-staging wine-nine wine-gecko wine-mono wpgtk-git mantablockscreen \
     rofi-lbonn-wayland-git rofi-dmenu btmenu keepmenu clerk-git polybar \
     otf-mplus tamsyn-font-otb tamzen-font ttf-symbola nerd-fonts-fira-code \

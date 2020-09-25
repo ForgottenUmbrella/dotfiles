@@ -1,0 +1,26 @@
+# NOTE: After updating this file, run
+# antibody bundle < "$ZDOTDIR/.zsh_plugins.txt" > "$ZDOTDIR/.zsh_plugins.sh"
+# (SPC-c-c).
+
+# Use fish prompt.
+#robbyrussell/oh-my-zsh path:themes/fishy.zsh-theme
+# Emacs bindings, surround objects, mode cursors and prompt.
+softmoth/zsh-vim-mode
+# Go back quickly.
+Tarrasch/zsh-bd
+# Dynamic terminal title.
+trystan2k/zsh-tab-title
+# Colourise ls and add the usual aliases.
+zpm-zsh/ls
+# Colourise everything else.
+zpm-zsh/colorize
+# Enable fish-style auto-suggestions.
+zsh-users/zsh-autosuggestions
+# Add additional completion definitions.
+zsh-users/zsh-completions
+# Enable syntax highlighting. Must be last plugin.
+zsh-users/zsh-syntax-highlighting
+
+# Local Variables:
+# compile-command: "antibody bundle < $ZDOTDIR/.zsh_plugins.txt > $ZDOTDIR/.zsh_plugins.sh"
+# End:

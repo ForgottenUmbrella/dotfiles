@@ -1,4 +1,0 @@
-#!/bin/sh
-# Run zsh without dropping back into fish due to zshrc.
-
-DEAD_FISH=1 zsh

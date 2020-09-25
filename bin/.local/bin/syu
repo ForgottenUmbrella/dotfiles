@@ -5,3 +5,4 @@ yay -Sc --noconfirm
 yay -Syu --noconfirm "$@"
 fwupdmgr refresh
 fwupdmgr update
+antibody update
