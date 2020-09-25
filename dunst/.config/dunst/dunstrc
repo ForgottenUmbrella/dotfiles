@@ -1,6 +1,6 @@
 [global]
     # The geometry of the window:
-    #   [{{width}}]x{{height}}[+/-{{x}}+/-{{y}}]
+    #   [{width}]x{height}[+/-{x}+/-{y}]
     # The geometry of the message window.
     # The height is measured in number of notifications everything else
     # in pixels.  If the width is omitted but the height is given
@@ -41,9 +41,6 @@
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
     frame_width = 5
-
-    # Defines color of the frame around the notification window.
-    frame_color = "{color2}"
 
     # Define a color for the separator.
     # possible values are:
@@ -97,7 +94,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<b>%p %s</b>\n%b"
+    format = "<b>%s %p</b>\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -116,7 +113,7 @@
     max_icon_size = 128
 
     # dmenu path.
-    dmenu = /usr/bin/rofi -p Dunst
+    dmenu = /usr/bin/dmenu -p 'Choose Action:'
 
     # Browser for opening urls in context menu.
     browser = /usr/bin/firefox --new-tab
@@ -138,48 +135,3 @@
     mouse_left_click = close_current
     mouse_middle_click = do_action
     mouse_right_click = close_all
-
-
-[shortcuts]
-    # Shortcuts are specified as [modifier+][modifier+]...key
-    # Available modifiers are "ctrl", "mod1" (the alt-key), "mod2",
-    # "mod3" and "mod4" (windows-key).
-    # Xev might be helpful to find names for keys.
-
-    # Close notification.
-    close = ctrl+space
-
-    # Close all notifications.
-    close_all = ctrl+shift+space
-
-    # Redisplay last message(s).
-    # On the US keyboard layout "grave" is normally above TAB and left
-    # of "1". Make sure this key actually exists on your keyboard layout,
-    # e.g. check output of 'xmodmap -pke'
-    history = ctrl+grave
-
-    # Context menu.
-    context = ctrl+shift+period
-
-
-# Set the background and foreground (text) color for all notifications
-[urgency_low]
-    background = "{background}"
-    foreground = "{foreground}"
-    timeout = 2
-    #icon = /path/to/icon
-
-[urgency_normal]
-    background = "{background}"
-    foreground = "{foreground}"
-    timeout = 5
-
-[urgency_critical]
-    background = "{background}"
-    foreground = "{foreground}"
-    frame_color = "{color5}"
-    timeout = 0
-
-[mpd]
-    summary = "MPD Notification"
-    format = "%b"

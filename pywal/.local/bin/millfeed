@@ -1,0 +1,5 @@
+#!/bin/sh
+# Run dunst with wal colours.
+
+cat "$XDG_CONFIG_HOME/dunst/dunstrc" "$XDG_CACHE_HOME/wal/colors-dunst" > "$XDG_CACHE_HOME/wal/dunstrc"
+dunst -config "$XDG_CACHE_HOME/wal/dunstrc" "$@"
