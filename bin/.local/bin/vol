@@ -2,7 +2,7 @@
 # Change volume and play a sound.
 # Inspired by https://bbs.archlinux.org/viewtopic.php?id=132218.
 
-STEP=5
+step=${2:-2}
 
 case "$1" in
     up|down|set)
