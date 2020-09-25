@@ -23,7 +23,7 @@ die() {
     exit "$exit_code"
 }
 
-# Wait until X DISPLAY is available.
+# Wait until X DISPLAY is available. XXX This doesn't work
 wait_display() {
     while [ -z "$DISPLAY" ]; do
         log 'DISPLAY temporarily unavailable, sleeping...'

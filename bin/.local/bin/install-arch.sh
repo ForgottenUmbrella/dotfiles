@@ -293,6 +293,7 @@ systemctl enable fstrim.timer
 systemctl enable earlyoom.service
 # TODO install linux-zen if desktop not laptop
 # TODO install tlp if laptop not desktop
+# TODO split out bluetooth depending if laptop or desktop
 
 # Program setup TODO
 

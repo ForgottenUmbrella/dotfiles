@@ -1,5 +1,5 @@
 #!/bin/sh
-# Search and copy a Font Awesome icon to clipboard via Rofi.
+# Search and copy a Font Awesome icon to clipboard via dmenu.
 # Based on https://github.com/brumar/Rofi-Ico-Finder/blob/master/rofi_fa_ico_finder.sh.
 
 icon_file=${XDG_CONFIG_HOME:-~/.config}/fa-menu/icons.txt

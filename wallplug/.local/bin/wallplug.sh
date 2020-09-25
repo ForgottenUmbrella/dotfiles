@@ -1,10 +1,18 @@
 #!/bin/sh
-# Set the wallpaper to something from safebooru.donmai.us using wal and co.
+# Set the wallpaper from some source using wal and co.
+
+# By default, wallpapers are sourced from safebooru.donmai.us, but this may be
+# extended to any other source by creating a ~/.local/lib/wallplug/*_plug.sh
+# script that provides a function to write to $image (see the example script for
+# guidance), and setting $command to this command in
+# $XDG_CONFIG_HOME/wallplug/config.sh.
+
+# Additional commands to run after wal can be specified in the `post_commands`
+# function defined in $XDG_CONFIG_HOME/wallplug/config.sh.
+
 # Dependencies:
 # - python-pywal
-# - wpgtk-git
-# - mantablockscreen
-# - jq
+
 # shellcheck disable=SC1090,SC2154
 
 # Import definitions ($cache, $config, $lib, $url_file, log, die and wait_display).
@@ -15,6 +23,7 @@
 # $command is a command that will modify the $image
 # and optionally store the URL at $url_file.
 # $alpha is the alpha for the colour scheme, from 0 to 100.
+# post_command is a function that runs additional commands after wal.
 . "$config/wallplug/config.sh"
 # Default values.
 image=${image:-$cache/wallplug/image}
@@ -22,9 +31,8 @@ command=${command:-'safebooru_plug "touhou pool:scenery_porn"'}
 alpha=${alpha:-80}
 
 # Import plugins.
-# Plugins should be named in the form ${name}_plug.sh and any global definitions
-# within should be prefixed with $name to avoid conflicts.
-# (Note that this $name is unrelated to the $name variable within this script.)
+# Plugins should be named in the form ${plugin}_plug.sh and any global definitions
+# within should be prefixed with $plugin to avoid conflicts.
 # (At this point I should use a real programming language...)
 . "$lib"/wallplug/*_plug.sh
 

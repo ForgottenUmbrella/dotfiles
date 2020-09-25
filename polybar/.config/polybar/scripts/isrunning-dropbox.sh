@@ -1,4 +1,5 @@
 #!/bin/sh
+# Report Dropbox status.
 # All scripts based on https://github.com/polybar/polybar-scripts.
 
 . ~/.cache/wal/colors.sh

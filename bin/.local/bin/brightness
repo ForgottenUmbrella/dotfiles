@@ -1,15 +1,15 @@
 #!/bin/sh
-# brightness -[inc|dec] DELTA -- change brightness relatively, with minimum
+# brightness -{inc|dec} DELTA -- change brightness relatively, with minimum
 # brightness handling.
 
 # If current brightness is equal to DELTA and the -dec argument is specified, or
 # current brightness is equal to 0 and the -inc argument is specified, then
 # brightness is set to 0.01 instead.
 
-# Likewise, the current brightness is equal to 0.01 and the -inc argument is
+# Likewise, if the current brightness is equal to 0.01 and the -inc argument is
 # specified, brightness is set to DELTA instead.
 
-# Depends on acpilight.
+# Depends on acpilight (which provides xbacklight).
 
 command=$1
 delta=$2

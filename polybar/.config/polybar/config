@@ -38,6 +38,7 @@ modules-right = cpu ram swap keyboard gammastep dropbox wifi bluetooth backlight
 tray-position = none
 tray-padding = 2
 bottom = true
+; Required to position multiple bars correctly.
 override-redirect = true
 wm-restack = i3
 

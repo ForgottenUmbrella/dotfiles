@@ -1,5 +1,5 @@
 #!/bin/sh
-# Paste snippets via rofi.
+# Paste snippets via dmenu.
 # Based on https://bbs.archlinux.org/viewtopic.php?id=71938.
 
 dir=${XDG_CONFIG_HOME:-~/.config}/snip-menu/

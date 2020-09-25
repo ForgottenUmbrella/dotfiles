@@ -1,5 +1,5 @@
 #!/bin/sh
-# Rofi menu for configuring PulseAudio input/output devices.
+# Menu for configuring PulseAudio input/output devices.
 # Based on https://github.com/polybar/polybar-scripts.
 
 outputs() {

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate Rofi/dmenu input for searching Font Awesome icons.
+"""Generate dmenu input for searching Font Awesome icons.
 
 Each line of output will be in the following form (note the hard tab):
     <icon>	<name> (<term 1>, <term 2>, ...)
@@ -8,15 +8,13 @@ Note that a hard tab is used due to weird font quirks regarding Font
 Awesome icons and spaces, creating mojibake. The tab character doesn't
 experience this issue, so it is used instead.
 
-You can copy the icon from Rofi by doing the following in your shell:
-    ./fa-generate.py | rofi -dmenu | cut -f 1 | tr -d "\n" | xclip -selection clipboard
-Substitute `rofi -dmenu` with just `dmenu` to use dmenu in place of
-Rofi.
+You can copy the icon from dmenu by doing the following in your shell:
+    ./fa-generate.py | dmenu | cut -f 1 | tr -d "\n" | xclip -selection clipboard
 
-Better yet, you can cache the output for reuse by Rofi by doing:
+Better yet, you can cache the output for reuse by dmenu by doing:
     ./fa-generate.py > icons.txt
 and then, to use the file to copy an icon:
-    cat icons.txt | rofi -dmenu | cut -f 1 | tr -d "\n" | xclip -selection clipboard
+    cat icons.txt | dmenu | cut -f 1 | tr -d "\n" | xclip -selection clipboard
 
 **Notes on the format of the JSON file**
 As of 2019-05-07, the relevant fields of each key of the JSON object are
@@ -39,7 +37,7 @@ URL = "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/metadat
 
 
 def main() -> None:
-    """Print Rofi input."""
+    """Print dmenu input."""
     with urlopen(URL) as file:
         icons = json.loads(file.read())
         for icon in icons.values():
@@ -55,7 +53,7 @@ class Icon:
         self.terms = icon["search"]["terms"]
 
     def __str__(self) -> str:
-        """Return Rofi input as per module docstring."""
+        """Return dmenu input as per module docstring."""
         return f"{self.icon}\t{self.name} ({', '.join(self.terms)})".replace(
             " ()", ""
         )

@@ -1,5 +1,5 @@
 #!/bin/sh
-# Mount drives through Rofi.
+# Mount drives through dmenu.
 
 devices=$(lsblk -rnpo "name,label,type,mountpoint" | awk '
     /part $/ {

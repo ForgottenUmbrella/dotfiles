@@ -1,4 +1,5 @@
 #!/bin/sh
+# Report whether Bluetooth is enabled.
 # All scripts based on https://github.com/polybar/polybar-scripts.
 
 . ~/.cache/wal/colors.sh

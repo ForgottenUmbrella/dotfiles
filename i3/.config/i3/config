@@ -13,8 +13,8 @@
 # playerctl
 # pulseaudio-ctl (AUR)
 # scrot/grim + slurp + jq = grimshot
-# mantablockscreen/alias i3lock=swaylock -f
 # xautolock/swayidle
+# mantablockscreen/swaylock-effects-git (AUR)
 # polkit-gnome
 # python-pywal + (feh/NA)
 # wpgtk-git (AUR)
@@ -212,6 +212,7 @@ for_window [title="^Steam Keyboard$"] floating enable
 set $default_inner 20
 set $default_outer 0
 set $gap_delta 2
+# For polybar.
 set $gap_bot 30
 gaps inner $default_inner
 gaps outer $default_outer
@@ -294,6 +295,7 @@ exec --no-startup-id systemctl --user start gammastep.service
 exec --no-startup-id systemctl --user start mpd-notification.service
 exec --no-startup-id systemctl --user start battery-monitor.timer
 # systemctl --user enable --now wallplug.timer
+# systemctl --user enable --now flashfocus.service
 exec_always --no-startup-id ~/.config/i3/i3-autostart.sh
 
 # Dropdown terminal.

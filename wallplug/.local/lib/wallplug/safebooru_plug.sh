@@ -1,6 +1,10 @@
 #!/bin/sh
 # Plugin to grab images from safebooru.
 # The argument to safebooru_plug is a search query.
+
+# Dependencies:
+# - jq
+
 # shellcheck disable=SC1090,SC2154
 
 # Import definitions ($cache, $config, $url_file, log and die).

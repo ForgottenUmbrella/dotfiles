@@ -2,7 +2,7 @@
 # wallplug.sh configuration variables.
 # shellcheck disable=SC2034,SC1090,SC2154
 
-# Import definitions ($cache).
+# Import definitions ($cache, $config, log).
 . "$HOME/.local/lib/wallplug/defs.sh"
 
 # Wallpaper file.

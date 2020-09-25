@@ -1,5 +1,5 @@
 #!/bin/sh
-# Unmount drives through Rofi.
+# Unmount drives through dmenu.
 
 path=$(find /run/media -maxdepth 1 | rofi -dmenu -i -p "Unmount")
 if [ -z "$path" ]; then

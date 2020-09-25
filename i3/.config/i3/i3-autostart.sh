@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Launch the i3-session.target if running in i3.
+# Launch i3-specific autostart programs.
 
 if [[ $XDG_SESSION_DESKTOP == i3* ]]
 then
