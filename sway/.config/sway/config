@@ -1,28 +1,19 @@
 # Use the i3 config.
-include "$HOME/.config/i3/config"
+exec sed -E '/^(set_from_resource|client)/d' \
+    "$XDG_CONFIG_HOME/i3/config" > "$XDG_CACHE_HOME/swayi3config"
+include "$XDG_CACHE_HOME/swayi3config"
 
 # Aesthetics.
 include "$HOME/.cache/wal/colors-sway"
 output * bg $wallpaper fill
-clien.focused $color0 $background $foreground $color7 $background
-
-### Idle configuration
-#
-# Example configuration:
-#
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
-exec swayidle -w \
-         timeout 300 'lock' \
-         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         timeout 900 'systemctl suspend-then-hibernate' \
-         before-sleep 'lock'
+# Client		Decoration 	Decoration	Decoration	Split		Window
+# <colorclass>		<border>	<bg>		<text>		<indicator>	<child_border>
+client.focused		$color2		$color2		$foreground	$color5        	$color2
+client.focused_inactive	$color1		$color1		$foreground	$color1		$color1
+client.unfocused	$color1		$color1		$foreground	$color1		$color1
+client.urgent		$color5		$color5		$background	$color5		$color5
+client.placeholder	$color1		$background	$foreground	$color1		$color1
+client.background $background
 
 # IO.
 input "type:keyboard" {
@@ -43,9 +34,25 @@ bar {
    swaybar_command waybar
 }
 
+# Custom bindings.
+bindsym $mod+Ctrl+space exec ime-menu
+
 # Sway-specific autostart.
-exec --no-startup-id /usr/share/sway/scripts/inactive-windows-transparency.py
-exec_always --no-startup-id killall mako; mako
+exec /usr/share/sway/scripts/inactive-windows-transparency.py
+exec_always 'killall mako; koma'
+exec swayidle -w \
+   timeout 330 'swaymsg "output * dpms off"' \
+   resume 'swaymsg "output * dpms on"' \
+   timeout 900 'systemctl suspend-then-hibernate' \
+   timeout 300 'lock' \
+   timeout 30 '[ pgrep "swaylock" ] && swaymsg "output * dpms off"' \
+   resume '[ pgrep "swaylock" ] && swaymsg "output * dpms on"' \
+   before-sleep 'lock'
+# GTK on Wayland ignores the settings.ini file, so load it yourself.
+exec ~/.config/sway/import-gsettings.sh \
+    gtk-theme:gtk-theme-name \
+    icon-theme:gtk-icon-theme-name \
+    cursor-theme:gtk-cursor-theme-name
 
 # Distro-specific package fixes and system-wide config.
 include /etc/sway/config.d/*

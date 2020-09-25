@@ -115,8 +115,8 @@ bindsym XF86Search scratchpad show
 
 # Marks.
 bindsym $mod+m exec --no-startup-id i3-input -F 'mark %s' -l 1 -P 'Mark: '
-bindsym $mod+quote exec --no-startup-id i3-input -F '[con_mark="%s"] focus' -P 'Mark: '
-bindsym $mod+Shift+quote exec --no-startup-id i3-input -F 'swap container with mark %s' -P 'Mark: '
+bindsym $mod+apostrophe exec --no-startup-id i3-input -F '[con_mark="%s"] focus' -P 'Mark: '
+bindsym $mod+Shift+apostrophe exec --no-startup-id i3-input -F 'swap container with mark %s' -P 'Mark: '
 
 # Cycle workspaces.
 workspace_auto_back_and_forth yes
@@ -283,12 +283,16 @@ bindsym --release Shift+Print exec --no-startup-id shot --notify save active
 bindsym --release Ctrl+Print exec --no-startup-id shot --notify save area
 bindsym --release Ctrl+Shift+Print exec --no-startup-id shot --notify save window
 
+# Handle notifications.
+bindsym $mod+BackSpace exec --no-startup-id notifyctl close
+bindsym $mod+Shift+BackSpace exec --no-startup-id notifyctl close-all
+bindsym $mod+grave exec --no-startup-id notifyctl history-pop
+bindsym $mod+Shift+grave exec --no-startup-id notifyctl context
+
 # Disable inactive transparency for current window.
-bindsym $mod+t exec picom-trans -c 100
+bindsym $mod+t exec opacity.sh 100
 
 ## Autostart.
-# Need the alpha option because wal doesn't remember it.
-exec_always --no-startup-id wal -R -a 80
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id ibus-daemon -drx
 exec --no-startup-id flashfocus

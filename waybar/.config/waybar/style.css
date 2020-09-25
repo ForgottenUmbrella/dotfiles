@@ -1,0 +1,211 @@
+@import "/home/forgottenumbrella/.cache/wal/colors-waybar.css";
+@define-color background-alt @color8;
+@define-color foreground-alt @color6;
+@define-color active @color2;
+@define-color inactive @color1;
+@define-color transient @color3;
+@define-color alert @color5;
+
+* {
+    min-height: 0;
+    min-width: 0;
+
+    /* padding: 0 5px; */
+    /* margin: 0 4px; */
+
+    /* background-color: @background; */
+    color: @foreground;
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: monospace;
+    font-size: 12px;
+}
+
+/* Floating modules. */
+window#waybar {
+    background: transparent;
+}
+window box > box {
+    transition-property: background-color;
+    transition-duration: .5s;
+
+    /* width: 100%; */
+    /* height: 30px; */
+    /* margin: 20px; */
+    padding: 5px;
+    background-color: @background;
+    opacity: 0.8;
+    border: 5px;
+    border-radius: 5px;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+/*
+window#waybar.termite {
+     background-color: #3F3F3F;
+}
+window#waybar.chromium {
+    background-color: #000000;
+    border: none;
+}
+*/
+
+#workspaces button {
+    /* padding: 0 5px; */
+    background-color: transparent;
+
+    border-bottom-width: 5px;
+    border-bottom-style: solid;
+    border-bottom-color: transparent;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+#workspaces button:hover {
+    box-shadow: inherit;
+
+    background-color: @background;
+    /* border-bottom-color: @active; */
+}
+
+#workspaces button.focused {
+    border-bottom-color: @active;
+    color: @active;
+}
+
+#workspaces button.urgent {
+    background-color: @alert;
+    color: @background;
+}
+
+#mode {
+    background-color: @active;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#custom-swap,
+#custom-gammastep,
+#custom-dropbox,
+#tray,
+#mode,
+#idle_inhibitor,
+#mpd {
+    padding: 0 5px;
+    margin: 0 4px;
+}
+
+#battery.charging {
+    color: @background;
+    background-color: @transient;
+}
+
+@keyframes blink {
+    to {
+        background-color: @background;
+        color: @foreground;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: @alert;
+    color: @background;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: @foreground;
+}
+
+#network.disconnected {
+    background-color: @alert;
+    color: @background;
+}
+
+#pulseaudio.muted {
+    background-color: @inactive;
+}
+
+/*
+#custom-media {
+    background-color: #66cc99;
+    color: #2a5c45;
+    min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+    background-color: #66cc99;
+}
+
+#custom-media.custom-vlc {
+    background-color: #ffa000;
+}
+*/
+
+#temperature.critical {
+    background-color: @alert;
+    color: @background;
+}
+
+#idle_inhibitor.activated {
+    background-color: @active;
+}
+
+#taskbar button {
+    /* border-bottom-width: 5px; */
+    /* border-bottom-style: solid; */
+    /* border-bottom-color: transparent; */
+}
+
+#taskbar button:hover {
+    box-shadow: inherit;
+
+    /* background-color: @background-alt; */
+    /* border-bottom-color: @active; */
+}
+
+#taskbar button.active {
+    /* border-bottom-color: @active; */
+    color: @active;
+}
+
+*.active {
+    color: @active;
+}
+
+*.inactive {
+    color: @inactive;
+}
+
+*.alert {
+    /* color: @inactive; */
+    background-color: @alert;
+    color: @background;
+}
+
+*.transient {
+    /* color: @inactive; */
+    background-color: @transient;
+    color: @background;
+}

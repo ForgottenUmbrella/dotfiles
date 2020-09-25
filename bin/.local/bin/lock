@@ -1,6 +1,10 @@
 #!/bin/sh
-# Lock the screen. This indirection exists because I can never remember the name
-# of the flavour-of-the-month.
+# Lock the screen on X11 or Wayland.
 
-# betterlockscreen -l dimblur
-mantablockscreen
+if [ "$XDG_SESSION_TYPE" = 'wayland' ]
+then
+    swaylock --clock --grace 5 --fade-in 5 --effect-scale 0.5 --effect-blur 7x5 --effect-scale 2
+else
+    # betterlockscreen -l dimblur
+    mantablockscreen
+fi

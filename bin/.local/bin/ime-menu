@@ -1,0 +1,5 @@
+#!/bin/sh
+# Switch IME.
+
+ibus list-engine | sed -e '/^language:/d' -e 's/^  //' |
+    dmenu | sed 's/ -.*//' | xarg ibus engine

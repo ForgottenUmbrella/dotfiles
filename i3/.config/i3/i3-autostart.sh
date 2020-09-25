@@ -8,4 +8,6 @@ then
     killall picom; picom -b --experimental-backends
     killall polybar; ~/.config/polybar/launch.sh
     killall dunst; dunst &
+    # wal does not remember the alpha.
+    wal -R -a 80
 fi

@@ -1,0 +1,17 @@
+#!/bin/sh
+# Delegate to dunstctl or makoctl depending on session type.
+
+if [ "$XDG_SESSION_TYPE" = wayland ]
+then
+    case "$1" in
+        action) makoctl invoke "$2";;
+        close) makoctl dismiss;;
+        close-all) makoctl dismiss --all;;
+        context) makoctl menu dmenu -p 'Choose Action: ';;
+        history-pop) makoctl list;;
+        is-paused|set-paused|debug);;
+        *) makoctl "$@"
+    esac
+else
+    dunstctl "$@"
+fi

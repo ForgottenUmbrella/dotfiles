@@ -1,9 +1,0 @@
-#!/bin/sh
-# Delegate to either i3lock or swaylock depending on if we're running on Wayland.
-
-if [ "$XDG_SESSION_TYPE" = 'wayland' ]
-then
-    swaylock -f "$@"
-else
-    /usr/bin/i3lock "$@"
-fi
