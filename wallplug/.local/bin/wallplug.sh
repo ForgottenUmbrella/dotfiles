@@ -73,17 +73,7 @@ set_wallpaper() {
     # terminal.
     # Further note that this only happens occasionally. Currently working.
     wal -c; wal -i "$image" -a "$alpha" -e
-    # python-pillow-simd is a drop-in replacement for pillow that isn't a
-    # drop-in replacement, so anything depending on pillow is broken.
-    log 'Setting via wpg...'
-    wpg='python -m wpgtk'
-    name=$(basename "$image")
-    rm "$config/wpg/schemes/"*"$name"* 2>/dev/null; $wpg -a "$image"
-    $wpg -n --alpha "$alpha" -s "$name"
-    log 'Setting mantablockscreen...'
-    mantablockscreen -i "$image"
-    log 'Reloading Emacs ewal theme...'
-    emacsclient -e '(reload-init-file)'
+    command -v post_commands >/dev/null 2>&1 && post_commands
     url=$(cat "$url_file" 2>/dev/null || printf '')
     notify-send 'New wallpaper' "$url" -i "$image" -u low
 }
