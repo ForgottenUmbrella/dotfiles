@@ -21,6 +21,9 @@ input "type:keyboard" {
     xkb_variant colemak
     xkb_options ctrl:nocaps,compose:menu
 }
+input "65261:4871:ZSA_Ergodox_EZ" {
+    xkb_variant ""
+}
 
 input "type:touchpad" {
     dwt enabled
