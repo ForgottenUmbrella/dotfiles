@@ -216,9 +216,9 @@ systemctl enable nftables.service
 # Codecs
 yay --sync codecs
 
-# Printing
-systemctl enable org.cups.cupsd.socket avahi-daemon.service
-sed --in-place 's/resolve/mdns_minimal [NOTFOUND=return]/' /etc/nsswitch.conf
+# Printing and scanning
+systemctl enable org.cups.cupsd.socket avahi-daemon.service ipp-usb.service
+sed --in-place 's/resolve/mdns_minimal [NOTFOUND=return] resolve/' /etc/nsswitch.conf
 
 # Graphics
 while true
