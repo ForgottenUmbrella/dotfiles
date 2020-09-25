@@ -6,7 +6,7 @@ URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
 ! Aesthetics
 URxvt.scrollBar: false
-URxvt.font: xft:bitmap:size=12,xft:FuraCode Nerd Font Mono
+URxvt.font: xft:monospace:size=12,xft:FuraCode Nerd Font Mono
 URxvt*depth: 0
 ! True transparency means no nice blur effect.
 URxvt*transparent: true

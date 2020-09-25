@@ -16,9 +16,9 @@ border-size = 5
 border-top-size = 0
 ; Uncomment for opaque border.
 ;border-color = ${colors.active}
-font-0 = bitmap:size=13
+font-0 = monospace:size=12
 ; Aligned bars.
-font-1 = Terminus (TTF)
+font-1 = Tamzen
 ; Japanese fonts.
 font-2 = Noto Sans CJK JP:pixelsize=10;-1
 ; Unicode icons.

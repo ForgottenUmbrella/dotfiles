@@ -18,8 +18,7 @@
 # polkit-gnome
 # python-pywal + (feh/NA)
 # wpgtk-git (AUR)
-# tamsyn-font
-# terminus-font-ttf (AUR)
+# tamsyn-font-otb (AUR)
 # ttf-symbola (AUR)
 # nerd-fonts-fira-mono (AUR)
 # ttf-font-awesome
@@ -177,7 +176,7 @@ bindsym $mod+r reload
 bindsym $mod+Shift+r exec restart
 
 ## Aesthetics.
-font bitmap 13
+font pango:monospace 12
 
 # Colours.
 set_from_resource $fg i3wm.color7 #f0f0f0
