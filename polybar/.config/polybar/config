@@ -28,7 +28,7 @@ font-4 = Font Awesome 5 Free:size=8
 font-5 = Font Awesome 5 Free Solid:size=8
 font-6 = Font Awesome 5 Brands:size=8
 ; All the other icons.
-font-7 = FuraMono Nerd Font
+font-7 = FuraCode Nerd Font
 cursor-click = pointer
 ;cursor-scroll = ns-resize
 modules-left = i3 xwindow pomodoro
