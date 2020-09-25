@@ -5,6 +5,7 @@
 \usepackage{physics}
 \usepackage{mathtools}
 \usepackage{amssymb}
+\usepackage{esint}
 \newcommand*{\nats}{\mathbb{N}}
 \newcommand*{\ints}{\mathbb{I}}
 \newcommand*{\rats}{\mathbb{Q}}
