@@ -70,6 +70,7 @@ WORDCHARS=''
 # Aliases.
 alias mx='emacsclient -nc'  # Fork new GUI frame.
 alias sake='LC_ALL=ja_JP.UTF-8 wine'  # Run wine in Japanese locale.
+alias findbroken='find . -xtype l | grep -v "cache\|virtualenvs\|Trash"'
 
 # Load plugins declared in $ZDOTDIR/.zsh_plugins.txt.
 . "${ZDOTDIR:-$HOME}/.zsh_plugins.sh"
