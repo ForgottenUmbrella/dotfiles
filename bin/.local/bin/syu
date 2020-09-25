@@ -3,6 +3,7 @@
 
 yay -Sc --noconfirm
 yay -Syu --noconfirm "$@"
+sudo pacdiff
 fwupdmgr refresh
 fwupdmgr update
 antibody update
