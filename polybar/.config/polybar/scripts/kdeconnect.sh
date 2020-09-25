@@ -63,7 +63,7 @@ show_devices (){
 }
 
 show_menu () {
-    menu="$(rofi -sep "|" -dmenu -i -p "$DEV_NAME" <<< "Battery: $DEV_BATTERY%|Ping|Find Device|Send File|Browse Files|Unpair")"
+    menu="$(dmenu -i -p "$DEV_NAME" <<< "Battery: $DEV_BATTERY%\nPing\nFind Device\nSend File\nBrowse Files\nUnpair")"
     case "$menu" in
         *Ping) qdbus org.kde.kdeconnect "/modules/kdeconnect/devices/$DEV_ID/ping" org.kde.kdeconnect.device.ping.sendPing ;;
         *'Find Device') qdbus org.kde.kdeconnect "/modules/kdeconnect/devices/$DEV_ID/findmyphone" org.kde.kdeconnect.device.findmyphone.ring ;;
@@ -79,14 +79,14 @@ show_menu () {
 }
 
 show_pmenu () {
-    menu="$(rofi -sep "|" -dmenu -i -p "$DEV_NAME" <<<"Pair Device")"
+    menu="$(dmenu -i -p "$DEV_NAME" <<<"Pair Device")"
     case "$menu" in
         *'Pair Device') qdbus org.kde.kdeconnect "/modules/kdeconnect/devices/$DEV_ID" org.kde.kdeconnect.device.requestPair
     esac
 }
 
 show_pmenu2 () {
-    menu="$(rofi -sep "|" -dmenu -i -p "$1 has sent a pairing request" <<< "Accept|Reject")"
+    menu="$(dmenu -i -p "$1 has sent a pairing request" <<< "Accept\nReject")"
     case "$menu" in
         *'Accept') qdbus org.kde.kdeconnect "/modules/kdeconnect/devices/$2" org.kde.kdeconnect.device.acceptPairing ;;
         *) qdbus org.kde.kdeconnect "/modules/kdeconnect/devices/$2" org.kde.kdeconnect.device.rejectPairing

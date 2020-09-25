@@ -16,4 +16,4 @@ i3-msg -t get_config | awk '
         }
         print $NF;
     }
-' | column -s "|" -t | rofi -dmenu -i -p "i3 keybindings"
+' | column -s '|' -t | dmenu -i -p 'i3 keybindings'

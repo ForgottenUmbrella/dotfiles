@@ -4,7 +4,7 @@
 
 dir=${XDG_CONFIG_HOME:-~/.config}/snip-menu/
 
-file=$(find "$dir" -type f -printf '%f\n' | rofi -dmenu)
+file=$(find "$dir" -type f -printf '%f\n' | dmenu)
 
 if [ -f "$dir/$file" ]; then
     xclip -selection clipboard < "$dir/$file"

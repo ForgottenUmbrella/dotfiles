@@ -1,7 +1,7 @@
 #!/bin/sh
 # Unmount drives through dmenu.
 
-path=$(find /run/media -maxdepth 1 | rofi -dmenu -i -p "Unmount")
+path=$(find /run/media -maxdepth 1 | dmenu -i -p "Unmount")
 if [ -z "$path" ]; then
     exit
 fi

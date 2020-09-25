@@ -4,7 +4,7 @@
 
 icon_file=${XDG_CONFIG_HOME:-~/.config}/fa-menu/icons.txt
 
-icon=$(rofi -dmenu -i -p "Icon" < "$icon_file" | cut -f 1)
+icon=$(dmenu -i -p "Icon" < "$icon_file" | cut -f 1)
 if [ -z "$icon" ]; then
     exit
 fi
