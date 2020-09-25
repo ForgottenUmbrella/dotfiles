@@ -16,6 +16,18 @@ outputs() {
         pactl move-sink-input "$playing" "$output" >/dev/null 2>&1
     done
 }
+
+output_ports() {
+    ports=$(pactl list sinks | sed '0,/Ports:/d;/Active Port:/,$d' |
+                awk '!/not available/ {print $1}' | tr -d ':')
+    port=$(echo "$ports" | dmenu -i -p 'Output port')
+    if [ -z "$port" ]; then
+        exit
+    fi
+
+    sinks=$(pactl list short sinks | cut -f1)
+    for sink in $sinks; do
+        pactl set-sink-port "$sink" "$port"
     done
 }
 
@@ -34,20 +46,41 @@ inputs() {
     done
 }
 
+input_ports() {
+    ports=$(pactl list sources | sed '0,/Ports:/d;/Active Port:/,$d' |
+                awk '!/not available/ {print $1}' | tr -d ':')
+    port=$(echo "$ports" | dmenu -i -p 'Input port')
+    if [ -z "$port" ]; then
+        exit
+    fi
+
+    sources=$(pactl list short sources | awk '/input/ {print $1}')
+    for source in $sources; do
+        pactl set-source-port "$source" "$port"
     done
 }
 
-case $(echo "$output_prompt|$input_prompt|$mute_prompt" | rofi -sep "|" -dmenu -i -p "PulseAudio") in
-    $output_prompt)
 output_prompt='Change output device'
+output_port_prompt='Change output port'
 input_prompt='Change input device'
+input_port_prompt='Change input port'
 mute_prompt='(Un)mute audio'
+choice=$(printf '%s\n%s\n%s\n%s\n%s' \
+         "$output_prompt" "$output_port_prompt" \
+         "$input_prompt" "$input_port_prompt" "$mute_prompt" |
+             dmenu -i -p 'PulseAudio')
 case "$choice" in
     "$output_prompt")
         outputs
         ;;
+    "$output_port_prompt")
+        output_ports
+        ;;
     "$input_prompt")
         inputs
+        ;;
+    "$input_port_prompt")
+        input_ports
         ;;
     "$mute_prompt")
         pulseaudio-ctl mute
