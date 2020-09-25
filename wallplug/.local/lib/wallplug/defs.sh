@@ -25,8 +25,9 @@ die() {
 
 # Wait until X DISPLAY is available. XXX This doesn't work
 wait_display() {
-    while [ -z "$DISPLAY" ]; do
-        log 'DISPLAY temporarily unavailable, sleeping...'
-        sleep 10
-    done
+    # while ! env | grep -q 'DISPLAY='; do
+    #     log 'DISPLAY temporarily unavailable, sleeping...'
+    #     sleep 10
+    # done
+    [ -z "$DISPLAY" ] && log 'DISPLAY initially unavailable...'
 }
