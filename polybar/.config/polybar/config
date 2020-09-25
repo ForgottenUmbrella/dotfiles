@@ -20,7 +20,7 @@ font-0 = monospace:size=12
 ; Aligned bars.
 font-1 = Tamzen
 ; Japanese fonts.
-font-2 = Noto Sans CJK JP:pixelsize=10;-1
+font-2 = M+ 1c:pixelsize=10;-1
 ; Unicode icons.
 font-3 = Symbola
 ; Up-to-date FA icons.
