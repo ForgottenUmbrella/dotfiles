@@ -173,7 +173,7 @@ bindsym $mod+Control+Shift+0 move container to number workspace $ws10; workspace
 # Reload configuration file.
 bindsym $mod+r reload
 # Restart i3 in-place (preserves session).
-bindsym $mod+Shift+r exec restart
+bindsym $mod+Shift+r restart
 
 ## Aesthetics.
 font pango:monospace 12

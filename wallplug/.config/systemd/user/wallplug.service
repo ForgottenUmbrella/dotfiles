@@ -1,7 +1,6 @@
 [Unit]
 Description=Periodically set wallpaper
-Requires=graphical-session.target
-After=graphical-session.target
+PartOf=graphical-session.target
 
 [Service]
 ExecStartPre=-killall wallplug.sh
