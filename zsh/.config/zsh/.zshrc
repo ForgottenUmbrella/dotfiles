@@ -77,7 +77,7 @@ alias findbroken='find . -xtype l | grep -v "cache\|virtualenvs\|Trash"'
 # NOTE: To update plugins, run `antibody update`.
 
 # softmoth/zsh-vim-mode configuration.
-MODE_CURSOR_VIINS='steady bar'
+MODE_CURSOR_VIINS='blinking bar'  # Blink to show window focus.
 MODE_CURSOR_VISUAL='steady block'
 #MODE_INDICATOR_VIINS='%F{15}%F{8}[I]%f'
 #MODE_INDICATOR_VICMD='%F{10}%F{2}[N]%f'
