@@ -1,23 +1,5 @@
 // -*- mode: json; -*-
 [
-    // {
-    //     "position": "bottom",
-    //     "height": 30,
-    //     "modules-left": ["sway/workspaces", "wlr/taskbar", "sway/mode"],
-    //     "sway/workspaces": {
-    //         "disable-scroll-wraparound": true,
-    //         "format": "{name}",
-    //     },
-    //     "wlr/taskbar": {
-    //         "on-click": "activate",
-    //         "on-click-middle": "close",
-    //     },
-    // },
-    // {
-    //     "position": "bottom",
-    //     "height": 30,
-    //     "modules-center": ["sway/window"],
-    // },
     {
         "position": "bottom",
         "height": 30,
@@ -57,7 +39,6 @@
                 "on": " ",
             },
             "random-icons": {
-                // "off": "<span color=\"#f53c3c\"></span> ",
                 "on": " ",
             },
             "repeat-icons": {
