@@ -12,9 +12,8 @@
             "on-click": "activate",
             "on-click-middle": "close",
         },
-        // "modules-center": ["sway/window"],
+        "modules-center": ["mpd"],
         "modules-right": [
-            "mpd",
             "idle_inhibitor",
             // "custom/gammastep",
             "custom/dropbox",
