@@ -1,0 +1,4 @@
+#!/bin/sh
+# Run rofi as dmenu, but case insensitive.
+
+rofi -dmenu -i "$@"
