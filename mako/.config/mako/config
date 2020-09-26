@@ -1,5 +1,5 @@
 # -*- mode: conf -*-
-layer=top
+layer=overlay
 width=400
 height=200
 padding=20
