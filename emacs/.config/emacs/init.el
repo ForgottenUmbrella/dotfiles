@@ -360,7 +360,7 @@ to `evil-lookup'. Based on Spacemacs."
              (:keymaps 'leader-jumps-map
                        "t" 'hl-todo-occur)
              (:keymaps 'leader-toggles-map
-                       "h" 'hl-todo-mode))
+                       "t" 'hl-todo-mode))
 ;; Adjust font size of current frame with SPC-z-x or C-mouse scroll.
 (use-package face-remap
   :general
