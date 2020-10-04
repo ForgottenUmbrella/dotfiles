@@ -1944,4 +1944,6 @@ current frame. From Spacemacs."
               large-file-warning-threshold (* 1000 1000)
               confirm-kill-processes nil
               frame-title-format "%* %b"
-              mode-line-format nil)
+              mode-line-format nil
+              bidi-paragraph-direction 'left-to-right
+              bidi-inhibit-bpa t)
