@@ -53,4 +53,13 @@ post_commands() {
     log 'Generating mako config...'
     cat "$cache/wal/mako-global" "$config/mako/config" \
         "$cache/wal/mako-criteria" > "$cache/wal/mako-config"
+    log 'Generating oomox GTK theme...'
+    # Only xresources2 and xresources3 have decent readability.
+    oomox_theme="/opt/oomox/scripted_colors/xresources/xresources2"
+    # XXX: libsass 3.6.3 is broken, leading to infinite memory consumption on
+    # certain GTK themes.
+    #/opt/oomox/plugins/theme_materia/materia-theme/change_color.sh "$oomox_theme"
+    oomox-cli "$oomox_theme"
+    log 'Generating oomox icons...'
+    /opt/oomox/plugins/icons_papirus/change_color.sh "$oomox_theme"
 }
