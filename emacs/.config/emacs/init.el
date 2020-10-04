@@ -1316,8 +1316,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
              (lsp-ui-doc-enable nil "Don't obscure code with documentation.")
              :general
              (:keymaps 'lsp-mode-map :states 'insert
-                       "<F1>" 'lsp-ui-doc-show
-                       "C-?" 'lsp-ui-doc-show))
+                       "<F1>" 'lsp-ui-doc-glance
+                       "C-?" 'lsp-ui-doc-glance))
 ;; Integrate LSP with ivy for searching symbols.
 (use-package lsp-ivy :ensure t
              :general
