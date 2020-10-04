@@ -598,6 +598,19 @@ to `evil-lookup'. Based on Spacemacs."
   :custom
   (vc-handled-backends '(Git) "Don't load other version control systems.")
   (vc-follow-symlinks t "Follow symlinks when opening files."))
+;; Group buffers into a frame using frame tabs.
+(use-package tab-bar
+  :general
+  (:keymaps 'leader-toggles-map
+            "t" 'toggle-tab-bar-mode-from-frame)
+  (:keymaps 'leader-frame-tabs-map
+            "<tab>" 'tab-bar-switch-to-recent-tab
+            "j" 'tab-bar-switch-to-prev-tab
+            "k" 'tab-bar-switch-to-next-tab
+            "n" 'tab-bar-new-tab
+            "t" 'tab-bar-switch-to-tab
+            "x" 'tab-bar-close-tab
+            "X" 'tab-bar-undo-close-tab))
 
 ;;;; Completion.
 ;; Completion framework.
