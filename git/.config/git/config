@@ -6,3 +6,9 @@
 	name = Leo Pham
 [credential]
 	helper = cache --timeout=3600
+[pull]
+	rebase = true
+[diff]
+	colorMoved = zebra
+[fetch]
+	prune = true
