@@ -823,7 +823,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
              :config
              (flycheck-pos-tip-mode))
 ;; Ensure indentation is correct.
-;; XXX: Seems to mess up Emacs package updates (aggressive-indent--indent-if-changed)
 (use-package aggressive-indent :ensure t :demand t
              :config
              (global-aggressive-indent-mode)
