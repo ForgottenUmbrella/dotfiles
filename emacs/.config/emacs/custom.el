@@ -13,6 +13,7 @@
            nil t)
      (flycheck-disabled-checkers quote
                                  (emacs-lisp-checkdoc))))
+ '(show-paren-mode t)
  '(which-key-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
