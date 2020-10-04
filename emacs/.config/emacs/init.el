@@ -575,6 +575,10 @@ to `evil-lookup'. Based on Spacemacs."
   :general
   (:keymaps 'leader-jumps-map
             "T" 'doom/ivy-tasks))
+;; Let the window manager handle multiple buffers in frames instead of windows.
+(use-package frames-only-mode :ensure t
+             :config
+             (frames-only-mode))
 ;; Manage projects with SPC-p.
 (use-package projectile :ensure t :demand t
              :custom
