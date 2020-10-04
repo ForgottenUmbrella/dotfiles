@@ -493,7 +493,8 @@ to `evil-lookup'. Based on Spacemacs."
 ;; Display relative line numbers.
 (use-package display-line-numbers :demand t
              :custom
-             (display-line-numbers-type 'relative "Show relative line numbers.")
+             (display-line-numbers-type 'visual
+                                        "Show relative line numbers, accounting for folds.")
              :config
              (global-display-line-numbers-mode)
              :general
