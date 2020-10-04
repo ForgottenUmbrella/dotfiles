@@ -1,6 +1,7 @@
 # NOTE: After updating this file, run
 # antibody bundle < "$ZDOTDIR/.zsh_plugins.txt" > "$ZDOTDIR/.zsh_plugins.sh"
 # (SPC-c-c).
+# NOTE: After removing plugins, run `antibody purge your/plugin`.
 
 # Use fish prompt.
 #robbyrussell/oh-my-zsh path:themes/fishy.zsh-theme
