@@ -1,13 +1,13 @@
 #!/bin/sh
 # Show a power menu to shutdown, logout, etc.
 
-lock='Lock'
-logout='Logout'
-suspend='Suspend'
-hibernate='Hibernate'
-shutdown='Shutdown'
-reboot='Reboot'
-cancel='Cancel'
+lock=' Lock'
+logout=' Logout'
+suspend=' Suspend'
+hibernate=' Hibernate'
+shutdown=' Shutdown'
+reboot=' Reboot'
+cancel=' Cancel'
 
 choice=$(printf '%s\n%s\n%s\n%s\n%s\n%s\n%s' \
                 "$lock" "$logout" "$suspend" "$hibernate" "$shutdown" "$reboot" "$cancel" |
