@@ -318,7 +318,6 @@ to `evil-lookup'. Based on Spacemacs."
 ;; Colourise nested delimiters.
 (use-package rainbow-delimiters :ensure t
              :ghook
-             'text-mode-hook
              'prog-mode-hook
              :general
              (:keymaps 'leader-toggles-colours-map
