@@ -29,6 +29,7 @@ window box > box {
     transition-duration: .5s;
 
     /* height: 30px; */
+    /* margin: 0px 20px; */
     margin: 20px;
     margin-top: 0px;
     padding: 5px;
@@ -114,7 +115,6 @@ window#waybar.chromium {
 }
 
 #battery.charging {
-    color: @background;
     background-color: @transient;
 }
 
@@ -169,6 +169,10 @@ label:focus {
     color: @background;
 }
 
+#idle_inhibitor.deactivated {
+    color: @inactive;
+}
+
 #idle_inhibitor.activated {
     background-color: @active;
 }
@@ -192,7 +196,7 @@ label:focus {
 }
 
 *.active {
-    color: @active;
+    /* border-bottom: 5px solid @active; */
 }
 
 *.inactive {
@@ -208,5 +212,4 @@ label:focus {
 *.transient {
     /* color: @inactive; */
     background-color: @transient;
-    color: @background;
 }

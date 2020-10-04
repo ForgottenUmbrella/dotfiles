@@ -16,11 +16,11 @@ fi
 
 status=$(dropbox-cli status)
 if [ "$status" = "Dropbox isn't running!" ]; then
-    text="$status"
-    class='alert'
+    text='Not running'
+    class='inactive'
 elif [ "$status" = 'Up to date' ]; then
     text="$status"
-    class='fg-alt'
+    class='active'
 else
     class='transient'
     if echo "$status" | grep -q 'Downloading'; then
