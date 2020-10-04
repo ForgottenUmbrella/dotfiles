@@ -466,6 +466,7 @@ to `evil-lookup'. Based on Spacemacs."
                                    "How long to wait before showing keybindings.")
              (which-key-sort-order 'which-key-key-order-alpha
                                    "Sort keybindings alphabetically.")
+             (which-key-show-prefix 'top "Don't obscure menu with keystrokes.")
              :config
              (which-key-mode)
              :general
