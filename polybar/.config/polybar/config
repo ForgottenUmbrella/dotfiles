@@ -17,18 +17,19 @@ border-top-size = 0
 ; Uncomment for opaque border.
 ;border-color = ${colors.active}
 font-0 = monospace:size=12
-; Aligned bars.
-font-1 = Tamzen
-; Japanese fonts.
-font-2 = M+ 1c:pixelsize=10;-1
-; Unicode icons.
-font-3 = Symbola
-; Up-to-date FA icons.
-font-4 = Font Awesome 5 Free:size=8
-font-5 = Font Awesome 5 Free Solid:size=8
-font-6 = Font Awesome 5 Brands:size=8
-; All the other icons.
-font-7 = FuraCode Nerd Font
+;; XXX: I wonder if fontconfig fallbacks work with polybar?
+; ; Aligned bars.
+; font-1 = Tamzen
+; ; Japanese fonts.
+; font-2 = M+ 1c:pixelsize=10;-1
+; ; Unicode icons.
+; font-3 = Symbola
+; ; Up-to-date FA icons.
+; font-4 = Font Awesome 5 Free:size=8
+; font-5 = Font Awesome 5 Free Solid:size=8
+; font-6 = Font Awesome 5 Brands:size=8
+; ; All the other icons.
+; font-7 = FuraCode Nerd Font
 cursor-click = pointer
 ;cursor-scroll = ns-resize
 modules-left = i3 xwindow pomodoro
