@@ -299,7 +299,8 @@ bindsym $mod+Shift+grave exec --no-startup-id notifyctl context
 bindsym $mod+t exec opacity.sh 100
 
 ## Autostart.
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# XXX: Maybe redundant since GDM starts gnome-keyring-daemon already (at least on sway)
+#exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id ibus-daemon -drx
 exec --no-startup-id systemctl --user start gammastep.service
 exec --no-startup-id systemctl --user start mpd-notification.service
