@@ -461,7 +461,7 @@ to `evil-lookup'. Based on Spacemacs."
              :init
              (setq-default ewal-evil-cursors-obey-evil-p t))
 
-;;;; Navigation.
+;;; Navigation.
 ;; Show available key bindings on wait.
 (use-package which-key :ensure t :demand t
              :custom
@@ -622,7 +622,7 @@ to `evil-lookup'. Based on Spacemacs."
             "x" 'tab-bar-close-tab
             "X" 'tab-bar-undo-close-tab))
 
-;;;; Completion.
+;;; Completion.
 ;; Completion framework.
 (use-package ivy :ensure t :demand t
              :custom
@@ -770,7 +770,7 @@ to `evil-lookup'. Based on Spacemacs."
              :gfhook
              ('org-mode-hook 'org-cdlatex-mode))
 
-;;;; Correction.
+;;; Correction.
 ;; Highlight errors.
 (use-package flycheck :ensure t :demand t
              :ensure-system-package (shellcheck
@@ -903,7 +903,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
              :config
              (ws-butler-global-mode))
 
-;;;; Major modes.
+;;; Major modes.
 ;; Org mode.
 (use-package org
   :custom
@@ -1248,7 +1248,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 ;; Haskell mode.
 (use-package haskell-mode :ensure t)
 
-;;;;; Major mode extensions.
+;;;; Major mode extensions.
 ;; Provide documentation lookup with K in Elisp.
 (use-package elisp-slime-nav :ensure t
              :general
@@ -1336,7 +1336,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
              (:keymaps 'major-js-map
                        "=" 'web-beautify-js))
 
-;;;; Applications.
+;;; Applications.
 ;; Create and check regexes with SPC-a-r.
 (use-package re-builder
   :general
@@ -1410,7 +1410,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (:keymaps 'leader-applications-map
             "d" 'gud-gdb))
 
-;;;; Other.
+;;; Other.
 ;; Run any command on current file (e.g. compile or interpret) with SPC-c-c.
 (use-package compile
   :custom
