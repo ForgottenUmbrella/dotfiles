@@ -1345,6 +1345,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 ;; The Git porcelain, with SPC-g.
 (use-package magit :ensure t
              :general
+             (:keymaps 'magit-mode-map
+                       "<tab>" 'magit-section-toggle)
              (:keymaps 'transient-map
                        "<escape>" 'transient-quit-one)
              (:keymaps 'leader-git-map
