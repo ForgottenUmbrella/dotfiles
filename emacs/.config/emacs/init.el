@@ -523,8 +523,12 @@ to `evil-lookup'. Based on Spacemacs."
 (use-package recentf
   :custom
   (recentf-max-saved-items 1024 "Save more recent file history.")
+  (recentf-exclude (list (expand-file-name package-user-dir)
+                         (lambda (path)
+                           "Return whether the path is not in HOME."
+                           (not (string-match-p abbreviated-home-dir path))))
+                   "Exclude irrelevant files from recentf.")
   :config
-  (add-to-list 'recentf-exclude (expand-file-name package-user-dir))
   (recentf-mode)
   (run-at-time t 300 'recentf-save-list))
 ;; Clear old buffers with SPC-b-x.
