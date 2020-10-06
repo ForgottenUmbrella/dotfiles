@@ -537,9 +537,9 @@ to `evil-lookup'. Based on Spacemacs."
   (:keymaps 'leader-buffers-map
             "X" 'clean-buffer-list))
 ;; Fold code blocks.
-(use-package hideshow
-  :config
-  (hs-minor-mode))
+(use-package hideshow :demand t
+             :config
+             (hs-minor-mode))
 ;; Fold comment headings.
 (use-package outline
   :general
