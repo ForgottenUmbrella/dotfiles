@@ -1,4 +1,4 @@
-;;; Customisation setup.
+;;; Set up customisation.
 ;; Save custom.el in $XDG_CONFIG_HOME instead of cluttering $HOME.
 ;; NOTE: `setq' sets a buffer-local variable locally,
 ;; whereas `setq-default' sets a buffer-local variable globally.
@@ -6,13 +6,14 @@
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file t)
 
-;;; Package management setup.
+;;; Set up packages.
 ;; Enable additional package repos.
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 ;; Pre-compute autoloads to activate packages quickly.
 (setq package-quickstart t)
-;;; Bootstrap package management.
+
+;;;; Bootstrap package management with straight.
 ;; Don't bother checking. Must be before the bootstrap to have an effect.
 (setq straight-check-for-modifications nil)
 (defvar bootstrap-version)
@@ -31,6 +32,8 @@
 ;; Install use-package via straight, for modular package configuration.
 ;; NOTE: Use :ensure with external (not buit-in) packages.
 (straight-use-package 'use-package)
+
+;;;; Set up package management.
 ;; Ensure downloaded packages are the latest version.
 (defun before-install-refresh-contents (&rest args)
   "Refresh package archive before installing to avoid outdated files."
@@ -895,8 +898,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package ws-butler :ensure t
              :config
              (ws-butler-global-mode))
-(add-hook 'text-mode-hook 'auto-fill-mode)
-(add-hook 'prog-mode-hook 'auto-fill-mode)
 
 ;;;; Major modes.
 ;; Org mode.
@@ -1242,28 +1243,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :mode ("PKGBUILD" . sh-mode))
 ;; Haskell mode.
 (use-package haskell-mode :ensure t)
-;; Emacs Lisp mode.
-(major-prefix-def :prefix-command 'major-emacs-lisp-map
-  :keymaps 'emacs-lisp-mode-map
-  "c" 'emacs-lisp-byte-compile)
-(general-define-key :prefix-command 'major-emacs-lisp-eval-map
-                    :keymaps 'major-emacs-lisp-map :prefix "e" :wk-full-keys nil
-                    "" '(:ignore t :which-key "eval")
-                    "b" 'eval-buffer
-                    "e" 'eval-last-sexp
-                    "r" 'eval-region
-                    "f" 'eval-defun)
-(general-define-key :prefix-command 'major-emacs-lisp-help-map
-                    :keymaps 'major-emacs-lisp-map :prefix "h" :wk-full-keys nil
-                    "" '(:ignore t :which-key "help"))
-;; Help mode.
-(general-define-key :keymaps 'help-mode-map :states 'normal
-                    "[" 'help-go-back
-                    "]" 'help-go-forward)
-;; Apropos mode.
-(general-define-key :keymaps 'apropos-mode-map :states 'normal
-                    "<tab>" 'forward-button
-                    "<backtab>" 'backward-button)
 
 ;;;;; Major mode extensions.
 ;; Provide documentation lookup with K in Elisp.
@@ -1362,6 +1341,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 ;; The Git porcelain, with SPC-g.
 (use-package magit :ensure t
              :general
+             (:keymaps 'transient-map
+                       "<escape>" 'transient-quit-one)
              (:keymaps 'leader-git-map
                        "b" 'magit-blame
                        "c" 'magit-commit
@@ -1371,8 +1352,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                        "s" 'magit-status
                        "C-s" 'magit-stage
                        "U" 'magit-unstage-file)
-             (:keymaps 'transient-map
-                       "<escape>" 'transient-quit-one)
              (major-prefix-def :prefix-command 'major-with-editor-map
                :keymaps 'with-editor-mode-map
                "," 'with-editor-finish
@@ -1456,7 +1435,14 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
              :general
              (:keymaps 'leader-applications-map
                        "d" 'desktop-read))
-;; Evaluate expression.
+
+;;; Define overriding key bindings.
+;;;; Built-in modes.
+;; Insert mode.
+(general-define-key :states 'insert
+                    "C-q" 'quoted-insert
+                    "C-S-q" 'insert-char)
+;; `evaluate-expression'.
 (add-hook 'eval-expression-minibuffer-setup-hook
           (lambda ()
             "Set up key bindings for `eval-expression'."
@@ -1464,11 +1450,28 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                                 "C-w" 'backward-kill-word
                                 "C-p" 'previous-history-element
                                 "C-n" 'next-history-element)))
-
-;;; Define overriding key bindings.
-(general-define-key :states 'insert
-                    "C-q" 'quoted-insert
-                    "C-S-q" 'insert-char)
+;; Emacs Lisp mode.
+(major-prefix-def :prefix-command 'major-emacs-lisp-map
+  :keymaps 'emacs-lisp-mode-map
+  "c" 'emacs-lisp-byte-compile)
+(general-define-key :prefix-command 'major-emacs-lisp-eval-map
+                    :keymaps 'major-emacs-lisp-map :prefix "e" :wk-full-keys nil
+                    "" '(:ignore t :which-key "eval")
+                    "b" 'eval-buffer
+                    "e" 'eval-last-sexp
+                    "r" 'eval-region
+                    "f" 'eval-defun)
+(general-define-key :prefix-command 'major-emacs-lisp-help-map
+                    :keymaps 'major-emacs-lisp-map :prefix "h" :wk-full-keys nil
+                    "" '(:ignore t :which-key "help"))
+;; Help mode.
+(general-define-key :keymaps 'help-mode-map :states 'normal
+                    "[" 'help-go-back
+                    "]" 'help-go-forward)
+;; Apropos mode.
+(general-define-key :keymaps 'apropos-mode-map :states 'normal
+                    "<tab>" 'forward-button
+                    "<backtab>" 'backward-button)
 
 ;;;; Leader key.
 (leader-def "SPC" 'execute-extended-command
@@ -1476,25 +1479,25 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   "<F1>" 'apropos-command
   "u" 'universal-argument)
 (leader-prefix-def :prefix-command 'leader-applications-map :prefix "a"
-                   "" '(:ignore t :which-key "applications"))
+  "" '(:ignore t :which-key "applications"))
 (general-define-key :prefix-command 'leader-applications-shell-map
                     :keymaps 'leader-applications-map :prefix "s"
                     :wk-full-keys nil
                     "" '(:ignore t :which-key "shell"))
 (leader-prefix-def :prefix-command 'leader-buffers-map :prefix "b"
-                   "" '(:ignore t :which-key "buffers")
-                   "C" 'clone-indirect-buffer
-                   "c" 'clone-buffer
-                   "d" 'kill-buffer
-                   "h" 'switch-to-help-buffer
-                   "m" 'switch-to-messages-buffer
-                   "n" 'next-buffer
-                   "p" 'previous-buffer
-                   "r" 'read-only-mode
-                   "s" 'switch-to-scratch-buffer
-                   "w" 'switch-to-warnings-buffer
-                   "x" 'kill-buffer-and-window
-                   "y" 'copy-whole-buffer-to-clipboard)
+  "" '(:ignore t :which-key "buffers")
+  "C" 'clone-indirect-buffer
+  "c" 'clone-buffer
+  "d" 'kill-buffer
+  "h" 'switch-to-help-buffer
+  "m" 'switch-to-messages-buffer
+  "n" 'next-buffer
+  "p" 'previous-buffer
+  "r" 'read-only-mode
+  "s" 'switch-to-scratch-buffer
+  "w" 'switch-to-warnings-buffer
+  "x" 'kill-buffer-and-window
+  "y" 'copy-whole-buffer-to-clipboard)
 (leader-prefix-def :prefix-command 'leader-compile-map :prefix "c"
                    "" '(:ignore t :which-key "compile"))
 (leader-prefix-def :prefix-command 'leader-errors-map :prefix "e"
@@ -1631,7 +1634,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (leader-prefix-def :prefix-command 'leader-zoom-map :prefix "z"
                    "" '(:ignore t :which-key "zoom"))
 
-;;; Functions.
+;;; Define functions.
 ;; Default value for use by functions.
 (defun delete-window-or-frame (&optional window frame force)
   "Delete WINDOW, or delete FRAME if there is only one window in FRAME.
@@ -1904,7 +1907,15 @@ current frame. From Spacemacs."
   (unless (executable-find name)
     (warn "%s is not installed; install for %s" name purpose)))
 
-;;; Generic settings.
+;;; Set built-in settings.
+;;;; Minor modes.
+;; Automatically hard-wrap text.
+(add-hook 'text-mode-hook 'auto-fill-mode)
+(add-hook 'prog-mode-hook 'auto-fill-mode)
+;; Navigate lines visually. Required for consistent relative line numbers.
+(global-visual-line-mode)
+
+;;;; Miscellaneous.
 (add-hook 'find-file-not-found-functions
           (lambda ()
             "Create non-existent parent directories and return nil."

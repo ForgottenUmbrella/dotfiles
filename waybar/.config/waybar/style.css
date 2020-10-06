@@ -15,7 +15,6 @@
 
     /* background-color: @background; */
     color: @foreground;
-    /* `otf-font-awesome` is required to be installed for icons */
     font-family: monospace;
     font-size: 12px;
 }
@@ -195,9 +194,11 @@ label:focus {
     color: @active;
 }
 
-*.active {
-    /* border-bottom: 5px solid @active; */
+/*
+ *.active {
+    border-bottom: 5px solid @active;
 }
+*/
 
 *.inactive {
     color: @inactive;
