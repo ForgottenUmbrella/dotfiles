@@ -431,7 +431,7 @@ to `evil-lookup'. Based on Spacemacs."
 ;; Use ligatures.
 (use-package fira-code-mode :ensure t
 	     :ensure-system-package
-	     ("/usr/share/fonts/FiraCode-Regular-Symbol.otf" . otf-fira-code-symbol)
+	     ("/usr/share/fonts/OTF/FiraCode-Regular-Symbol.otf" . otf-fira-code-symbol)
 	     :ghook 'prog-mode-hook)
 
 ;;;;; Themes.
