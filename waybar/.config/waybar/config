@@ -117,6 +117,7 @@
         "custom/bluetooth": {
             "interval": 60,
             "exec": "~/.config/waybar/scripts/bluetooth.sh",
+            "on-click": "~/.config/waybar/scripts/bluetooth.sh --toggle",
             "return-type": "json",
             "format": "{icon}",
             "format-icons": "",
