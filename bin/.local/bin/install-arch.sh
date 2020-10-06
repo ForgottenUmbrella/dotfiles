@@ -280,7 +280,7 @@ sed --in-place \
 
 # Personal apps and AUR TODO move all personals and optionals from pacstrap
 yay --sync --refresh --sysupgrade keepassxc dropbox anki firefox-beta antibody-bin \
-    wine-staging wine-nine wine-gecko wine-mono wpgtk-git mantablockscreen \
+    wine-staging wine-nine wine-gecko wine-mono mantablockscreen \
     rofi-lbonn-wayland-git rofi-dmenu btmenu keepmenu clerk-git polybar \
     otf-mplus tamsyn-font-otb tamzen-font ttf-symbola nerd-fonts-fira-code \
     ttf-monoid ttf-font-awesome ttf-ms-fonts \

@@ -27,17 +27,10 @@ alpha=80
 # Commands to run after setting with wal.
 post_commands() {
     # Dependencies:
-    # - wpgtk-git
     # - mantablockscreen
     # - emacs
     # - python-pywalfox
-    log 'Setting via wpg...'
-    # python-pillow-simd is a drop-in replacement for pillow that isn't a
-    # drop-in replacement, so anything depending on pillow is broken.
-    wpg='python -m wpgtk'
-    name=$(basename "$image")
-    rm "$config/wpg/schemes/"*"$name"* 2>/dev/null; $wpg -a "$image"
-    $wpg -n --alpha "$alpha" -s "$name"
+    # - oomox
     log 'Setting mantablockscreen...'
     mantablockscreen -i "$image"
     log 'Reloading Emacs ewal theme...'
