@@ -72,7 +72,7 @@ set_wallpaper() {
     # (colorscheme is successfully changed), but works fine when run from
     # terminal.
     # Further note that this only happens occasionally. Currently working.
-    wal -c; wal -i "$image" -a "$alpha" -e
+    wal -c; wal -i "$image" -a "$alpha"
     command -v post_commands >/dev/null 2>&1 && post_commands
     url=$(cat "$url_file" 2>/dev/null || printf '')
     notify-send 'New wallpaper' "$url" -i "$image" -u low
