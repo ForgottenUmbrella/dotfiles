@@ -3,7 +3,8 @@
 
 if [ "$XDG_SESSION_TYPE" = 'wayland' ]
 then
-    swaylock --clock --grace 5 --fade-in 5 --effect-scale 0.5 --effect-blur 7x5 --effect-scale 2
+    swaylock --screenshots --clock --grace 5 --fade-in 5 \
+             --effect-scale 0.5 --effect-blur 7x5 --effect-scale 2
 else
     # betterlockscreen -l dimblur
     mantablockscreen
