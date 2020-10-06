@@ -684,10 +684,11 @@ to `evil-lookup'. Based on Spacemacs."
 ;; Sort ivy completion candidates by use.
 (use-package ivy-prescient :ensure t :after counsel
              :config
+             (ivy-prescient-mode)
+             ;; XXX: Neither config is being run/both are being overwritten.
              (push '(read-file-name-internal . ivy-sort-file-function-default)
                    ivy-sort-functions-alist)
-             (push '(t . ivy--regex-fuzzy) ivy-re-builders-alist)
-             (ivy-prescient-mode))
+             (push '(t . ivy--regex-fuzzy) ivy-re-builders-alist))
 ;; Snippet framework.
 (use-package yasnippet :ensure t :demand t
              :config
