@@ -471,6 +471,10 @@ to `evil-lookup'. Based on Spacemacs."
                                    "Sort keybindings alphabetically.")
              :config
              (which-key-mode)
+             (advice-add 'which-key--show-popup
+                         :around (lambda (f &rest r)
+                                   "Add extra line to work around issue #231."
+                                   (apply f (list (cons (+ 1 (car (car r))) (cdr (car r)))))))
              :general
              (:keymaps 'leader-help-map
                        "k" 'which-key-show-top-level
