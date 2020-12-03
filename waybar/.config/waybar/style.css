@@ -215,3 +215,7 @@ label:focus {
     background-color: @transient;
     color: @background;
 }
+
+tooltip {
+    color: @foreground;
+}
