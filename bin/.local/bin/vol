@@ -8,23 +8,25 @@ case "$1" in
     up|down|set)
         pulseaudio-ctl "$1" "$step"
         paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga &
-        current=$(pulseaudio-ctl current)
-        icon=multimedia-volume-control
-        title=Volume
-        hints="-h int:value:$current -h string:synchronous:volume"
         ;;
     mute)
         pulseaudio-ctl mute
-        current=$(pulseaudio-ctl current)
-        if [ "$(pulseaudio-ctl full-status | cut -d' ' -f2)" = yes ]
-        then
-            icon=audio-volume-muted
-            title='Volume muted'
-        else
-            icon=multimedia-volume-control
-            title='Volume unmuted'
-        fi
         ;;
 esac
+
+current=$(pulseaudio-ctl current)
+if [ "$(pulseaudio-ctl full-status | cut -d' ' -f2)" = yes ]
+then
+    icon=audio-volume-muted
+    title='Volume (muted)'
+    if [ "$1" = mute ]
+    then
+        current='0%'
+    fi
+else
+    icon=multimedia-volume-control
+    title='Volume'
+fi
+hints="-h int:value:$current -h string:synchronous:volume"
 
 notify-send -a vol -t 1000 -i "$icon" -h int:transient:1 ${hints:+$hints} "$title" "$current"
