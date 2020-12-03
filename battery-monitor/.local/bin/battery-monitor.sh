@@ -25,7 +25,9 @@ if [ "$1" = "-g" ] || [ "$1" = "--get" ]; then
 fi
 
 if [ "$status" = "Discharging" ] && [ "$capacity" -le "$low" ]; then
-    notify-send "Low battery ($low%)" "Consider charging it and saving your work." -u critical -i battery-caution
+    notify-send "Low battery ($low%)" "Plug in the charger and save your work." \
+                -a "$0" -u critical -i battery-caution
 elif [ "$status" = "Full" ]; then
-    notify-send "Battery fully charged" "Consider unplugging the charger." -u critical -i battery-full-charged
+    notify-send "Battery fully charged" "Unplug the charger." \
+                -a "$0" -i battery-full-charged
 fi
