@@ -11,7 +11,7 @@ devices=$(lsblk -rnpo "name,label,type,mountpoint" | awk '
         }
     }
 ')
-device=$(printf "$devices" | dmenu -i -p "Mount")
+device=$(printf '%s' "$devices" | dmenu -i -p "Mount")
 if [ -z "$device" ]; then
     exit
 fi
