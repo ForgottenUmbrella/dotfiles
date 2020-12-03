@@ -7,7 +7,7 @@
 \usepackage{amssymb}
 \usepackage{esint}
 \newcommand*{\nats}{\mathbb{N}}
-\newcommand*{\ints}{\mathbb{I}}
+\newcommand*{\ints}{\mathbb{Z}}
 \newcommand*{\rats}{\mathbb{Q}}
 \newcommand*{\reals}{\mathbb{R}}
 \newcommand*{\comps}{\mathbb{C}}
