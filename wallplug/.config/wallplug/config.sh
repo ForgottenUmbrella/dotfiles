@@ -58,4 +58,7 @@ post_commands() {
     oomox-cli "$oomox_theme"
     log 'Generating oomox icons...'
     /opt/oomox/plugins/icons_papirus/change_color.sh "$oomox_theme"
+    # XXX: Is this necessary?
+    # log 'Reloading GTK theme...'
+    # gtk-reload.sh
 }
