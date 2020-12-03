@@ -3,7 +3,7 @@
 
 if [ "$XDG_SESSION_TYPE" = 'wayland' ]
 then
-    swaylock --screenshots --clock --grace 5 --fade-in 5 \
+    swaylock --daemonize --screenshots --clock --grace 5 --fade-in 5 \
              --effect-scale 0.5 --effect-blur 7x5 --effect-scale 2
 else
     # betterlockscreen -l dimblur
