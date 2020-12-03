@@ -22,7 +22,7 @@ case "$1" in
         ;;
     -s|--sweet-dreams)
         # shellcheck disable=SC2086
-        systemctl unmask $sleeps
+        systemctl unmask --runtime $sleeps
         ;;
     -h|--help|*)
         usage
