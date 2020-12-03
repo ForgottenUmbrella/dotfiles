@@ -204,6 +204,7 @@ for_window [title="^Steam Keyboard$"] floating enable
 
 # Zoom glitches.
 for_window [class="zoom"] exec --no-startup-id pa_volume 'ZOOM VoiceEngine' 100
+for_window [title="^zoom$"] floating enable
 
 # Gaps.
 set $default_inner 20
