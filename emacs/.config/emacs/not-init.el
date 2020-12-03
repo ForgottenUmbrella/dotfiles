@@ -66,6 +66,14 @@
 	     :general
 	     (:keymaps 'leader-windows-map
 		       "c" 'centered-window-mode))
+;; Let the window manager handle multiple buffers in frames instead of windows.
+;; Removed because it doesn't play well with company-quickhelp.
+(use-package frames-only-mode :ensure t
+             :config
+             (frames-only-mode))
+;; Enable system package dependency management. (Annoying TRAMP stuff when
+;; updating in a headless fashion.)
+(use-package use-package-ensure-system-package :ensure t)
 
 ;;; Replaced packages.
 ;; Make isearch more vim-like. (Replaced with evil-search module.)
@@ -126,6 +134,26 @@
 (use-package origami :ensure t
              :config
              (global-origami-mode))
+;; Format C++ code. (Replaced by format-all.)
+(use-package clang-format :ensure t
+             :ghook
+             ('c++-mode-hook
+              (lambda ()
+                "Format buffer with clang-format before save."
+                (add-hook 'before-save-hook 'clang-format-buffer nil t))))
+;; Format JavaScript code. (Replaced by format-all.)
+(use-package web-beautify :ensure t
+             :config
+             (if (executable-find "js-beautify")
+                 (add-hook 'js-mode-hook
+                           (lambda ()
+                             "Format buffer with js-beautify before save."
+                             (add-hook 'before-save-hook
+                                       'web-beautify-js-buffer t t)))
+               (message "js-beautify is not installed; install for JavaScript formatting"))
+             :general
+             (:keymaps 'major-js-map
+                       "=" 'web-beautify-js))
 
 ;; TODO: Determine whether the below semantic packages really are replaced by lsp.
 ;; Show current function/class's signature at the top of the frame.
