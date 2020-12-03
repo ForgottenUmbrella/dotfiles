@@ -115,6 +115,7 @@ window#waybar.chromium {
 
 #battery.charging {
     background-color: @transient;
+    color: @background;
 }
 
 @keyframes blink {
@@ -205,7 +206,6 @@ label:focus {
 }
 
 *.alert {
-    /* color: @inactive; */
     background-color: @alert;
     color: @background;
 }
@@ -213,4 +213,5 @@ label:focus {
 *.transient {
     /* color: @inactive; */
     background-color: @transient;
+    color: @background;
 }
