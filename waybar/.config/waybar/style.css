@@ -218,4 +218,5 @@ label:focus {
 
 tooltip {
     color: @foreground;
+    background-color: @background;
 }
