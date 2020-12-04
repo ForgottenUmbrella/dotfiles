@@ -1,6 +1,5 @@
-#!/bin/zsh
-FARM="$(cd "$(dirname "${(%):-%N}")" && pwd)"
-for DIR in $FARM/*/; do
-    PACKAGE=$(basename $DIR)
-    /usr/bin/stow --restow $PACKAGE --target=$HOME
-done
+#!/bin/sh
+# Stow all dotfiles in HOME directory.
+
+farm=$(dirname "$0")
+"$farm"/stow.sh $(find "$farm" -maxdepth 1 -type d)
