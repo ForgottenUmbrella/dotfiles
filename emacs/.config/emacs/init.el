@@ -294,7 +294,6 @@ current frame. From Spacemacs."
                                   "Check if `file' present."
                                   (file-exists-p file))))
 
-
 ;;; Set up packages.
 ;; Enable additional package repos.
 (require 'package)
