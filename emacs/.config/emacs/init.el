@@ -1766,14 +1766,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (general-define-key :states 'insert
                     "C-q" 'quoted-insert
                     "C-S-q" 'insert-char)
-;; `evaluate-expression' (M-x).
-(add-hook 'eval-expression-minibuffer-setup-hook
-          (lambda ()
-            "Set up key bindings for `eval-expression'."
-            (general-define-key :keymaps 'local
-                                "C-w" 'backward-kill-word
-                                "C-p" 'previous-history-element
-                                "C-n" 'next-history-element)))
 ;; Emacs Lisp mode.
 (major-prefix-def :prefix-command 'major-emacs-lisp-map
   :keymaps 'emacs-lisp-mode-map
