@@ -1754,244 +1754,251 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
              (:keymaps 'leader-applications-map
                         "d" 'desktop-read))
 
-;;; Define overriding key bindings.
-;;;; Built-in modes.
-;; Insert mode.
-(general-define-key :states 'insert
-                    "C-q" 'quoted-insert
-                    "C-S-q" 'insert-char)
-;; Emacs Lisp mode.
-(major-prefix-def :prefix-command 'major-emacs-lisp-map
-  :keymaps 'emacs-lisp-mode-map
-  "c" 'emacs-lisp-byte-compile)
-(general-define-key :prefix-command 'major-emacs-lisp-eval-map
-                    :keymaps 'major-emacs-lisp-map :prefix "e" :wk-full-keys nil
-                    "" '(:ignore t :which-key "eval")
-                    "b" 'eval-buffer
-                    "e" 'eval-last-sexp
-                    "r" 'eval-region
-                    "f" 'eval-defun)
-(general-define-key :prefix-command 'major-emacs-lisp-help-map
-                    :keymaps 'major-emacs-lisp-map :prefix "h" :wk-full-keys nil
-                    "" '(:ignore t :which-key "help"))
-;; Help mode.
-(general-define-key :keymaps 'help-mode-map :states 'normal
-                    "[" 'help-go-back
-                    "]" 'help-go-forward)
-;; Apropos mode.
-(general-define-key :keymaps 'apropos-mode-map :states 'normal
-                    "<tab>" 'forward-button
-                    "<backtab>" 'backward-button)
-
-;;;; Leader key.
-(leader-def "SPC" 'execute-extended-command
-  "?" 'describe-bindings
-  "<F1>" 'apropos-command
-  "u" 'universal-argument)
-(leader-prefix-def :prefix-command 'leader-applications-map :prefix "a"
-  "" '(:ignore t :which-key "applications"))
-(general-define-key :prefix-command 'leader-applications-shell-map
-                    :keymaps 'leader-applications-map :prefix "s"
-                    :wk-full-keys nil
-                    "" '(:ignore t :which-key "shell"))
-(leader-prefix-def :prefix-command 'leader-buffers-map :prefix "b"
-  "" '(:ignore t :which-key "buffers")
-  "C" 'clone-indirect-buffer
-  "c" 'clone-buffer
-  "d" 'kill-buffer
-  "h" 'switch-to-help-buffer
-  "m" 'switch-to-messages-buffer
-  "n" 'next-buffer
-  "p" 'previous-buffer
-  "r" 'read-only-mode
-  "s" 'switch-to-scratch-buffer
-  "w" 'switch-to-warnings-buffer
-  "x" 'kill-buffer-and-window
-  "y" 'copy-whole-buffer-to-clipboard)
-(leader-prefix-def :prefix-command 'leader-compile-map :prefix "c"
-                   "" '(:ignore t :which-key "compile"))
-(leader-prefix-def :prefix-command 'leader-errors-map :prefix "e"
-                   "" '(:ignore t :which-key "errors")
-                   "n" 'next-error
-                   "p" 'previous-error)
-(leader-prefix-def :prefix-command 'leader-files-map :prefix "f"
-                   "" '(:ignore t :which-key "files")
-                   "c" 'write-file
-                   "D" 'delete-current-buffer-file
-                   "f" 'find-file
-                   "o" 'open-file-or-directory-in-external-app
-                   "R" 'rename-current-buffer-file
-                   "s" 'save-buffer)
-(general-define-key :prefix-command 'leader-files-convert-map
-                    :keymaps 'leader-files-map :prefix "C" :wk-full-keys nil
-                    "" '(:ignore t :which-key "convert")
-                    "d" 'unix2dos
-                    "u" 'dos2unix
-                    "s" 'untabify)
-(general-define-key :prefix-command 'leader-files-emacs-map
-                    :keymaps 'leader-files-map :prefix "e" :wk-full-keys nil
-                    "" '(:ignore t :which-key "emacs")
-                    "d" 'find-init-file
-                    "r" 'reload-init-file)
-(leader-prefix-def :prefix-command 'leader-frames-map :prefix "F"
-                   "" '(:ignore t :which-key "frames")
-                   "d" 'delete-frame
-                   "o" 'other-frame
-                   "n" 'make-frame)
-(general-define-key :prefix-command 'leader-frame-tabs-map
-                    :keymaps 'leader-frames-map :prefix "t" :wk-full-keys nil
-                    "" '(:ignore t :which-key "tabs"))
-(leader-prefix-def :prefix-command 'leader-git-map :prefix "g"
-                   "" '(:ignore t :which-key "git"))
-(leader-prefix-def :prefix-command 'leader-help-map :prefix "h"
-                   "" '(:ignore t :which-key "help"))
-(general-define-key :prefix-command 'leader-help-describe-map
-                    :keymaps 'leader-help-map :prefix "d" :wk-full-keys nil
-                    "" '(:ignore t :which-key "describe")
-                    "B" 'general-describe-keybindings
-                    "F" 'describe-font
-                    "M" 'describe-minor-mode
-                    "T" 'describe-theme
-                    "C-F" 'describe-face)
-(set-keymap-parent leader-help-describe-map help-map)
-(leader-prefix-def :prefix-command 'leader-jumps-map :prefix "j"
-                   "" '(:ignore t :which-key "jumps"))
-(leader-prefix-def :prefix-command 'leader-narrow-map :prefix "n"
-                   "" '(:ignore t :which-key "narrow")
-                   "r" 'narrow-to-region
-                   "w" 'widen)
-(leader-prefix-def :prefix-command 'leader-projects-map :prefix "p"
-                   "" '(:ignore t :which-key "projects"))
-(set-keymap-parent leader-projects-map projectile-command-map)
-(general-define-key :prefix-command 'leader-projects-sessions-map
-                    :keymaps 'leader-projects-map :prefix "s"
-                    :wk-full-keys nil
-                    "" '(:ignore t :which-key "sessions")
-                    "s" 'desktop-save
-                    "r" 'desktop-read)
-(leader-prefix-def :prefix-command 'leader-quit-map :prefix "q"
-                   "" '(:ignore t :which-key "quit")
-                   "q" 'save-buffers-kill-emacs
-                   "Q" 'kill-emacs
-                   "y" 'yank-buffer-delete-frame)
-(leader-prefix-def :prefix-command 'leader-search-map :prefix "s"
-                   "" '(:ignore t :which-key "search")
-                   "o" 'occur
-                   "P" 'check-parens)
-(leader-prefix-def :prefix-command 'leader-toggles-map :prefix "t"
-                   "" '(:ignore t :which-key "toggles")
-                   "D" 'toggle-debug-on-error
-                   "d" 'toggle-selective-display
-                   "F" 'auto-fill-mode
-                   "L" 'visual-line-mode
-                   "l" 'toggle-truncate-lines
-                   "P" 'prettify-symbols-mode
-                   "W" 'toggle-whitespace-cleanup)
-(general-define-key :prefix-command 'leader-toggles-colours-map
-                    :keymaps 'leader-toggles-map :prefix "c" :wk-full-keys nil
-                    "" '(:ignore t :which-key "colours"))
-(leader-prefix-def :prefix-command 'leader-themes-map :prefix "T"
-                   "" '(:ignore t :which-key "themes")
-                   "T" 'hydra-transparency/body)
-(pretty-hydra-define hydra-transparency
-  (:title "Set Transparency" :quit-key "q")
-  ("Active frames"
-   (("k" increase-active-transparency "increase")
-    ("j" decrease-active-transparency "decrease"))
-   "Inactive frames"
-   (("l" increase-inactive-transparency "increase")
-    ("h" decrease-inactive-transparency "decrease"))
-   "Toggle"
-   (("T" toggle-transparency))))
-(leader-prefix-def :prefix-command 'leader-windows-map :prefix "w"
-                   "" '(:ignore t :which-key "windows")
-                   "<tab>" 'alternate-window
-                   "." 'hydra-window/body
-                   "1" 'tiny-window
-                   "0" 'small-window
-                   "d" 'delete-window-or-frame
-                   "T" 'undedicate-window)
-(set-keymap-parent leader-windows-map evil-window-map)
-(pretty-hydra-define hydra-window (:title "Window Manipulation" :quit-key "q")
-  ("Select"
-   (("h" evil-window-left "←")
-    ("j" evil-window-down "↓")
-    ("k" evil-window-up "↑")
-    ("l" evil-window-right "→"))
-   "Move"
-   (("H" evil-window-move-far-left "←")
-    ("J" evil-window-move-very-bottom "↓")
-    ("K" evil-window-move-very-top "↑")
-    ("L" evil-window-move-far-right "→")
-    ("r" evil-window-rotate-downwards "forward")
-    ("R" evil-window-rotate-upwards "backward"))
-   "Split"
-   (("S" split-window-below "horizontal")
-    ("s" evil-window-split "horizontal & focus")
-    ("V" split-window-right "vertical")
-    ("v" evil-window-vsplit "vertical & focus"))
-   "Resize"
-   (("+" evil-window-increase-height "+height")
-    ("-" evil-window-decrease-height "-height")
-    ("_" evil-window-set-height "max height")
-    (">" evil-window-increase-width "+width")
-    ("<" evil-window-decrease-width "-width")
-    ("|" evil-window-set-width "max width")
-    ("=" balance-windows "balance"))
-   "History"
-   (("u" winner-undo "undo")
-    ("U" winner-redo "redo"))))
-(leader-prefix-def :prefix-command 'leader-zoom-map :prefix "z"
-  "" '(:ignore t :which-key "zoom"))
-
-;;; Set built-in settings.
-;;;; Minor modes.
-;; Automatically hard-wrap text.
-(add-hook 'text-mode-hook 'auto-fill-mode)
-(add-hook 'prog-mode-hook 'auto-fill-mode)
-
-;;;; Miscellaneous.
-(add-hook 'find-file-not-found-functions
-          (lambda ()
-            "Create non-existent parent directories and return nil."
-            (let ((parent-dir (file-name-directory buffer-file-name)))
-              (when (not (file-exists-p parent-dir))
-                (make-directory parent-dir t)))
-            nil))
-(setq-default scroll-conservatively 101
-              scroll-margin 5
-              mouse-wheel-progressive-speed nil
-              mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control)))
-              prettify-symbols-unprettify-at-point t
-              indicate-empty-lines t
-              fill-column 80
-              indent-tabs-mode nil
-              read-quoted-char-radix 16
-              frame-resize-pixelwise t
-              initial-major-mode 'text-mode
-              require-final-newline t
-              help-window-select t
-              delete-by-moving-to-trash t
-              sentence-end-double-space nil
-              window-combination-resize t
-              initial-scratch-message nil
-              open-paren-in-column-0-is-defun-start nil
-              default-frame-scroll-bars 'right
-              backup-directory-alist (list (cons "." (concat user-emacs-directory
+;;; Set up built-ins.
+(use-package emacs :demand t
+             :general
+             ;; Insert state.
+             (:states 'insert
+                       "C-q" 'quoted-insert
+                       "C-S-q" 'insert-char)
+             ;; Emacs Lisp mode.
+             (major-prefix-def :prefix-command 'major-emacs-lisp-map
+               :keymaps 'emacs-lisp-mode-map
+               "c" 'emacs-lisp-byte-compile)
+             (:prefix-command 'major-emacs-lisp-eval-map
+                               :keymaps 'major-emacs-lisp-map :prefix "e"
+                               :wk-full-keys nil
+                               "" '(:ignore t :which-key "eval")
+                               "b" 'eval-buffer
+                               "e" 'eval-last-sexp
+                               "r" 'eval-region
+                               "f" 'eval-defun)
+             (:prefix-command 'major-emacs-lisp-help-map
+                               :keymaps 'major-emacs-lisp-map :prefix "h"
+                               :wk-full-keys nil
+                               "" '(:ignore t :which-key "help"))
+             ;; Help mode.
+             (:keymaps 'help-mode-map :states 'normal
+                        "[" 'help-go-back
+                        "]" 'help-go-forward)
+             ;; Leader key.
+             (leader-def "SPC" 'execute-extended-command
+               "?" 'describe-bindings
+               "<F1>" 'apropos-command
+               "u" 'universal-argument)
+             (leader-prefix-def :prefix-command 'leader-applications-map
+               :prefix "a"
+               "" '(:ignore t :which-key "applications"))
+             (:prefix-command 'leader-applications-shell-map
+                               :keymaps 'leader-applications-map :prefix "s"
+                               :wk-full-keys nil
+                               "" '(:ignore t :which-key "shell"))
+             (leader-prefix-def :prefix-command 'leader-buffers-map :prefix "b"
+               "" '(:ignore t :which-key "buffers")
+               "C" 'clone-indirect-buffer
+               "c" 'clone-buffer
+               "d" 'kill-buffer
+               "h" 'switch-to-help-buffer
+               "m" 'switch-to-messages-buffer
+               "n" 'next-buffer
+               "p" 'previous-buffer
+               "r" 'read-only-mode
+               "s" 'switch-to-scratch-buffer
+               "w" 'switch-to-warnings-buffer
+               "x" 'kill-buffer-and-window
+               "y" 'copy-whole-buffer-to-clipboard)
+             (leader-prefix-def :prefix-command 'leader-compile-map :prefix "c"
+               "" '(:ignore t :which-key "compile"))
+             (leader-prefix-def :prefix-command 'leader-errors-map :prefix "e"
+               "" '(:ignore t :which-key "errors")
+               "n" 'next-error
+               "p" 'previous-error)
+             (leader-prefix-def :prefix-command 'leader-files-map :prefix "f"
+               "" '(:ignore t :which-key "files")
+               "c" 'write-file
+               "D" 'delete-current-buffer-file
+               "f" 'find-file
+               "o" 'open-file-or-directory-in-external-app
+               "R" 'rename-current-buffer-file
+               "s" 'save-buffer)
+             (:prefix-command 'leader-files-convert-map
+                               :keymaps 'leader-files-map :prefix "C"
+                               :wk-full-keys nil
+                               "" '(:ignore t :which-key "convert")
+                               "d" 'unix2dos
+                               "u" 'dos2unix
+                               "s" 'untabify)
+             (:prefix-command 'leader-files-emacs-map
+                               :keymaps 'leader-files-map :prefix "e"
+                               :wk-full-keys nil
+                               "" '(:ignore t :which-key "emacs")
+                               "d" 'find-init-file
+                               "r" 'reload-init-file)
+             (leader-prefix-def :prefix-command 'leader-frames-map :prefix "F"
+               "" '(:ignore t :which-key "frames")
+               "d" 'delete-frame
+               "o" 'other-frame
+               "n" 'make-frame)
+             (:prefix-command 'leader-frame-tabs-map
+                               :keymaps 'leader-frames-map :prefix "t"
+                               :wk-full-keys nil
+                               "" '(:ignore t :which-key "tabs"))
+             (leader-prefix-def :prefix-command 'leader-git-map :prefix "g"
+               "" '(:ignore t :which-key "git"))
+             (leader-prefix-def :prefix-command 'leader-help-map :prefix "h"
+               "" '(:ignore t :which-key "help"))
+             (:prefix-command 'leader-help-describe-map
+                               :keymaps 'leader-help-map :prefix "d"
+                               :wk-full-keys nil
+                               "" '(:ignore t :which-key "describe")
+                               "B" 'general-describe-keybindings
+                               "F" 'describe-font
+                               "M" 'describe-minor-mode
+                               "T" 'describe-theme
+                               "C-F" 'describe-face)
+             (leader-prefix-def :prefix-command 'leader-jumps-map :prefix "j"
+               "" '(:ignore t :which-key "jumps"))
+             (leader-prefix-def :prefix-command 'leader-narrow-map :prefix "n"
+               "" '(:ignore t :which-key "narrow")
+               "r" 'narrow-to-region
+               "w" 'widen)
+             (leader-prefix-def :prefix-command 'leader-projects-map :prefix "p"
+               "" '(:ignore t :which-key "projects"))
+             (:prefix-command 'leader-projects-sessions-map
+                               :keymaps 'leader-projects-map :prefix "s"
+                               :wk-full-keys nil
+                               "" '(:ignore t :which-key "sessions")
+                               "s" 'desktop-save
+                               "r" 'desktop-read)
+             (leader-prefix-def :prefix-command 'leader-quit-map :prefix "q"
+               "" '(:ignore t :which-key "quit")
+               "q" 'save-buffers-kill-emacs
+               "Q" 'kill-emacs
+               "y" 'yank-buffer-delete-frame)
+             (leader-prefix-def :prefix-command 'leader-search-map :prefix "s"
+               "" '(:ignore t :which-key "search")
+               "o" 'occur
+               "P" 'check-parens)
+             (leader-prefix-def :prefix-command 'leader-toggles-map :prefix "t"
+               "" '(:ignore t :which-key "toggles")
+               "D" 'toggle-debug-on-error
+               "d" 'toggle-selective-display
+               "F" 'auto-fill-mode
+               "L" 'visual-line-mode
+               "l" 'toggle-truncate-lines
+               "P" 'prettify-symbols-mode
+               "W" 'toggle-whitespace-cleanup)
+             (:prefix-command 'leader-toggles-colours-map
+                               :keymaps 'leader-toggles-map :prefix "c"
+                               :wk-full-keys nil
+                               "" '(:ignore t :which-key "colours"))
+             (leader-prefix-def :prefix-command 'leader-themes-map :prefix "T"
+               "" '(:ignore t :which-key "themes")
+               "T" 'hydra-transparency/body)
+             (leader-prefix-def :prefix-command 'leader-windows-map :prefix "w"
+               "" '(:ignore t :which-key "windows")
+               "<tab>" 'alternate-window
+               "." 'hydra-window/body
+               "1" 'tiny-window
+               "0" 'small-window
+               "d" 'delete-window-or-frame
+               "T" 'undedicate-window)
+             (leader-prefix-def :prefix-command 'leader-zoom-map :prefix "z"
+               "" '(:ignore t :which-key "zoom"))
+             :init
+             (set-keymap-parent leader-help-describe-map help-map)
+             (set-keymap-parent leader-projects-map projectile-command-map)
+             (set-keymap-parent leader-windows-map evil-window-map)
+             (pretty-hydra-define hydra-transparency
+               (:title "Set Transparency" :quit-key "q")
+               ("Active frames"
+                (("k" increase-active-transparency "increase")
+                 ("j" decrease-active-transparency "decrease"))
+                "Inactive frames"
+                (("l" increase-inactive-transparency "increase")
+                 ("h" decrease-inactive-transparency "decrease"))
+                "Toggle"
+                (("T" toggle-transparency))))
+             (pretty-hydra-define hydra-window (:title "Window Manipulation" :quit-key "q")
+               ("Select"
+                (("h" evil-window-left "←")
+                 ("j" evil-window-down "↓")
+                 ("k" evil-window-up "↑")
+                 ("l" evil-window-right "→"))
+                "Move"
+                (("H" evil-window-move-far-left "←")
+                 ("J" evil-window-move-very-bottom "↓")
+                 ("K" evil-window-move-very-top "↑")
+                 ("L" evil-window-move-far-right "→")
+                 ("r" evil-window-rotate-downwards "forward")
+                 ("R" evil-window-rotate-upwards "backward"))
+                "Split"
+                (("S" split-window-below "horizontal")
+                 ("s" evil-window-split "horizontal & focus")
+                 ("V" split-window-right "vertical")
+                 ("v" evil-window-vsplit "vertical & focus"))
+                "Resize"
+                (("+" evil-window-increase-height "+height")
+                 ("-" evil-window-decrease-height "-height")
+                 ("_" evil-window-set-height "max height")
+                 (">" evil-window-increase-width "+width")
+                 ("<" evil-window-decrease-width "-width")
+                 ("|" evil-window-set-width "max width")
+                 ("=" balance-windows "balance"))
+                "History"
+                (("u" winner-undo "undo")
+                 ("U" winner-redo "redo"))))
+             :ghook
+             ;; Automatically hard-wrap text.
+             ('(text-mode-hook prog-mode-hook) 'auto-fill-mode)
+             :gfhook
+             ('find-file-not-found-functions
+               (lambda ()
+                 "Create non-existent parent directories and return nil."
+                 (let ((parent-dir (file-name-directory buffer-file-name)))
+                   (when (not (file-exists-p parent-dir))
+                     (make-directory parent-dir t)))
+                 nil))
+             :custom
+             (scroll-conservatively 101 "Don't disruptively recentre point.")
+             (scroll-margin 5 "Keep cursor away from very top or bottom.")
+             (mouse-wheel-progressive-speed nil "Don't accelerate scrolling.")
+             (mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control)))
+                                         "Scroll one line at a time.")
+             (prettify-symbols-unprettify-at-point t "Show original symbol at point.")
+             (indicate-empty-lines t
+                                   "Differentiate EOF from empty lines.")
+             (fill-column 80 "Wrap at 80th character.")
+             (indent-tabs-mode nil "Never use tabs for indentation.")
+             (read-quoted-char-radix 16
+                                     "Allow inserting characters by hex value.")
+             (frame-resize-pixelwise t "Allow proper frame maximisation.")
+             (initial-major-mode 'text-mode "Start scratch buffer in text mode.")
+             (require-final-newline t "Ensure files terminate properly.")
+             (help-window-select t "Focus help window on summon.")
+             (delete-by-moving-to-trash t "Delete files safely by trashing.")
+             (sentence-end-double-space nil "Don't use archaic double spaces.")
+             (window-combination-resize t "Always succeed splitting.")
+             (initial-scratch-message nil "Start with scratch buffer empty.")
+             (open-paren-in-column-0-is-defun-start nil "Don't assume any open bracket on column 0 is a function definition.")
+             (backup-directory-alist (list (cons "." (concat user-emacs-directory
                                                              "backups/")))
-              delete-old-versions t
-              version-control t
-              comment-auto-fill-only-comments t
-              use-dialog-box nil
-              ring-bell-function 'ignore
-              special-display-buffer-names '("*Help*")
-              read-process-output-max (* 1024 1024)
-              initial-buffer-choice (lambda ()
+                                     "Save backups in a central directory.")
+             (delete-old-versions t "Automatically delete old backups.")
+             (version-control t "Number backup files.")
+             (comment-auto-fill-only-comments t "When in comments, wrap only comments.")
+             (ring-bell-function 'ignore "Don't sound the bell.")
+             (special-display-buffer-names '("*Help*")
+                                            "Show Help in dedicated buffer.")
+             (initial-buffer-choice (lambda ()
                                       "Get current buffer."
                                       (window-buffer (selected-window)))
-              large-file-warning-threshold (* 1000 1000)
-              confirm-kill-processes nil
-              frame-title-format "%* %b"
-              mode-line-format nil
-              bidi-paragraph-direction 'left-to-right
-              bidi-inhibit-bpa t)
+                                    "Open current buffer in new frames.")
+             (large-file-warning-threshold (* 1000 1000) "Warn of 1MB files.")
+             (confirm-kill-processes nil "Silently kill processes.")
+             (frame-title-format "%* %b"
+                                 "Show buffer name & status in frame title.")
+             (mode-line-format nil "Don't show mode line.")
+             (bidi-paragraph-direction 'left-to-right
+                                        "Avoid text direction detection.")
+             (bidi-inhibit-bpa t "Don't bother rendering right-to-left text."))
