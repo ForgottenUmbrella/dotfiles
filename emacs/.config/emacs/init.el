@@ -415,9 +415,6 @@ to `evil-lookup'. Based on Spacemacs."
                       "C-_" 'my/append-to-register
                       "Q" (kbd "@q")
                       "K" 'evil-smart-doc-lookup
-                      ;; XXX: Because evil-respect-visual-line-mode is ignored.
-                      "j" 'evil-next-visual-line
-                      "k" 'evil-previous-visual-line
                       "M--" 'evil-window-decrease-height
                       "M-+" 'evil-window-increase-height
                       "M-<" 'evil-window-decrease-width
