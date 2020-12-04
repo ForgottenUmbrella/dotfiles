@@ -275,7 +275,7 @@ current frame. From Spacemacs."
   (delete-frame))
 (defun warn-missing (package purpose predicate)
   "Warn if `package' is missing according to `predicate' for given `purpose'."
-  (unless (predicate)
+  (unless (funcall predicate)
     (warn "%s is not installed; install for %s" package purpose)))
 (defun warn-missing-executable (package command purpose)
   "Warn if `command' is not available for the given `purpose'."
