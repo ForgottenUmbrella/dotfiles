@@ -328,6 +328,7 @@ current frame. From Spacemacs."
   (package-refresh-contents)
   (advice-remove 'package-install 'before-install-refresh-contents))
 (advice-add 'package-install :before 'before-install-refresh-contents)
+
 ;; Provide `auto-package-update-now' to update packages.
 (use-package auto-package-update :ensure t
              :custom
@@ -382,7 +383,7 @@ current frame. From Spacemacs."
              (evil-symbol-word-search t
                                       "Operate * and # on words instead of symbols.")
              (evil-search-module 'evil-search
-                                 "Use evil's search module instead of Emacs's.")
+                                  "Use evil's search module instead of Emacs's.")
 	     (evil-want-keybinding nil
                                    "Required to add evil-collection keybindings.")
              ;; XXX: Known bug currently awaiting resolution: emacs-evil/evil#1382
@@ -408,31 +409,27 @@ to `evil-lookup'. Based on Spacemacs."
              ("C-l" 'evil-ex-nohighlight)
              ;; NOTE: 'motion is for non-editing commands.
              (:states 'motion
-                      "_" (lambda ()
-                            "Use black-hole register for deletion."
-                            (interactive)
-                            (evil-use-register ?_))
-                      "C-_" 'my/append-to-register
-                      "Q" (kbd "@q")
-                      "K" 'evil-smart-doc-lookup
-                      "M--" 'evil-window-decrease-height
-                      "M-+" 'evil-window-increase-height
-                      "M-<" 'evil-window-decrease-width
-                      "M->" 'evil-window-increase-width
-                      "<tab>" 'evil-toggle-fold)
+                       "_" (lambda ()
+                             "Use black-hole register for deletion."
+                             (interactive)
+                             (evil-use-register ?_))
+                       "C-_" 'my/append-to-register
+                       "Q" (kbd "@q")
+                       "K" 'evil-smart-doc-lookup
+                       "M--" 'evil-window-decrease-height
+                       "M-+" 'evil-window-increase-height
+                       "M-<" 'evil-window-decrease-width
+                       "M->" 'evil-window-increase-width
+                       "<tab>" 'evil-toggle-fold)
              (:states 'insert
-                      ;; XXX: Annoyingly overrides other stuff.
-                      ;;          "C-i" 'evil-shift-right-line
-                      ;;          "C-S-i" 'evil-shift-left-line
-                      ;;          "<backtab>" 'evil-shift-left-line
-                      "C-z" nil)  ;; Disable accidental Emacs state entry.
+                       "C-z" nil)  ;; Disable accidental Emacs state entry.
              (:keymaps 'evil-ex-search-keymap
-                       "C-w" 'backward-kill-word)
+                        "C-w" 'backward-kill-word)
              (leader-def "<tab>" 'evil-switch-to-windows-last-buffer)
              (:keymaps 'leader-files-map
-                       "S" 'evil-write-all)
+                        "S" 'evil-write-all)
              (:keymaps 'leader-search-map
-                       "c" 'evil-ex-nohighlight))
+                        "c" 'evil-ex-nohighlight))
 ;; Escape all the things.
 (use-package evil-escape :ensure t
              :custom
@@ -758,7 +755,7 @@ to `evil-lookup'. Based on Spacemacs."
              :init
              (setq-default ewal-evil-cursors-obey-evil-p t))
 
-;;; Navigation.
+;;;; Navigation.
 ;; Show available key bindings on wait.
 (use-package which-key :ensure t :demand t
              :custom
@@ -930,7 +927,7 @@ to `evil-lookup'. Based on Spacemacs."
                       "M-k" 'spatial-navigate-backward-vertical-box
                       "M-l" 'spatial-navigate-forward-horizontal-box))
 
-;;; Completion.
+;;;; Completion.
 ;; Completion framework.
 (use-package ivy :ensure t :demand t
              :custom
@@ -1073,7 +1070,7 @@ to `evil-lookup'. Based on Spacemacs."
              :ghook
              'LaTeX-mode-hook)
 
-;;; Correction.
+;;;; Correction.
 ;; Highlight errors.
 (use-package flycheck :ensure t :demand t
              :custom
@@ -1205,7 +1202,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package format-all :ensure t
              :ghook 'prog-mode-hook)
 
-;;; Major modes.
+;;;; Major modes.
 ;; Org mode.
 (use-package org
   :gfhook
@@ -1563,7 +1560,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 ;; Haskell mode.
 (use-package haskell-mode :ensure t)
 
-;;;; Major mode extensions.
+;;;;; Major mode extensions.
 ;; Provide documentation lookup with K in Elisp.
 (use-package elisp-slime-nav :ensure t
              :general
@@ -1650,7 +1647,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
              ;; XXX: If slowdown occurs, try setting inhibit-compacting-font-caches
              :ghook 'org-mode-hook)
 
-;;; Applications.
+;;;; Applications.
 ;; Create and check regexes with SPC-a-r.
 (use-package re-builder
   :general
@@ -1725,7 +1722,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (:keymaps 'leader-applications-map
             "d" 'gud-gdb))
 
-;;; Other.
+;;;; Other.
 ;; Run any command on current file (e.g. compile or interpret) with SPC-c-c.
 (use-package compile
   :custom
@@ -1755,7 +1752,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
              (desktop-save-mode)
              :general
              (:keymaps 'leader-applications-map
-                       "d" 'desktop-read))
+                        "d" 'desktop-read))
 
 ;;; Define overriding key bindings.
 ;;;; Built-in modes.
