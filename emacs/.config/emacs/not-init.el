@@ -154,6 +154,10 @@
              :general
              (:keymaps 'major-js-map
                        "=" 'web-beautify-js))
+;; LSP replacement, depends on eldoc, flymake and project.el (flycheck and
+;; projectile not supported...)
+(use-package eglot :ensure t
+             :ghook ('prog-mode-hook 'eglot-ensure))
 
 ;; TODO: Determine whether the below semantic packages really are replaced by lsp.
 ;; Show current function/class's signature at the top of the frame.
@@ -179,10 +183,16 @@
   :init
   (setq-default eldoc-echo-area-use-multiline-p nil))
 
+;; TODO try this package
+;; Built-in replacement for projectile.
+(use-package project
+  :config
+  (set-keymap-parent leader-projects-map project-prefix-map))
+
 ;;; Currently unmaintained packages.
 ;; Add auto-complete support for JavaScript. (Repo was deleted.)
 (use-package company-tern :ensure t
-  :config
-  (if (executable-find "tern")
-      (add-to-list 'company-backends 'company-tern)
-    (message "tern is not installed; install for JavaScript auto-completion")))
+             :config
+             (if (executable-find "tern")
+                 (add-to-list 'company-backends 'company-tern)
+               (message "tern is not installed; install for JavaScript auto-completion")))
