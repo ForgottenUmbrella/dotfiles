@@ -6,292 +6,26 @@
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file t)
 
-;;; Define functions.
-(defun delete-window-or-frame (&optional window frame force)
-  "Delete WINDOW, or delete FRAME if there is only one window in FRAME.
-If WINDOW is nil, it defaults to the selected window.
-If FRAME is nil, it defaults to the selected frame."
-  (interactive)
-  (if (= 1 (length (window-list frame)))
-      (delete-frame frame force)
-    (delete-window window)))
-(defun enable-transparency (&optional frame)
-  "Set active/inactive transparency of FRAME to predetermined values.
-If FRAME is nil, it defaults to the selected frame. Does not work on Wayland."
-  (interactive)
-  (set-frame-parameter frame 'alpha my/transparency))
-(defun disable-transparency (&optional frame)
-  "Make FRAME opaque.
-If FRAME is nil, it defaults to the selected frame."
-  (interactive)
-  (set-frame-parameter frame 'alpha 100))
-(defun toggle-transparency (&optional frame)
-  "Toggle transparency of FRAME.
-If FRAME is nil, it defaults to the selected frame. Based on
-https://www.emacswiki.org/emacs/TransparentEmacs."
-  (interactive)
-  (let ((alpha (frame-parameter frame 'alpha)))
-    (if (or (eql alpha 100) (equal alpha '(100 . 100)))
-        (disable-transparency frame)
-      (enable-transparency frame))))
-(defun increase-transparency (fun &optional frame)
-  "Decrease FUN ('car or 'cdr) of FRAME's alpha by 5%.
-If FRAME is nil, it defaults to the selected frame."
-  (let* ((alpha (frame-parameter frame 'alpha))
-         (increased-alpha (- (if (consp alpha)
-                                 (funcall fun alpha)
-                               alpha) 5)))
-    (when (>= increased-alpha frame-alpha-lower-limit)
-      (set-frame-parameter frame 'alpha (if (eq fun 'car)
-                                            (cons increased-alpha
-                                                  (or (cdr-safe alpha) alpha))
-                                          (cons (or (car-safe alpha) alpha)
-                                                increased-alpha))))))
-(defun increase-active-transparency (&optional frame)
-  "Increase active transparency of FRAME by 5%.
-If FRAME is nil, it defaults to the selected frame."
-  (interactive)
-  (increase-transparency 'car frame))
-(defun increase-inactive-transparency (&optional frame)
-  "Increase inactive transparency of FRAME by 5%.
-If FRAME is nil, it defaults to the selected frame."
-  (interactive)
-  (increase-transparency 'cdr frame))
-(defun decrease-transparency (fun &optional frame)
-  "Decrease FUN ('car or 'cdr) of FRAME's transparency by 5%.
-If FRAME is nil, it defaults to the selected frame."
-  (let* ((alpha (frame-parameter frame 'alpha))
-         (decreased-alpha (+ (if (consp alpha)
-                                 (funcall fun alpha)
-                               alpha) 5)))
-    (when (<= decreased-alpha 100)
-      (set-frame-parameter frame 'alpha (if (eq fun 'car)
-                                            (cons decreased-alpha
-                                                  (or (cdr-safe alpha) alpha))
-                                          (cons (or (car-safe alpha) alpha)
-                                                decreased-alpha))))))
-(defun decrease-active-transparency (&optional frame)
-  "Decrease active transparency of FRAME by 5%.
-If FRAME is nil, it defaults to the selected frame."
-  (interactive)
-  (decrease-transparency 'car frame))
-(defun decrease-inactive-transparency (&optional frame)
-  "Decrease inactive transparency of FRAME by 5%.
-If FRAME is nil, it defaults to the selected frame."
-  (interactive)
-  (decrease-transparency 'cdr frame))
-(defun find-init-file ()
-  "Open the Emacs init file."
-  (interactive)
-  (find-file user-init-file))
-(defun reload-init-file ()
-  "Reload the Emacs init file."
-  (interactive)
-  (load-file user-init-file))
-(defun undedicate-window (window)
-  "Set WINDOW dedication to nil.
-If WINDOW is nil, it defaults to the selected window."
-  (interactive (list (frame-selected-window)))
-  (set-window-dedicated-p window nil))
-(defun toggle-fullscreen-window ()
-  "Toggle between deleting other windows and undoing the deletion."
-  (interactive)
-  (if (eql (length (window-list)) 1)
-      (winner-undo)
-    (delete-other-windows)))
-(defun switch-to-messages-buffer (&optional arg)
-  "Switch to the `*Messages*' buffer.
-If prefix argument ARG is given, switch to it in another, possibly new window.
-From Spacemacs."
-  (interactive "P")
-  (with-current-buffer (messages-buffer)
-    (goto-char (point-max))
-    (if arg
-        (switch-to-buffer-other-window (current-buffer))
-      (switch-to-buffer (current-buffer)))))
-(defun switch-to-scratch-buffer (&optional arg)
-  "Switch to the `*scratch*' buffer, creating it first if needed.
-If prefix argument ARG is given, switch to it in another, possibly new window.
-Based on Spacemacs."
-  (interactive "P")
-  (if arg
-      (switch-to-buffer-other-window (get-buffer-create "*scratch*"))
-    (switch-to-buffer (get-buffer-create "*scratch*"))))
-(defun switch-to-help-buffer (&optional arg)
-  "Switch to the `*Help*' buffer.
-If prefix argument ARG is given, switch to it in another, possibly new window."
-  (interactive "P")
-  (funcall (if arg
-               'switch-to-buffer-other-window
-             'switch-to-buffer) (help-buffer)))
-(defun switch-to-warnings-buffer (&optional arg)
-  "Switch to the `*Warnings*' buffer.
-If prefix argument ARG is given, switch to it in another, possibly new window."
-  (interactive "P")
-  (funcall (if arg
-               'switch-to-buffer-other-window
-             'switch-to-buffer) (get-buffer "*Warnings*")))
-(defun copy-whole-buffer-to-clipboard ()
-  "Copy entire buffer to clipboard. From Spacemacs."
-  (interactive)
-  (clipboard-kill-ring-save (point-min) (point-max)))
-(defun dos2unix ()
-  "Convert the current buffer to UNIX file format. From Spacemacs."
-  (interactive)
-  (set-buffer-file-coding-system 'undecided-unix nil))
-(defun unix2dos ()
-  "Convert the current buffer to DOS file format. From Spacemacs."
-  (interactive)
-  (set-buffer-file-coding-system 'undecided-dos nil))
-(defun open-file-or-directory-in-external-app (arg)
-  "Open current file in external application.
-If the universal prefix argument is used then open the folder containing the
-current file by the default explorer. Based on Spacemacs."
-  (interactive "P")
-  (let ((file-path (cond (arg (expand-file-name default-directory))
-                         ((derived-mode-p 'dired-mode) (dired-get-file-for-visit))
-                         (t buffer-file-name))))
-    (if file-path
-        (start-process "" nil "xdg-open" file-path)
-      (message "No file associated with this buffer."))))
-(defun rename-current-buffer-file ()
-  "Rename current buffer and associated file (if it exists).
-Based on Spacemacs."
-  (interactive)
-  (let* ((name (buffer-name))
-         (filename (buffer-file-name))
-         (dir (file-name-directory filename))
-         (new-name (read-file-name "New name: " dir)))
-    (cond ((get-buffer new-name)
-           (error "A buffer named '%s' already exists!" new-name))
-          ((not filename)  ; Non-file buffer
-           (rename-buffer new-name))
-          ((not (file-exists-p filename))  ; New (non-existent) file
-           (set-visited-file-name new-name))
-          (t  ; Existing file
-           (let ((dir (file-name-directory new-name)))
-             (when (and (not (file-exists-p dir))
-                        (yes-or-no-p (format "Create directory '%s'?" dir)))
-               (make-directory dir t)))
-           (rename-file filename new-name 1)
-           (rename-buffer new-name)
-           (set-visited-file-name new-name)
-           (set-buffer-modified-p nil)
-           (when (fboundp 'recentf-add-file)
-             (recentf-add-file new-name)
-             (recentf-remove-if-non-kept filename))
-           (message "File '%s' successfully renamed to '%s'"
-                    name (file-name-nondirectory new-name))))))
-(defun toggle-whitespace-cleanup ()
-  "Toggle deleting trailing whitespace on save."
-  (interactive)
-  (funcall (if (memq 'delete-trailing-whitespace before-save-hook)
-               'remove-hook
-             'add-hook)
-           'before-save-hook 'delete-trailing-whitespace))
-(defun set-selective-display-at-point ()
-  "Fold anything indented further than point's column."
-  (interactive)
-  (set-selective-display (1+ (current-column))))
-(defun toggle-selective-display ()
-  "Toggle selective display at point."
-  (interactive)
-  (if selective-display
-      (set-selective-display nil)
-    (set-selective-display-at-point)))
-(defun alternate-window ()
-  "Switch back and forth between current and last window in the
-current frame. From Spacemacs."
-  (interactive)
-  (let (;; switch to first window previously shown in this frame
-        (prev-window (get-mru-window nil t t)))
-    ;; Check window was not found successfully
-    (unless prev-window (user-error "Last window not found."))
-    (select-window prev-window)))
-(defun tiny-window ()
-  "Resize current window to be as small as possible."
-  (interactive)
-  (evil-resize-window 1))
-(defun small-window ()
-  "Resize current window to be fairly small."
-  (interactive)
-  (evil-resize-window 10))
-(defun delete-current-buffer-file ()
-  "Remove file connected to current buffer and kill buffer. From Spacemacs."
-  (interactive)
-  (let ((filename (buffer-file-name))
-        (buffer (current-buffer))
-        (name (buffer-name)))
-    (if (not (and filename (file-exists-p filename)))
-        (ido-kill-buffer)
-      (if (yes-or-no-p
-           (format "Are you sure you want to delete this file: '%s'?" name))
-          (progn
-            (delete-file filename t)
-            (kill-buffer buffer)
-            (message "File deleted: '%s'" filename))
-        (message "Canceled: File deletion")))))
-(defun sudo-edit (&optional arg)
-  "Edit a file as sudo. From Spacemacs."
-  (interactive "P")
-  (let ((fname (if (or arg (not buffer-file-name))
-                   (read-file-name "File: ")
-                 buffer-file-name)))
-    (find-file
-     (cond ((string-match-p "^/ssh:" fname)
-            (with-temp-buffer
-              (insert fname)
-              (search-backward ":")
-              (let ((last-match-end nil)
-                    (last-ssh-hostname nil))
-                (while (string-match "@\\\([^:|]+\\\)" fname last-match-end)
-                  (setq last-ssh-hostname (or (match-string 1 fname)
-                                              last-ssh-hostname))
-                  (setq last-match-end (match-end 0)))
-                (insert (format "|sudo:%s" (or last-ssh-hostname "localhost"))))
-              (buffer-string)))
-           (t (concat "/sudo:root@localhost:" fname))))))
-(defun fix-key (key)
-  "Bind KEY to `self-insert-command'."
-  (general-define-key key 'self-insert-command))
-(defun kill-emacs-no-prompt ()
-  "Kill Emacs and automatically reply 'no' to any prompts."
-  (dolist (prompt-p '(yes-or-no-p y-or-n-p))
-    (defalias prompt-p (lambda (prompt) nil)))
-  (kill-emacs))
-(defun unfill-region (beg end)
-  "Unfill the region, joining text paragraphs into a single
-    logical line.  This is useful, e.g., for use with
-    `visual-line-mode'.
-
-   From https://www.emacswiki.org/emacs/UnfillRegion"
-  (interactive "*r")
-  (let ((fill-column (point-max)))
-    (fill-region beg end)))
-(defun yank-buffer-delete-frame ()
-  (interactive)
-  (clipboard-kill-region (goto-char (point-min)) (goto-char (point-max)))
-  (delete-file (buffer-file-name))
-  (delete-frame))
+;;; Define helper functions.
 (defun warn-missing (package purpose predicate)
-  "Warn if `package' is missing according to `predicate' for given `purpose'."
+  "Warn if PACKAGE is missing according to PREDICATE for given PURPOSE."
   (unless (funcall predicate)
     (warn "%s is not installed; install for %s" package purpose)))
 (defun warn-missing-executable (package command purpose)
-  "Warn if `command' is not available for the given `purpose'."
+  "Warn if COMMAND from PACKAGE is not available for the given PURPOSE."
   (warn-missing package purpose (lambda ()
-                                  "Check if `command' present."
+                                  "Check if COMMAND is present."
                                   (executable-find command))))
 (defun warn-missing-hook-executable (package command purpose hook)
-  "Warn on `hook' if `command' is not available for the given `purpose'."
+  "Warn on HOOK if COMMAND from PACKAGE is not available for the given PURPOSE."
   (add-hook hook
             (lambda ()
               "Warn missing executable."
               (warn-missing-executable package command purpose))))
 (defun warn-missing-file (package file purpose)
-  "Warn if system `package' providing `file' is not available for `purpose'."
+  "Warn if system PACKAGE providing FILE is not available for PURPOSE."
   (warn-missing package purpose (lambda ()
-                                  "Check if `file' present."
+                                  "Check if FILE is present."
                                   (file-exists-p file))))
 
 ;;; Set up packages.
@@ -302,8 +36,8 @@ current frame. From Spacemacs."
 (setq package-quickstart t)
 
 ;;;; Bootstrap package management with straight.
-;; Don't bother checking. Must be before the bootstrap to have an effect.
-(setq straight-check-for-modifications nil)
+;; Must be before the bootstrap to have an effect.
+(defvar straight-check-for-modifications nil "Avoid checking for local changes.")
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el"
@@ -364,6 +98,470 @@ current frame. From Spacemacs."
 ;; Make hydra bindings pretty.
 (use-package pretty-hydra :ensure t)
 
+;;;; Set up built-ins.
+(use-package emacs :demand t
+             :init
+             (defun delete-window-or-frame (&optional window frame force)
+               "Delete WINDOW, or delete FRAME if there is only one window in FRAME.
+If WINDOW is nil, it defaults to the selected window.
+If FRAME is nil, it defaults to the selected frame."
+               (interactive)
+               (if (= 1 (length (window-list frame)))
+                   (delete-frame frame force)
+                 (delete-window window)))
+             (defvar my/transparency)  ;; Defined in early-init.el
+             (defun enable-transparency (&optional frame)
+               "Set active/inactive transparency of FRAME to predetermined values.
+If FRAME is nil, it defaults to the selected frame. Does not work on Wayland."
+               (interactive)
+               (set-frame-parameter frame 'alpha my/transparency))
+             (defun disable-transparency (&optional frame)
+               "Make FRAME opaque.
+If FRAME is nil, it defaults to the selected frame."
+               (interactive)
+               (set-frame-parameter frame 'alpha 100))
+             (defun toggle-transparency (&optional frame)
+               "Toggle transparency of FRAME.
+If FRAME is nil, it defaults to the selected frame. Based on
+https://www.emacswiki.org/emacs/TransparentEmacs."
+               (interactive)
+               (let ((alpha (frame-parameter frame 'alpha)))
+                 (if (or (eql alpha 100) (equal alpha '(100 . 100)))
+                     (disable-transparency frame)
+                   (enable-transparency frame))))
+             (defun increase-transparency (fun &optional frame)
+               "Decrease FUN ('car or 'cdr) of FRAME's alpha by 5%.
+If FRAME is nil, it defaults to the selected frame."
+               (let* ((alpha (frame-parameter frame 'alpha))
+                      (increased-alpha (- (if (consp alpha)
+                                              (funcall fun alpha)
+                                            alpha) 5)))
+                 (when (>= increased-alpha frame-alpha-lower-limit)
+                   (set-frame-parameter frame 'alpha (if (eq fun 'car)
+                                                         (cons increased-alpha
+                                                               (or (cdr-safe alpha) alpha))
+                                                       (cons (or (car-safe alpha) alpha)
+                                                             increased-alpha))))))
+             (defun increase-active-transparency (&optional frame)
+               "Increase active transparency of FRAME by 5%.
+If FRAME is nil, it defaults to the selected frame."
+               (interactive)
+               (increase-transparency 'car frame))
+             (defun increase-inactive-transparency (&optional frame)
+               "Increase inactive transparency of FRAME by 5%.
+If FRAME is nil, it defaults to the selected frame."
+               (interactive)
+               (increase-transparency 'cdr frame))
+             (defun decrease-transparency (fun &optional frame)
+               "Decrease FUN ('car or 'cdr) of FRAME's transparency by 5%.
+If FRAME is nil, it defaults to the selected frame."
+               (let* ((alpha (frame-parameter frame 'alpha))
+                      (decreased-alpha (+ (if (consp alpha)
+                                              (funcall fun alpha)
+                                            alpha) 5)))
+                 (when (<= decreased-alpha 100)
+                   (set-frame-parameter frame 'alpha (if (eq fun 'car)
+                                                         (cons decreased-alpha
+                                                               (or (cdr-safe alpha) alpha))
+                                                       (cons (or (car-safe alpha) alpha)
+                                                             decreased-alpha))))))
+             (defun decrease-active-transparency (&optional frame)
+               "Decrease active transparency of FRAME by 5%.
+If FRAME is nil, it defaults to the selected frame."
+               (interactive)
+               (decrease-transparency 'car frame))
+             (defun decrease-inactive-transparency (&optional frame)
+               "Decrease inactive transparency of FRAME by 5%.
+If FRAME is nil, it defaults to the selected frame."
+               (interactive)
+               (decrease-transparency 'cdr frame))
+             (defun find-init-file ()
+               "Open the Emacs init file."
+               (interactive)
+               (find-file user-init-file))
+             (defun reload-init-file ()
+               "Reload the Emacs init file."
+               (interactive)
+               (load-file user-init-file))
+             (defun undedicate-window (window)
+               "Set WINDOW dedication to nil.
+If WINDOW is nil, it defaults to the selected window."
+               (interactive (list (frame-selected-window)))
+               (set-window-dedicated-p window nil))
+             (defun switch-to-messages-buffer (&optional arg)
+               "Switch to the `*Messages*' buffer.
+If prefix argument ARG is given, switch to it in another, possibly new window.
+From Spacemacs."
+               (interactive "P")
+               (with-current-buffer (messages-buffer)
+                 (goto-char (point-max))
+                 (if arg
+                     (switch-to-buffer-other-window (current-buffer))
+                   (switch-to-buffer (current-buffer)))))
+             (defun switch-to-scratch-buffer (&optional arg)
+               "Switch to the `*scratch*' buffer, creating it first if needed.
+If prefix argument ARG is given, switch to it in another, possibly new window.
+Based on Spacemacs."
+               (interactive "P")
+               (if arg
+                   (switch-to-buffer-other-window (get-buffer-create "*scratch*"))
+                 (switch-to-buffer (get-buffer-create "*scratch*"))))
+             (defun switch-to-help-buffer (&optional arg)
+               "Switch to the `*Help*' buffer.
+If prefix argument ARG is given, switch to it in another, possibly new window."
+               (interactive "P")
+               (funcall (if arg
+                            'switch-to-buffer-other-window
+                          'switch-to-buffer) (help-buffer)))
+             (defun switch-to-warnings-buffer (&optional arg)
+               "Switch to the `*Warnings*' buffer.
+If prefix argument ARG is given, switch to it in another, possibly new window."
+               (interactive "P")
+               (funcall (if arg
+                            'switch-to-buffer-other-window
+                          'switch-to-buffer) (get-buffer "*Warnings*")))
+             (defun copy-whole-buffer-to-clipboard ()
+               "Copy entire buffer to clipboard. From Spacemacs."
+               (interactive)
+               (clipboard-kill-ring-save (point-min) (point-max)))
+             (defun dos2unix ()
+               "Convert the current buffer to UNIX file format. From Spacemacs."
+               (interactive)
+               (set-buffer-file-coding-system 'undecided-unix nil))
+             (defun unix2dos ()
+               "Convert the current buffer to DOS file format. From Spacemacs."
+               (interactive)
+               (set-buffer-file-coding-system 'undecided-dos nil))
+             (defun open-file-or-directory-in-external-app (arg)
+               "Open current file in external application.
+If the universal prefix argument is used then open the folder containing the
+current file by the default explorer. Based on Spacemacs."
+               (interactive "P")
+               (let ((file-path (cond (arg (expand-file-name default-directory))
+                                      ((derived-mode-p 'dired-mode) (dired-get-file-for-visit))
+                                      (t buffer-file-name))))
+                 (if file-path
+                     (start-process "" nil "xdg-open" file-path)
+                   (message "No file associated with this buffer."))))
+             (defun rename-current-buffer-file ()
+               "Rename current buffer and associated file (if it exists).
+Based on Spacemacs."
+               (interactive)
+               (let* ((name (buffer-name))
+                      (filename (buffer-file-name))
+                      (dir (file-name-directory filename))
+                      (new-name (read-file-name "New name: " dir)))
+                 (cond ((get-buffer new-name)
+                        (error "A buffer named '%s' already exists!" new-name))
+                       ((not filename)  ; Non-file buffer
+                        (rename-buffer new-name))
+                       ((not (file-exists-p filename))  ; New (non-existent) file
+                        (set-visited-file-name new-name))
+                       (t  ; Existing file
+                        (let ((dir (file-name-directory new-name)))
+                          (when (and (not (file-exists-p dir))
+                                     (yes-or-no-p (format "Create directory '%s'?" dir)))
+                            (make-directory dir t)))
+                        (rename-file filename new-name 1)
+                        (rename-buffer new-name)
+                        (set-visited-file-name new-name)
+                        (set-buffer-modified-p nil)
+                        (when (fboundp 'recentf-add-file)
+                          (recentf-add-file new-name)
+                          (recentf-remove-if-non-kept filename))
+                        (message "File '%s' successfully renamed to '%s'"
+                                 name (file-name-nondirectory new-name))))))
+             (defun toggle-whitespace-cleanup ()
+               "Toggle deleting trailing whitespace on save."
+               (interactive)
+               (funcall (if (memq 'delete-trailing-whitespace before-save-hook)
+                            'remove-hook
+                          'add-hook)
+                        'before-save-hook 'delete-trailing-whitespace))
+             (defun set-selective-display-at-point ()
+               "Fold anything indented further than point's column."
+               (interactive)
+               (set-selective-display (1+ (current-column))))
+             (defun toggle-selective-display ()
+               "Toggle selective display at point."
+               (interactive)
+               (if selective-display
+                   (set-selective-display nil)
+                 (set-selective-display-at-point)))
+             (defun alternate-window ()
+               "Switch back and forth between current and last window in the
+current frame. From Spacemacs."
+               (interactive)
+               (let (;; switch to first window previously shown in this frame
+                     (prev-window (get-mru-window nil t t)))
+                 ;; Check window was not found successfully
+                 (unless prev-window (user-error "Last window not found."))
+                 (select-window prev-window)))
+             (defun delete-current-buffer-file ()
+               "Remove file connected to current buffer and kill buffer. From Spacemacs."
+               (interactive)
+               (let ((filename (buffer-file-name))
+                     (buffer (current-buffer))
+                     (name (buffer-name)))
+                 (if (not (and filename (file-exists-p filename)))
+                     (ido-kill-buffer)
+                   (if (yes-or-no-p
+                        (format "Are you sure you want to delete this file: '%s'?" name))
+                       (progn
+                         (delete-file filename t)
+                         (kill-buffer buffer)
+                         (message "File deleted: '%s'" filename))
+                     (message "Canceled: File deletion")))))
+             (defun sudo-edit (&optional arg)
+               "Edit a file as sudo. From Spacemacs."
+               (interactive "P")
+               (let ((fname (if (or arg (not buffer-file-name))
+                                (read-file-name "File: ")
+                              buffer-file-name)))
+                 (find-file
+                  (cond ((string-match-p "^/ssh:" fname)
+                         (with-temp-buffer
+                           (insert fname)
+                           (search-backward ":")
+                           (let ((last-match-end nil)
+                                 (last-ssh-hostname nil))
+                             (while (string-match "@\\\([^:|]+\\\)" fname last-match-end)
+                               (setq last-ssh-hostname (or (match-string 1 fname)
+                                                           last-ssh-hostname))
+                               (setq last-match-end (match-end 0)))
+                             (insert (format "|sudo:%s" (or last-ssh-hostname "localhost"))))
+                           (buffer-string)))
+                        (t (concat "/sudo:root@localhost:" fname))))))
+             (defun fix-key (key)
+               "Bind KEY to `self-insert-command'."
+               (general-define-key key 'self-insert-command))
+             (defun unfill-region (beg end)
+               "Unfill the region, joining text paragraphs into a single
+    logical line.  This is useful, e.g., for use with
+    `visual-line-mode'.
+
+   From https://www.emacswiki.org/emacs/UnfillRegion"
+               (interactive "*r")
+               (let ((fill-column (point-max)))
+                 (fill-region beg end)))
+             (defun yank-buffer-delete-frame ()
+               (interactive)
+               (clipboard-kill-region (goto-char (point-min)) (goto-char (point-max)))
+               (delete-file (buffer-file-name))
+               (delete-frame))
+             (pretty-hydra-define hydra-transparency
+               (:title "Set Transparency" :quit-key "q")
+               ("Active frames"
+                (("k" increase-active-transparency "increase")
+                 ("j" decrease-active-transparency "decrease"))
+                "Inactive frames"
+                (("l" increase-inactive-transparency "increase")
+                 ("h" decrease-inactive-transparency "decrease"))
+                "Toggle"
+                (("T" toggle-transparency))))
+             :general
+             ;; Insert state.
+             (:states 'insert
+                      "C-q" 'quoted-insert
+                      "C-S-q" 'insert-char)
+             ;; Emacs Lisp mode.
+             (major-prefix-def :prefix-command 'major-emacs-lisp-map
+               :keymaps 'emacs-lisp-mode-map
+               "c" 'emacs-lisp-byte-compile)
+             (:prefix-command 'major-emacs-lisp-eval-map
+                              :keymaps 'major-emacs-lisp-map :prefix "e"
+                              :wk-full-keys nil
+                              "" '(:ignore t :which-key "eval")
+                              "b" 'eval-buffer
+                              "e" 'eval-last-sexp
+                              "r" 'eval-region
+                              "f" 'eval-defun)
+             (:prefix-command 'major-emacs-lisp-help-map
+                              :keymaps 'major-emacs-lisp-map :prefix "h"
+                              :wk-full-keys nil
+                              "" '(:ignore t :which-key "help"))
+             ;; Help mode.
+             (:keymaps 'help-mode-map :states 'normal
+                       "[" 'help-go-back
+                       "]" 'help-go-forward)
+             ;; Leader key.
+             (leader-def "SPC" 'execute-extended-command
+               "?" 'describe-bindings
+               "<F1>" 'apropos-command
+               "u" 'universal-argument)
+             (leader-prefix-def :prefix-command 'leader-applications-map
+               :prefix "a"
+               "" '(:ignore t :which-key "applications"))
+             (:prefix-command 'leader-applications-shell-map
+                              :keymaps 'leader-applications-map :prefix "s"
+                              :wk-full-keys nil
+                              "" '(:ignore t :which-key "shell"))
+             (leader-prefix-def :prefix-command 'leader-buffers-map :prefix "b"
+               "" '(:ignore t :which-key "buffers")
+               "C" 'clone-indirect-buffer
+               "c" 'clone-buffer
+               "d" 'kill-buffer
+               "h" 'switch-to-help-buffer
+               "m" 'switch-to-messages-buffer
+               "n" 'next-buffer
+               "p" 'previous-buffer
+               "r" 'read-only-mode
+               "s" 'switch-to-scratch-buffer
+               "w" 'switch-to-warnings-buffer
+               "x" 'kill-buffer-and-window
+               "y" 'copy-whole-buffer-to-clipboard)
+             (leader-prefix-def :prefix-command 'leader-compile-map :prefix "c"
+               "" '(:ignore t :which-key "compile"))
+             (leader-prefix-def :prefix-command 'leader-errors-map :prefix "e"
+               "" '(:ignore t :which-key "errors")
+               "n" 'next-error
+               "p" 'previous-error)
+             (leader-prefix-def :prefix-command 'leader-files-map :prefix "f"
+               "" '(:ignore t :which-key "files")
+               "c" 'write-file
+               "D" 'delete-current-buffer-file
+               "f" 'find-file
+               "o" 'open-file-or-directory-in-external-app
+               "R" 'rename-current-buffer-file
+               "s" 'save-buffer)
+             (:prefix-command 'leader-files-convert-map
+                              :keymaps 'leader-files-map :prefix "C"
+                              :wk-full-keys nil
+                              "" '(:ignore t :which-key "convert")
+                              "d" 'unix2dos
+                              "u" 'dos2unix
+                              "s" 'untabify)
+             (:prefix-command 'leader-files-emacs-map
+                              :keymaps 'leader-files-map :prefix "e"
+                              :wk-full-keys nil
+                              "" '(:ignore t :which-key "emacs")
+                              "d" 'find-init-file
+                              "r" 'reload-init-file)
+             (leader-prefix-def :prefix-command 'leader-frames-map :prefix "F"
+               "" '(:ignore t :which-key "frames")
+               "d" 'delete-frame
+               "o" 'other-frame
+               "n" 'make-frame)
+             (:prefix-command 'leader-frame-tabs-map
+                              :keymaps 'leader-frames-map :prefix "t"
+                              :wk-full-keys nil
+                              "" '(:ignore t :which-key "tabs"))
+             (leader-prefix-def :prefix-command 'leader-git-map :prefix "g"
+               "" '(:ignore t :which-key "git"))
+             (leader-prefix-def :prefix-command 'leader-help-map :prefix "h"
+               "" '(:ignore t :which-key "help"))
+             (:prefix-command 'leader-help-describe-map
+                              :keymaps 'leader-help-map :prefix "d"
+                              :wk-full-keys nil
+                              "" '(:ignore t :which-key "describe")
+                              "B" 'general-describe-keybindings
+                              "F" 'describe-font
+                              "M" 'describe-minor-mode
+                              "T" 'describe-theme
+                              "C-F" 'describe-face)
+             (leader-prefix-def :prefix-command 'leader-jumps-map :prefix "j"
+               "" '(:ignore t :which-key "jumps"))
+             (leader-prefix-def :prefix-command 'leader-narrow-map :prefix "n"
+               "" '(:ignore t :which-key "narrow")
+               "r" 'narrow-to-region
+               "w" 'widen)
+             (leader-prefix-def :prefix-command 'leader-projects-map :prefix "p"
+               "" '(:ignore t :which-key "projects"))
+             (:prefix-command 'leader-projects-sessions-map
+                              :keymaps 'leader-projects-map :prefix "s"
+                              :wk-full-keys nil
+                              "" '(:ignore t :which-key "sessions")
+                              "s" 'desktop-save
+                              "r" 'desktop-read)
+             (leader-prefix-def :prefix-command 'leader-quit-map :prefix "q"
+               "" '(:ignore t :which-key "quit")
+               "q" 'save-buffers-kill-emacs
+               "Q" 'kill-emacs
+               "y" 'yank-buffer-delete-frame)
+             (leader-prefix-def :prefix-command 'leader-search-map :prefix "s"
+               "" '(:ignore t :which-key "search")
+               "o" 'occur
+               "P" 'check-parens)
+             (leader-prefix-def :prefix-command 'leader-toggles-map :prefix "t"
+               "" '(:ignore t :which-key "toggles")
+               "D" 'toggle-debug-on-error
+               "d" 'toggle-selective-display
+               "F" 'auto-fill-mode
+               "L" 'visual-line-mode
+               "l" 'toggle-truncate-lines
+               "P" 'prettify-symbols-mode
+               "W" 'toggle-whitespace-cleanup)
+             (:prefix-command 'leader-toggles-colours-map
+                              :keymaps 'leader-toggles-map :prefix "c"
+                              :wk-full-keys nil
+                              "" '(:ignore t :which-key "colours"))
+             (leader-prefix-def :prefix-command 'leader-themes-map :prefix "T"
+               "" '(:ignore t :which-key "themes")
+               "T" 'hydra-transparency/body)
+             (leader-prefix-def :prefix-command 'leader-windows-map :prefix "w"
+               "" '(:ignore t :which-key "windows")
+               "<tab>" 'alternate-window
+               "d" 'delete-window-or-frame
+               "T" 'undedicate-window)
+             (leader-prefix-def :prefix-command 'leader-zoom-map :prefix "z"
+               "" '(:ignore t :which-key "zoom"))
+             :config
+             (set-keymap-parent leader-help-describe-map help-map)
+             :ghook
+             ;; Automatically hard-wrap text.
+             ('(text-mode-hook prog-mode-hook) 'auto-fill-mode)
+             :gfhook
+             ('find-file-not-found-functions
+              (lambda ()
+                "Create non-existent parent directories and return nil."
+                (let ((parent-dir (file-name-directory buffer-file-name)))
+                  (when (not (file-exists-p parent-dir))
+                    (make-directory parent-dir t)))
+                nil))
+             :custom
+             (scroll-conservatively 101 "Don't disruptively recentre point.")
+             (scroll-margin 5 "Keep cursor away from very top or bottom.")
+             (mouse-wheel-progressive-speed nil "Don't accelerate scrolling.")
+             (mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control)))
+                                        "Scroll one line at a time.")
+             (prettify-symbols-unprettify-at-point t "Show original symbol at point.")
+             (indicate-empty-lines t
+                                   "Differentiate EOF from empty lines.")
+             (fill-column 80 "Wrap at 80th character.")
+             (indent-tabs-mode nil "Never use tabs for indentation.")
+             (read-quoted-char-radix 16
+                                     "Allow inserting characters by hex value.")
+             (frame-resize-pixelwise t "Allow proper frame maximisation.")
+             (initial-major-mode 'text-mode "Start scratch buffer in text mode.")
+             (require-final-newline t "Ensure files terminate properly.")
+             (help-window-select t "Focus help window on summon.")
+             (delete-by-moving-to-trash t "Delete files safely by trashing.")
+             (sentence-end-double-space nil "Don't use archaic double spaces.")
+             (window-combination-resize t "Always succeed splitting.")
+             (initial-scratch-message nil "Start with scratch buffer empty.")
+             (open-paren-in-column-0-is-defun-start nil "Don't assume any open bracket on column 0 is a function definition.")
+             (backup-directory-alist (list (cons "." (concat user-emacs-directory
+                                                             "backups/")))
+                                     "Save backups in a central directory.")
+             (delete-old-versions t "Automatically delete old backups.")
+             (version-control t "Number backup files.")
+             (comment-auto-fill-only-comments t "When in comments, wrap only comments.")
+             (ring-bell-function 'ignore "Don't sound the bell.")
+             (special-display-buffer-names '("*Help*")
+                                           "Show Help in dedicated buffer.")
+             (initial-buffer-choice (lambda ()
+                                      "Get current buffer."
+                                      (window-buffer (selected-window)))
+                                    "Open current buffer in new frames.")
+             (large-file-warning-threshold (* 1000 1000) "Warn of 1MB files.")
+             (confirm-kill-processes nil "Silently kill processes.")
+             (frame-title-format "%* %b"
+                                 "Show buffer name & status in frame title.")
+             (mode-line-format nil "Don't show mode line.")
+             (bidi-paragraph-direction 'left-to-right
+                                       "Avoid text direction detection.")
+             (bidi-inhibit-bpa t "Don't bother rendering right-to-left text."))
+
 ;;;; Join the dark side.
 ;; Vim keys.
 (use-package evil :ensure t :demand t :after undo-tree
@@ -383,7 +581,7 @@ current frame. From Spacemacs."
              (evil-symbol-word-search t
                                       "Operate * and # on words instead of symbols.")
              (evil-search-module 'evil-search
-                                  "Use evil's search module instead of Emacs's.")
+                                 "Use evil's search module instead of Emacs's.")
 	     (evil-want-keybinding nil
                                    "Required to add evil-collection keybindings.")
              ;; XXX: Known bug currently awaiting resolution: emacs-evil/evil#1382
@@ -391,6 +589,7 @@ current frame. From Spacemacs."
              :config
              (evil-mode)
              (global-undo-tree-mode)
+             (set-keymap-parent leader-windows-map evil-window-map)
              (defun my/append-to-register ()
                "Append to instead of replacing the unnamed (default) register.
 Actually appends to register z as a hack."
@@ -405,31 +604,69 @@ to `evil-lookup'. Based on Spacemacs."
                  (if (commandp binding)
                      (call-interactively binding)
                    (evil-lookup))))
+             (defun tiny-window ()
+               "Resize current window to be as small as possible."
+               (interactive)
+               (evil-resize-window 1))
+             (defun small-window ()
+               "Resize current window to be fairly small."
+               (interactive)
+               (evil-resize-window 10))
+             (pretty-hydra-define hydra-window (:title "Window Manipulation" :quit-key "q")
+               ("Select"
+                (("h" evil-window-left "←")
+                 ("j" evil-window-down "↓")
+                 ("k" evil-window-up "↑")
+                 ("l" evil-window-right "→"))
+                "Move"
+                (("H" evil-window-move-far-left "←")
+                 ("J" evil-window-move-very-bottom "↓")
+                 ("K" evil-window-move-very-top "↑")
+                 ("L" evil-window-move-far-right "→")
+                 ("r" evil-window-rotate-downwards "forward")
+                 ("R" evil-window-rotate-upwards "backward"))
+                "Split"
+                (("S" split-window-below "horizontal")
+                 ("s" evil-window-split "horizontal & focus")
+                 ("V" split-window-right "vertical")
+                 ("v" evil-window-vsplit "vertical & focus"))
+                "Resize"
+                (("+" evil-window-increase-height "+height")
+                 ("-" evil-window-decrease-height "-height")
+                 ("_" evil-window-set-height "max height")
+                 (">" evil-window-increase-width "+width")
+                 ("<" evil-window-decrease-width "-width")
+                 ("|" evil-window-set-width "max width")
+                 ("=" balance-windows "balance"))))
              :general
              ("C-l" 'evil-ex-nohighlight)
              ;; NOTE: 'motion is for non-editing commands.
              (:states 'motion
-                       "_" (lambda ()
-                             "Use black-hole register for deletion."
-                             (interactive)
-                             (evil-use-register ?_))
-                       "C-_" 'my/append-to-register
-                       "Q" (kbd "@q")
-                       "K" 'evil-smart-doc-lookup
-                       "M--" 'evil-window-decrease-height
-                       "M-+" 'evil-window-increase-height
-                       "M-<" 'evil-window-decrease-width
-                       "M->" 'evil-window-increase-width
-                       "<tab>" 'evil-toggle-fold)
+                      "_" (lambda ()
+                            "Use black-hole register for deletion."
+                            (interactive)
+                            (evil-use-register ?_))
+                      "C-_" 'my/append-to-register
+                      "Q" (kbd "@q")
+                      "K" 'evil-smart-doc-lookup
+                      "M--" 'evil-window-decrease-height
+                      "M-+" 'evil-window-increase-height
+                      "M-<" 'evil-window-decrease-width
+                      "M->" 'evil-window-increase-width
+                      "<tab>" 'evil-toggle-fold)
              (:states 'insert
-                       "C-z" nil)  ;; Disable accidental Emacs state entry.
+                      "C-z" nil)  ;; Disable accidental Emacs state entry.
              (:keymaps 'evil-ex-search-keymap
-                        "C-w" 'backward-kill-word)
+                       "C-w" 'backward-kill-word)
              (leader-def "<tab>" 'evil-switch-to-windows-last-buffer)
              (:keymaps 'leader-files-map
-                        "S" 'evil-write-all)
+                       "S" 'evil-write-all)
              (:keymaps 'leader-search-map
-                        "c" 'evil-ex-nohighlight))
+                       "c" 'evil-ex-nohighlight)
+             (:keymaps 'leader-windows-map
+                       "0" 'small-window
+                       "1" 'tiny-window
+                       "." 'hydra-window/body))
 ;; Escape all the things.
 (use-package evil-escape :ensure t
              :custom
@@ -777,13 +1014,23 @@ to `evil-lookup'. Based on Spacemacs."
              (:keymaps 'leader-toggles-map
                        "K" 'which-key))
 ;; Enable undoing window management with SPC-w-u.
-(use-package winner
-  :config
-  (winner-mode)
-  :general
-  (:keymaps 'leader-windows-map
-            "u" 'winner-undo
-            "U" 'winner-redo))
+(use-package winner :demand t
+             :config
+             (winner-mode)
+             (defun toggle-fullscreen-window ()
+               "Toggle between deleting other windows and undoing the deletion."
+               (interactive)
+               (if (eql (length (window-list)) 1)
+                   (winner-undo)
+                 (delete-other-windows)))
+             (pretty-hydra-define+ hydra-window nil
+               ("History"
+                (("u" winner-undo "undo")
+                 ("U" winner-redo "redo"))))
+             :general
+             (:keymaps 'leader-windows-map
+                       "u" 'winner-undo
+                       "U" 'winner-redo))
 ;; Jump to definition without building a database, with C-].
 (use-package dumb-jump :ensure t
              :custom
@@ -891,11 +1138,11 @@ to `evil-lookup'. Based on Spacemacs."
              (projectile-use-git-grep t "Only search indexed files.")
              :config
              (projectile-mode)
+             (set-keymap-parent leader-projects-map projectile-command-map)
              :general
              (:keymaps 'major-cc-goto-map
                        "a" 'projectile-find-other-file
-                       "A" 'projectile-find-other-file-other-window
-                       "f" 'ff-find-other-file))
+                       "A" 'projectile-find-other-file-other-window))
 ;; Integrate projectile with ivy.
 (use-package counsel-projectile :ensure t :demand t
              :config
@@ -1113,14 +1360,12 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
              (:keymaps 'leader-errors-map
                        "b" 'flycheck-buffer
                        "c" 'flycheck-clear
-                       "d" 'flycheck-display-error-at-point
                        "h" 'flycheck-describe-checker
                        "L" 'goto-flycheck-error-list
                        "l" 'toggle-flycheck-error-list
                        "S" 'flycheck-set-checker-executable
                        "s" 'flycheck-select-checker
                        "v" 'flycheck-verify-setup
-                       "x" 'flycheck-explain-error-at-point
                        "y" 'flycheck-copy-errors-as-kill)
              (:keymaps 'leader-toggles-map
                        "s" 'flycheck-mode))
@@ -1201,6 +1446,13 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 ;; Format all the code.
 (use-package format-all :ensure t
              :ghook 'prog-mode-hook)
+;; Show error at point.
+(use-package help-at-pt :demand t
+             :custom
+             (help-at-pt-display-when-idle t "Show error at point.")
+             :general
+             (:keymaps 'leader-errors-map
+                       "d" 'display-local-help))
 
 ;;;; Major modes.
 ;; Org mode.
@@ -1379,7 +1631,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
     "d" 'gud-gdb)
   (:prefix-command 'major-cc-goto-map :keymaps 'major-cc-map :prefix "g"
                    :wk-full-keys nil
-                   "" '(:ignore t :which-key "goto")))
+                   "" '(:ignore t :which-key "goto")
+                   "f" 'ff-find-other-file))
 ;; CMake mode.
 (use-package cmake-mode :ensure t)
 ;; Bison/yacc/lex mode.
@@ -1752,253 +2005,4 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
              (desktop-save-mode)
              :general
              (:keymaps 'leader-applications-map
-                        "d" 'desktop-read))
-
-;;; Set up built-ins.
-(use-package emacs :demand t
-             :general
-             ;; Insert state.
-             (:states 'insert
-                       "C-q" 'quoted-insert
-                       "C-S-q" 'insert-char)
-             ;; Emacs Lisp mode.
-             (major-prefix-def :prefix-command 'major-emacs-lisp-map
-               :keymaps 'emacs-lisp-mode-map
-               "c" 'emacs-lisp-byte-compile)
-             (:prefix-command 'major-emacs-lisp-eval-map
-                               :keymaps 'major-emacs-lisp-map :prefix "e"
-                               :wk-full-keys nil
-                               "" '(:ignore t :which-key "eval")
-                               "b" 'eval-buffer
-                               "e" 'eval-last-sexp
-                               "r" 'eval-region
-                               "f" 'eval-defun)
-             (:prefix-command 'major-emacs-lisp-help-map
-                               :keymaps 'major-emacs-lisp-map :prefix "h"
-                               :wk-full-keys nil
-                               "" '(:ignore t :which-key "help"))
-             ;; Help mode.
-             (:keymaps 'help-mode-map :states 'normal
-                        "[" 'help-go-back
-                        "]" 'help-go-forward)
-             ;; Leader key.
-             (leader-def "SPC" 'execute-extended-command
-               "?" 'describe-bindings
-               "<F1>" 'apropos-command
-               "u" 'universal-argument)
-             (leader-prefix-def :prefix-command 'leader-applications-map
-               :prefix "a"
-               "" '(:ignore t :which-key "applications"))
-             (:prefix-command 'leader-applications-shell-map
-                               :keymaps 'leader-applications-map :prefix "s"
-                               :wk-full-keys nil
-                               "" '(:ignore t :which-key "shell"))
-             (leader-prefix-def :prefix-command 'leader-buffers-map :prefix "b"
-               "" '(:ignore t :which-key "buffers")
-               "C" 'clone-indirect-buffer
-               "c" 'clone-buffer
-               "d" 'kill-buffer
-               "h" 'switch-to-help-buffer
-               "m" 'switch-to-messages-buffer
-               "n" 'next-buffer
-               "p" 'previous-buffer
-               "r" 'read-only-mode
-               "s" 'switch-to-scratch-buffer
-               "w" 'switch-to-warnings-buffer
-               "x" 'kill-buffer-and-window
-               "y" 'copy-whole-buffer-to-clipboard)
-             (leader-prefix-def :prefix-command 'leader-compile-map :prefix "c"
-               "" '(:ignore t :which-key "compile"))
-             (leader-prefix-def :prefix-command 'leader-errors-map :prefix "e"
-               "" '(:ignore t :which-key "errors")
-               "n" 'next-error
-               "p" 'previous-error)
-             (leader-prefix-def :prefix-command 'leader-files-map :prefix "f"
-               "" '(:ignore t :which-key "files")
-               "c" 'write-file
-               "D" 'delete-current-buffer-file
-               "f" 'find-file
-               "o" 'open-file-or-directory-in-external-app
-               "R" 'rename-current-buffer-file
-               "s" 'save-buffer)
-             (:prefix-command 'leader-files-convert-map
-                               :keymaps 'leader-files-map :prefix "C"
-                               :wk-full-keys nil
-                               "" '(:ignore t :which-key "convert")
-                               "d" 'unix2dos
-                               "u" 'dos2unix
-                               "s" 'untabify)
-             (:prefix-command 'leader-files-emacs-map
-                               :keymaps 'leader-files-map :prefix "e"
-                               :wk-full-keys nil
-                               "" '(:ignore t :which-key "emacs")
-                               "d" 'find-init-file
-                               "r" 'reload-init-file)
-             (leader-prefix-def :prefix-command 'leader-frames-map :prefix "F"
-               "" '(:ignore t :which-key "frames")
-               "d" 'delete-frame
-               "o" 'other-frame
-               "n" 'make-frame)
-             (:prefix-command 'leader-frame-tabs-map
-                               :keymaps 'leader-frames-map :prefix "t"
-                               :wk-full-keys nil
-                               "" '(:ignore t :which-key "tabs"))
-             (leader-prefix-def :prefix-command 'leader-git-map :prefix "g"
-               "" '(:ignore t :which-key "git"))
-             (leader-prefix-def :prefix-command 'leader-help-map :prefix "h"
-               "" '(:ignore t :which-key "help"))
-             (:prefix-command 'leader-help-describe-map
-                               :keymaps 'leader-help-map :prefix "d"
-                               :wk-full-keys nil
-                               "" '(:ignore t :which-key "describe")
-                               "B" 'general-describe-keybindings
-                               "F" 'describe-font
-                               "M" 'describe-minor-mode
-                               "T" 'describe-theme
-                               "C-F" 'describe-face)
-             (leader-prefix-def :prefix-command 'leader-jumps-map :prefix "j"
-               "" '(:ignore t :which-key "jumps"))
-             (leader-prefix-def :prefix-command 'leader-narrow-map :prefix "n"
-               "" '(:ignore t :which-key "narrow")
-               "r" 'narrow-to-region
-               "w" 'widen)
-             (leader-prefix-def :prefix-command 'leader-projects-map :prefix "p"
-               "" '(:ignore t :which-key "projects"))
-             (:prefix-command 'leader-projects-sessions-map
-                               :keymaps 'leader-projects-map :prefix "s"
-                               :wk-full-keys nil
-                               "" '(:ignore t :which-key "sessions")
-                               "s" 'desktop-save
-                               "r" 'desktop-read)
-             (leader-prefix-def :prefix-command 'leader-quit-map :prefix "q"
-               "" '(:ignore t :which-key "quit")
-               "q" 'save-buffers-kill-emacs
-               "Q" 'kill-emacs
-               "y" 'yank-buffer-delete-frame)
-             (leader-prefix-def :prefix-command 'leader-search-map :prefix "s"
-               "" '(:ignore t :which-key "search")
-               "o" 'occur
-               "P" 'check-parens)
-             (leader-prefix-def :prefix-command 'leader-toggles-map :prefix "t"
-               "" '(:ignore t :which-key "toggles")
-               "D" 'toggle-debug-on-error
-               "d" 'toggle-selective-display
-               "F" 'auto-fill-mode
-               "L" 'visual-line-mode
-               "l" 'toggle-truncate-lines
-               "P" 'prettify-symbols-mode
-               "W" 'toggle-whitespace-cleanup)
-             (:prefix-command 'leader-toggles-colours-map
-                               :keymaps 'leader-toggles-map :prefix "c"
-                               :wk-full-keys nil
-                               "" '(:ignore t :which-key "colours"))
-             (leader-prefix-def :prefix-command 'leader-themes-map :prefix "T"
-               "" '(:ignore t :which-key "themes")
-               "T" 'hydra-transparency/body)
-             (leader-prefix-def :prefix-command 'leader-windows-map :prefix "w"
-               "" '(:ignore t :which-key "windows")
-               "<tab>" 'alternate-window
-               "." 'hydra-window/body
-               "1" 'tiny-window
-               "0" 'small-window
-               "d" 'delete-window-or-frame
-               "T" 'undedicate-window)
-             (leader-prefix-def :prefix-command 'leader-zoom-map :prefix "z"
-               "" '(:ignore t :which-key "zoom"))
-             :init
-             (set-keymap-parent leader-help-describe-map help-map)
-             (set-keymap-parent leader-projects-map projectile-command-map)
-             (set-keymap-parent leader-windows-map evil-window-map)
-             (pretty-hydra-define hydra-transparency
-               (:title "Set Transparency" :quit-key "q")
-               ("Active frames"
-                (("k" increase-active-transparency "increase")
-                 ("j" decrease-active-transparency "decrease"))
-                "Inactive frames"
-                (("l" increase-inactive-transparency "increase")
-                 ("h" decrease-inactive-transparency "decrease"))
-                "Toggle"
-                (("T" toggle-transparency))))
-             (pretty-hydra-define hydra-window (:title "Window Manipulation" :quit-key "q")
-               ("Select"
-                (("h" evil-window-left "←")
-                 ("j" evil-window-down "↓")
-                 ("k" evil-window-up "↑")
-                 ("l" evil-window-right "→"))
-                "Move"
-                (("H" evil-window-move-far-left "←")
-                 ("J" evil-window-move-very-bottom "↓")
-                 ("K" evil-window-move-very-top "↑")
-                 ("L" evil-window-move-far-right "→")
-                 ("r" evil-window-rotate-downwards "forward")
-                 ("R" evil-window-rotate-upwards "backward"))
-                "Split"
-                (("S" split-window-below "horizontal")
-                 ("s" evil-window-split "horizontal & focus")
-                 ("V" split-window-right "vertical")
-                 ("v" evil-window-vsplit "vertical & focus"))
-                "Resize"
-                (("+" evil-window-increase-height "+height")
-                 ("-" evil-window-decrease-height "-height")
-                 ("_" evil-window-set-height "max height")
-                 (">" evil-window-increase-width "+width")
-                 ("<" evil-window-decrease-width "-width")
-                 ("|" evil-window-set-width "max width")
-                 ("=" balance-windows "balance"))
-                "History"
-                (("u" winner-undo "undo")
-                 ("U" winner-redo "redo"))))
-             :ghook
-             ;; Automatically hard-wrap text.
-             ('(text-mode-hook prog-mode-hook) 'auto-fill-mode)
-             :gfhook
-             ('find-file-not-found-functions
-               (lambda ()
-                 "Create non-existent parent directories and return nil."
-                 (let ((parent-dir (file-name-directory buffer-file-name)))
-                   (when (not (file-exists-p parent-dir))
-                     (make-directory parent-dir t)))
-                 nil))
-             :custom
-             (scroll-conservatively 101 "Don't disruptively recentre point.")
-             (scroll-margin 5 "Keep cursor away from very top or bottom.")
-             (mouse-wheel-progressive-speed nil "Don't accelerate scrolling.")
-             (mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control)))
-                                         "Scroll one line at a time.")
-             (prettify-symbols-unprettify-at-point t "Show original symbol at point.")
-             (indicate-empty-lines t
-                                   "Differentiate EOF from empty lines.")
-             (fill-column 80 "Wrap at 80th character.")
-             (indent-tabs-mode nil "Never use tabs for indentation.")
-             (read-quoted-char-radix 16
-                                     "Allow inserting characters by hex value.")
-             (frame-resize-pixelwise t "Allow proper frame maximisation.")
-             (initial-major-mode 'text-mode "Start scratch buffer in text mode.")
-             (require-final-newline t "Ensure files terminate properly.")
-             (help-window-select t "Focus help window on summon.")
-             (delete-by-moving-to-trash t "Delete files safely by trashing.")
-             (sentence-end-double-space nil "Don't use archaic double spaces.")
-             (window-combination-resize t "Always succeed splitting.")
-             (initial-scratch-message nil "Start with scratch buffer empty.")
-             (open-paren-in-column-0-is-defun-start nil "Don't assume any open bracket on column 0 is a function definition.")
-             (backup-directory-alist (list (cons "." (concat user-emacs-directory
-                                                             "backups/")))
-                                     "Save backups in a central directory.")
-             (delete-old-versions t "Automatically delete old backups.")
-             (version-control t "Number backup files.")
-             (comment-auto-fill-only-comments t "When in comments, wrap only comments.")
-             (ring-bell-function 'ignore "Don't sound the bell.")
-             (special-display-buffer-names '("*Help*")
-                                            "Show Help in dedicated buffer.")
-             (initial-buffer-choice (lambda ()
-                                      "Get current buffer."
-                                      (window-buffer (selected-window)))
-                                    "Open current buffer in new frames.")
-             (large-file-warning-threshold (* 1000 1000) "Warn of 1MB files.")
-             (confirm-kill-processes nil "Silently kill processes.")
-             (frame-title-format "%* %b"
-                                 "Show buffer name & status in frame title.")
-             (mode-line-format nil "Don't show mode line.")
-             (bidi-paragraph-direction 'left-to-right
-                                        "Avoid text direction detection.")
-             (bidi-inhibit-bpa t "Don't bother rendering right-to-left text."))
+                       "d" 'desktop-read))
