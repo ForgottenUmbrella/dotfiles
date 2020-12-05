@@ -76,9 +76,6 @@ set_wallpaper() {
     command -v post_commands >/dev/null 2>&1 && post_commands
     url=$(cat "$url_file" 2>/dev/null || printf '')
     notify-send 'New wallpaper' "$url" -i "$image" -u low
-    # XXX: Workaround to try to get wal to set the wallpaper on first run, which
-    # fails on sway for some inexplicable reason (probably to do with DISPLAY).
-    wal -i "$image" -a "$alpha" -ste
 }
 
 while getopts ':ui:c:a:h?' option; do
