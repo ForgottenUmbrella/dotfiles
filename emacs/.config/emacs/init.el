@@ -1376,6 +1376,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package aggressive-indent :ensure t :demand t
              :config
              (global-aggressive-indent-mode)
+             (add-to-list 'aggressive-indent-excluded-modes 'kotlin-mode)
              :general
              (:keymaps 'leader-toggles-map
                        "I" 'aggressive-indent-mode))
