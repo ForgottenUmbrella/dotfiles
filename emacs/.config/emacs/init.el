@@ -101,6 +101,7 @@
 ;;;; Set up built-ins.
 (use-package emacs :demand t
              :init
+             (set-keymap-parent leader-help-describe-map help-map)
              (defun delete-window-or-frame (&optional window frame force)
                "Delete WINDOW, or delete FRAME if there is only one window in FRAME.
 If WINDOW is nil, it defaults to the selected window.
@@ -505,8 +506,6 @@ current frame. From Spacemacs."
                "T" 'undedicate-window)
              (leader-prefix-def :prefix-command 'leader-zoom-map :prefix "z"
                "" '(:ignore t :which-key "zoom"))
-             :config
-             (set-keymap-parent leader-help-describe-map help-map)
              :ghook
              ;; Automatically hard-wrap text.
              ('(text-mode-hook prog-mode-hook) 'auto-fill-mode)
