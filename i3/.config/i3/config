@@ -301,7 +301,7 @@ exec --no-startup-id systemctl --user start gammastep.service
 exec --no-startup-id systemctl --user start mpd-notification.service
 exec --no-startup-id systemctl --user start battery-monitor.timer
 exec --no-startup-id systemctl --user start flashfocus.service
-# systemctl --user enable --now wallplug.timer
+exec --no-startup-id systemctl --user start wallplug.timer
 exec_always --no-startup-id ~/.config/i3/i3-autostart.sh
 
 # Dropdown terminal.
