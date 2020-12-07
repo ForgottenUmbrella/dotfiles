@@ -392,7 +392,8 @@ current frame. From Spacemacs."
                "u" 'universal-argument)
              (leader-prefix-def :prefix-command 'leader-applications-map
                :prefix "a"
-               "" '(:ignore t :which-key "applications"))
+               "" '(:ignore t :which-key "applications")
+               "p" 'list-processes)
              (:prefix-command 'leader-applications-shell-map
                               :keymaps 'leader-applications-map :prefix "s"
                               :wk-full-keys nil
