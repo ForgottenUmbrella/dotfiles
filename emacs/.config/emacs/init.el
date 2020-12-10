@@ -1993,8 +1993,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                        "r" 'restart-emacs))
 ;; Save buffers periodically and on exit in case of crash.
 (use-package desktop :demand t
-             :config
-             (desktop-save-mode)
+             :ghook
+             ('emacs-startup-hook 'desktop-save-mode)
              :general
              (:keymaps 'leader-applications-map
                        "d" 'desktop-read))
