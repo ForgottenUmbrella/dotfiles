@@ -13,3 +13,4 @@ tags
 kde/
 **/ranger/plugins/
 **/zsh/.histfile
+**/emacs/flycheck_init.el
