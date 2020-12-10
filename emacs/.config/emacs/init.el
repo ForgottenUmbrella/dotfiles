@@ -551,6 +551,7 @@ current frame. From Spacemacs."
              (bidi-paragraph-direction 'left-to-right
                                        "Avoid text direction detection.")
              (bidi-inhibit-bpa t "Don't bother rendering right-to-left text."))
+(set-keymap-parent leader-help-describe-map help-map)
 
 ;;;; Join the dark side.
 ;; Vim keys.
