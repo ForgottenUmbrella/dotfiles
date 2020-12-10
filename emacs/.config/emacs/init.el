@@ -101,15 +101,6 @@
 ;;;; Set up built-ins.
 (use-package emacs :demand t
              :init
-             (set-keymap-parent leader-help-describe-map help-map)
-             (defun delete-window-or-frame (&optional window frame force)
-               "Delete WINDOW, or delete FRAME if there is only one window in FRAME.
-If WINDOW is nil, it defaults to the selected window.
-If FRAME is nil, it defaults to the selected frame."
-               (interactive)
-               (if (= 1 (length (window-list frame)))
-                   (delete-frame frame force)
-                 (delete-window window)))
              (defvar my/transparency)  ;; Defined in early-init.el
              (defun enable-transparency (&optional frame)
                "Set active/inactive transparency of FRAME to predetermined values.
@@ -503,7 +494,6 @@ current frame. From Spacemacs."
              (leader-prefix-def :prefix-command 'leader-windows-map :prefix "w"
                "" '(:ignore t :which-key "windows")
                "<tab>" 'alternate-window
-               "d" 'delete-window-or-frame
                "T" 'undedicate-window)
              (leader-prefix-def :prefix-command 'leader-zoom-map :prefix "z"
                "" '(:ignore t :which-key "zoom"))
@@ -666,6 +656,7 @@ to `evil-lookup'. Based on Spacemacs."
              (:keymaps 'leader-windows-map
                        "0" 'small-window
                        "1" 'tiny-window
+                       "d" 'evil-quit
                        "." 'hydra-window/body))
 ;; Escape all the things.
 (use-package evil-escape :ensure t
