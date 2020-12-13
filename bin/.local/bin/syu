@@ -4,8 +4,7 @@
 yay -Sc --noconfirm
 yay -Syu --noconfirm "$@"
 sudo pacdiff
-fwupdmgr refresh
-fwupdmgr update
+fwupdmgr refresh && fwupdmgr update
 echo 'Updating Emacs packages...'
 emacsclient --eval '(auto-package-update-now)'
 antibody update
