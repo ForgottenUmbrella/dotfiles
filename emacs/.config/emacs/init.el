@@ -508,6 +508,8 @@ current frame. From Spacemacs."
                   (when (not (file-exists-p parent-dir))
                     (make-directory parent-dir t)))
                 nil))
+             :config
+             (pixel-scroll-mode)
              :custom
              (scroll-conservatively 101 "Don't disruptively recentre point.")
              (scroll-margin 5 "Keep cursor away from very top or bottom.")
