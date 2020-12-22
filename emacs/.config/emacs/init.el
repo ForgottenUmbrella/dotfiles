@@ -961,6 +961,10 @@ to `evil-lookup'. Based on Spacemacs."
 ;; Icons for company mode.
 (use-package company-box :ensure t
              :ghook 'company-mode)
+;; Icons for ivy mode. Run `all-the-icons-install-fonts' once for installation.
+(use-package all-the-icons-ivy-rich :ensure t :after counsel-projectile
+             :config
+             (all-the-icons-ivy-rich-mode t))
 
 ;;;;; Themes.
 ;; NOTE: Defer all but the selected for faster startup.
@@ -1201,7 +1205,7 @@ to `evil-lookup'. Based on Spacemacs."
              (:keymaps 'ivy-minibuffer-map
                        "C-h" 'ivy-backward-delete-char))
 ;; Better interface for ivy.
-(use-package ivy-rich :ensure t
+(use-package ivy-rich :ensure t :after all-the-icons-ivy-rich
              :config
              (ivy-rich-mode t))
 ;; Replace built-in commands with ivy.
