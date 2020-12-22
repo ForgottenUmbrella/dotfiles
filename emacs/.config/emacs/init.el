@@ -958,6 +958,9 @@ to `evil-lookup'. Based on Spacemacs."
 ;; Soft-wrap at fill-column when visual-line-mode is on.
 (use-package visual-fill-column :ensure t
              :ghook 'visual-line-mode)
+;; Icons for company mode.
+(use-package company-box :ensure t
+             :ghook 'company-mode)
 
 ;;;;; Themes.
 ;; NOTE: Defer all but the selected for faster startup.
@@ -1283,9 +1286,6 @@ to `evil-lookup'. Based on Spacemacs."
              (warn-missing-hook-executable "flow" "flow"
                                            "JavaScript auto-completion"
                                            'js-mode-hook))
-;; Icons for company mode.
-(use-package company-box :ensure t
-             :ghook 'company-mode)
 ;; Automatically insert shebang.
 (use-package insert-shebang :ensure t
              :ghook
