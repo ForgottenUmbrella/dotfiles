@@ -757,6 +757,9 @@ to `evil-lookup'. Based on Spacemacs."
              (:keymaps 'evil-outer-text-objects-map "a" 'evil-outer-arg))
 ;; Evil-ify various Emacs modes.
 (use-package evil-collection :ensure t :after evil
+             :custom
+             (evil-collection-magit-want-horizontal-movement t "Allow horizontal movement.")
+             (evil-collection-magit-use-z-for-folds t "Don't hijack Vim z.")
              :config
              (evil-collection-init)
              :general
@@ -766,12 +769,6 @@ to `evil-lookup'. Based on Spacemacs."
              (:keymaps 'help-mode-map :states 'normal
                        "C-o" nil
                        "C-i" nil))
-;; Evil-ify magit, the Emacs Git porcelain.
-(use-package evil-magit :ensure t :after magit
-             :custom
-             (evil-magit-want-horizontal-movement t
-                                                  "Allow horizontal movement.")
-             (evil-magit-use-z-for-folds t "Don't hijack Vim z."))
 ;; Commands for manipulating surroundings.
 (use-package evil-surround :ensure t
              :config
