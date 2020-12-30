@@ -1384,7 +1384,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
              :ghook
              'eval-expression-minibuffer-setup-hook
              ;; XXX: Tag handling is broken?
-             ;;('(nxml-mode-hook html-mode-hook) 'turn-off-smartparens-mode)
+             ('(nxml-mode-hook html-mode-hook) 'turn-off-smartparens-mode)
              :custom
              (sp-escape-quotes-after-insert nil "Don't escape quotes.")
              (sp-show-pair-from-inside t "Always highlight pairs.")
