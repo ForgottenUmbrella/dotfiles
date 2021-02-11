@@ -809,6 +809,11 @@ to `evil-lookup'. Based on Spacemacs."
   (setq-default evil-owl-idle-delay 0.4)
   :config
   (evil-owl-mode))
+;; Preview ALL the ex mode commands.
+(use-package evil-traces :ensure t
+  :config
+  (evil-traces-use-diff-faces)
+  (evil-traces-mode))
 
 ;;;; Aesthetics.
 ;; Modeline.
