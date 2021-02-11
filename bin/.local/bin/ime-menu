@@ -2,4 +2,4 @@
 # Switch IME.
 
 ibus list-engine | sed -e '/^language:/d' -e 's/^  //' |
-    dmenu | sed 's/ -.*//' | xargs ibus engine
+    dmenu -i | sed 's/ -.*//' | xargs ibus engine
