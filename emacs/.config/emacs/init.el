@@ -803,6 +803,12 @@ to `evil-lookup'. Based on Spacemacs."
 ;; - M-n (move to next argument in CDLaTeX expansion, like TAB)
 (use-package evil-tex :ensure t
   :ghook 'LaTeX-mode-hook)
+;; View contents of registers before using them with " (normal) or C-r (insert).
+(use-package evil-owl :ensure t
+  :init
+  (setq-default evil-owl-idle-delay 0.4)
+  :config
+  (evil-owl-mode))
 
 ;;;; Aesthetics.
 ;; Modeline.
