@@ -25,6 +25,7 @@ command='safebooru_plug "touhou outdoors"'
 #command='safebooru_plug "touhou ultimate_asuka"'
 #command='safebooru_plug "touhou yoshioka_yoshiko"'
 #command='safebooru_plug "touhou berabou"'
+#command='safebooru_plug "touhou furahata_gen"'
 
 # Alpha of colour scheme.
 alpha=80
