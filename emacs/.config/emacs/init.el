@@ -544,8 +544,6 @@ current frame. From Spacemacs."
   (version-control t "Number backup files.")
   (comment-auto-fill-only-comments t "When in comments, wrap only comments.")
   (ring-bell-function 'ignore "Don't sound the bell.")
-  (special-display-buffer-names '("*Help*")
-                                "Show Help in dedicated buffer.")
   (initial-buffer-choice (lambda ()
                            "Get current buffer."
                            (window-buffer (selected-window)))
