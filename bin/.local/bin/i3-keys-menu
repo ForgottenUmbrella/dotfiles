@@ -3,6 +3,8 @@
 # Based on https://www.reddit.com/r/i3wm/comments/a7uno8/tiny_script_to_show_your_i3wm_keybindings.
 
 i3-msg -t get_config |
+    # Process file includes.
+    sed -Ee 's/^include (.+)/cat \1/e' |
     # Join line continuations.
     awk '/\\$/ {
         printf "%s", substr($0, 1, length($0) - 1);
