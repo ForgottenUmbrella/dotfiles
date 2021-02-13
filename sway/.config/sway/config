@@ -4,8 +4,8 @@ exec sed -E '/^(set_from_resource|client)/d' \
 include "$XDG_CACHE_HOME/swayi3config"
 
 # Aesthetics.
-include "$HOME/.cache/wal/colors-sway"
-output * bg $wallpaper fill
+include "$XDG_CACHE_HOME/wal/colors-sway"
+output * bg "$wallpaper" fill
 # Client		Decoration 	Decoration	Decoration	Split		Window
 # <colorclass>		<border>	<bg>		<text>		<indicator>	<child_border>
 client.focused		$color2		$color2		$foreground	$color5        	$color2
@@ -16,16 +16,16 @@ client.placeholder	$color1		$background	$foreground	$color1		$color1
 client.background $background
 
 # IO.
-input "type:keyboard" {
+input type:keyboard {
     xkb_layout us
     xkb_variant colemak
     xkb_options ctrl:nocaps,compose:menu
 }
-input "65261:4871:ZSA_Ergodox_EZ" {
+input 65261:4871:ZSA_Ergodox_EZ {
     xkb_variant ""
 }
 
-input "type:touchpad" {
+input type:touchpad {
     dwt enabled
     tap enabled
     natural_scroll enabled
@@ -38,8 +38,8 @@ bar {
 }
 
 # Application configuration.
-for_window [class="zoom"] inhibit_idle focus
-for_window [app_id="totem"] inhibit_idle focus
+for_window [class=zoom] inhibit_idle focus
+for_window [app_id=totem] inhibit_idle focus
 
 # Custom bindings.
 bindsym $mod+Ctrl+space exec ime-menu
@@ -48,16 +48,16 @@ bindsym $mod+Ctrl+space exec ime-menu
 exec /usr/share/sway/scripts/inactive-windows-transparency.py
 exec_always 'killall mako; koma'
 exec swayidle -w \
-   timeout 300 'lock' \
+   timeout 300 lock \
    timeout 330 'swaymsg "output * dpms off"' \
    resume 'swaymsg "output * dpms on"' \
    # timeout 900 'systemctl suspend-then-hibernate' \
-   before-sleep 'lock'
+   before-sleep lock
    # after-resume 'swaymsg "output * dpms on' \
-   # lock 'lock' \
+   # lock lock \
    # unlock 'swaymsg "output * dpms on"'
 # GTK on Wayland ignores the settings.ini file, so load it yourself.
-exec ~/.config/sway/import-gsettings.sh \
+exec "$XDG_CONFIG_HOME/sway/import-gsettings.sh" \
     gtk-theme:gtk-theme-name \
     icon-theme:gtk-icon-theme-name \
     cursor-theme:gtk-cursor-theme-name
