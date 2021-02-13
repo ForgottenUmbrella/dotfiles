@@ -1929,7 +1929,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
             "m" 'magit-dispatch
             "S" 'magit-stage-file
             "s" 'magit-status
-            "C-s" 'magit-stage
             "U" 'magit-unstage-file)
   (major-prefix-def :prefix-command 'major-with-editor-map
     :keymaps 'with-editor-mode-map
