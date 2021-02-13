@@ -940,6 +940,7 @@ to `evil-lookup'. Based on Spacemacs."
   (:keymaps 'leader-git-map
             "d" 'git-gutter:popup-hunk
             "h" 'git-gutter:stage-hunk
+            "H" 'git-gutter:update-all-windows
             "n" 'git-gutter:next-hunk
             "p" 'git-gutter:previous-hunk
             "x" 'git-gutter:revert-hunk)
