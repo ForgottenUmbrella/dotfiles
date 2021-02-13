@@ -24,6 +24,7 @@ input type:keyboard {
 input 65261:4871:ZSA_Ergodox_EZ {
     xkb_layout us
     xkb_variant ""
+    xkb_options compose:menu
 }
 
 input type:touchpad {
