@@ -2,18 +2,20 @@
 # Show keybindings for i3.
 # Based on https://www.reddit.com/r/i3wm/comments/a7uno8/tiny_script_to_show_your_i3wm_keybindings.
 
-i3-msg -t get_config | awk '
-    /\\$/ {
+i3-msg -t get_config |
+    # Join line continuations.
+    awk '/\\$/ {
         printf "%s", substr($0, 1, length($0) - 1);
         next;
     }
-    { print }
-' | awk '
-    /^bindsym/ {
+    { print }' |
+    # Print bindings with normalised number of spaces.
+    awk '/^bindsym/ {
         printf "%s|", $2;
         for (i = 3; i < NF; ++i) {
             printf "%s ", $i;
         }
         print $NF;
-    }
-' | column -s '|' -t | dmenu -i -p 'i3 keybindings'
+    }' |
+    # Format and display.
+    column -s '|' -t | dmenu -i -p 'i3 keybindings'
