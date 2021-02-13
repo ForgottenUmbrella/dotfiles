@@ -342,6 +342,10 @@ current frame. From Spacemacs."
     (clipboard-kill-region (goto-char (point-min)) (goto-char (point-max)))
     (delete-file (buffer-file-name))
     (delete-frame))
+  (defun yes-or-no-p->-y-or-n-p (orig-fun &rest r)
+    "Advice around a function to replace `yes-or-no-p' with `y-or-n-p'."
+    (cl-letf (((symbol-function 'yes-or-no-p) #'y-or-n-p))
+      (apply orig-fun r)))
   (pretty-hydra-define hydra-transparency
     (:title "Set Transparency" :quit-key "q")
     ("Active frames"
@@ -936,6 +940,7 @@ to `evil-lookup'. Based on Spacemacs."
   :custom
   (git-gutter:hide-gutter t "Hide empty gutter.")
   :config
+  (advice-add 'git-gutter:stage-hunk :around 'yes-or-no-p->-y-or-n-p)
   (global-git-gutter-mode)
   :general
   (:keymaps 'leader-git-map
