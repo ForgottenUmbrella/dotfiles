@@ -337,6 +337,7 @@ current frame. From Spacemacs."
     (let ((fill-column (point-max)))
       (fill-region beg end)))
   (defun yank-buffer-delete-frame ()
+    "Copy contents of current buffer and close its frame."
     (interactive)
     (clipboard-kill-region (goto-char (point-min)) (goto-char (point-max)))
     (delete-file (buffer-file-name))
