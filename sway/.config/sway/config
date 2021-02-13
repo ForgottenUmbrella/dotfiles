@@ -17,11 +17,12 @@ client.background $background
 
 # IO.
 input type:keyboard {
-    xkb_layout us
-    xkb_variant colemak
+    xkb_layout us,us
+    xkb_variant colemak,
     xkb_options ctrl:nocaps,compose:menu
 }
 input 65261:4871:ZSA_Ergodox_EZ {
+    xkb_layout us
     xkb_variant ""
 }
 
@@ -43,6 +44,7 @@ for_window [app_id=totem] inhibit_idle focus
 
 # Custom bindings.
 bindsym $mod+Ctrl+space exec ime-menu
+bindsym $mod+Ctrl+Shift+space input * xkb_switch_layout next
 
 # Sway-specific autostart.
 exec /usr/share/sway/scripts/inactive-windows-transparency.py
