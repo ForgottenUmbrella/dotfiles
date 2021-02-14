@@ -8,7 +8,7 @@ then
         close) makoctl dismiss;;
         close-all) makoctl dismiss --all;;
         context) makoctl menu dmenu -p 'Choose Action: ';;
-        history-pop) makoctl list;;
+        history-pop) makoctl restore;;
         is-paused|set-paused|debug);;
         *) makoctl "$@"
     esac
