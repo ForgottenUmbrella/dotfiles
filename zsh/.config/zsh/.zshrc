@@ -74,8 +74,8 @@ alias mx='emacsclient -nc'
 alias sake='LC_ALL=ja_JP.UTF-8 wine'
 # Find broken symlinks.
 alias findbroken='find . -xtype l | grep -v "cache\|virtualenvs\|Trash"'
-alias capsctrl='setxkbmap us -variant colemak -option ctrl:nocaps'
 # Replace CAPS LOCK key with Ctrl (on X(Wayland)).
+alias capsctrl='setxkbmap -option ctrl:nocaps'
 # Merge PDFs given as input into a single merged.pdf.
 alias pdfmerge='gs -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -o merged.pdf'
 
