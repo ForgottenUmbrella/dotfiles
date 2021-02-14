@@ -676,33 +676,6 @@ to `evil-lookup'. Based on Spacemacs."
   (:states 'motion
            "C-a" 'evil-numbers/inc-at-pt
            "C-x" 'evil-numbers/dec-at-pt))
-;; [-KEY and ]-KEY bindings for various pairs.
-(use-package evil-unimpaired :after move-text
-  :straight (evil-unimpaired :host github
-                             :repo "zmaas/evil-unimpaired")
-  :config
-  (defun next-comment ()
-    "Move point to next comment."
-    (interactive)
-    (search-forward comment-start nil t))
-  (defun previous-comment ()
-    "Move point to previous comment."
-    (interactive)
-    (search-backward comment-start nil t))
-  :general
-  (:states 'motion
-           "[ c" 'previous-comment
-           "] c" 'next-comment)
-  (:states 'visual
-           "[ e" ":move'<--1"
-           "] e" ":move'>+1")
-  (:states 'normal
-           "] l" nil
-           "[ l" nil
-           "] q" nil
-           "[ q" nil
-           "] f" nil
-           "[ f" nil))
 ;; Lisp navigation (brackets).
 (use-package evil-cleverparens :ensure t :after evil-collection
   :ghook
@@ -765,10 +738,22 @@ to `evil-lookup'. Based on Spacemacs."
   (evil-collection-magit-use-z-for-folds t "Don't hijack Vim z.")
   :config
   (evil-collection-init)
+  :config
+  (defun next-comment ()
+    "Move point to next comment."
+    (interactive)
+    (search-forward comment-start nil t))
+  (defun previous-comment ()
+    "Move point to previous comment."
+    (interactive)
+    (search-backward comment-start nil t))
   :general
-  (:keymaps 'evil-collection-unimpaired-mode-map :states 'normal
-            "] l" nil
-            "[ l" nil)
+  (:states 'motion
+           "[ c" 'previous-comment
+           "] c" 'next-comment)
+  (:states 'visual
+           "[ e" ":move'<--1"
+           "] e" ":move'>+1")
   (:keymaps 'help-mode-map :states 'normal
             "C-o" nil
             "C-i" nil))

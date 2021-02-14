@@ -158,6 +158,11 @@
 ;; projectile not supported...)
 (use-package eglot :ensure t
              :ghook ('prog-mode-hook 'eglot-ensure))
+;; [-KEY and ]-KEY bindings for various pairs. (Replaced by implementation in
+;; evil-collection.)
+(use-package evil-unimpaired :after move-text
+  :straight (evil-unimpaired :host github
+                             :repo "zmaas/evil-unimpaired"))
 
 ;; TODO: Determine whether the below semantic packages really are replaced by lsp.
 ;; Show current function/class's signature at the top of the frame.
