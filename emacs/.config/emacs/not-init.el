@@ -1,44 +1,44 @@
 ;;; Packages that I ended up not using.
 ;; Number windows for quick navigation with SPC-NUM.
 (use-package winum :ensure t :demand t
-  :init
-  (setq-default winum-auto-setup-mode-line nil)
-  :config
-  (winum-mode)
-  :general
-  (leader-def :keymaps 'winum-keymap
-    "1" '(winum-select-window-1 :which-key t)
-    "2" '(winum-select-window-2 :which-key t)
-    "3" '(winum-select-window-3 :which-key t)
-    "4" '(winum-select-window-4 :which-key t)
-    "5" '(winum-select-window-5 :which-key t)
-    "6" '(winum-select-window-6 :which-key t)
-    "7" '(winum-select-window-7 :which-key t)
-    "8" '(winum-select-window-8 :which-key t)
-    "9" '(winum-select-window-9 :which-key t)
-    "0" '(winum-select-window-0-or-10 :which-key t)))
+             :init
+             (setq-default winum-auto-setup-mode-line nil)
+             :config
+             (winum-mode)
+             :general
+             (leader-def :keymaps 'winum-keymap
+               "1" '(winum-select-window-1 :which-key t)
+               "2" '(winum-select-window-2 :which-key t)
+               "3" '(winum-select-window-3 :which-key t)
+               "4" '(winum-select-window-4 :which-key t)
+               "5" '(winum-select-window-5 :which-key t)
+               "6" '(winum-select-window-6 :which-key t)
+               "7" '(winum-select-window-7 :which-key t)
+               "8" '(winum-select-window-8 :which-key t)
+               "9" '(winum-select-window-9 :which-key t)
+               "0" '(winum-select-window-0-or-10 :which-key t)))
 ;; Refactor C/C++ code.
 (use-package srefactor :ensure t
-  :general
-  (:prefix-command 'major-emacs-lisp-srefactor-map
-                   :keymaps 'major-emacs-lisp-map
-                   :prefix "=" :wk-full-keys nil
-                   "" '(:ignore t :which-key "srefactor")
-                   "b" 'srefactor-lisp-format-buffer
-                   "d" 'srefactor-lisp-format-defun
-                   "o" 'srefactor-lisp-one-line
-                   "s" 'srefactor-lisp-format-sexp)
-  (:keymaps 'major-cc-map
-            "r" 'srefactor-refactor-at-point))
+             :general
+             (:prefix-command 'major-emacs-lisp-srefactor-map
+                              :keymaps 'major-emacs-lisp-map
+                              :prefix "=" :wk-full-keys nil
+                              "" '(:ignore t :which-key "srefactor")
+                              "b" 'srefactor-lisp-format-buffer
+                              "d" 'srefactor-lisp-format-defun
+                              "o" 'srefactor-lisp-one-line
+                              "s" 'srefactor-lisp-format-sexp)
+             (:keymaps 'major-cc-map
+                       "r" 'srefactor-refactor-at-point))
 ;; Expand selected region. (Vim text objects are more precise.)
 (use-package expand-region :ensure t
-  :general
-  (leader-def "v" 'er/expand-region))
+             :general
+             (leader-def "v" 'er/expand-region))
 ;; Run your Python script as you type it.
 (use-package live-py-mode :ensure t
-  :general
-  (:keymaps 'major-python-map
-            "l" 'live-py-mode))
+             :general
+             (:keymaps 'major-python-map
+                       "l" 'live-py-mode))
 ;; Interactive ELisp interpreter.
 (use-package ielm
   :general
@@ -63,9 +63,9 @@
              (add-to-list 'dashboard-items '(projects) t))
 ;; Centre the only window. Buggy.
 (use-package centered-window :ensure t
-	     :general
-	     (:keymaps 'leader-windows-map
-		       "c" 'centered-window-mode))
+             :general
+             (:keymaps 'leader-windows-map
+                       "c" 'centered-window-mode))
 ;; Let the window manager handle multiple buffers in frames instead of windows.
 ;; Removed because it doesn't play well with company-quickhelp.
 (use-package frames-only-mode :ensure t
@@ -93,29 +93,29 @@
                     "C-k" 'isearch-repeat-backward)
 ;; Provide an ivy interface to correct typos with SPC-S. (Replaced with flyspell-popup.)
 (use-package flyspell-correct-ivy :ensure t
-  :init
-  (setq-default flyspell-correct-interface 'flyspell-correct-ivy)
-  :general
-  (leader-def :keymaps 'flyspell-mode-map
-    "S" 'flyspell-correct-next))
+             :init
+             (setq-default flyspell-correct-interface 'flyspell-correct-ivy)
+             :general
+             (leader-def :keymaps 'flyspell-mode-map
+               "S" 'flyspell-correct-next))
 ;; Auto-format Python code. (Replaced by lsp with python-language-server.)
 (use-package yapfify :ensure t
-  :ensure-system-package yapf
-  :ghook '(python-mode-hook yapf-mode)
-  :general
-  (:keymaps 'major-python-map
-            "=" 'yapfify-buffer))
+             :ensure-system-package yapf
+             :ghook '(python-mode-hook yapf-mode)
+             :general
+             (:keymaps 'major-python-map
+                       "=" 'yapfify-buffer))
 ;; Augment Python mode. (Replaced by lsp with python-language-server.)
 (use-package anaconda-mode :ensure t
-  :ghook
-  'python-mode-hook
-  ('python-mode-hook 'anaconda-eldoc-mode)
-  :general
-  (:keymaps 'major-python-help-map
-            "h" 'anaconda-mode-show-doc)
-  (:keymaps 'major-python-goto-map
-            "a" 'anaconda-mode-find-assignments
-            "u" 'anaconda-mode-find-references))
+             :ghook
+             'python-mode-hook
+             ('python-mode-hook 'anaconda-eldoc-mode)
+             :general
+             (:keymaps 'major-python-help-map
+                       "h" 'anaconda-mode-show-doc)
+             (:keymaps 'major-python-goto-map
+                       "a" 'anaconda-mode-find-assignments
+                       "u" 'anaconda-mode-find-references))
 ;; Integrate anaconda with company.
 (use-package company-anaconda :ensure t
              :config
@@ -127,9 +127,9 @@
             "r" 'refill-mode))
 ;; Augment TypeScript mode. (Replaced by lsp with javascript-typescript-langserver.)
 (use-package tide :ensure t
-  :ghook
-  ('typescript-mode-hook '(tide-setup tide-hl-identifier-mode))
-  ('before-save-hook 'tide-format-before-save))
+             :ghook
+             ('typescript-mode-hook '(tide-setup tide-hl-identifier-mode))
+             ('before-save-hook 'tide-format-before-save))
 ;; Fold code blocks. (Replaced by hideshow.)
 (use-package origami :ensure t
              :config
@@ -161,8 +161,8 @@
 ;; [-KEY and ]-KEY bindings for various pairs. (Replaced by implementation in
 ;; evil-collection.)
 (use-package evil-unimpaired :after move-text
-  :straight (evil-unimpaired :host github
-                             :repo "zmaas/evil-unimpaired"))
+             :straight (evil-unimpaired :host github
+                                        :repo "zmaas/evil-unimpaired"))
 
 ;; TODO: Determine whether the below semantic packages really are replaced by lsp.
 ;; Show current function/class's signature at the top of the frame.
