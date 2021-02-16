@@ -651,7 +651,7 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
              (evil-vsplit-window-right t "Vertically split to the right.")
              (evil-split-window-below t "Horizontally split below.")
              (evil-cross-lines t "Allow horizontal movement to other lines.")
-             ;; XXX: Known bug: emacs-evil/evil#188
+             ;; XXX: Doesn't work: emacs-evil/evil#188
              (evil-respect-visual-line-mode t "Respect visual line mode.")
              (evil-auto-balance-windows nil
                                         "Don't spontaneously resize windows.")
@@ -1144,8 +1144,8 @@ to `evil-lookup'. Based on Spacemacs."
            "z f" 'reposition-window))
 ;; Enable sane undo history that can be visualised as a tree with SPC-a-u.
 (use-package undo-tree :ensure t :demand t
-             ;; XXX: Workaround for evil/undo-tree BS.
-             :ghook 'text-mode-hook 'prog-mode-hook
+             ;; XXX: Workaround for evil/undo-tree BS (emacs-evil/evil#1382).
+             ;; :ghook 'text-mode-hook 'prog-mode-hook
              :general
              (:keymaps 'leader-applications-map
                        "u" 'undo-tree-visualize))
@@ -1460,7 +1460,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package smartparens :ensure t :demand t
              :ghook
              'eval-expression-minibuffer-setup-hook
-             ;; XXX: Tag handling is broken?
+             ;; XXX: Tag handling is broken: Fuco1/smartparens#397
              ('(nxml-mode-hook html-mode-hook) 'turn-off-smartparens-mode)
              :custom
              (sp-escape-quotes-after-insert nil "Don't escape quotes.")
@@ -1535,7 +1535,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package org
   :gfhook
   'toggle-truncate-lines
-  ;; 'org-cdlatex-mode ;; XXX piece of shit
   :custom
   (org-startup-indented t "Indent levels.")
   (org-startup-folded nil "Don't hide content by default.")
