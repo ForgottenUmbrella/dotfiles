@@ -618,7 +618,6 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
                                      "Save backups in a central directory.")
              (delete-old-versions t "Automatically delete old backups.")
              (version-control t "Number backup files.")
-             (comment-auto-fill-only-comments t "When in comments, wrap only comments.")
              (ring-bell-function 'ignore "Don't sound the bell.")
              (initial-buffer-choice (lambda ()
                                       "Get current buffer."
@@ -1712,7 +1711,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package auctex :ensure t
              :gfhook
              ('LaTeX-mode-hook 'latex-electric-env-pair-mode)
-             ;; XXX: Doesn't work.
              ('LaTeX-mode-hook 'auto-fill-mode)
              :mode ("\\.tex\\'" . LaTeX-mode)
              :custom
