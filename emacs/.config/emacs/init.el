@@ -1329,21 +1329,20 @@ to `evil-lookup'. Based on Spacemacs."
 ;; A collection of snippets for yasnippet.
 (use-package yasnippet-snippets :ensure t)
 ;; Auto-complete.
-;; TODO: Disablde temporarily, trying to reinstall. After which, update packages.
-;; (use-package company :ensure t :demand t
-;;   :custom
-;;   (company-minimum-prefix-length 1
-;;                                  "Complete even a single character.")
-;;   :config
-;;   (global-company-mode)
-;;   :general
-;;   (:states 'insert
-;;            "C-SPC" 'company-complete)
-;;   (:keymaps '(company-active-map company-search-map)
-;;             "C-w" 'evil-delete-backward-word
-;;             "C-l" 'company-complete-selection
-;;             ;; XXX: Still doesn't unbind <tab> when yasnippet is on?
-;;             nil 'company-complete-common))
+(use-package company :ensure t :demand t
+             :custom
+             (company-minimum-prefix-length 1
+                                            "Complete even a single character.")
+             :config
+             (global-company-mode)
+             :general
+             (:states 'insert
+              "C-SPC" 'company-complete)
+             (:keymaps '(company-active-map company-search-map)
+              "C-w" 'evil-delete-backward-word
+              "C-l" 'company-complete-selection
+              ;; XXX: Still doesn't unbind <tab> when yasnippet is on?
+              nil 'company-complete-common))
 ;; Show documentation for auto-complete candidates.
 (use-package company-quickhelp :ensure t
              :ghook
