@@ -431,28 +431,28 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
              :general
              ;; Insert state.
              (:states 'insert
-                      "C-q" 'quoted-insert
-                      "C-S-q" 'insert-char)
+              "C-q" 'quoted-insert
+              "C-S-q" 'insert-char)
              ;; Emacs Lisp mode.
              (major-prefix-def :prefix-command 'major-emacs-lisp-map
                :keymaps 'emacs-lisp-mode-map
                "c" 'emacs-lisp-byte-compile)
              (:prefix-command 'major-emacs-lisp-eval-map
-                              :keymaps 'major-emacs-lisp-map :prefix "e"
-                              :wk-full-keys nil
-                              "" '(:ignore t :which-key "eval")
-                              "b" 'eval-buffer
-                              "e" 'eval-last-sexp
-                              "r" 'eval-region
-                              "f" 'eval-defun)
+              :keymaps 'major-emacs-lisp-map :prefix "e"
+              :wk-full-keys nil
+              "" '(:ignore t :which-key "eval")
+              "b" 'eval-buffer
+              "e" 'eval-last-sexp
+              "r" 'eval-region
+              "f" 'eval-defun)
              (:prefix-command 'major-emacs-lisp-help-map
-                              :keymaps 'major-emacs-lisp-map :prefix "h"
-                              :wk-full-keys nil
-                              "" '(:ignore t :which-key "help"))
+              :keymaps 'major-emacs-lisp-map :prefix "h"
+              :wk-full-keys nil
+              "" '(:ignore t :which-key "help"))
              ;; Help mode.
              (:keymaps 'help-mode-map :states 'normal
-                       "[" 'help-go-back
-                       "]" 'help-go-forward)
+              "[" 'help-go-back
+              "]" 'help-go-forward)
              ;; Leader key.
              (leader-def "SPC" 'execute-extended-command
                "?" 'describe-bindings
@@ -463,9 +463,9 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
                "" '(:ignore t :which-key "applications")
                "p" 'list-processes)
              (:prefix-command 'leader-applications-shell-map
-                              :keymaps 'leader-applications-map :prefix "s"
-                              :wk-full-keys nil
-                              "" '(:ignore t :which-key "shell"))
+              :keymaps 'leader-applications-map :prefix "s"
+              :wk-full-keys nil
+              "" '(:ignore t :which-key "shell"))
              (leader-prefix-def :prefix-command 'leader-buffers-map :prefix "b"
                "" '(:ignore t :which-key "buffers")
                "C" 'clone-indirect-buffer
@@ -495,40 +495,40 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
                "R" 'rename-current-buffer-file
                "s" 'save-buffer)
              (:prefix-command 'leader-files-convert-map
-                              :keymaps 'leader-files-map :prefix "C"
-                              :wk-full-keys nil
-                              "" '(:ignore t :which-key "convert")
-                              "d" 'unix2dos
-                              "u" 'dos2unix
-                              "s" 'untabify)
+              :keymaps 'leader-files-map :prefix "C"
+              :wk-full-keys nil
+              "" '(:ignore t :which-key "convert")
+              "d" 'unix2dos
+              "u" 'dos2unix
+              "s" 'untabify)
              (:prefix-command 'leader-files-emacs-map
-                              :keymaps 'leader-files-map :prefix "e"
-                              :wk-full-keys nil
-                              "" '(:ignore t :which-key "emacs")
-                              "d" 'find-init-file
-                              "r" 'reload-init-file)
+              :keymaps 'leader-files-map :prefix "e"
+              :wk-full-keys nil
+              "" '(:ignore t :which-key "emacs")
+              "d" 'find-init-file
+              "r" 'reload-init-file)
              (leader-prefix-def :prefix-command 'leader-frames-map :prefix "F"
                "" '(:ignore t :which-key "frames")
                "d" 'delete-frame
                "o" 'other-frame
                "n" 'make-frame)
              (:prefix-command 'leader-frame-tabs-map
-                              :keymaps 'leader-frames-map :prefix "t"
-                              :wk-full-keys nil
-                              "" '(:ignore t :which-key "tabs"))
+              :keymaps 'leader-frames-map :prefix "t"
+              :wk-full-keys nil
+              "" '(:ignore t :which-key "tabs"))
              (leader-prefix-def :prefix-command 'leader-git-map :prefix "g"
                "" '(:ignore t :which-key "git"))
              (leader-prefix-def :prefix-command 'leader-help-map :prefix "h"
                "" '(:ignore t :which-key "help"))
              (:prefix-command 'leader-help-describe-map
-                              :keymaps 'leader-help-map :prefix "d"
-                              :wk-full-keys nil
-                              "" '(:ignore t :which-key "describe")
-                              "B" 'general-describe-keybindings
-                              "F" 'describe-font
-                              "M" 'describe-minor-mode
-                              "T" 'describe-theme
-                              "C-F" 'describe-face)
+              :keymaps 'leader-help-map :prefix "d"
+              :wk-full-keys nil
+              "" '(:ignore t :which-key "describe")
+              "B" 'general-describe-keybindings
+              "F" 'describe-font
+              "M" 'describe-minor-mode
+              "T" 'describe-theme
+              "C-F" 'describe-face)
              (leader-prefix-def :prefix-command 'leader-jumps-map :prefix "j"
                "" '(:ignore t :which-key "jumps"))
              (leader-prefix-def :prefix-command 'leader-narrow-map :prefix "n"
@@ -538,11 +538,11 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
              (leader-prefix-def :prefix-command 'leader-projects-map :prefix "p"
                "" '(:ignore t :which-key "projects"))
              (:prefix-command 'leader-projects-sessions-map
-                              :keymaps 'leader-projects-map :prefix "s"
-                              :wk-full-keys nil
-                              "" '(:ignore t :which-key "sessions")
-                              "s" 'desktop-save
-                              "r" 'desktop-read)
+              :keymaps 'leader-projects-map :prefix "s"
+              :wk-full-keys nil
+              "" '(:ignore t :which-key "sessions")
+              "s" 'desktop-save
+              "r" 'desktop-read)
              (leader-prefix-def :prefix-command 'leader-quit-map :prefix "q"
                "" '(:ignore t :which-key "quit")
                "q" 'save-buffers-kill-emacs
@@ -562,9 +562,9 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
                "P" 'prettify-symbols-mode
                "W" 'toggle-whitespace-cleanup)
              (:prefix-command 'leader-toggles-colours-map
-                              :keymaps 'leader-toggles-map :prefix "c"
-                              :wk-full-keys nil
-                              "" '(:ignore t :which-key "colours"))
+              :keymaps 'leader-toggles-map :prefix "c"
+              :wk-full-keys nil
+              "" '(:ignore t :which-key "colours"))
              (leader-prefix-def :prefix-command 'leader-themes-map :prefix "T"
                "" '(:ignore t :which-key "themes")
                "T" 'hydra-transparency/body)
@@ -719,32 +719,32 @@ to `evil-lookup'. Based on Spacemacs."
              ("C-l" 'evil-ex-nohighlight)
              ;; NOTE: 'motion is for non-editing commands.
              (:states 'motion
-                      "_" (lambda ()
-                            "Use black-hole register for deletion."
-                            (interactive)
-                            (evil-use-register ?_))
-                      "C-_" 'my/append-to-register
-                      "Q" (kbd "@q")
-                      "K" 'evil-smart-doc-lookup
-                      "M--" 'evil-window-decrease-height
-                      "M-+" 'evil-window-increase-height
-                      "M-<" 'evil-window-decrease-width
-                      "M->" 'evil-window-increase-width
-                      "<tab>" 'evil-toggle-fold)
+              "_" (lambda ()
+                    "Use black-hole register for deletion."
+                    (interactive)
+                    (evil-use-register ?_))
+              "C-_" 'my/append-to-register
+              "Q" (kbd "@q")
+              "K" 'evil-smart-doc-lookup
+              "M--" 'evil-window-decrease-height
+              "M-+" 'evil-window-increase-height
+              "M-<" 'evil-window-decrease-width
+              "M->" 'evil-window-increase-width
+              "<tab>" 'evil-toggle-fold)
              (:states 'insert
-                      "C-z" nil)  ;; Disable accidental Emacs state entry.
+              "C-z" nil)  ;; Disable accidental Emacs state entry.
              (:keymaps 'evil-ex-search-keymap
-                       "C-w" 'backward-kill-word)
+              "C-w" 'backward-kill-word)
              (leader-def "<tab>" 'evil-switch-to-windows-last-buffer)
              (:keymaps 'leader-files-map
-                       "S" 'evil-write-all)
+              "S" 'evil-write-all)
              (:keymaps 'leader-search-map
-                       "c" 'evil-ex-nohighlight)
+              "c" 'evil-ex-nohighlight)
              (:keymaps 'leader-windows-map
-                       "0" 'small-window
-                       "1" 'tiny-window
-                       "d" 'evil-quit
-                       "." 'hydra-window/body))
+              "0" 'small-window
+              "1" 'tiny-window
+              "d" 'evil-quit
+              "." 'hydra-window/body))
 ;; Escape all the things.
 (use-package evil-escape :ensure t
              :custom
@@ -755,8 +755,8 @@ to `evil-lookup'. Based on Spacemacs."
 (use-package evil-numbers :ensure t
              :general
              (:states 'motion
-                      "C-a" 'evil-numbers/inc-at-pt
-                      "C-x" 'evil-numbers/dec-at-pt))
+              "C-a" 'evil-numbers/inc-at-pt
+              "C-x" 'evil-numbers/dec-at-pt))
 ;; Lisp navigation (brackets).
 (use-package evil-cleverparens :ensure t :after evil-collection
              :ghook
@@ -772,15 +772,15 @@ to `evil-lookup'. Based on Spacemacs."
              (evil-move-beyond-eol t "Required to keep parentheses balanced.")
              :general
              (:keymaps 'evil-cleverparens-mode-map :states 'normal
-                       "C-(" 'evil-cp-<
-                       "C-)" 'evil-cp->)
+              "C-(" 'evil-cp-<
+              "C-)" 'evil-cp->)
              (:keymaps 'evil-cleverparens-mode-map
-                       :states '(normal visual operator)
-                       "_" nil
-                       "s" nil
-                       "x" nil
-                       "<" nil
-                       ">" nil))
+              :states '(normal visual operator)
+              "_" nil
+              "s" nil
+              "x" nil
+              "<" nil
+              ">" nil))
 ;; Org-mode navigation (brackets).
 (use-package evil-org :ensure t
              :ghook
@@ -830,16 +830,16 @@ to `evil-lookup'. Based on Spacemacs."
                (search-backward comment-start nil t))
              :general
              (:states 'motion
-                      "[ c" 'previous-comment
-                      "] c" 'next-comment
-                      "[ q" 'evil-collection-unimpaired-previous-error
-                      "] q" 'evil-collection-unimpaired-next-error)
+              "[ c" 'previous-comment
+              "] c" 'next-comment
+              "[ q" 'evil-collection-unimpaired-previous-error
+              "] q" 'evil-collection-unimpaired-next-error)
              (:states 'visual
-                      "[ e" ":move'<--1"
-                      "] e" ":move'>+1")
+              "[ e" ":move'<--1"
+              "] e" ":move'>+1")
              (:keymaps 'help-mode-map :states 'normal
-                       "C-o" nil
-                       "C-i" nil))
+              "C-o" nil
+              "C-i" nil))
 ;; Commands for manipulating surroundings.
 (use-package evil-surround :ensure t
              :config
@@ -911,33 +911,33 @@ to `evil-lookup'. Based on Spacemacs."
                  (spaceline-spacemacs-theme)))
              :general
              (:keymaps 'leader-toggles-map
-                       "m" 'toggle-mode-line))
+              "m" 'toggle-mode-line))
 ;; Colourise colour codes with SPC-t-c-c.
 (use-package rainbow-mode :ensure t
              :general
              (:keymaps 'leader-toggles-colours-map
-                       "c" 'rainbow-mode))
+              "c" 'rainbow-mode))
 ;; Colourise nested delimiters.
 (use-package rainbow-delimiters :ensure t
              :ghook
              'prog-mode-hook
              :general
              (:keymaps 'leader-toggles-colours-map
-                       "d" 'rainbow-delimiters-mode))
+              "d" 'rainbow-delimiters-mode))
 ;; Colourise different variable names.
 (use-package rainbow-identifiers :ensure t
              :ghook
              'prog-mode-hook
              :general
              (:keymaps 'leader-toggles-colours-map
-                       "i" 'rainbow-identifiers-mode))
+              "i" 'rainbow-identifiers-mode))
 ;; Show a vertical margin at 80 characters.
 (use-package display-fill-column-indicator :demand t
              :config
              (global-display-fill-column-indicator-mode)
              :general
              (:keymaps 'leader-toggles-map
-                       "f" 'display-fill-column-indicator-mode))
+              "f" 'display-fill-column-indicator-mode))
 ;; Highlight the current line.
 (use-package hl-line
   :config
@@ -950,24 +950,24 @@ to `evil-lookup'. Based on Spacemacs."
              (global-whitespace-mode)
              :general
              (:keymaps 'leader-toggles-map
-                       "w" 'whitespace-mode))
+              "w" 'whitespace-mode))
 ;; Highlight TODO keywords.
 (use-package hl-todo :ensure t :demand t
              :config
              (global-hl-todo-mode)
              :general
              (:keymaps 'hl-todo-mode-map :states 'motion
-                       "[ T" 'hl-todo-previous
-                       "] T" 'hl-todo-next)
+              "[ T" 'hl-todo-previous
+              "] T" 'hl-todo-next)
              (:keymaps 'leader-jumps-map
-                       "t" 'hl-todo-occur)
+              "t" 'hl-todo-occur)
              (:keymaps 'leader-toggles-map
-                       "t" 'hl-todo-mode))
+              "t" 'hl-todo-mode))
 ;; Adjust font size of current frame with SPC-z-x or C-mouse scroll.
 (use-package face-remap
   :general
   (:keymaps 'leader-zoom-map
-            "x" 'text-scale-adjust))
+   "x" 'text-scale-adjust))
 ;; Adjust font size of all frames with C-+ and C--.
 (use-package default-text-scale :ensure t
              :init
@@ -982,12 +982,12 @@ to `evil-lookup'. Based on Spacemacs."
                 (("0" default-text-scale-reset))))
              :general
              (:states 'motion
-                      "C-+" 'default-text-scale-increase
-                      "C-=" 'default-text-scale-increase
-                      "C--" 'default-text-scale-decrease
-                      "C-0" 'default-text-scale-reset)
+              "C-+" 'default-text-scale-increase
+              "C-=" 'default-text-scale-increase
+              "C--" 'default-text-scale-decrease
+              "C-0" 'default-text-scale-reset)
              (:keymaps 'leader-zoom-map
-                       "f" 'hydra-default-text/body))
+              "f" 'hydra-default-text/body))
 ;; Show indentation margins.
 (use-package highlight-indent-guides :ensure t
              :after whitespace  ; Load whitespace first due to conflict.
@@ -1000,7 +1000,7 @@ to `evil-lookup'. Based on Spacemacs."
                                                  "Colourise indentation.")
              :general
              (:keymaps 'leader-toggles-map
-                       "i" 'highlight-indent-guides-mode))
+              "i" 'highlight-indent-guides-mode))
 ;; Show diff status of lines.
 (use-package git-gutter :ensure t :demand t
              :custom
@@ -1010,15 +1010,15 @@ to `evil-lookup'. Based on Spacemacs."
              (global-git-gutter-mode)
              :general
              (:keymaps 'leader-git-map
-                       "d" 'git-gutter:popup-hunk
-                       "h" 'git-gutter:stage-hunk
-                       "H" 'git-gutter:update-all-windows
-                       "n" 'git-gutter:next-hunk
-                       "p" 'git-gutter:previous-hunk
-                       "x" 'git-gutter:revert-hunk)
+              "d" 'git-gutter:popup-hunk
+              "h" 'git-gutter:stage-hunk
+              "H" 'git-gutter:update-all-windows
+              "n" 'git-gutter:next-hunk
+              "p" 'git-gutter:previous-hunk
+              "x" 'git-gutter:revert-hunk)
              (:states 'motion
-                      "[ h" 'git-gutter:previous-hunk
-                      "] h" 'git-gutter:next-hunk))
+              "[ h" 'git-gutter:previous-hunk
+              "] h" 'git-gutter:next-hunk))
 ;; Give buffers short but unique names.
 (use-package uniquify)
 ;; Interpret colour output in `compilation-mode'.
@@ -1091,10 +1091,10 @@ to `evil-lookup'. Based on Spacemacs."
                                    (apply f (list (cons (+ 1 (car (car r))) (cdr (car r)))))))
              :general
              (:keymaps 'leader-help-map
-                       "k" 'which-key-show-top-level
-                       "m" 'which-key-show-major-mode)
+              "k" 'which-key-show-top-level
+              "m" 'which-key-show-major-mode)
              (:keymaps 'leader-toggles-map
-                       "K" 'which-key))
+              "K" 'which-key))
 ;; Enable undoing window management with SPC-w-u.
 (use-package winner :demand t
              :config
@@ -1111,8 +1111,8 @@ to `evil-lookup'. Based on Spacemacs."
                  ("U" winner-redo "redo"))))
              :general
              (:keymaps 'leader-windows-map
-                       "u" 'winner-undo
-                       "U" 'winner-redo))
+              "u" 'winner-undo
+              "U" 'winner-redo))
 ;; Jump to definition without building a database, with C-].
 (use-package dumb-jump :ensure t
              :custom
@@ -1129,26 +1129,26 @@ to `evil-lookup'. Based on Spacemacs."
              (global-display-line-numbers-mode)
              :general
              (:keymaps 'leader-toggles-map
-                       "n" 'display-line-numbers-mode))
+              "n" 'display-line-numbers-mode))
 ;; Go to file at point with gf.
 (use-package ffap
   :custom
   (ffap-machine-p-known 'reject "Don't waste time pinging random URLs.")
   :general
   (:states 'motion
-           "g f" 'find-file-at-point))
+   "g f" 'find-file-at-point))
 ;; Scroll window to position cursor at top with zf.
 (use-package reposition
   :general
   (:states 'motion
-           "z f" 'reposition-window))
+   "z f" 'reposition-window))
 ;; Enable sane undo history that can be visualised as a tree with SPC-a-u.
 (use-package undo-tree :ensure t :demand t
              ;; XXX: Workaround for evil/undo-tree BS (emacs-evil/evil#1382).
              ;; :ghook 'text-mode-hook 'prog-mode-hook
              :general
              (:keymaps 'leader-applications-map
-                       "u" 'undo-tree-visualize))
+              "u" 'undo-tree-visualize))
 ;; Navigate to recent files with SPC-f-r.
 (use-package recentf
   :custom
@@ -1165,7 +1165,7 @@ to `evil-lookup'. Based on Spacemacs."
 (use-package midnight
   :general
   (:keymaps 'leader-buffers-map
-            "X" 'clean-buffer-list))
+   "X" 'clean-buffer-list))
 ;; Fold code blocks.
 (use-package hideshow
   :ghook
@@ -1174,29 +1174,29 @@ to `evil-lookup'. Based on Spacemacs."
 (use-package outline
   :general
   (:keymaps 'outline-mode-map :states 'normal
-            "z b" nil)
+   "z b" nil)
   (:keymaps 'outline-minor-mode-map :states 'normal
-            "M-h" 'outline-promote
-            "M-j" 'outline-move-subtree-down
-            "M-k" 'outline-move-subtree-up
-            "M-l" 'outline-demote
-            "M-RET" 'outline-insert-heading)
+   "M-h" 'outline-promote
+   "M-j" 'outline-move-subtree-down
+   "M-k" 'outline-move-subtree-up
+   "M-l" 'outline-demote
+   "M-RET" 'outline-insert-heading)
   (:keymaps 'outline-minor-mode-map :states 'motion
-            "C-<tab>" 'outline-toggle-children
-            "g h" 'outline-up-heading
-            "g j" 'outline-forward-same-level
-            "g k" 'outline-backward-same-level
-            "g l" 'outline-next-visible-heading
-            "g y" 'outline-previous-visible-heading))
+   "C-<tab>" 'outline-toggle-children
+   "g h" 'outline-up-heading
+   "g j" 'outline-forward-same-level
+   "g k" 'outline-backward-same-level
+   "g l" 'outline-next-visible-heading
+   "g y" 'outline-previous-visible-heading))
 ;; Navigate to and focus on comment headings with SPC-j-o and SPC-n-n.
 (use-package outshine :ensure t
              :ghook
              ('prog-mode-hook 'outshine-mode)
              :general
              (:keymaps 'leader-jumps-map
-                       "o" 'outshine-imenu)
+              "o" 'outshine-imenu)
              (:keymaps 'leader-narrow-map
-                       "n" 'outshine-narrow-to-subtree))
+              "n" 'outshine-narrow-to-subtree))
 ;; Start where you last left off.
 (use-package saveplace
   :config
@@ -1210,7 +1210,7 @@ to `evil-lookup'. Based on Spacemacs."
   :straight (doom-todo-ivy :host github :repo "jsmestad/doom-todo-ivy")
   :general
   (:keymaps 'leader-jumps-map
-            "T" 'doom/ivy-tasks))
+   "T" 'doom/ivy-tasks))
 ;; Manage projects with SPC-p.
 (use-package projectile :ensure t :demand t
              :custom
@@ -1223,8 +1223,8 @@ to `evil-lookup'. Based on Spacemacs."
              (set-keymap-parent leader-projects-map projectile-command-map)
              :general
              (:keymaps 'major-cc-goto-map
-                       "a" 'projectile-find-other-file
-                       "A" 'projectile-find-other-file-other-window))
+              "a" 'projectile-find-other-file
+              "A" 'projectile-find-other-file-other-window))
 ;; Integrate projectile with ivy.
 (use-package counsel-projectile :ensure t :demand t
              :config
@@ -1238,23 +1238,23 @@ to `evil-lookup'. Based on Spacemacs."
 (use-package tab-bar
   :general
   (:keymaps 'leader-toggles-map
-            "t" 'toggle-tab-bar-mode-from-frame)
+   "t" 'toggle-tab-bar-mode-from-frame)
   (:keymaps 'leader-frame-tabs-map
-            "<tab>" 'tab-bar-switch-to-recent-tab
-            "j" 'tab-bar-switch-to-prev-tab
-            "k" 'tab-bar-switch-to-next-tab
-            "n" 'tab-bar-new-tab
-            "t" 'tab-bar-switch-to-tab
-            "x" 'tab-bar-close-tab
-            "X" 'tab-bar-undo-close-tab))
+   "<tab>" 'tab-bar-switch-to-recent-tab
+   "j" 'tab-bar-switch-to-prev-tab
+   "k" 'tab-bar-switch-to-next-tab
+   "n" 'tab-bar-new-tab
+   "t" 'tab-bar-switch-to-tab
+   "x" 'tab-bar-close-tab
+   "X" 'tab-bar-undo-close-tab))
 ;; Skip whitespace with M-h/k/j/l, like indentation-based navigation.
 (use-package spatial-navigate :ensure t
              :general
              (:states 'motion
-                      "M-h" 'spatial-navigate-backward-horizontal-box
-                      "M-j" 'spatial-navigate-forward-vertical-box
-                      "M-k" 'spatial-navigate-backward-vertical-box
-                      "M-l" 'spatial-navigate-forward-horizontal-box))
+              "M-h" 'spatial-navigate-backward-horizontal-box
+              "M-j" 'spatial-navigate-forward-vertical-box
+              "M-k" 'spatial-navigate-backward-vertical-box
+              "M-l" 'spatial-navigate-forward-horizontal-box))
 
 ;;;; Completion.
 ;; Completion framework.
@@ -1274,17 +1274,17 @@ to `evil-lookup'. Based on Spacemacs."
                          ivy-occur-mode-map
                          ivy-reverse-i-search-map
                          ivy-switch-buffer-map)
-                       "C-w" 'ivy-backward-kill-word
-                       "C-j" 'ivy-next-line
-                       "C-k" 'ivy-previous-line
-                       "C-l" 'ivy-alt-done
-                       "<tab>" 'ivy-alt-done
-                       "C-d" 'ivy-scroll-down-command
-                       "C-u" 'ivy-scroll-up-command)
+              "C-w" 'ivy-backward-kill-word
+              "C-j" 'ivy-next-line
+              "C-k" 'ivy-previous-line
+              "C-l" 'ivy-alt-done
+              "<tab>" 'ivy-alt-done
+              "C-d" 'ivy-scroll-down-command
+              "C-u" 'ivy-scroll-up-command)
              (:keymaps 'ivy-switch-buffer-map
-                       "C-x" 'ivy-switch-buffer-kill)
+              "C-x" 'ivy-switch-buffer-kill)
              (:keymaps 'ivy-minibuffer-map
-                       "C-h" 'ivy-backward-delete-char))
+              "C-h" 'ivy-backward-delete-char))
 ;; Better interface for ivy.
 (use-package ivy-rich :ensure t :after all-the-icons-ivy-rich
              :config
@@ -1299,22 +1299,22 @@ to `evil-lookup'. Based on Spacemacs."
              (warn-missing-executable "ripgrep" "rg" "Counsel searching")
              :general
              (:keymaps 'counsel-find-file-map
-                       "C-h" 'counsel-up-directory)
+              "C-h" 'counsel-up-directory)
              (:keymaps 'leader-buffers-map
-                       "b" 'counsel-switch-buffer)
+              "b" 'counsel-switch-buffer)
              (:keymaps 'leader-files-map
-                       "l" 'counsel-locate
-                       "r" 'counsel-recentf
-                       "F" 'counsel-file-jump)
+              "l" 'counsel-locate
+              "r" 'counsel-recentf
+              "F" 'counsel-file-jump)
              (:keymaps 'leader-help-map
-                       "RET" 'counsel-minor)
+              "RET" 'counsel-minor)
              (:keymaps 'leader-jumps-map
-                       "i" 'counsel-semantic-or-imenu)
+              "i" 'counsel-semantic-or-imenu)
              (:keymaps 'leader-search-map
-                       "d" 'counsel-rg
-                       "s" 'counsel-grep-or-swiper)
+              "d" 'counsel-rg
+              "s" 'counsel-grep-or-swiper)
              (:keymaps 'leader-themes-map
-                       "t" 'counsel-load-theme))
+              "t" 'counsel-load-theme))
 ;; Sort ivy completion candidates by use.
 (use-package ivy-prescient :ensure t :after counsel
              :config
@@ -1325,7 +1325,7 @@ to `evil-lookup'. Based on Spacemacs."
              (yas-global-mode)
              :general
              (:keymaps 'leader-toggles-map
-                       "y" 'yas-minor-mode))
+              "y" 'yas-minor-mode))
 ;; A collection of snippets for yasnippet.
 (use-package yasnippet-snippets :ensure t)
 ;; Auto-complete.
@@ -1432,17 +1432,17 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                  (switch-to-buffer-other-window flycheck-error-list-buffer)))
              :general
              (:keymaps 'leader-errors-map
-                       "b" 'flycheck-buffer
-                       "c" 'flycheck-clear
-                       "h" 'flycheck-describe-checker
-                       "L" 'goto-flycheck-error-list
-                       "l" 'toggle-flycheck-error-list
-                       "S" 'flycheck-set-checker-executable
-                       "s" 'flycheck-select-checker
-                       "v" 'flycheck-verify-setup
-                       "y" 'flycheck-copy-errors-as-kill)
+              "b" 'flycheck-buffer
+              "c" 'flycheck-clear
+              "h" 'flycheck-describe-checker
+              "L" 'goto-flycheck-error-list
+              "l" 'toggle-flycheck-error-list
+              "S" 'flycheck-set-checker-executable
+              "s" 'flycheck-select-checker
+              "v" 'flycheck-verify-setup
+              "y" 'flycheck-copy-errors-as-kill)
              (:keymaps 'leader-toggles-map
-                       "s" 'flycheck-mode))
+              "s" 'flycheck-mode))
 ;; Show errors in a popup.
 (use-package flycheck-pos-tip :ensure t
              :config
@@ -1454,7 +1454,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
              (add-to-list 'aggressive-indent-excluded-modes 'kotlin-mode)
              :general
              (:keymaps 'leader-toggles-map
-                       "I" 'aggressive-indent-mode))
+              "I" 'aggressive-indent-mode))
 ;; Ensure parentheses match.
 (use-package smartparens :ensure t :demand t
              :ghook
@@ -1472,7 +1472,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
              (sp-local-pair 'conf-mode "Section" "EndSection")
              :general
              (:keymaps 'leader-toggles-map
-                       "p" 'smartparens-mode))
+              "p" 'smartparens-mode))
 ;; Highlight typos.
 (use-package flyspell
   :ghook
@@ -1482,7 +1482,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (flyspell-issue-message-flag nil "Be less obnoxious about typos.")
   :general
   (:keymaps 'leader-toggles-map
-            "S" 'flyspell-mode))
+   "S" 'flyspell-mode))
 ;; Correct typos with SPC-S.
 (use-package flyspell-popup :ensure t
              :general
@@ -1505,13 +1505,13 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package multi-line :ensure t
              :general
              (:keymaps 'prog-mode-map
-                       "C-q" 'multi-line))
+              "C-q" 'multi-line))
 ;; Move a line up or down.
 (use-package move-text :ensure t
              :general
              (:states 'normal
-                      "[ e" 'move-text-up
-                      "] e" 'move-text-down))
+              "[ e" 'move-text-up
+              "] e" 'move-text-down))
 ;; Trim only your own trailing whitespace.
 (use-package ws-butler :ensure t
              :config
@@ -1525,7 +1525,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
              (help-at-pt-display-when-idle t "Show error at point.")
              :general
              (:keymaps 'leader-errors-map
-                       "d" 'display-local-help))
+              "d" 'display-local-help))
 
 ;;;; Major modes.
 ;; Org mode.
@@ -1551,28 +1551,28 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (add-to-list 'org-latex-packages-alist '("" "listingsutf8"))
   :general
   (:prefix-command 'leader-applications-org-map
-                   :keymaps 'leader-applications-map :prefix "o"
-                   :wk-full-keys nil
-                   "" '(:ignore t :which-key "org")
-                   "#" 'org-agenda-list-stuck-projects
-                   "/" 'org-occur-in-agenda-files
-                   "a" 'org-agenda-list
-                   "c" 'org-capture
-                   "l" 'org-store-link
-                   "o" 'org-agenda
-                   "s" 'org-search-view
-                   "t" 'org-todo-list)
+   :keymaps 'leader-applications-map :prefix "o"
+   :wk-full-keys nil
+   "" '(:ignore t :which-key "org")
+   "#" 'org-agenda-list-stuck-projects
+   "/" 'org-occur-in-agenda-files
+   "a" 'org-agenda-list
+   "c" 'org-capture
+   "l" 'org-store-link
+   "o" 'org-agenda
+   "s" 'org-search-view
+   "t" 'org-todo-list)
   (:prefix-command 'leader-applications-org-clock-map
-                   :keymaps 'leader-applications-org-map :prefix "C"
-                   :wk-full-keys nil
-                   "" '(:ignore t :which-key "clock")
-                   "c" 'org-clock-cancel
-                   "g" 'org-clock-goto
-                   "I" 'org-clock-in-last
-                   "i" 'org-clock-in
-                   "j" 'org-clock-jump-to-current-clock
-                   "o" 'org-clock-out
-                   "r" 'org-resolve-clocks)
+   :keymaps 'leader-applications-org-map :prefix "C"
+   :wk-full-keys nil
+   "" '(:ignore t :which-key "clock")
+   "c" 'org-clock-cancel
+   "g" 'org-clock-goto
+   "I" 'org-clock-in-last
+   "i" 'org-clock-in
+   "j" 'org-clock-jump-to-current-clock
+   "o" 'org-clock-out
+   "r" 'org-resolve-clocks)
   (major-prefix-def :prefix-command 'major-org-map :keymaps 'org-mode-map
     "'" 'org-edit-special
     ":" 'org-set-tags
@@ -1612,68 +1612,68 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
     "s" 'org-schedule
     "T" 'org-show-todo-tree)
   (:prefix-command 'major-org-export-map :keymaps 'major-org-map :prefix "e"
-                   :wk-full-keys nil
-                   "" '(:ignore t :which-key "export")
-                   "e" 'org-export-dispatch)
+   :wk-full-keys nil
+   "" '(:ignore t :which-key "export")
+   "e" 'org-export-dispatch)
   (:prefix-command 'major-org-headings-map :keymaps 'major-org-map :prefix "h"
-                   :wk-full-keys nil
-                   "" '(:ignore t :which-key "headings")
-                   "e" 'counsel-org-entity
-                   "I" 'org-insert-heading
-                   "i" 'org-insert-heading-after-current
-                   "s" 'org-insert-subheading)
+   :wk-full-keys nil
+   "" '(:ignore t :which-key "headings")
+   "e" 'counsel-org-entity
+   "I" 'org-insert-heading
+   "i" 'org-insert-heading-after-current
+   "s" 'org-insert-subheading)
   (:prefix-command 'major-org-insert-map :keymaps 'major-org-map :prefix "i"
-                   :wk-full-keys nil
-                   "" '(:ignore t :which-key "insert")
-                   "a" 'org-attach
-                   "l" 'org-insert-link
-                   "f" 'org-footnote-new
-                   "s" 'org-insert-structure-template)
+   :wk-full-keys nil
+   "" '(:ignore t :which-key "insert")
+   "a" 'org-attach
+   "l" 'org-insert-link
+   "f" 'org-footnote-new
+   "s" 'org-insert-structure-template)
   (:prefix-command 'major-org-subheadings-map :keymaps 'major-org-map
-                   :prefix "S" :wk-full-keys nil
-                   "" '(:ignore t :which-key "subheadings")
-                   "h" 'org-promote-subtree
-                   "j" 'org-move-subtree-down
-                   "k" 'org-move-subtree-up
-                   "l" 'org-demote-subtree)
+   :prefix "S" :wk-full-keys nil
+   "" '(:ignore t :which-key "subheadings")
+   "h" 'org-promote-subtree
+   "j" 'org-move-subtree-down
+   "k" 'org-move-subtree-up
+   "l" 'org-demote-subtree)
   (:prefix-command 'major-org-tables-map :keymaps 'major-org-map :prefix "t"
-                   :wk-full-keys nil
-                   "" '(:ignore t :which-key "tables")
-                   "a" 'org-table-align
-                   "b" 'org-table-blank-field
-                   "c" 'org-table-convert
-                   "e" 'org-table-eval-formula
-                   "E" 'org-table-export
-                   "h" 'org-table-previous-field
-                   "H" 'org-table-move-column-left
-                   "I" 'org-table-import
-                   "j" 'org-table-next-row
-                   "J" 'org-table-move-row-down
-                   "K" 'org-table-move-row-up
-                   "l" 'org-table-next-field
-                   "L" 'org-table-move-column-right
-                   "n" 'org-table-create
-                   "N" 'org-table-create-with-table.el
-                   "r" 'org-table-recalculate
-                   "s" 'org-table-sort-lines
-                   "w" 'org-table-wrap-region)
+   :wk-full-keys nil
+   "" '(:ignore t :which-key "tables")
+   "a" 'org-table-align
+   "b" 'org-table-blank-field
+   "c" 'org-table-convert
+   "e" 'org-table-eval-formula
+   "E" 'org-table-export
+   "h" 'org-table-previous-field
+   "H" 'org-table-move-column-left
+   "I" 'org-table-import
+   "j" 'org-table-next-row
+   "J" 'org-table-move-row-down
+   "K" 'org-table-move-row-up
+   "l" 'org-table-next-field
+   "L" 'org-table-move-column-right
+   "n" 'org-table-create
+   "N" 'org-table-create-with-table.el
+   "r" 'org-table-recalculate
+   "s" 'org-table-sort-lines
+   "w" 'org-table-wrap-region)
   (:prefix-command 'major-org-tables-delete-map :keymaps 'major-org-tables-map
-                   :prefix "d" :wk-full-keys nil
-                   "" '(:ignore t :which-key "delete")
-                   "c" 'org-table-delete-column
-                   "r" 'org-table-kill-row)
+   :prefix "d" :wk-full-keys nil
+   "" '(:ignore t :which-key "delete")
+   "c" 'org-table-delete-column
+   "r" 'org-table-kill-row)
   (:prefix-command 'major-org-tables-insert-map :keymaps 'major-org-tables-map
-                   :prefix "i" :wk-full-keys nil
-                   "" '(:ignore t :which-key "insert")
-                   "c" 'org-table-insert-column
-                   "h" 'org-table-insert-hline
-                   "H" 'org-table-hline-and-move
-                   "r" 'org-table-insert-row)
+   :prefix "i" :wk-full-keys nil
+   "" '(:ignore t :which-key "insert")
+   "c" 'org-table-insert-column
+   "h" 'org-table-insert-hline
+   "H" 'org-table-hline-and-move
+   "r" 'org-table-insert-row)
   (:prefix-command 'major-org-tables-toggle-map :keymaps 'major-org-tables-map
-                   :prefix "t" :wk-full-keys nil
-                   "" '(:ignore t :whick-key "toggle")
-                   "f" 'org-table-toggle-formula-debugger
-                   "o" 'org-table-toggle-coordinate-overlays))
+   :prefix "t" :wk-full-keys nil
+   "" '(:ignore t :whick-key "toggle")
+   "f" 'org-table-toggle-formula-debugger
+   "o" 'org-table-toggle-coordinate-overlays))
 ;; Kotlin mode.
 (use-package kotlin-mode :ensure t :demand t
              :gfhook
@@ -1686,13 +1686,13 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
              (major-prefix-def :prefix-command 'major-kotlin-map
                :keymaps 'kotlin-mode-map)
              (:prefix-command 'major-kotlin-repl-map :keymaps 'major-kotlin-map
-                              :prefix "s" :wk-full-keys nil
-                              "" '(:ignore t :which-key "repl")
-                              "B" 'kotlin-send-block
-                              "b" 'kotlin-send-buffer
-                              "i" 'kotlin-repl
-                              "l" 'kotlin-send-line
-                              "r" 'kotlin-send-region))
+              :prefix "s" :wk-full-keys nil
+              "" '(:ignore t :which-key "repl")
+              "B" 'kotlin-send-block
+              "b" 'kotlin-send-buffer
+              "i" 'kotlin-repl
+              "l" 'kotlin-send-line
+              "r" 'kotlin-send-region))
 ;; C/C++ mode.
 (use-package cc-mode
   :config
@@ -1702,9 +1702,9 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (major-prefix-def :prefix-command 'major-cc-map :keymaps 'c-mode-base-map
     "d" 'gud-gdb)
   (:prefix-command 'major-cc-goto-map :keymaps 'major-cc-map :prefix "g"
-                   :wk-full-keys nil
-                   "" '(:ignore t :which-key "goto")
-                   "f" 'ff-find-other-file))
+   :wk-full-keys nil
+   "" '(:ignore t :which-key "goto")
+   "f" 'ff-find-other-file))
 ;; CMake mode.
 (use-package cmake-mode :ensure t)
 ;; Bison/yacc/lex mode.
@@ -1758,54 +1758,54 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                "s" 'LaTeX-section
                "z" 'TeX-fold-dwim)
              (:prefix-command 'major-latex-fonts-map :keymaps 'major-latex-map
-                              :prefix "x" :wk-full-keys nil
-                              "" '(:ignore t :which-key "fonts")
-                              "a" 'latex/font-calligraphic
-                              "B" 'latex/font-medium
-                              "b" 'latex/font-bold
-                              "C" 'latex/font-small-caps
-                              "c"  'latex/font-code
-                              "e"  'latex/font-emphasis
-                              "f" 'latex/font-sans-serif
-                              "i"  'latex/font-italic
-                              "n" 'latex/font-normal
-                              "o"  'latex/font-oblique
-                              "R" 'latex/font-serif
-                              "r"  'latex/font-clear
-                              "u" 'latex/font-upright)
+              :prefix "x" :wk-full-keys nil
+              "" '(:ignore t :which-key "fonts")
+              "a" 'latex/font-calligraphic
+              "B" 'latex/font-medium
+              "b" 'latex/font-bold
+              "C" 'latex/font-small-caps
+              "c"  'latex/font-code
+              "e"  'latex/font-emphasis
+              "f" 'latex/font-sans-serif
+              "i"  'latex/font-italic
+              "n" 'latex/font-normal
+              "o"  'latex/font-oblique
+              "R" 'latex/font-serif
+              "r"  'latex/font-clear
+              "u" 'latex/font-upright)
              (:prefix-command 'major-latex-fill-map :keymaps 'major-latex-map
-                              :prefix "f" :wk-full-keys nil
-                              "" '(:ignore t :which-key "fill")
-                              "e" 'LaTeX-fill-environment
-                              "p" 'LaTeX-fill-paragraph
-                              "r" 'LaTeX-fill-region
-                              "s" 'LaTeX-fill-section)
+              :prefix "f" :wk-full-keys nil
+              "" '(:ignore t :which-key "fill")
+              "e" 'LaTeX-fill-environment
+              "p" 'LaTeX-fill-paragraph
+              "r" 'LaTeX-fill-region
+              "s" 'LaTeX-fill-section)
              (:prefix-command 'major-latex-preview-map :keymaps 'major-latex-map
-                              :prefix "p" :wk-full-keys nil
-                              "" '(:ignore t :which-key "preview")
-                              "b" 'preview-buffer
-                              "c" 'preview-clearout
-                              "d" 'preview-document
-                              "e" 'preview-environment
-                              "p" 'preview-at-point
-                              "r" 'preview-region
-                              "s" 'preview-section)
+              :prefix "p" :wk-full-keys nil
+              "" '(:ignore t :which-key "preview")
+              "b" 'preview-buffer
+              "c" 'preview-clearout
+              "d" 'preview-document
+              "e" 'preview-environment
+              "p" 'preview-at-point
+              "r" 'preview-region
+              "s" 'preview-section)
              (:prefix-command 'major-latex-reftex-map :keymaps 'major-latex-map
-                              :prefix "r" :wk-full-keys nil
-                              "" '(:ignore t :which-key "reftex")
-                              "c" 'reftex-citation
-                              "g" 'reftex-grep-document
-                              "I" 'reftex-display-index
-                              "i" 'reftex-index-selection-or-word
-                              "<tab>" 'reftex-index
-                              "l" 'reftex-label
-                              "P" 'reftex-index-visit-phrases-buffer
-                              "p" 'reftex-index-phrase-selection-or-word
-                              "r" 'reftex-reference
-                              "s" 'reftex-search-document
-                              "T" 'reftex-toc-recenter
-                              "t" 'reftex-toc
-                              "v" 'reftex-view-crossref))
+              :prefix "r" :wk-full-keys nil
+              "" '(:ignore t :which-key "reftex")
+              "c" 'reftex-citation
+              "g" 'reftex-grep-document
+              "I" 'reftex-display-index
+              "i" 'reftex-index-selection-or-word
+              "<tab>" 'reftex-index
+              "l" 'reftex-label
+              "P" 'reftex-index-visit-phrases-buffer
+              "p" 'reftex-index-phrase-selection-or-word
+              "r" 'reftex-reference
+              "s" 'reftex-search-document
+              "T" 'reftex-toc-recenter
+              "t" 'reftex-toc
+              "v" 'reftex-view-crossref))
 ;; Python mode.
 (use-package python :demand t
              :init
@@ -1838,27 +1838,27 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                "d" 'pdb
                "q" 'fill-paragraph-72)
              (:prefix-command 'major-python-goto-map :keymaps 'major-python-map
-                              :prefix "g" :wk-full-keys nil
-                              "" '(:ignore t :which-key "goto"))
+              :prefix "g" :wk-full-keys nil
+              "" '(:ignore t :which-key "goto"))
              (:prefix-command 'major-python-help-map :keymaps 'major-python-map
-                              :prefix "h" :wk-full-keys nil
-                              "" '(:ignore t :which-key "help"))
+              :prefix "h" :wk-full-keys nil
+              "" '(:ignore t :which-key "help"))
              (:prefix-command 'major-python-refactor-map
-                              :keymaps 'major-python-map :prefix "r"
-                              :wk-full-keys nil
-                              "" '(:ignore t :which-key "refactor")
-                              "i" 'python/remove-unused-imports)
+              :keymaps 'major-python-map :prefix "r"
+              :wk-full-keys nil
+              "" '(:ignore t :which-key "refactor")
+              "i" 'python/remove-unused-imports)
              (:prefix-command 'major-python-repl-map :keymaps 'major-python-map
-                              :prefix "s" :wk-full-keys nil
-                              "" '(:ignore t :which-key "repl")
-                              "b" 'python-shell-send-buffer
-                              "f" 'python-shell-send-defun
-                              "i" 'run-python
-                              "r" 'python-shell-send-region)
+              :prefix "s" :wk-full-keys nil
+              "" '(:ignore t :which-key "repl")
+              "b" 'python-shell-send-buffer
+              "f" 'python-shell-send-defun
+              "i" 'run-python
+              "r" 'python-shell-send-region)
              (:prefix-command 'major-python-virtualenv-map
-                              :keymaps 'major-python-map :prefix "V"
-                              :wk-full-keys nil
-                              "" '(:ignore t :which-key "virtualenv")))
+              :keymaps 'major-python-map :prefix "V"
+              :wk-full-keys nil
+              "" '(:ignore t :which-key "virtualenv")))
 ;; JavaScript mode.
 (use-package js2-mode :ensure t
              :general
@@ -1889,7 +1889,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package elisp-slime-nav :ensure t
              :general
              (:keymaps 'major-emacs-lisp-help-map
-                       "h" 'elisp-slime-nav-describe-elisp-thing-at-point))
+              "h" 'elisp-slime-nav-describe-elisp-thing-at-point))
 ;; Make Emacs aware of Python virtual environments.
 (use-package pipenv :ensure t :after python
              :ghook
@@ -1905,8 +1905,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                     (general-unbind xenops-mode-map ")")))
              :general
              (:keymaps 'major-latex-preview-map
-                       "x" 'xenops-mode
-                       "X" 'xenops-clear-latex-preamble-cache))
+              "x" 'xenops-mode
+              "X" 'xenops-clear-latex-preamble-cache))
 ;; Insert LaTeX maths delimiters with $.
 (use-package math-delimiters ;;:after cdlatex  ;; To override cdlatex binding.
   ;;cdlatex is PITA
@@ -1914,11 +1914,11 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                              :repo "oantolin/math-delimiters")
   :general
   (:keymaps 'LaTeX-mode-map :states 'insert
-            "$" 'math-delimiters-insert)
+   "$" 'math-delimiters-insert)
   (:keymaps 'org-mode-map :states 'insert
-            "$" 'math-delimiters-insert)
+   "$" 'math-delimiters-insert)
   (:keymaps 'cdlatex-mode-map
-            "$" nil))
+   "$" nil))
 ;; IDE features in Emacs, which integrates with flycheck, company, imenu,
 ;; which-key. Provides linting, completion, code outlines, navigation,
 ;; formatting, semantic highlighting
@@ -1940,25 +1940,25 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
              (lsp-auto-guess-root t "Don't prompt about project roots.")
              :general
              (:keymaps 'leader-errors-map
-                       "P" 'lsp-ui-flycheck-list))
+              "P" 'lsp-ui-flycheck-list))
 ;; Provide a UI to LSP features.
 (use-package lsp-ui :ensure t
              :custom
              (lsp-ui-doc-enable nil "Don't obscure code with documentation.")
              :general
              (:keymaps 'lsp-mode-map :states 'insert
-                       "<F1>" 'lsp-ui-doc-glance
-                       "C-?" 'lsp-ui-doc-glance))
+              "<F1>" 'lsp-ui-doc-glance
+              "C-?" 'lsp-ui-doc-glance))
 ;; Integrate LSP with ivy for searching symbols.
 (use-package lsp-ivy :ensure t
              :general
              (:keymaps 'leader-search-map
-                       "S" 'lsp-ivy-workspace-symbol))
+              "S" 'lsp-ivy-workspace-symbol))
 ;; Sort Python imports.
 (use-package py-isort :ensure t
              :general
              (:keymaps 'major-python-refactor-map
-                       "I" 'py-isort-buffer)
+              "I" 'py-isort-buffer)
              :config
              (warn-missing-hook-executable "python-isort" "isort"
                                            "sorting Python imports"
@@ -1976,23 +1976,23 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package re-builder
   :general
   (:keymaps 'leader-applications-map
-            "r" 're-builder))
+   "r" 're-builder))
 ;; The Git porcelain, with SPC-g.
 (use-package magit :ensure t
              :general
              (:keymaps 'magit-mode-map
-                       "<tab>" 'magit-section-toggle)
+              "<tab>" 'magit-section-toggle)
              (:keymaps 'transient-map
-                       "<escape>" 'transient-quit-one)
+              "<escape>" 'transient-quit-one)
              (:keymaps 'leader-git-map
-                       "b" 'magit-blame
-                       "c" 'magit-commit
-                       "f" 'magit-file-dispatch
-                       "i" 'magit-init
-                       "m" 'magit-dispatch
-                       "S" 'magit-stage-file
-                       "s" 'magit-status
-                       "U" 'magit-unstage-file)
+              "b" 'magit-blame
+              "c" 'magit-commit
+              "f" 'magit-file-dispatch
+              "i" 'magit-init
+              "m" 'magit-dispatch
+              "S" 'magit-stage-file
+              "s" 'magit-status
+              "U" 'magit-unstage-file)
              (major-prefix-def :prefix-command 'major-with-editor-map
                :keymaps 'with-editor-mode-map
                "," 'with-editor-finish
@@ -2005,18 +2005,18 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (nil (lambda ()
          "Workaround to define custom key-bindings for `eshell'."
          (general-define-key :keymaps 'eshell-mode-map :states 'insert
-                             "C-j" 'eshell-next-prompt
-                             "C-k" 'eshell-previous-prompt
-                             "C-n" 'eshell-next-matching-input-from-input
-                             "C-p" 'eshell-previous-matching-input-from-input)))
+           "C-j" 'eshell-next-prompt
+           "C-k" 'eshell-previous-prompt
+           "C-n" 'eshell-next-matching-input-from-input
+           "C-p" 'eshell-previous-matching-input-from-input)))
   :general
   (:keymaps 'leader-applications-shell-map
-            "e" 'eshell))
+   "e" 'eshell))
 ;; Zone out with SPC-a-z.
 (use-package zone
   :general
   (:keymaps 'leader-applications-map
-            "z" 'zone))
+   "z" 'zone))
 ;; Open a terminal in the current directory with SPC-a-s-t.
 (use-package terminal-here :ensure t
              :custom
@@ -2028,8 +2028,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
               "Command to use to open real terminals.")
              :general
              (:keymaps 'leader-applications-shell-map
-                       "t" 'terminal-here-launch
-                       "p" 'terminal-here-project-launch))
+              "t" 'terminal-here-launch
+              "p" 'terminal-here-project-launch))
 ;; Find out why Emacs is slow with SPC-a-t.
 (use-package explain-pause-mode
   :straight (explain-pause-mode :host github
@@ -2038,12 +2038,12 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (explain-pause-mode)
   :general
   (:keymaps 'leader-applications-map
-            "t" 'explain-pause-top))
+   "t" 'explain-pause-top))
 ;; Set of debuggers in Emacs.
 (use-package gud
   :general
   (:keymaps 'leader-applications-map
-            "d" 'gud-gdb))
+   "d" 'gud-gdb))
 
 ;;;; Other.
 ;; Run any command on current file (e.g. compile or interpret) with SPC-c-c.
@@ -2052,14 +2052,14 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (compilation-scroll-output 'first-error "Stop scrolling at first error.")
   :general
   (:keymaps 'leader-compile-map
-            "c" 'compile
-            "k" 'kill-compilation
-            "r" 'recompile))
+   "c" 'compile
+   "k" 'kill-compilation
+   "r" 'recompile))
 ;; Name character under point with SPC-h-d-c.
 (use-package descr-text
   :general
   (:keymaps 'leader-help-describe-map
-            "c" 'describe-char))
+   "c" 'describe-char))
 ;; Integrate CMake with `compile'.
 (use-package cmake-project :ensure t
              :ghook
@@ -2068,11 +2068,11 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package restart-emacs :ensure t
              :general
              (:keymaps 'leader-quit-map
-                       "r" 'restart-emacs))
+              "r" 'restart-emacs))
 ;; Save buffers periodically and on exit in case of crash.
 (use-package desktop :demand t
              :ghook
              ('emacs-startup-hook 'desktop-save-mode)
              :general
              (:keymaps 'leader-applications-map
-                       "d" 'desktop-read))
+              "d" 'desktop-read))
