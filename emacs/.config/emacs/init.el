@@ -67,8 +67,7 @@
 (use-package auto-package-update :ensure t
              :custom
              (auto-package-update-hide-results t "Don't show update results.")
-             (auto-package-delete-old-versions t
-                                               "Delete old package versions."))
+             (auto-package-update-delete-old-versions t "Delete old package versions."))
 
 ;;; Install packages.
 ;;;; Make binding keys sane.
