@@ -25,6 +25,7 @@
     selected-urgent-background: {color3};
     selected-urgent-foreground: @foreground;
 
+    /* NOTE: Invert every comment below and disable fullscreen for minimalism. */
     /* background: {background}; */
     background: rgba(0,0,0,0);
     background-color: @background;
