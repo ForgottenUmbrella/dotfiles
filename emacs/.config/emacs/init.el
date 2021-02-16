@@ -1470,8 +1470,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
              (show-smartparens-global-mode)
              (sp-local-pair 'minibuffer-inactive-mode "'" nil :actions nil)
              (sp-local-pair 'conf-mode "Section" "EndSection")
-             ;; XXX: Also activates in comments.
-             ;; (sp-local-pair 'sh-mode "if" "fi")
              :general
              (:keymaps 'leader-toggles-map
                        "p" 'smartparens-mode))
