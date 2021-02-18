@@ -20,6 +20,7 @@
 # redshift/gammastep (AUR)
 # flashfocus-git (AUR)
 # mpd-notification (AUR)
+# rofi-emoji (AUR)
 
 ## i3 bindings.
 set $alt Mod1
