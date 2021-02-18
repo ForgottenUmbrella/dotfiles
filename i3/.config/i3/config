@@ -262,8 +262,8 @@ bindsym $mod+Shift+i split h; exec $BROWSER
 bindsym $mod+n split v; exec $VISUAL
 bindsym $mod+Shift+n split h; exec $VISUAL
 # Files.
-bindsym $mod+e split v; exec --no-startup-id open-menu
-bindsym $mod+Shift+e split h; exec --no-startup-id open-menu
+bindsym $mod+slash exec --no-startup-id open-menu
+# Emoji.
 bindsym $mod+period exec --no-startup-id emoji-menu
 
 # Volume keys.
