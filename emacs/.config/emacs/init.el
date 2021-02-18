@@ -1923,14 +1923,16 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 ;; which-key. Provides linting, completion, code outlines, navigation,
 ;; formatting, semantic highlighting
 (use-package lsp-mode :ensure t
-             :ghook
-             ('(c++-mode-hook
-                js-mode-hook
-                kotlin-mode-hook
-                python-mode-hook
-                rustic-mode-hook
-                haskell-mode-hook)
-              'lsp)
+             ;; XXX: Temporarily disabled because LSP prompts server
+             ;; auto-install with no way to abort, soft-locking Emacs.
+             ;;:ghook
+             ;;('(c++-mode-hook
+             ;;   js-mode-hook
+             ;;   kotlin-mode-hook
+             ;;   python-mode-hook
+             ;;   rustic-mode-hook
+             ;;   haskell-mode-hook)
+             ;; 'lsp)
              :gfhook
              ('lsp-mode 'lsp-enable-which-key-integration)
              ;; NOTE: Install clang, javascript-typescript-langserver,
