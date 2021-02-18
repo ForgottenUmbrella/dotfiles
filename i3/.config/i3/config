@@ -244,7 +244,7 @@ bindsym $mod+Shift+q exec --no-startup-id power-menu
 # Help.
 bindsym $mod+Shift+slash exec --no-startup-id i3-keys-menu
 # Flash focused window.
-bindsym $mod+period exec --no-startup-id flash_window
+bindsym $mod+comma exec --no-startup-id flash_window
 
 # Application launcher.
 set $menu rofi -modi combi -show combi -combi-modi drun#run
@@ -264,6 +264,7 @@ bindsym $mod+Shift+n split h; exec $VISUAL
 # Files.
 bindsym $mod+e split v; exec --no-startup-id open-menu
 bindsym $mod+Shift+e split h; exec --no-startup-id open-menu
+bindsym $mod+period exec --no-startup-id emoji-menu
 
 # Volume keys.
 bindsym XF86AudioRaiseVolume exec --no-startup-id vol up
