@@ -4,7 +4,7 @@
 # Narrow down the list of all files first for efficiency.
 # A good choice of initial query might be a directory name.
 search=$(dmenu -p "Initial search query" | tr ' ' '*')
-path=$(locate "$HOME*$search*" | dmenu -i -p "Open")
+path=$(find "$HOME" -ipath "*$search*" | dmenu -i -p "Open")
 if [ -z "$path" ]; then
     exit
 fi
