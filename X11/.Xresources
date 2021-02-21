@@ -27,10 +27,16 @@ URxvt*cursorBlink: true
 URxvt*internalBorder: 10
 
 ! Functionality
-URxvt.perl-ext-common: default,url-select,resize-font,fullscreen
-URxvt.keysym.M-u: perl:url-select:select_next
 ! Disable (physically) printing the terminal on PrintScreen.
 URxvt.print-pipe: "cat > /dev/null"
+URxvt.perl-ext-common: default,clipboard,url-select,resize-font,fullscreen,keyboard-select
+URxvt.clipboard.autocopy: true
 URxvt.url-select.launcher: /usr/bin/xdg-open
 URxvt.url-select.underline: true
+URxvt.keyboard-select.clipboard: true
+URxvt.keysym.C-S-c: perl:clipboard:copy
+URxvt.keysym.C-S-v: perl:clipboard:paste
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-f: perl:keyboard-select:search
 URxvt.keysym.Super-f: perl:fullscreen:switch
