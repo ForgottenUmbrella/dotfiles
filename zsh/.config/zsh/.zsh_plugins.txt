@@ -23,5 +23,6 @@ zsh-users/zsh-completions
 zsh-users/zsh-syntax-highlighting
 
 # Local Variables:
+# mode: sh
 # compile-command: "antibody bundle < $ZDOTDIR/.zsh_plugins.txt > $ZDOTDIR/.zsh_plugins.sh"
 # End:
