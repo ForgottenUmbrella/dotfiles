@@ -1983,6 +1983,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
    "r" 're-builder))
 ;; The Git porcelain, with SPC-g.
 (use-package magit :ensure t
+             :custom
+             (magit-diff-refine-hunk 'all "Show granular differences.")
              :general
              (:keymaps 'magit-mode-map
               "<tab>" 'magit-section-toggle)
