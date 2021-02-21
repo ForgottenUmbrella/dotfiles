@@ -92,13 +92,13 @@ awk "/^## $country$/{f=1}f==0{next}/^$/{exit}{print substr(\$0, 2)}" \
 # Base installation
 pacstrap /mnt base linux linux-firmware base-devel pkgstats efibootmgr grub nftables \
          git fwupd man-db man-pages zsh \
-         mlocate apparmor chrony pacman-contrib emacs \
+         mlocate apparmor chrony pacman-contrib \
          texinfo pulseaudio pulseaudio-bluetooth pulsemixer gnome-keyring \
          networkmanager cups cups-pdf nss-mdns sane-airscan ipp-usb \
          ghostscript gsfonts foomatic-db-engine foomatic-db-ppds foomatic-db-nonfree-ppds \
          system-config-printer stow trash-cli xclip \
          i3-gaps picom dunst python-pywal xautolock playerctl \
-         termite feh mpv kdeconnect skanlite zathura zathura-pdf-mupdf mpd ncmpcpp \
+         feh mpv kdeconnect skanlite zathura zathura-pdf-mupdf mpd ncmpcpp \
          lib32-mpg123 earlyoom
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
@@ -281,11 +281,12 @@ sed --in-place \
 # Personal apps and AUR TODO move all personals and optionals from pacstrap
 yay --sync --refresh --sysupgrade keepassxc dropbox anki firefox-beta antibody-bin \
     wine-staging wine-nine wine-gecko wine-mono mantablockscreen \
-    rofi-lbonn-wayland-git rofi-dmenu btmenu keepmenu clerk-git polybar \
+    rofi-lbonn-wayland-git rofi-dmenu btmenu polybar \
     otf-mplus tamsyn-font-otb tamzen-font ttf-symbola nerd-fonts-fira-code \
     ttf-monoid ttf-font-awesome ttf-ms-fonts \
     gammastep acpilight pulseaudio-ctl mpdris2 kunst-git xorg-xwininfo \
-    ranger-git python-ueberzug dxvk-bin ashuffle kvantum-qt5 lxappearance
+    ranger ueberzug dxvk-bin ashuffle kvantum-qt5 lxappearance \
+    rxvt-unicode-truecolor-wide-glyphs urxvt-perls emacs-gcc-wayland-devel-bin
 
 # Optimisations
 systemctl enable fstrim.timer
