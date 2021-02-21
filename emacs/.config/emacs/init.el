@@ -1941,6 +1941,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
              :custom
              (lsp-auto-guess-root t "Don't prompt about project roots.")
              :general
+             ;; TODO: Spacemacs bindings (https://develop.spacemacs.org/layers/+tools/lsp/README.html#core-key-bindings)
              (:keymaps 'leader-errors-map
               "P" 'lsp-ui-flycheck-list))
 ;; Provide a UI to LSP features.
@@ -1972,6 +1973,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package org-superstar :ensure t
              ;; XXX: If slowdown occurs, try setting inhibit-compacting-font-caches
              :ghook 'org-mode-hook)
+;; TODO dap-mode with Spacemacs bindings (https://develop.spacemacs.org/layers/+tools/dap/README.html#startstop)
 
 ;;;; Applications.
 ;; Create and check regexes with SPC-a-r.
