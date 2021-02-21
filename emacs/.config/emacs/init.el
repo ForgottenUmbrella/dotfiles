@@ -1145,7 +1145,7 @@ to `evil-lookup'. Based on Spacemacs."
 ;; Enable sane undo history that can be visualised as a tree with SPC-a-u.
 (use-package undo-tree :ensure t :demand t
              ;; XXX: Workaround for evil/undo-tree BS (emacs-evil/evil#1382).
-             ;; :ghook 'text-mode-hook 'prog-mode-hook
+             :ghook ('evil-local-mode-hook 'turn-on-undo-tree-mode)
              :general
              (:keymaps 'leader-applications-map
               "u" 'undo-tree-visualize))
