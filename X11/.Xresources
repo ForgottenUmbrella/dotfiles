@@ -1,20 +1,31 @@
-! Scrolling options
+! -*- compile-command: "xrdb ~/.Xresources"; -*-
+
+! Scrolling options:
+! Don't scroll to latest output when viewing elsewhere.
 URxvt*scrollTtyOutput: false
+! Do scroll to latest output when viewing last line.
 URxvt*scrollWithBuffer: true
+! Scroll to latest output on keypress.
 URxvt*scrollTtyKeypress: true
+! Enable concept of a TUI scrollback buffer.
 URxvt.secondaryScreen: 1
+! Enable scrolling the TUI's scrollback buffer instead of URxvt's.
 URxvt.secondaryScroll: 0
-! Aesthetics
+
+! Aesthetics:
 URxvt.scrollBar: false
-URxvt.font: xft:monospace:size=12,xft:FuraCode Nerd Font Mono
-URxvt*depth: 0
-! True transparency means no nice blur effect.
-URxvt*transparent: true
-URxvt*shading: 30
-URxvt*blurRadius: 16
+URxvt.font: xft:monospace:antialias=false,xft:FuraCode Nerd Font:antialias=false,xft:Symbola:antialias=false
+! Enable true transparency, delegating to compositor.
+URxvt*depth: 32
+! Or, enable pseudo-transparency (only on X).
+!URxvt*inheritPixmap: true
+!URxvt*transparent: true
+!URxvt*shading: 30
+! Pseudo-transparency enables URxvt to manage blur itself.
+!URxvt*blurRadius: 16
 URxvt*cursorBlink: true
 URxvt*internalBorder: 10
-!URxvt*letterSpace: -1
+
 ! Functionality
 URxvt.perl-ext-common: default,url-select,resize-font,fullscreen
 URxvt.keysym.M-u: perl:url-select:select_next
