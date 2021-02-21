@@ -29,6 +29,8 @@ URxvt*internalBorder: 10
 ! Functionality
 URxvt.perl-ext-common: default,url-select,resize-font,fullscreen
 URxvt.keysym.M-u: perl:url-select:select_next
+! Disable (physically) printing the terminal on PrintScreen.
+URxvt.print-pipe: "cat > /dev/null"
 URxvt.url-select.launcher: /usr/bin/xdg-open
 URxvt.url-select.underline: true
 URxvt.keysym.Super-f: perl:fullscreen:switch
