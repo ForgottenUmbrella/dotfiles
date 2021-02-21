@@ -769,7 +769,7 @@ to `evil-lookup'. Based on Spacemacs."
                                                    "Don't automatically insert spaces.")
              (evil-cleverparens-use-additional-movement-keys nil
                                                              "Don't override my keybindings.")
-             (evil-move-beyond-eol t "Required to keep parentheses balanced.")
+             (evil-move-beyond-eol t "Required to keep parentheses balanced (luxbock/evil-cleverparens#29).")
              :general
              (:keymaps 'evil-cleverparens-mode-map :states 'normal
               "C-(" 'evil-cp-<
