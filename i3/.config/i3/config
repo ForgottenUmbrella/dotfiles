@@ -21,6 +21,7 @@
 # flashfocus-git (AUR)
 # mpd-notification (AUR)
 # rofi-emoji (AUR)
+# swaytools (AUR)
 
 ## i3 bindings.
 set $alt Mod1
@@ -252,7 +253,7 @@ set $menu rofi -modi combi -show combi -combi-modi drun#run
 bindsym $mod+d split v; exec $menu
 bindsym $mod+Shift+d split h; exec $menu
 # Window switcher.
-bindsym $mod+Tab exec rofi -show window
+bindsym $mod+Tab exec winfocus
 # Terminal.
 bindsym $mod+Return split v; exec $TERMINAL
 bindsym $mod+Shift+Return split h; exec $TERMINAL
