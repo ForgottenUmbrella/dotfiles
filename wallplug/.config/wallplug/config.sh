@@ -44,8 +44,8 @@ post_commands() {
     emacsclient -e "(load-theme 'ewal-spacemacs-modern t)"
     log 'Reloading Firefox pywalfox theme...'
     pywalfox update
-    log 'Generating termite config...'
-    cat "$config/termite/config" "$cache/wal/colors-termite" > "$cache/wal/termite-config"
+    #log 'Generating termite config...'
+    #cat "$config/termite/config" "$cache/wal/colors-termite" > "$cache/wal/termite-config"
     # XXX: Looks like dunst doesn't like its file disappearing while it runs.
     # Maybe need to restart it here?
     log 'Generating dunst config...'
