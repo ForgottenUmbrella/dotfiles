@@ -278,8 +278,7 @@ systemctl enable plocate-updatedb.timer
 sed --in-place \
     "s#^\(GRUB_CMDLINE_LINUX\)="\"\
     #\1=\"apparmor=1 security=apparmor\"" /etc/default/grub
-
-    systemctl enable apparmor.service
+systemctl enable apparmor.service
 
 # Personal apps and AUR TODO move all personals and optionals from pacstrap
 yay --sync --refresh --sysupgrade keepassxc dropbox anki firefox-beta antibody-bin \
