@@ -309,7 +309,7 @@ exec --no-startup-id systemctl --user start wallplug.timer
 exec_always --no-startup-id ~/.config/i3/i3-autostart.sh
 
 # Dropdown terminal.
-exec $TERMINAL -t 'dropdown'
+exec $TERMINAL --title 'dropdown'
 for_window [title="dropdown"] move scratchpad
 for_window [title="dropdown"] sticky enable
 
