@@ -92,7 +92,7 @@ awk "/^## $country$/{f=1}f==0{next}/^$/{exit}{print substr(\$0, 2)}" \
 # Base installation
 pacstrap /mnt base linux linux-firmware base-devel pkgstats efibootmgr grub nftables \
          git fwupd man-db man-pages zsh \
-         mlocate apparmor chrony pacman-contrib \
+         plocate apparmor chrony pacman-contrib \
          texinfo pulseaudio pulseaudio-bluetooth pulsemixer gnome-keyring \
          networkmanager cups cups-pdf nss-mdns sane-airscan ipp-usb \
          ghostscript gsfonts foomatic-db-engine foomatic-db-ppds foomatic-db-nonfree-ppds \
@@ -270,6 +270,9 @@ do
         echo 'Invalid GPU brand'
     fi
 done
+
+# Locate
+systemctl enable plocate-updatedb.timer
 
 # Security
 sed --in-place \
