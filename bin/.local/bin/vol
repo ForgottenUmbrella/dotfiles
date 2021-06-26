@@ -1,21 +1,45 @@
-#!/bin/sh
+#!/bin/bash
 # Change volume and play a sound.
 # Inspired by https://bbs.archlinux.org/viewtopic.php?id=132218.
 
-step=${2:-2}
+default_step=2
+if [ "$2" != -q ]
+then
+    step=${2:-$default_step}
+else
+    step=$default_step
+fi
+
+pop() {
+    pw-cat -p /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+}
 
 case "$1" in
-    up|down|set)
-        pulseaudio-ctl "$1" "$step"
-        paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga &
+    up)
+        options=(--change-volume "+$step")
+        ;;
+    down)
+        options=(--change-volume "-$step")
+        ;;
+    set)
+        options=(--set-volume "$step")
         ;;
     mute)
-        pulseaudio-ctl mute
+        options=(--toggle-mute)
+        ;;
+    *)
+        options=$@
         ;;
 esac
 
-current=$(pulseaudio-ctl current)
-if [ "$(pulseaudio-ctl full-status | cut -d' ' -f2)" = yes ]
+pulsemixer "${options[@]}"
+if [ "$2" != -q ] && [ "$3" != -q ]
+then
+    pop &
+fi
+
+current="$(pulsemixer --get-volume | cut -d' ' -f1)%"
+if [ "$(pulsemixer --get-mute)" = 1 ]
 then
     icon=audio-volume-muted
     title='Volume (muted)'
@@ -27,6 +51,7 @@ else
     icon=multimedia-volume-control
     title='Volume'
 fi
-hints="-h int:value:$current -h string:synchronous:volume"
-
-notify-send -a vol -t 1000 -i "$icon" -h int:transient:1 ${hints:+$hints} "$title" "$current"
+notify-send -a vol -t 1000 -i "$icon" \
+            -h int:transient:1 -h "int:value:$current" \
+            -h string:synchronous:volume \
+            "$title" "$current"
