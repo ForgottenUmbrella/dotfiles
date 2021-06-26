@@ -67,6 +67,9 @@ exec "$XDG_CONFIG_HOME/sway/import-gsettings.sh" \
     gtk-theme:gtk-theme-name \
     icon-theme:gtk-icon-theme-name \
     cursor-theme:gtk-cursor-theme-name
+# Needed for screen sharing.
+exec dbus-update-activation-environment --systemd \
+    WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # Distro-specific package fixes and system-wide config.
 include /etc/sway/config.d/*
