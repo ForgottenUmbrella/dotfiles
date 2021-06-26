@@ -66,6 +66,9 @@
 (use-package general :ensure t)
 ;; Provide `auto-package-update-now' to update packages.
 (use-package auto-package-update :ensure t
+  ;; Ensure `load-path' is updated.
+  :gfhook
+  ('auto-package-update-after-hook 'package-quickstart-refresh)
   :custom
   (auto-package-update-hide-results t "Don't show update results.")
   (auto-package-update-delete-old-versions t "Delete old package versions."))
