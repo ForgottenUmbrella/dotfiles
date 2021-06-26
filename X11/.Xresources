@@ -1,7 +1,7 @@
 ! -*- compile-command: "xrdb ~/.Xresources"; -*-
 
 ! Scrolling options:
-! Don't scroll to latest output when viewing elsewhere.
+! Do not scroll to latest output when viewing elsewhere.
 URxvt*scrollTtyOutput: false
 ! Do scroll to latest output when viewing last line.
 URxvt*scrollWithBuffer: true
@@ -9,13 +9,15 @@ URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 ! Enable concept of a TUI scrollback buffer.
 URxvt.secondaryScreen: 1
-! Enable scrolling the TUI's scrollback buffer instead of URxvt's.
+! Enable scrolling the TUI scrollback buffer instead of that of URxvt.
 URxvt.secondaryScroll: 0
 
 ! Aesthetics:
 URxvt.scrollBar: false
 URxvt.font: xft:monospace:antialias=false,xft:FuraCode Nerd Font:antialias=false,xft:Symbola:antialias=false
 ! Enable true transparency, delegating to compositor.
+! XXX: Possibly try setting to 16 or 24 to avoid initial white flash. or try
+! gtk-reload after setting theme.
 URxvt*depth: 32
 ! Or, enable pseudo-transparency (only on X).
 !URxvt*inheritPixmap: true
