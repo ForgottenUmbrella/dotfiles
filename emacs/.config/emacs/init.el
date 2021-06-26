@@ -1964,7 +1964,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :general
   ;; TODO: Spacemacs bindings (https://develop.spacemacs.org/layers/+tools/lsp/README.html#core-key-bindings)
   (:keymaps 'leader-errors-map
-   "P" 'lsp-ui-flycheck-list))
+            "P" 'lsp-ui-flycheck-list))
 ;; Provide a UI to LSP features.
 (use-package lsp-ui :ensure t
   :custom
