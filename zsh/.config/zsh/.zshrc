@@ -76,10 +76,6 @@ alias sake='LC_ALL=ja_JP.UTF-8 wine'
 alias findbroken='find . -xtype l | grep -v "cache\|virtualenvs\|Trash"'
 # Replace CAPS LOCK key with Ctrl (on X(Wayland)).
 alias capsctrl='setxkbmap -option ctrl:nocaps; xmodmap ~/.Xmodmap'
-# Switch to QWERTY layout (on X(Wayland)).
-alias qwerty='setxkbmap us'
-# Switch to colemak layout (on X(Wayland)).
-alias colemak='setxkbmap us colemak'
 # Merge PDFs given as input into a single compressed merged.pdf.
 alias pdfmerge='gs -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -o merged.pdf'
 # Open files.

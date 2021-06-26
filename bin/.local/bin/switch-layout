@@ -1,0 +1,19 @@
+#!/bin/sh
+# Switch between Colemak and QWERTY keyboard layouts on X or Wayland (Sway).
+# Usage: switch-layout qwerty|colemak
+
+if [ "$XDG_SESSION_TYPE" = wayland ]
+then
+    colemak="swaymsg input type:keyboard xkb_switch_layout 0"
+    qwerty="swaymsg input type:keyboard xkb_switch_layout 1"
+else
+    colemak="setxkbmap us colemak"
+    qwerty="setxkbmap us"
+fi
+
+if [ "$1" = colemak ]
+then
+    eval "$colemak"
+else
+    eval "$qwerty"
+fi
