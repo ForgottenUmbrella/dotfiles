@@ -57,6 +57,13 @@
 (straight-use-package 'use-package)
 
 ;;;; Set up package management.
+;; Provide key-binding commands and :g(f)hook options to use-package.
+;; NOTE: Include `:demand t' if you use :general or :g(f)hook but still need the
+;; external package or its :config to be loaded. Also, some (but not all)
+;; built-in packages need :demand if you use :general-bind.
+;; NOTE: :ghook adds the package mode to the given hook, whereas :gfhook adds
+;; the given function to the package's own hook.
+(use-package general :ensure t)
 ;; Provide `auto-package-update-now' to update packages.
 (use-package auto-package-update :ensure t
   :custom
@@ -65,12 +72,6 @@
 
 ;;; Install packages.
 ;;;; Make binding keys sane.
-;; NOTE: Include `:demand t' if you use :general or :g(f)hook but still need the
-;; external package or its :config to be loaded. Also, some (but not all)
-;; built-in packages need :demand if you use :general-bind.
-;; NOTE: :ghook adds the package mode to the given hook, whereas :gfhook adds
-;; the given function to the package's own hook.
-(use-package general :ensure t)
 ;; Definer for top-level keys prefixed by the leader key (SPC).
 (general-create-definer leader-def
   :states '(motion normal insert emacs)
