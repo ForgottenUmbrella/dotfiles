@@ -77,5 +77,5 @@ post_commands() {
     /opt/oomox/plugins/icons_papirus/change_color.sh "$oomox_theme"
     # XXX: Is this necessary?
     # log 'Reloading GTK theme...'
-    # gtk-reload.sh
+    # gtk-reload
 }
