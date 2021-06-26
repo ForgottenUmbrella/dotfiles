@@ -36,9 +36,9 @@ URxvt.clipboard.autocopy: true
 URxvt.url-select.launcher: /usr/bin/xdg-open
 URxvt.url-select.underline: true
 URxvt.keyboard-select.clipboard: true
-URxvt.keysym.C-S-c: perl:clipboard:copy
-URxvt.keysym.C-S-v: perl:clipboard:paste
+URxvt.keysym.C-C: perl:clipboard:copy
+URxvt.keysym.C-V: perl:clipboard:paste
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
-URxvt.keysym.C-f: perl:keyboard-select:search
+URxvt.keysym.M-f: perl:keyboard-select:search
 URxvt.keysym.Super-f: perl:fullscreen:switch
