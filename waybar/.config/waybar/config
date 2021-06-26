@@ -145,6 +145,10 @@
                 "car": "",
                 "default": ["", "", ""],
             },
+            "states": {
+                "warning": 30,
+                "safe": 0
+            },
             "on-click": "pavucontrol",
         },
         "battery": {

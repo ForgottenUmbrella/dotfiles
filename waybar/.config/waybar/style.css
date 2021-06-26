@@ -148,6 +148,16 @@ label:focus {
     background-color: @inactive;
 }
 
+#pulseaudio.warning {
+    background-color: @alert;
+    color: @background;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
 /*
 #custom-media {
     background-color: #66cc99;
