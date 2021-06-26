@@ -1,3 +1,6 @@
+# Wayland ignores the X Resources file, so load it yourself (for URxvt).
+exec xrdb ~/.Xresources
+
 # Use the i3 config, minus i3-specific Xresource colours.
 exec sed -E '/^\s*(set_from_resource|client)/d' \
     "$XDG_CONFIG_HOME/i3/config" > "$XDG_CACHE_HOME/swayi3config"
@@ -64,8 +67,6 @@ exec "$XDG_CONFIG_HOME/sway/import-gsettings.sh" \
     gtk-theme:gtk-theme-name \
     icon-theme:gtk-icon-theme-name \
     cursor-theme:gtk-cursor-theme-name
-# Wayland ignores the X Resources file, so load it yourself (for URxvt).
-exec xrdb ~/.Xresources
 
 # Distro-specific package fixes and system-wide config.
 include /etc/sway/config.d/*
