@@ -31,7 +31,7 @@ URxvt*internalBorder: 10
 ! Functionality
 ! Disable (physically) printing the terminal on PrintScreen.
 URxvt.print-pipe: "cat > /dev/null"
-URxvt.perl-ext-common: default,clipboard,url-select,resize-font,fullscreen,keyboard-select
+URxvt.perl-ext-common: default,clipboard,url-select,resize-font,fullscreen,keyboard-select,vtwheel
 URxvt.clipboard.autocopy: true
 URxvt.url-select.launcher: /usr/bin/xdg-open
 URxvt.url-select.underline: true
