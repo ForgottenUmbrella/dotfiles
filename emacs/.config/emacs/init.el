@@ -1339,6 +1339,7 @@ to `evil-lookup'. Based on Spacemacs."
 ;; Auto-complete.
 (use-package company :ensure t :demand t
   :custom
+  (company-idle-delay nil "Only auto-complete on request.")
   (company-minimum-prefix-length 1
                                  "Complete even a single character.")
   :config
