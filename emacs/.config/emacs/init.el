@@ -57,13 +57,6 @@
 (straight-use-package 'use-package)
 
 ;;;; Set up package management.
-;; Ensure downloaded packages are the latest version.
-(defun before-install-refresh-contents (&rest args)
-  "Refresh package archive before installing to avoid outdated files."
-  (package-refresh-contents)
-  (advice-remove 'package-install 'before-install-refresh-contents))
-(advice-add 'package-install :before 'before-install-refresh-contents)
-
 ;; Provide `auto-package-update-now' to update packages.
 (use-package auto-package-update :ensure t
   :custom
