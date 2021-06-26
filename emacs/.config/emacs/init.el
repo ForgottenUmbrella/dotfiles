@@ -2068,7 +2068,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :straight (explain-pause-mode :host github
                                 :repo "lastquestion/explain-pause-mode")
   :config
-  (explain-pause-mode)
+  ;;(explain-pause-mode)  ; Disabled for now, due to weird bugs?
   :general
   (:keymaps 'leader-applications-map
    "t" 'explain-pause-top))
