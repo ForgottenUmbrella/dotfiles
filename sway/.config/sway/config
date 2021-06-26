@@ -1,5 +1,5 @@
-# Use the i3 config.
 exec sed -E '/^(set_from_resource|client)/d' \
+# Use the i3 config, minus i3-specific Xresource colours.
     "$XDG_CONFIG_HOME/i3/config" > "$XDG_CACHE_HOME/swayi3config"
 include "$XDG_CACHE_HOME/swayi3config"
 
