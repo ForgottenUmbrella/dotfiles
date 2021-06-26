@@ -2,6 +2,7 @@
 # name: maths
 # key: maths
 # --
+\usepackage{dsfont}
 \usepackage{physics}
 \usepackage{mathtools}
 \usepackage{amssymb}
@@ -16,3 +17,4 @@
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 \mathtoolsset{showonlyrefs}
 \intervalconfig{soft open fences}
+\renewcommand*{\vec}[1]{\boldsymbol{\mathbf{#1}}}
