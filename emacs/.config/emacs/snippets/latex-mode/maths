@@ -18,4 +18,5 @@
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 \mathtoolsset{showonlyrefs}
 \intervalconfig{soft open fences}
+\numberwithin{equation}{question}
 \renewcommand*{\vec}[1]{\boldsymbol{\mathbf{#1}}}
