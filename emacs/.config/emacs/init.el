@@ -473,6 +473,7 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
     "m" 'switch-to-messages-buffer
     "n" 'next-buffer
     "p" 'previous-buffer
+    "R" 'revert-buffer
     "r" 'read-only-mode
     "s" 'switch-to-scratch-buffer
     "w" 'switch-to-warnings-buffer
