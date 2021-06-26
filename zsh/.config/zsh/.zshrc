@@ -87,6 +87,13 @@ alias pdfmerge='gs -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -o merged.pdf'
 . "${ZDOTDIR:-$HOME}/.zsh_plugins.sh"
 # NOTE: To update plugins, run `antibody update`.
 
+# trystan2k/zsh-tab-title configuration.
+ZSH_TAB_TITLE_CONCAT_FOLDER_PROCESS=true
+
+# zsh-users/zsh-autosuggestions configuration.
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+bindkey '^F' autosuggest-accept
+
 # softmoth/zsh-vim-mode configuration.
 MODE_CURSOR_VIINS='blinking bar'  # Blink to show window focus.
 MODE_CURSOR_VISUAL='steady block'
@@ -96,13 +103,6 @@ MODE_CURSOR_VISUAL='steady block'
 #MODE_INDICATOR_SEARCH='%F{13}%F{5}[S]%f'
 #MODE_INDICATOR_VISUAL='%F{12}%F{4}[V]%f'
 #MODE_INDICATOR_VLINE='%F{12}%F{4}[V]%f'
-
-# trystan2k/zsh-tab-title configuration.
-ZSH_TAB_TITLE_CONCAT_FOLDER_PROCESS=true
-
-# zsh-users/zsh-autosuggestions configuration.
-ZSH_AUTOSUGGEST_USE_ASYNC=1
-bindkey '^F' autosuggest-accept
 
 # Plugin overrides.
 
