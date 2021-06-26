@@ -1342,6 +1342,8 @@ to `evil-lookup'. Based on Spacemacs."
   (company-idle-delay nil "Only auto-complete on request.")
   (company-minimum-prefix-length 1
                                  "Complete even a single character.")
+  (company-format-margin-function 'company-detect-icons-margin
+                                  "Iconify completion")
   :config
   (global-company-mode)
   :general
