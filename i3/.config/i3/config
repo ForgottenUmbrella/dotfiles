@@ -294,12 +294,12 @@ bindsym $mod+grave exec --no-startup-id notifyctl history-pop
 bindsym $mod+Shift+grave exec --no-startup-id notifyctl context
 
 # Disable inactive transparency for current window.
-bindsym $mod+t exec opacity.sh 100
+bindsym $mod+t exec opacity 100
 
 ## Autostart.
 # XXX: Maybe redundant since GDM starts gnome-keyring-daemon already (at least on sway)
 #exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id ibus-daemon -drx
+exec --no-startup-id fcitx -d
 exec --no-startup-id systemctl --user start gammastep.service
 exec --no-startup-id systemctl --user start mpd-notification.service
 exec --no-startup-id systemctl --user start battery-monitor.timer
