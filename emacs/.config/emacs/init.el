@@ -1990,6 +1990,9 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 ;; LSP support for Haskell.
 (use-package lsp-haskell :ensure t
   :ghook ('haskell-mode-hook 'lsp))
+;; LSP support for Java.
+(use-package lsp-java :ensure t
+  :ghook ('java-mode-hook 'lsp))
 ;; Prettify Org mode bullets.
 (use-package org-superstar :ensure t
   ;; XXX: If slowdown occurs, try setting inhibit-compacting-font-caches
