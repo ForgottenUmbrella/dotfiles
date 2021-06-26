@@ -167,8 +167,10 @@
         },
         "clock": {
             "interval": 30,
-            "format-alt": "🕓 {:%Y-%m-%d %H:%M}",
-            "format": "🕓 {:%H:%M}",
+            // "format-alt": "🕓 {:%Y-%m-%d %H:%M}",
+            // "format": "🕓 {:%H:%M}",
+            "format-alt": "{:%Y-%m-%d %H:%M}",
+            "format": "{:%H:%M}",
             "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         },
         "tray": {
