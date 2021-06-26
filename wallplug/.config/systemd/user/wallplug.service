@@ -3,5 +3,4 @@ Description=Periodically set wallpaper
 PartOf=graphical-session.target
 
 [Service]
-ExecStartPre=-killall wallplug.sh
 ExecStart=%h/.local/bin/wallplug.sh
