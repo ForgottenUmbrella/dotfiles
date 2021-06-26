@@ -26,7 +26,8 @@ safebooru_outdated_tags() {
 safebooru_filter_tags() {
     data=$1
     tag_string=$(echo "$data" | jq '.tag_string')
-    [ "$(python -c "print('highres' in $tag_string and 'monochrome' not in $tag_string)")" = 'True' ]
+    [ "$(python -c "print(all(tag in $tag_string for tag in ['highres']) \
+and all(tag not in $tag_string for tag in ['comic', 'animated']))")" = 'True' ]
 }
 
 # Wait for network access via rudimentary exponential backoff.
