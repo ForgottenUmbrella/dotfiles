@@ -666,12 +666,10 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
                       "Use evil's search module instead of Emacs's.")
   (evil-want-keybinding nil
                         "Required to add evil-collection keybindings.")
-  ;; XXX: Known bug currently awaiting resolution: emacs-evil/evil#1382
   (evil-undo-system 'undo-tree "Use undo-tree for undo until Emacs 28.")
   (evil-ex-visual-char-range t "Default to substituting in actual selection.")
   :config
   (evil-mode)
-  (global-undo-tree-mode)
   (set-keymap-parent leader-windows-map evil-window-map)
   (defun my/append-to-register ()
     "Append to instead of replacing the unnamed (default) register.
@@ -1150,11 +1148,12 @@ to `evil-lookup'. Based on Spacemacs."
    "z f" 'reposition-window))
 ;; Enable sane undo history that can be visualised as a tree with SPC-a-u.
 (use-package undo-tree :ensure t :demand t
-  ;; XXX: Workaround for evil/undo-tree BS (emacs-evil/evil#1382).
   :ghook ('evil-local-mode-hook 'turn-on-undo-tree-mode)
   :general
   (:keymaps 'leader-applications-map
-   "u" 'undo-tree-visualize))
+   "u" 'undo-tree-visualize)
+  :config
+  (global-undo-tree-mode))
 ;; Navigate to recent files with SPC-f-r.
 (use-package recentf
   :custom
