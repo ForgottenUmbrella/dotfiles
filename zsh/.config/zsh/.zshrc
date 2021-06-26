@@ -82,6 +82,8 @@ alias qwerty='setxkbmap us'
 alias colemak='setxkbmap us colemak'
 # Merge PDFs given as input into a single merged.pdf.
 alias pdfmerge='gs -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -o merged.pdf'
+# Open files.
+alias open='xdg-open'
 
 # Load plugins declared in $ZDOTDIR/.zsh_plugins.txt.
 . "${ZDOTDIR:-$HOME}/.zsh_plugins.sh"
