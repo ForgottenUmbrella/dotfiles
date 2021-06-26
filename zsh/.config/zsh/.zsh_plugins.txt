@@ -5,8 +5,6 @@
 
 # Use fish prompt.
 #robbyrussell/oh-my-zsh path:themes/fishy.zsh-theme
-# Emacs bindings, surround objects, mode cursors and prompt.
-softmoth/zsh-vim-mode
 # Go back quickly.
 Tarrasch/zsh-bd
 # Dynamic terminal title.
@@ -21,6 +19,9 @@ zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
 # Enable syntax highlighting. Must be last plugin.
 zsh-users/zsh-syntax-highlighting
+# Emacs bindings, surround objects, mode cursors and prompt.
+# Must be after zsh-syntax-highlighting.
+softmoth/zsh-vim-mode
 
 # Local Variables:
 # mode: sh
