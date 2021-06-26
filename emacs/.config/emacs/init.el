@@ -1952,8 +1952,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   ;;   js-mode-hook
   ;;   kotlin-mode-hook
   ;;   python-mode-hook
-  ;;   rustic-mode-hook
-  ;;   haskell-mode-hook)
+  ;;   rustic-mode-hook)
   ;; 'lsp)
   :gfhook
   ('lsp-mode 'lsp-enable-which-key-integration)
