@@ -1493,7 +1493,10 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (flyspell-issue-message-flag nil "Be less obnoxious about typos.")
   :general
   (:keymaps 'leader-toggles-map
-   "S" 'flyspell-mode))
+   "S" 'flyspell-mode)
+  (:keymaps 'flyspell-mode-map
+   ;; Don't accidentally autocorrect words when trying to escape insert mode.
+   "C-;" nil))
 ;; Correct typos with SPC-S.
 (use-package flyspell-popup :ensure t
   :general
