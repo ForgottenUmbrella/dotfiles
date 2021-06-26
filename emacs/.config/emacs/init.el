@@ -1556,6 +1556,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                                 "Don't confirm Python evaluation."
                                 (not (string= lang "python")))
                               "Don't confirm src block evaluation.")
+  (org-M-RET-may-split-line '((default . nil))
+                            "Insert new lines instead of splitting with M-RET")
   :init
   (setq-default org-export-with-smart-quotes t
                 org-latex-listings t)
