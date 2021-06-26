@@ -1543,7 +1543,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 
 ;;;; Major modes.
 ;; Org mode.
-(use-package org
+(use-package org :ensure org-plus-contrib
   :gfhook
   'toggle-truncate-lines
   :custom
@@ -1561,7 +1561,9 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                 org-latex-listings t)
   :config
   (org-babel-do-load-languages 'org-babel-load-languages
-                               '((python . t) (emacs-lisp . t)))
+                               '((python . t)
+                                 (emacs-lisp . t)
+                                 (mathematica . t)))
   (add-to-list 'org-latex-packages-alist '("" "listingsutf8"))
   :general
   (:prefix-command 'leader-applications-org-map
