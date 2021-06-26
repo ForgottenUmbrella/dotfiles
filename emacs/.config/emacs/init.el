@@ -1050,6 +1050,9 @@ to `evil-lookup'. Based on Spacemacs."
 (use-package all-the-icons-ivy-rich :ensure t :after counsel-projectile
   :config
   (all-the-icons-ivy-rich-mode t))
+;; Google style guides.
+(use-package google-c-style :ensure t
+  :ghook ('c-mode-common-hook '(google-set-c-style gogle-make-newline-indent)))
 
 ;;;;; Themes.
 ;; NOTE: Defer all but the selected for faster startup.
