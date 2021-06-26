@@ -75,7 +75,7 @@ alias sake='LC_ALL=ja_JP.UTF-8 wine'
 # Find broken symlinks.
 alias findbroken='find . -xtype l | grep -v "cache\|virtualenvs\|Trash"'
 # Replace CAPS LOCK key with Ctrl (on X(Wayland)).
-alias capsctrl='setxkbmap -option ctrl:nocaps'
+alias capsctrl='setxkbmap -option ctrl:nocaps; xmodmap ~/.Xmodmap'
 # Switch to QWERTY layout (on X(Wayland)).
 alias qwerty='setxkbmap us'
 # Switch to colemak layout (on X(Wayland)).
