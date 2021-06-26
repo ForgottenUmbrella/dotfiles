@@ -205,8 +205,8 @@ sed --in-place 's/^#\(auth	required	pam_wheel.so use_sid\)$/\1/' \
     /etc/pam.d/su-1
 
 # AUR
-git clone https://aur.archlinux.org/yay.git
-pushd yay
+git clone https://aur.archlinux.org/yay-bin.git
+pushd yay-bin
 su -- "$username" -c makepkg --syncdeps --install
 popd
 
