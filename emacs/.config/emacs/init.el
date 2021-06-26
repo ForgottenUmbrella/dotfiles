@@ -595,7 +595,7 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
   (auto-save-visited-mode)
   :custom
   (scroll-conservatively 101 "Don't disruptively recentre point.")
-  (scroll-margin 5 "Keep cursor away from very top or bottom.")
+  (scroll-margin 2 "Keep cursor away from very top or bottom.")
   (mouse-wheel-progressive-speed nil "Don't accelerate scrolling.")
   (mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control)))
                              "Scroll one line at a time.")
