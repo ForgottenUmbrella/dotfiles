@@ -42,7 +42,6 @@ tags
 venv/
 *~
 __pycache__
-log*
 nohup.out
 **/build/
 **/*.pro.user
