@@ -639,7 +639,9 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
       ((display-buffer-reuse-window display-buffer-same-window) .
        ((reusable-frames . t)))))
    "Try to reuse existing windows, else use current window.")
-  (even-window-sizes nil "Don't resize windows."))
+  (even-window-sizes nil "Don't resize windows.")
+  (isearch-regexp-lax-whitespace t "Search across lines")
+  (search-whitespace-regexp "[ \t\r\n]+" "Ignore all whitespace when searching"))
 (set-keymap-parent leader-help-describe-map help-map)
 
 ;;;; Join the dark side.
