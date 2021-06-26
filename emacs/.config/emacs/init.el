@@ -1903,6 +1903,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :mode ("PKGBUILD" . sh-mode))
 ;; Haskell mode.
 (use-package haskell-mode :ensure t)
+;; Vimscript mode.
+(use-package vimrc-mode :ensure t)
 
 ;;;;; Major mode extensions.
 ;; Provide documentation lookup with K in Elisp.
