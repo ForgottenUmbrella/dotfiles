@@ -288,6 +288,8 @@ bindsym $mod+period exec --no-startup-id emoji-menu
 # Volume keys.
 bindsym XF86AudioRaiseVolume exec --no-startup-id vol up
 bindsym XF86AudioLowerVolume exec --no-startup-id vol down
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id vol up -q
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id vol down -q
 bindsym XF86AudioMute exec --no-startup-id vol mute
 # Media keys.
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause -i firefox
