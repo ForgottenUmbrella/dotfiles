@@ -329,8 +329,8 @@ exec_always --no-startup-id ~/.config/i3/i3-autostart.sh
 
 # Dropdown terminal.
 exec $TERMINAL --title 'dropdown'
-for_window [title="dropdown"] move scratchpad
-for_window [title="dropdown"] sticky enable
+for_window [title="^dropdown$"] move scratchpad
+for_window [title="^dropdown$"] sticky enable
 
 # Edit any input field in Emacs.
 bindsym $mod+Ctrl+minus split v; exec emacsclient -c $(mktemp)
