@@ -7,6 +7,10 @@
 \author{Leo Long Pham}
 \usepackage[T1]{fontenc}
 \usepackage[a4paper,margin=1in]{geometry}
+\qformat{\large \textbf{\thequestion. \thequestiontitle{} (\thepoints)}\hfill}
+\marksnotpoints{}
+\newcommand*{\hint}[1]{[\emph{Hint: #1}]}
+\renewcommand{\labelitemi}{\(\blacktriangleright\)}
 
 \begin{document}
 \maketitle{}
