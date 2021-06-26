@@ -1997,7 +1997,14 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package org-superstar :ensure t
   ;; XXX: If slowdown occurs, try setting inhibit-compacting-font-caches
   :ghook 'org-mode-hook)
-;; TODO dap-mode with Spacemacs bindings (https://develop.spacemacs.org/layers/+tools/dap/README.html#startstop)
+;; TODO Spacemacs bindings (https://develop.spacemacs.org/layers/+tools/dap/README.html#startstop)
+;; External debug servers.
+(use-package dap-mode :ensure t :after lsp-mode
+  :config
+  (dap-auto-configure-mode))
+;; Enable Java debugger built into DAP mode.
+;; NOTE: Not passing `:ensure t' is equivalent to a bare `require'.
+(use-package dap-java)
 
 ;;;; Applications.
 ;; Create and check regexes with SPC-a-r.
