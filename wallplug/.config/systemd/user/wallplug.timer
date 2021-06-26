@@ -6,6 +6,7 @@ After=network-online.target graphical-session.target
 [Timer]
 OnCalendar=0/6:0
 Persistent=true
+RandomizedDelaySec=300
 
 [Install]
 WantedBy=timers.target
