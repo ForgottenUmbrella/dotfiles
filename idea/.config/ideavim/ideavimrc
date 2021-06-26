@@ -1,0 +1,3 @@
+" -*- mode: vimrc; -*-
+" Show relative line numbers with absolute number for current line.
+set relativenumber number
