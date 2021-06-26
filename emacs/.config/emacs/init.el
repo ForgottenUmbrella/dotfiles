@@ -492,7 +492,8 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
     "f" 'find-file
     "o" 'open-file-or-directory-in-external-app
     "R" 'rename-current-buffer-file
-    "s" 'save-buffer)
+    "s" 'save-buffer
+    "w" 'write-file)
   (:prefix-command 'leader-files-convert-map
    :keymaps 'leader-files-map :prefix "C"
    :wk-full-keys nil
