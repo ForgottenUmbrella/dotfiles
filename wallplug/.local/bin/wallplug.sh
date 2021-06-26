@@ -102,3 +102,4 @@ while getopts ':ui:c:a:h?' option; do
 done
 eval "$command"
 set_wallpaper "$image" "$alpha"
+cat "$url_file"
