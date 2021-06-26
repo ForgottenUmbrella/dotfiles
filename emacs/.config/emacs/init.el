@@ -668,6 +668,7 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
                         "Required to add evil-collection keybindings.")
   ;; XXX: Known bug currently awaiting resolution: emacs-evil/evil#1382
   (evil-undo-system 'undo-tree "Use undo-tree for undo until Emacs 28.")
+  (evil-ex-visual-char-range t "Default to substituting in actual selection.")
   :config
   (evil-mode)
   (global-undo-tree-mode)
