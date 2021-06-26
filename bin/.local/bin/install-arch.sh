@@ -91,7 +91,7 @@ awk "/^## $country$/{f=1}f==0{next}/^$/{exit}{print substr(\$0, 2)}" \
 
 # Base installation
 pacstrap /mnt base linux linux-firmware base-devel pkgstats efibootmgr grub nftables \
-         git fwupd man-db man-pages zsh emacs \
+         git fwupd man-db man-pages zsh emacs alacritty \
          plocate apparmor chrony pacman-contrib \
          texinfo pulseaudio pulseaudio-bluetooth pulsemixer gnome-keyring \
          networkmanager cups cups-pdf nss-mdns sane-airscan ipp-usb \
@@ -287,8 +287,7 @@ yay --sync --refresh --sysupgrade keepassxc dropbox anki firefox-beta antibody-b
     otf-mplus tamsyn-font-otb tamzen-font ttf-symbola nerd-fonts-fira-code \
     ttf-monoid ttf-font-awesome ttf-ms-fonts \
     gammastep acpilight mpdris2 kunst-git xorg-xwininfo \
-    ranger w3m dxvk-bin ashuffle kvantum-qt5 lxappearance \
-    rxvt-unicode-truecolor-wide-glyphs urxvt-perls 
+    ranger w3m dxvk-bin ashuffle kvantum-qt5 lxappearance
 
 # Optimisations
 systemctl enable fstrim.timer
