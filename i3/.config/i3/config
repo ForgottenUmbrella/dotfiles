@@ -229,8 +229,9 @@ set $default_inner 20
 set $default_outer 0
 set $gap_delta 2
 # For polybar.
-set $gap_bot 30
-gaps bottom $gap_bot
+# XXX: Is this necessary?
+#set $gap_bot 30
+#gaps bottom $gap_bot
 gaps inner $default_inner
 gaps outer $default_outer
 set $mode_gaps "Gaps: [j] -outer [k] +outer [J] -inner [K] +inner [0] none [=] default [q]uit"
@@ -242,7 +243,7 @@ mode $mode_gaps {
     bindsym Shift+k gaps inner all plus $gap_delta
     bindsym 0 gaps inner all set 0; gaps outer all set 0
     bindsym equal gaps outer all set $default_outer; gaps inner all set $default_inner; \
-        gaps bottom all set $gap_bot
+        gaps bottom all set 0
     bindsym q mode "default"
     bindsym Control+bracketleft mode "default"
     bindsym Escape mode "default"
