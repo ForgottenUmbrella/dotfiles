@@ -1559,6 +1559,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (org-M-RET-may-split-line '((default . nil))
                             "Insert new lines instead of splitting with M-RET")
   (org-list-allow-alphabetical t "Allow alphabetical lists")
+  (org-cycle-separator-lines -1 "Don't fold whitespace")
   :init
   (setq-default org-export-with-smart-quotes t
                 org-latex-listings t)
