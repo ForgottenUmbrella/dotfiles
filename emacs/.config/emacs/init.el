@@ -608,6 +608,7 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
                           "Allow inserting characters by hex value.")
   (frame-resize-pixelwise t "Allow proper frame maximisation.")
   (initial-major-mode 'text-mode "Start scratch buffer in text mode.")
+  (major-mode 'text-mode "Start file-less buffers in text mode.")
   (require-final-newline t "Ensure files terminate properly.")
   (help-window-select t "Focus help window on summon.")
   (delete-by-moving-to-trash t "Delete files safely by trashing.")
