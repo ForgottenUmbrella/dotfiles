@@ -13,6 +13,7 @@
 \newcommand*{\rats}{\mathbb{Q}}
 \newcommand*{\reals}{\mathbb{R}}
 \newcommand*{\comps}{\mathbb{C}}
+\newcommand*{\id}{\mathds{1}}
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 \mathtoolsset{showonlyrefs}
