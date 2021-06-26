@@ -43,7 +43,14 @@ bar {
 }
 
 # Application configuration.
-for_window [class=zoom] inhibit_idle focus
+for_window [app_id=zoom] {
+    exec pa_volume 'ZOOM VoiceEngine' 100
+    inhibit_idle focus
+    # XXX: Maybe enable this?
+    # floating enable
+}
+# Stupid thing opens in occcupied workspace, crashing.
+for_window [title="Zoom Meeting|Webinar"] floating enable
 for_window [app_id=totem] inhibit_idle focus
 
 # Custom bindings.
