@@ -6,6 +6,7 @@
 \usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{esint}
+\usepackage{interval}
 \newcommand*{\nats}{\mathbb{N}}
 \newcommand*{\ints}{\mathbb{Z}}
 \newcommand*{\rats}{\mathbb{Q}}
@@ -14,3 +15,4 @@
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 \mathtoolsset{showonlyrefs}
+\intervalconfig{soft open fences}
