@@ -37,7 +37,7 @@ Thumbs.db
 .directory
 
 
-# My custom ignores
+# XXX: My custom ignores
 tags
 venv/
 *~
