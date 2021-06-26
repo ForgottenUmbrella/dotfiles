@@ -1558,6 +1558,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                               "Don't confirm src block evaluation.")
   (org-M-RET-may-split-line '((default . nil))
                             "Insert new lines instead of splitting with M-RET")
+  (org-list-allow-alphabetical t "Allow alphabetical lists")
   :init
   (setq-default org-export-with-smart-quotes t
                 org-latex-listings t)
