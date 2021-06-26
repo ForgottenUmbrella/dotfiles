@@ -286,7 +286,7 @@ yay --sync --refresh --sysupgrade keepassxc dropbox anki firefox-beta antibody-b
     rofi-lbonn-wayland-git rofi-dmenu btmenu polybar \
     otf-mplus tamsyn-font-otb tamzen-font ttf-symbola nerd-fonts-fira-code \
     ttf-monoid ttf-font-awesome ttf-ms-fonts \
-    gammastep acpilight pulseaudio-ctl mpdris2 kunst-git xorg-xwininfo \
+    gammastep acpilight mpdris2 kunst-git xorg-xwininfo \
     ranger w3m dxvk-bin ashuffle kvantum-qt5 lxappearance \
     rxvt-unicode-truecolor-wide-glyphs urxvt-perls 
 
