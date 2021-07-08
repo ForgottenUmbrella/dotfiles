@@ -589,7 +589,6 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
    (lambda ()
      "Maybe fix sporadic elisp indentation."
      (setq-local lisp-indent-function 'Fuco1/lisp-indent-function)))
-  ('kill-emacs-hook 'desktop-save-in-desktop-dir)
   :config
   (pixel-scroll-mode)
   (auto-save-visited-mode)
