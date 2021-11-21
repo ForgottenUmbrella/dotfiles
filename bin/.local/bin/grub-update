@@ -1,4 +1,0 @@
-#!/bin/sh
-# Update the GRUB configuration.
-
-sudo grub-mkconfig -o /boot/grub/grub.cfg

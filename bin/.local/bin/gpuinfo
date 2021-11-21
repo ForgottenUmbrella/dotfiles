@@ -1,3 +1,0 @@
-#!/bin/sh
-# Get GPU info.
-lspci | grep " VGA " | cut -d " " -f 1 | xargs lspci -v -s

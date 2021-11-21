@@ -283,7 +283,7 @@ bindsym $mod+Shift+n split h; exec $VISUAL
 # Files.
 bindsym $mod+slash exec --no-startup-id open-menu
 # Emoji.
-bindsym $mod+period exec --no-startup-id emoji-menu
+bindsym $mod+period exec --no-startup-id rofi -show emoji
 
 # Volume keys.
 bindsym XF86AudioRaiseVolume exec --no-startup-id vol up

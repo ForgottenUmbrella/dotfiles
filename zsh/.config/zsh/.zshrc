@@ -80,6 +80,11 @@ alias capsctrl='setxkbmap -option ctrl:nocaps; xmodmap ~/.Xmodmap'
 alias pdfmerge='gs -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -o merged.pdf'
 # Open files.
 alias open='xdg-open'
+# Get GPU info.
+alias gpuinfo='lspci | grep " VGA " | cut -d " " -f 1 | xargs lspci -v -s'
+# Update the GRUB configuration.
+alias grub-update='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+
 
 # Load plugins declared in $ZDOTDIR/.zsh_plugins.txt.
 . "${ZDOTDIR:-$HOME}/.zsh_plugins.sh"
