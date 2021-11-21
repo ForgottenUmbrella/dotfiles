@@ -1581,6 +1581,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                                  (mathematica . t)))
   (require 'org-mouse)
   :general
+  (:keymaps 'org-mode-map :states 'motion
+   "C-]" 'org-open-at-point)
   (:prefix-command 'leader-applications-org-map
    :keymaps 'leader-applications-map :prefix "o"
    :wk-full-keys nil
