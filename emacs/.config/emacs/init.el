@@ -1573,6 +1573,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (org-latex-pdf-process '("latexmk -shell-escape -f -pdf %f")
                          "Use latexmk for compilation, with minted support.")
   (org-tags-column 0 "Don't indent tags.")
+  (org-latex-prefer-user-labels t "Use my labels in LaTeX export.")
   :config
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((python . t)
