@@ -1,9 +1,9 @@
 #!/bin/sh
 # Update my system. btw i use arch
 
-sudo pacdiff
 paru -Sc --noconfirm
 paru -Syu --noconfirm "$@"
+sudo -E pacdiff
 fwupdmgr refresh && fwupdmgr update
 echo 'Updating Emacs packages...'
 emacsclient --eval '(auto-package-update-now)'
