@@ -1642,6 +1642,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
     "p" 'org-latex-preview
     "q" 'org-clock-cancel
     "R" 'org-refile
+    "r" 'org-export-stack-refresh
     "s" 'org-schedule
     "T" 'org-show-todo-tree)
   (:prefix-command 'major-org-export-map :keymaps 'major-org-map :prefix "e"
