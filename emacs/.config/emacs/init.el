@@ -1850,6 +1850,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :custom
   (python-fill-docstring-style 'pep-257-nn
                                "Format docstrings properly.")
+  (python-indent-guess-indent-offset-verbose nil "Silence indent guesses.")
   :config
   (defun fill-paragraph-72 ()
     "Fill paragraph at column 72."
