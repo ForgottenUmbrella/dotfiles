@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: main
+# name: double_quote_main
 # key: ifm
 # --
 if __name__ == "__main__":
