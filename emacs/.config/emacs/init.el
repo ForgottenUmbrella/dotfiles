@@ -594,6 +594,11 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
   :config
   (pixel-scroll-mode)
   (auto-save-visited-mode)
+  (setq-default completion-ignore-case t
+                frame-title-format "%* %b"
+                bidi-inhibit-bpa t
+                isearch-regexp-lax-whitespace t
+                disabled-command-function 'ignore)
   :custom
   (scroll-conservatively 101 "Don't disruptively recentre point.")
   (scroll-margin 2 "Keep cursor away from very top or bottom.")
@@ -629,19 +634,15 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
                          "Open current buffer in new frames.")
   (large-file-warning-threshold (* 1000 1000) "Warn of 1MB files.")
   (confirm-kill-processes nil "Silently kill processes.")
-  (frame-title-format "%* %b"
-                      "Show buffer name & status in frame title.")
   (mode-line-format nil "Don't show mode line.")
   (bidi-paragraph-direction 'left-to-right
                             "Avoid text direction detection.")
-  (bidi-inhibit-bpa t "Don't bother rendering right-to-left text.")
   (display-buffer-alist
    '((".*" .
       ((display-buffer-reuse-window display-buffer-same-window) .
        ((reusable-frames . t)))))
    "Try to reuse existing windows, else use current window.")
   (even-window-sizes nil "Don't resize windows.")
-  (isearch-regexp-lax-whitespace t "Search across lines")
   (search-whitespace-regexp "[ \t\r\n]+" "Ignore all whitespace when searching"))
 (set-keymap-parent leader-help-describe-map help-map)
 
