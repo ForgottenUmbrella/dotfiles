@@ -1564,6 +1564,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                             "Insert new lines instead of splitting with M-RET")
   (org-list-allow-alphabetical t "Allow alphabetical lists")
   (org-cycle-separator-lines -1 "Don't fold whitespace")
+  (org-return-follows-link t "Follow links with RET.")
   (org-export-with-smart-quotes t "Use smart quotes.")
   (org-latex-listings 'minted "Export code blocks with minted package.")
   :config
