@@ -644,7 +644,8 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
        ((reusable-frames . t)))))
    "Try to reuse existing windows, else use current window.")
   (even-window-sizes nil "Don't resize windows.")
-  (search-whitespace-regexp "[ \t\r\n]+" "Ignore all whitespace when searching"))
+  (search-whitespace-regexp "[ \t\r\n]+"
+                            "Ignore all whitespace when searching.")
   (window-divider-default-places t "Show window dividers everywhere.")
   (blink-matching-paren nil "Don't jump spontaneously to matching character.")
   :custom-face
@@ -944,7 +945,7 @@ to `evil-lookup'. Based on Spacemacs."
   :general
   (:keymaps 'leader-toggles-colours-map
    "i" 'rainbow-identifiers-mode))
-;; Show a vertical margin at 80 characters.
+;; Show a vertical margin at 79 characters.
 (use-package display-fill-column-indicator :demand t
   :config
   (global-display-fill-column-indicator-mode)
@@ -1554,16 +1555,13 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (org-startup-indented t "Indent levels.")
   (org-startup-folded nil "Don't hide content by default.")
   (org-startup-truncated nil "Don't truncate lines.")
-  (org-agenda-files '("~/Dropbox/Wiki/uni/"))
+  (org-agenda-files '("~/Dropbox/Wiki/uni/") "Locate TODO files.")
   (org-src-tab-acts-natively t "Allow normal TAB behaviour in src blocks.")
-  (org-confirm-babel-evaluate (lambda (lang body)
-                                "Don't confirm Python evaluation."
-                                (not (string= lang "python")))
-                              "Don't confirm src block evaluation.")
+  (org-confirm-babel-evaluate nil "Don't confirm src block evaluation.")
   (org-M-RET-may-split-line '((default . nil))
                             "Insert new lines instead of splitting with M-RET")
-  (org-list-allow-alphabetical t "Allow alphabetical lists")
-  (org-cycle-separator-lines -1 "Don't fold whitespace")
+  (org-list-allow-alphabetical t "Allow alphabetical lists.")
+  (org-cycle-separator-lines -1 "Don't fold whitespace.")
   (org-return-follows-link t "Follow links with RET.")
   (org-export-with-smart-quotes t "Use smart quotes.")
   (org-latex-listings 'minted "Export code blocks with minted package.")
@@ -1572,13 +1570,13 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                             "Export code blocks with colour.")
   (org-latex-pdf-process '("latexmk -shell-escape -f -pdf %f")
                          "Use latexmk for compilation, with minted support.")
+  (org-babel-load-languages '((python . t)
+                              (emacs-lisp . t)
+                              (mathematica . t))
+                            "Add support for more languages in babel.")
   (org-tags-column 0 "Don't indent tags.")
   (org-latex-prefer-user-labels t "Use my labels in LaTeX export.")
   :config
-  (org-babel-do-load-languages 'org-babel-load-languages
-                               '((python . t)
-                                 (emacs-lisp . t)
-                                 (mathematica . t)))
   (require 'org-mouse)
   :general
   (:keymaps 'org-mode-map :states 'motion
