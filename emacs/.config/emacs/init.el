@@ -2131,6 +2131,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :ghook
   ;; XXX: Hangs attempts to close emacs by forcing interaction.
   ;('emacs-startup-hook 'desktop-save-mode)
+  :config
+  (setq-default desktop-dirname (car desktop-path))
   :general
   (:keymaps 'leader-applications-map
    "d" 'desktop-read))
