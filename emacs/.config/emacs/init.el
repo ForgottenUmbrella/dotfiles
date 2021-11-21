@@ -609,7 +609,7 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
   (prettify-symbols-unprettify-at-point t "Show original symbol at point.")
   (indicate-empty-lines t
                         "Differentiate EOF from empty lines.")
-  (fill-column 80 "Wrap at 80th character.")
+  (fill-column 79 "Wrap after 79th character.")
   (indent-tabs-mode nil "Never use tabs for indentation.")
   (read-quoted-char-radix 16
                           "Allow inserting characters by hex value.")
@@ -646,6 +646,8 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
   (even-window-sizes nil "Don't resize windows.")
   (search-whitespace-regexp "[ \t\r\n]+" "Ignore all whitespace when searching"))
   (window-divider-default-places t "Show window dividers everywhere.")
+  (window-divider-first-pixel ((t (:inherit window-divider))))
+  (window-divider-last-pixel ((t (:inherit window-divider)))))
 (set-keymap-parent leader-help-describe-map help-map)
 
 ;;;; Join the dark side.
