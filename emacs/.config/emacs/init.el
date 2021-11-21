@@ -966,6 +966,8 @@ to `evil-lookup'. Based on Spacemacs."
    "w" 'whitespace-mode))
 ;; Highlight TODO keywords.
 (use-package hl-todo :ensure t :demand t
+  :custom
+  (hl-todo-exclude-modes nil "Highlight TODO in all the modes.")
   :config
   (global-hl-todo-mode)
   :general
