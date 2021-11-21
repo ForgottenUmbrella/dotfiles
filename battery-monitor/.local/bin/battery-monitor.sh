@@ -1,5 +1,6 @@
 #!/bin/sh
 # Notify if the battery is low or full.
+# Depends on notify-send.sh (AUR).
 
 low=10
 
@@ -24,10 +25,17 @@ if [ "$1" = "-g" ] || [ "$1" = "--get" ]; then
     echo "Capacity: $capacity%"
 fi
 
+notify_id_dir="${XDG_DATA_HOME:-$HOME/.local/share}/battery-monitor"
+mkdir -p "$notify_id_dir"
+notify_id_file="$notify_id_dir/notify-id"
+
 if [ "$status" = "Discharging" ] && [ "$capacity" -le "$low" ]; then
-    notify-send "Low battery ($low%)" "Plug in the charger and save your work." \
-                -a "$0" -u critical -i battery-caution
+    notify-send.sh "Low battery ($low%)" \
+                   "Plug in the charger and save your work." \
+                   -a "$0" -u critical -i battery-caution \
+                   -R "$notify_id_file"
 elif [ "$status" = "Full" ]; then
-    notify-send "Battery fully charged" "Unplug the charger." \
-                -a "$0" -i battery-full-charged
+    notify-send.sh "Battery fully charged" "Unplug the charger." \
+                   -a "$0" -i battery-full-charged \
+                   -R "$notify_id_file"
 fi
