@@ -57,7 +57,7 @@ for_window [con_mark="opaque"] opacity 1
 
 # Custom bindings.
 bindsym $mod+Ctrl+space exec ime-menu
-bindsym $mod+Ctrl+Shift+space input * xkb_switch_layout next
+bindsym $mod+space input * xkb_switch_layout next
 
 # Sway-specific autostart.
 exec /usr/share/sway/scripts/inactive-windows-transparency.py
