@@ -1572,6 +1572,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                             "Export code blocks with colour.")
   (org-latex-pdf-process '("latexmk -shell-escape -f -pdf %f")
                          "Use latexmk for compilation, with minted support.")
+  (org-tags-column 0 "Don't indent tags.")
   :config
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((python . t)
