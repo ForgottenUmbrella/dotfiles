@@ -1,0 +1,3 @@
+#!/bin/sh
+# Present a menu to switch keyboard layout.
+switch-layout "$(printf 'colemak\nqwerty' | dmenu -i)"
