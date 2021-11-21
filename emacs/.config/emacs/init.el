@@ -1851,12 +1851,20 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (python-fill-docstring-style 'pep-257-nn
                                "Format docstrings properly.")
   (python-indent-guess-indent-offset-verbose nil "Silence indent guesses.")
+  (python-fill-string-function 'python-fill-string-72 "Wrap docstrings to 72.")
+  (python-fill-comment-function 'python-fill-comment-72 "Wrap comments to 72.")
   :config
-  (defun fill-paragraph-72 ()
-    "Fill paragraph at column 72."
+  (defun python-fill-string-72 (&optional justify)
+    "Fill docstrings to 72 characters."
+    (interactive)
+    ;; XXX: May need to setq in addition.
+    (let ((fill-column 72))
+      (python-fill-string justify)))
+  (defun python-fill-comment-72 (&optional justify)
+    "Fill comments to 72 characters."
     (interactive)
     (let ((fill-column 72))
-      (fill-paragraph)))
+      (python-fill-comment justify)))
   (defun python/remove-unused-imports ()
     "Use autoflake to remove unused functions. From Spacemacs."
     (interactive)
@@ -1871,8 +1879,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (major-prefix-def :prefix-command 'major-python-map
     :keymaps 'python-mode-map
     "'" 'run-python
-    "d" 'pdb
-    "q" 'fill-paragraph-72)
+    "d" 'pdb)
   (:prefix-command 'major-python-goto-map :keymaps 'major-python-map
    :prefix "g" :wk-full-keys nil
    "" '(:ignore t :which-key "goto"))
