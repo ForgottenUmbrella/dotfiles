@@ -31,11 +31,13 @@
 and 100 is fully opaque.")
 (add-to-list 'default-frame-alist (cons 'alpha my/transparency))
 ;; Set font in a daemon-compatible way.
-(add-to-list 'default-frame-alist
+(add-to-list 'default-frame-alist (cons 'font "Misc Tamsyn-12"))
              ;; XXX: Emacs' font lookup ignores OTB fonts despite supporting them,
              ;; so do the lookup yourself.
-             (cons 'font (shell-command-to-string
-                          "fc-match monospace -f %{family}-12")))
+             ;; XXX: Unreliable if shell-command-to-string produces errors.
+             ;; https://emacs.stackexchange.com/questions/21422/how-to-discard-stderr-when-running-a-shell-function
+             ;(cons 'font (shell-command-to-string
+                          ;"fc-match monospace -f %{family}-12")))
 ;; Fallback fonts. XXX: How many are absolutely necessary?
 (dolist (font (reverse '(;;"Misc Tamsyn"
                          ;;"Tamzen"
