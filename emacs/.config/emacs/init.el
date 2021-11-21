@@ -19,9 +19,9 @@
 (defun warn-missing-hook-executable (package command purpose hook)
   "Warn on HOOK if COMMAND from PACKAGE is not available for the given PURPOSE."
   (add-hook hook
-            (lambda ()
-              "Warn missing executable."
-              (warn-missing-executable package command purpose))))
+            `(lambda ()
+               "Warn missing executable."
+               (warn-missing-executable ,package ,command ,purpose))))
 (defun warn-missing-file (package file purpose)
   "Warn if system PACKAGE providing FILE is not available for PURPOSE."
   (warn-missing package purpose (lambda ()
