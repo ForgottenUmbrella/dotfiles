@@ -1,5 +1,6 @@
 #!/bin/sh
 # Switch IME.
+# TODO: This should use fcitx5 instead, since ibus isn't wayland-ready yet.
 
 ibus list-engine | sed -e '/^language:/d' -e 's/^  //' |
     dmenu -i | sed 's/ -.*//' | xargs ibus engine
