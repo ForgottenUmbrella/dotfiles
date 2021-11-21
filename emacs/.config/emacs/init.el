@@ -1644,7 +1644,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
     "R" 'org-refile
     "r" 'org-export-stack-refresh
     "s" 'org-schedule
-    "T" 'org-show-todo-tree)
+    "T" 'org-show-todo-tree
+    "t" 'org-babel-tangle)
   (:prefix-command 'major-org-export-map :keymaps 'major-org-map :prefix "e"
    :wk-full-keys nil
    "" '(:ignore t :which-key "export")
