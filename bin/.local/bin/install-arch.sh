@@ -287,13 +287,14 @@ paru --sync --refresh --sysupgrade keepassxc dropbox anki firefox-beta antibody-
     otf-mplus tamsyn-font-otb tamzen-font ttf-symbola nerd-fonts-fira-code \
     ttf-monoid ttf-font-awesome ttf-ms-fonts \
     gammastep acpilight mpdris2 kunst-git xorg-xwininfo \
-    ranger w3m dxvk-bin ashuffle kvantum-qt5 lxappearance
+    ranger w3m dxvk-bin ashuffle kvantum-qt5 lxappearance \
+    fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-qt fcitx5-mozc
 
 # Optimisations
 systemctl enable fstrim.timer
 systemctl enable earlyoom.service
 # TODO install linux-zen if desktop not laptop
-# TODO install tlp if laptop not desktop
+# TODO install power-profiles-daemon if laptop not desktop
 # TODO split out bluetooth depending if laptop or desktop
 
 # Program setup TODO
