@@ -1564,9 +1564,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                             "Insert new lines instead of splitting with M-RET")
   (org-list-allow-alphabetical t "Allow alphabetical lists")
   (org-cycle-separator-lines -1 "Don't fold whitespace")
-  :init
-  (setq-default org-export-with-smart-quotes t
-                org-latex-listings t)
+  (org-export-with-smart-quotes t "Use smart quotes.")
+  (org-latex-listings 'minted "Export code blocks with minted package.")
   :config
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((python . t)
