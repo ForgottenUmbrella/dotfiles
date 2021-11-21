@@ -52,6 +52,8 @@ for_window [app_id=zoom] {
 # Stupid thing opens in occcupied workspace, crashing.
 for_window [title="Zoom Meeting|Webinar"] floating enable
 for_window [app_id=totem] inhibit_idle focus
+# Keep marked windows opaque.
+for_window [con_mark="opaque"] opacity 1
 
 # Custom bindings.
 bindsym $mod+Ctrl+space exec ime-menu
