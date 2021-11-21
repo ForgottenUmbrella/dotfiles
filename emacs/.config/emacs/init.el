@@ -655,6 +655,8 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
 ;;;; Join the dark side.
 ;; Vim keys.
 (use-package evil :ensure t :demand t :after undo-tree
+  :init
+  (setq-default evil-want-keybinding nil)
   :custom
   (evil-want-C-u-scroll t "Replace Emacs's C-u with Vim scrolling.")
   (evil-want-Y-yank-to-eol t "Differentiate Y and yy for yanking.")
@@ -672,8 +674,6 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
                            "Operate * and # on words instead of symbols.")
   (evil-search-module 'evil-search
                       "Use evil's search module instead of Emacs's.")
-  (evil-want-keybinding nil
-                        "Required to add evil-collection keybindings.")
   (evil-undo-system 'undo-tree "Use undo-tree for undo until Emacs 28.")
   (evil-ex-visual-char-range t "Default to substituting in actual selection.")
   :config
