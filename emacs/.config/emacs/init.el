@@ -1579,6 +1579,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                                '((python . t)
                                  (emacs-lisp . t)
                                  (mathematica . t)))
+  (require 'org-mouse)
   :general
   (:prefix-command 'leader-applications-org-map
    :keymaps 'leader-applications-map :prefix "o"
