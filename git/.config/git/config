@@ -1,6 +1,7 @@
 [core]
 	autocrlf = input
 	excludesfile = ~/.config/git/ignore
+	attributesfile = ~/.config/git/attributes
 [user]
 	email = forgottenumbrella@tutanota.com
 	name = Leo Pham
@@ -10,5 +11,7 @@
 	rebase = true
 [diff]
 	colorMoved = zebra
+[diff "image"]
+	command = ~/.local/bin/git-imgdiff
 [fetch]
 	prune = true
