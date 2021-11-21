@@ -1086,7 +1086,8 @@ to `evil-lookup'. Based on Spacemacs."
   (load-theme 'ewal-spacemacs-modern t)
   (enable-theme 'ewal-spacemacs-modern)
   :custom-face
-  (highlight ((t (:background unspecified))))
+  ;; XXX: I think this disables the highlight line too.
+  ;; (highlight ((t (:background unspecified))))
   (org-todo ((t (:background unspecified)))))
 (use-package ewal-evil-cursors :ensure t
   :init
