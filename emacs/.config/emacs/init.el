@@ -2080,8 +2080,9 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 ;; Open a terminal in the current directory with SPC-a-s-t.
 (use-package terminal-here :ensure t
   :custom
-  (terminal-here-linux-command (intern (car (split-string (getenv "TERMINAL"))))
-                               "Determine terminal from $TERMINAL environmental variable.")
+  (terminal-here-linux-terminal-command (intern (car (split-string
+                                                      (getenv "TERMINAL"))))
+                                        "Determine terminal from $TERMINAL environmental variable.")
   :general
   (:keymaps 'leader-applications-shell-map
    "t" 'terminal-here-launch
