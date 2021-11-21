@@ -32,6 +32,8 @@
 ;; Enable additional package repos.
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+;; TODO: Remove this once org mode reaches version 9.5.0 (archive is
+;; deprecated, now upstream)
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 ;; Pre-compute autoloads to activate packages quickly.
 (setq package-quickstart t)
