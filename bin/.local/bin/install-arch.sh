@@ -91,15 +91,15 @@ awk "/^## $country$/{f=1}f==0{next}/^$/{exit}{print substr(\$0, 2)}" \
 
 # Base installation
 pacstrap /mnt base linux linux-firmware base-devel pkgstats efibootmgr grub nftables \
-         git fwupd man-db man-pages zsh emacs alacritty \
-         plocate apparmor chrony pacman-contrib \
-         texinfo pulseaudio pulseaudio-bluetooth pulsemixer gnome-keyring \
-         networkmanager cups cups-pdf nss-mdns sane-airscan ipp-usb \
-         ghostscript gsfonts foomatic-db-engine foomatic-db-ppds foomatic-db-nonfree-ppds \
-         system-config-printer stow trash-cli xclip \
-         i3-gaps picom dunst python-pywal xautolock playerctl \
-         feh mpv kdeconnect skanlite zathura zathura-pdf-mupdf mpd ncmpcpp \
-         lib32-mpg123 earlyoom
+    git fwupd man-db man-pages zsh emacs alacritty \
+    plocate apparmor chrony pacman-contrib \
+    texinfo pulseaudio pulseaudio-bluetooth pulsemixer gnome-keyring \
+    networkmanager cups cups-pdf nss-mdns sane-airscan ipp-usb \
+    ghostscript gsfonts foomatic-db-engine foomatic-db-ppds foomatic-db-nonfree-ppds \
+    system-config-printer stow trash-cli xclip \
+    i3-gaps picom dunst python-pywal xautolock playerctl \
+    feh mpv kdeconnect skanlite zathura zathura-pdf-mupdf mpd ncmpcpp \
+    lib32-mpg123 earlyoom
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 
@@ -281,13 +281,13 @@ sed --in-place \
 systemctl enable apparmor.service
 
 # Personal apps and AUR TODO move all personals and optionals from pacstrap
+paru --sync --refresh --sysupgrade keepassxc dropbox anki firefox-beta antibody-bin \
     wine-staging wine-nine wine-gecko wine-mono mantablockscreen \
     rofi-lbonn-wayland-git rofi-dmenu btmenu polybar \
     otf-mplus tamsyn-font-otb tamzen-font ttf-symbola nerd-fonts-fira-code \
     ttf-monoid ttf-font-awesome ttf-ms-fonts \
     gammastep acpilight mpdris2 kunst-git xorg-xwininfo \
     ranger w3m dxvk-bin ashuffle kvantum-qt5 lxappearance
-paru --sync --refresh --sysupgrade keepassxc dropbox anki firefox-beta antibody-bin \
 
 # Optimisations
 systemctl enable fstrim.timer
