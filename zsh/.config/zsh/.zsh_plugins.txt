@@ -13,7 +13,7 @@ trystan2k/zsh-tab-title
 zpm-zsh/ls
 # Colourise everything else.
 zpm-zsh/colorize
-# Enable fish-style auto-suggestions.
+# Add fish-style auto-suggestions.
 zsh-users/zsh-autosuggestions
 # Add additional completion definitions.
 zsh-users/zsh-completions

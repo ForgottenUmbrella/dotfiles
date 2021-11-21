@@ -1,5 +1,5 @@
 #!/bin/sh
-# Run mako with way settings.
+# Run mako with wal settings.
 
 cat "$XDG_CACHE_HOME/wal/mako-global" "$XDG_CONFIG_HOME/mako/config" \
     "$XDG_CACHE_HOME/wal/mako-criteria" > "$XDG_CACHE_HOME/wal/mako-config"
