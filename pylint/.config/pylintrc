@@ -141,16 +141,12 @@ disable=print-statement,
         comprehension-escape,
         # XXX: User configuration:
         invalid-name,
-        cell-var-from-loop,
+        blacklisted-name,
         missing-final-newline,
         trailing-newlines,
-        subprocess-run-check,
-        too-few-public-methods,
-        too-many-statements,
-        blacklisted-name,
-        too-many-locals
-        # too-many-arguments,
-        # broad-except
+        too-many-locals,
+        unspecified-encoding,
+        wrong-import-position
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
