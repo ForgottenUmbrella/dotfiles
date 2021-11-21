@@ -7,7 +7,6 @@ then
     xmodmap ~/.Xmodmap
     killall -q picom; picom -b --experimental-backends
     killall -q polybar; ~/.config/polybar/launch.sh
-    killall -q dunst; millfeed &
     # wal does not remember the alpha.
     wal -R -a 80
 fi

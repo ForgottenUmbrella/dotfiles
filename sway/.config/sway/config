@@ -59,7 +59,6 @@ bindsym $mod+Ctrl+Shift+space input * xkb_switch_layout next
 
 # Sway-specific autostart.
 exec /usr/share/sway/scripts/inactive-windows-transparency.py
-exec_always 'killall mako; koma'
 exec swayidle -w \
    timeout 300 lock \
    timeout 330 'swaymsg "output * dpms off"' \
