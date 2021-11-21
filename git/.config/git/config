@@ -15,3 +15,5 @@
 	command = ~/.local/bin/git-imgdiff
 [fetch]
 	prune = true
+[init]
+	defaultBranch = master
