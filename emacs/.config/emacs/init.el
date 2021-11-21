@@ -972,8 +972,8 @@ to `evil-lookup'. Based on Spacemacs."
   (global-hl-todo-mode)
   :general
   (:keymaps 'hl-todo-mode-map :states 'motion
-   "[ T" 'hl-todo-previous
-   "] T" 'hl-todo-next)
+   "[ t" 'hl-todo-previous
+   "] t" 'hl-todo-next)
   (:keymaps 'leader-jumps-map
    "t" 'hl-todo-occur)
   (:keymaps 'leader-toggles-map
