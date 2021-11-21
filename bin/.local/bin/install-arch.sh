@@ -205,8 +205,8 @@ sed --in-place 's/^#\(auth	required	pam_wheel.so use_sid\)$/\1/' \
     /etc/pam.d/su-1
 
 # AUR
-git clone https://aur.archlinux.org/yay-bin.git
-pushd yay-bin
+git clone https://aur.archlinux.org/paru-bin.git
+pushd paru-bin
 su -- "$username" -c makepkg --syncdeps --install
 popd
 
@@ -214,7 +214,7 @@ popd
 systemctl enable nftables.service
 
 # Codecs
-yay --sync codecs
+paru --sync codecs
 
 # Printing and scanning
 systemctl enable org.cups.cupsd.socket avahi-daemon.service ipp-usb.service
@@ -281,13 +281,13 @@ sed --in-place \
 systemctl enable apparmor.service
 
 # Personal apps and AUR TODO move all personals and optionals from pacstrap
-yay --sync --refresh --sysupgrade keepassxc dropbox anki firefox-beta antibody-bin \
     wine-staging wine-nine wine-gecko wine-mono mantablockscreen \
     rofi-lbonn-wayland-git rofi-dmenu btmenu polybar \
     otf-mplus tamsyn-font-otb tamzen-font ttf-symbola nerd-fonts-fira-code \
     ttf-monoid ttf-font-awesome ttf-ms-fonts \
     gammastep acpilight mpdris2 kunst-git xorg-xwininfo \
     ranger w3m dxvk-bin ashuffle kvantum-qt5 lxappearance
+paru --sync --refresh --sysupgrade keepassxc dropbox anki firefox-beta antibody-bin \
 
 # Optimisations
 systemctl enable fstrim.timer
