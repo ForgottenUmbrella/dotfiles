@@ -829,6 +829,7 @@ to `evil-lookup'. Based on Spacemacs."
   :custom
   (evil-collection-magit-want-horizontal-movement t "Allow horizontal movement.")
   (evil-collection-magit-use-z-for-folds t "Don't hijack Vim z.")
+  (evil-collection-outline-enable-in-minor-mode-p nil "Don't hijack major mode paragraph navigation.")
   :init
   (evil-collection-init)
   :config
