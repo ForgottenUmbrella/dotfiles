@@ -15,6 +15,8 @@ zpm-zsh/ls
 zpm-zsh/colorize
 # Add fish-style auto-suggestions.
 zsh-users/zsh-autosuggestions
+# Add fish-style history completion.
+zsh-users/zsh-history-substring-search
 # Add additional completion definitions.
 zsh-users/zsh-completions
 # Enable syntax highlighting. Must be last plugin.

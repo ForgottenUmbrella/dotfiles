@@ -97,6 +97,10 @@ ZSH_TAB_TITLE_CONCAT_FOLDER_PROCESS=true
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 bindkey '^F' autosuggest-accept
 
+# zsh-users/zsh-history-substring-search configuration.
+bindkey '^P' history-substring-search-up
+bindkey '^N' history-substring-search-down
+
 # softmoth/zsh-vim-mode configuration.
 MODE_CURSOR_VIINS='blinking bar'  # Blink to show window focus.
 MODE_CURSOR_VISUAL='steady block'
@@ -114,7 +118,5 @@ autoload -Uz up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey '^P' up-line-or-beginning-search
-bindkey '^N' down-line-or-beginning-search
 . /usr/share/fzf/key-bindings.zsh  # C-T for files, C-R for history, M-C for cd.
 . /usr/share/fzf/completion.zsh  # **<TAB>
