@@ -1567,12 +1567,16 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (org-return-follows-link t "Follow links with RET.")
   (org-export-with-smart-quotes t "Use smart quotes.")
   (org-latex-listings 'minted "Export code blocks with minted package.")
+  ;; XXX: Requires python-pygments to be installed.
+  (org-latex-packages-alist '(("newfloat" "minted"))
+                            "Export code blocks with colour.")
+  (org-latex-pdf-process '("latexmk -shell-escape -f -pdf %f")
+                         "Use latexmk for compilation, with minted support.")
   :config
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((python . t)
                                  (emacs-lisp . t)
                                  (mathematica . t)))
-  (add-to-list 'org-latex-packages-alist '("" "listingsutf8"))
   :general
   (:prefix-command 'leader-applications-org-map
    :keymaps 'leader-applications-map :prefix "o"
