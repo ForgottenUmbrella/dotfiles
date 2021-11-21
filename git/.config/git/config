@@ -9,6 +9,8 @@
 	helper = cache --timeout=3600
 [pull]
 	rebase = true
+[push]
+	default = current
 [diff]
 	colorMoved = zebra
 [diff "image"]
