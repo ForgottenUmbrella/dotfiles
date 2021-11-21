@@ -594,6 +594,7 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
   :config
   (pixel-scroll-mode)
   (auto-save-visited-mode)
+  (window-divider-mode)
   (setq-default completion-ignore-case t
                 frame-title-format "%* %b"
                 bidi-inhibit-bpa t
@@ -644,6 +645,7 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
    "Try to reuse existing windows, else use current window.")
   (even-window-sizes nil "Don't resize windows.")
   (search-whitespace-regexp "[ \t\r\n]+" "Ignore all whitespace when searching"))
+  (window-divider-default-places t "Show window dividers everywhere.")
 (set-keymap-parent leader-help-describe-map help-map)
 
 ;;;; Join the dark side.
