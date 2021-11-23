@@ -293,6 +293,7 @@ paru --sync --refresh --sysupgrade keepassxc dropbox anki firefox-beta antibody-
 # Optimisations
 systemctl enable fstrim.timer
 systemctl enable earlyoom.service
+systemctl enable paccache.timer
 # TODO install linux-zen if desktop not laptop
 # TODO install power-profiles-daemon if laptop not desktop
 # TODO split out bluetooth depending if laptop or desktop
