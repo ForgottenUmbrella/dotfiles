@@ -2,7 +2,7 @@
 exec xrdb ~/.Xresources
 
 # Use the i3 config, minus i3-specific Xresource colours.
-exec sed -E '/^\s*(set_from_resource|client)/d' \
+exec_always sed -E '/^\s*(set_from_resource|client)/d' \
     "$XDG_CONFIG_HOME/i3/config" > "$XDG_CACHE_HOME/swayi3config"
 include "$XDG_CACHE_HOME/swayi3config"
 
