@@ -320,7 +320,7 @@ bindsym $mod+Ctrl+minus split v; exec emacsclient -c $(mktemp)
 bindsym $mod+Ctrl+Shift+minus split h; exec emacsclient -c $(mktemp)
 
 # Switch keyboard layout.
-binsym $mod+space --no-startup-id layout-menu
+bindsym $mod+space --no-startup-id layout-menu
 
 ## Autostart.
 # XXX: Maybe redundant since GDM starts gnome-keyring-daemon already (at least on sway)
