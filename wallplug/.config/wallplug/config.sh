@@ -41,6 +41,7 @@ command='safebooru_plug "touhou outdoors"'
 #command='safebooru_plug "touhou ouka_musci"'
 #command='safebooru_plug "touhou michi_l_(streetlamp)"'
 #command='safebooru_plug "touhou stu_dts"'
+#command='safebooru_plug "touhou you_shimizu"'
 
 # Alpha of colour scheme.
 alpha=80
