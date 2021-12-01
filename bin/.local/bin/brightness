@@ -2,12 +2,9 @@
 # brightness -{inc|dec} DELTA -- change brightness relatively, with minimum
 # brightness handling.
 
-# If current brightness is equal to DELTA and the -dec argument is specified, or
-# current brightness is equal to 0 and the -inc argument is specified, then
-# brightness is set to 0.01 instead.
-
-# Likewise, if the current brightness is equal to 0.01 and the -inc argument is
-# specified, brightness is set to DELTA instead.
+# If the current brightness is not the non-zero minimum and decreasing it would
+# set it to zero, or if increasing the brightness from zero, it is set to a
+# non-zero minimum instead.
 
 # Depends on acpilight (which provides xbacklight).
 
@@ -23,11 +20,9 @@ feq() {
 
 if [ -z "$delta" ]; then
     xbacklight "$@"
-elif { feq "$current_brightness" "$delta" && [ "$command" = '-dec' ]; } ||
-         { feq "$current_brightness" 0 && [ "$command" = '-inc' ]; } then
-     xbacklight -set "$min"
-elif feq "$current_brightness" "$min" && [ "$command" = '-inc' ]; then
-    xbacklight -set "$delta"
+elif { ! feq "$current_brightness" "$min" && feq "$current_brightness" "$delta" && [ "$command" = '-dec' ]; } ||
+        { feq "$current_brightness" 0 && [ "$command" = '-inc' ]; } then
+    xbacklight -set "$min"
 else
     xbacklight "$@"
 fi
