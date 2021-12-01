@@ -5,7 +5,7 @@
 
 # Dependencies:
 # i3-gaps/sway
-# rofi/rofi-lbonn-wayland-git (AUR)
+# rofi-lbonn-wayland-git (AUR)
 # polybar/waybar
 # picom + xorg-xwininfo/NA
 # dunst
