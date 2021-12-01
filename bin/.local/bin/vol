@@ -43,10 +43,6 @@ if [ "$(pulsemixer --get-mute)" = 1 ]
 then
     icon=audio-volume-muted
     title='Volume (muted)'
-    if [ "$1" = mute ]
-    then
-        current='0%'
-    fi
 else
     icon=multimedia-volume-control
     title='Volume'
