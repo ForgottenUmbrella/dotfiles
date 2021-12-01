@@ -9,6 +9,7 @@
             // "taskbar",
         ],
         "modules-center": [
+            "custom/dunst",
             "clock",
         ],
         "modules-right": [
@@ -89,6 +90,8 @@
             // "format": "🕓 {:%H:%M}",
             "format": "{:%Y-%m-%d %H:%M}",
             "format-alt": "{:%H:%M}",
+            "on-click": "dunstctl history-pop",
+            "on-click-right": "dunstctl context",
         },
         "cpu": {
             "interval": 30,
@@ -190,6 +193,12 @@
                 "Up to date": "",
             },
             "on-click": "~/.config/waybar/scripts/dropbox.sh --toggle",
+        },
+        "custom/dunst": {
+            "exec": "~/.config/waybar/scripts/dunst.sh",
+            "return-type": "json",
+            "restart-interval": 1,
+            "on-click": "dunstctl set-paused toggle",
         },
         "custom/gammastep": {
             "exec": "~/.config/waybar/scripts/gammastep.sh",
