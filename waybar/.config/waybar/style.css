@@ -144,13 +144,12 @@ label:focus {
     background-color: @foreground;
 }
 
-#network.disconnected {
-    background-color: @alert;
-    color: @background;
+*.disconnected {
+    color: @inactive;
 }
 
 #pulseaudio.muted {
-    background-color: @inactive;
+    color: @inactive;
 }
 
 *.warning {
@@ -174,4 +173,8 @@ label:focus {
 #idle_inhibitor.activated {
     background-color: @active;
     color: @background;
+}
+
+*.stopped, *.paused {
+    color: @inactive;
 }
