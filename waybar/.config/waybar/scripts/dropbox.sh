@@ -7,7 +7,9 @@ if ! command -v dropbox-cli > /dev/null; then
 fi
 
 if [ "$1" = '--toggle' ]; then
-    if dropbox-cli running; then
+    # `dropbox-cli running` returns 1 if running instead of the conventional
+    # truthy 0 (https://linux.die.net/man/1/dropbox).
+    if ! dropbox-cli running; then
         dropbox-cli stop
     else
         dropbox-cli start
