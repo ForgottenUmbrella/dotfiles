@@ -74,16 +74,13 @@ bindsym $mod+Shift+v split h
 # Toggle fullscreen.
 bindsym $mod+f fullscreen toggle
 
-# Toggle sticky.
-bindsym $mod+s sticky toggle
-
 # Change container layout.
-set $mode_layout "Layout: [w] tabbed [s]tacking [e] toggle split [q]uit"
+set $mode_layout "Layout: [d]efault [s]tacking [t]abbed [q]uit"
 bindsym $mod+w mode $mode_layout
 mode $mode_layout {
-    bindsym w layout tabbed; mode "default"
+    bindsym d layout default; mode "default"
     bindsym s layout stacking; mode "default"
-    bindsym e layout toggle split; mode "default"
+    bindsym t layout tabbed; mode "default"
     bindsym q mode "default"
     bindsym Control+bracketleft mode "default"
     bindsym Escape mode "default"
@@ -92,27 +89,26 @@ mode $mode_layout {
 
 # Toggle floating.
 bindsym $mod+Shift+z floating toggle
-
 # Change focus between tiling/floating windows.
 bindsym $mod+z focus mode_toggle
+# Toggle sticky for floating windows.
+bindsym $mod+Ctrl+z sticky toggle
 
 # Focus the parent container.
-bindsym $mod+a focus parent
-
+#bindsym $mod+a focus parent
 # Focus the child container.
-bindsym $mod+Shift+a focus child
+#bindsym $mod+Shift+a focus child
 
 # Move to scratchpad.
 bindsym $mod+Shift+minus move scratchpad
-
 # Cycle through scratchpad windows.
 bindsym $mod+minus scratchpad show
 bindsym XF86Search scratchpad show
 
 # Marks.
-bindsym $mod+m exec --no-startup-id i3-input -F 'mark %s' -l 1 -P 'Mark: '
-bindsym $mod+apostrophe exec --no-startup-id i3-input -F '[con_mark="%s"] focus' -P 'Mark: '
-bindsym $mod+Shift+apostrophe exec --no-startup-id i3-input -F 'swap container with mark %s' -P 'Mark: '
+#bindsym $mod+m exec --no-startup-id i3-input -F 'mark %s' -l 1 -P 'Mark: '
+#bindsym $mod+apostrophe exec --no-startup-id i3-input -F '[con_mark="%s"] focus' -P 'Mark: '
+#bindsym $mod+Shift+apostrophe exec --no-startup-id i3-input -F 'swap container with mark %s' -P 'Mark: '
 
 # Cycle workspaces.
 workspace_auto_back_and_forth yes
@@ -139,10 +135,8 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
-bindsym $alt+Tab workspace next
-bindsym $alt+Shift+Tab workspace prev
-bindsym Control+$alt+Down workspace next
-bindsym Control+$alt+Up workspace prev
+bindsym Control+$alt+Left workspace prev
+bindsym Control+$alt+Right workspace next
 
 # Move to workspace.
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -165,6 +159,8 @@ bindsym $mod+Control+Shift+7 move container to number workspace $ws7; workspace 
 bindsym $mod+Control+Shift+8 move container to number workspace $ws8; workspace number $ws8
 bindsym $mod+Control+Shift+9 move container to number workspace $ws9; workspace number $ws9
 bindsym $mod+Control+Shift+0 move container to number workspace $ws10; workspace number $ws10
+bindsym Control+Shift+$alt+Left move container to workspace prev
+bindsym Control+Shift+$alt+Right move container to workspace next
 
 # Reload configuration file.
 bindsym $mod+r reload
@@ -229,9 +225,6 @@ set $default_inner 20
 set $default_outer 0
 set $gap_delta 2
 # For polybar.
-# XXX: Is this necessary?
-#set $gap_bot 30
-#gaps bottom $gap_bot
 gaps inner $default_inner
 gaps outer $default_outer
 set $mode_gaps "Gaps: [j] -outer [k] +outer [J] -inner [K] +inner [0] none [=] default [q]uit"
@@ -242,8 +235,7 @@ mode $mode_gaps {
     bindsym Shift+j gaps inner all minus $gap_delta
     bindsym Shift+k gaps inner all plus $gap_delta
     bindsym 0 gaps inner all set 0; gaps outer all set 0
-    bindsym equal gaps outer all set $default_outer; gaps inner all set $default_inner; \
-        gaps bottom all set 0
+    bindsym equal gaps outer all set $default_outer; gaps inner all set $default_inner
     bindsym q mode "default"
     bindsym Control+bracketleft mode "default"
     bindsym Escape mode "default"
@@ -302,22 +294,24 @@ bindsym --locked XF86MonBrightnessUp exec --no-startup-id brightness -inc $brigh
 bindsym --locked XF86MonBrightnessDown exec --no-startup-id brightness -dec $brightness_delta
 # Take a screenshot.
 bindsym Print exec --no-startup-id shot --notify save output
-bindsym --release Shift+Print exec --no-startup-id shot --notify save active
-bindsym --release Ctrl+Print exec --no-startup-id shot --notify save area
-bindsym --release Ctrl+Shift+Print exec --no-startup-id shot --notify save window
+bindsym --release $alt+Print exec --no-startup-id shot --notify save window
+bindsym --release Shift+Print exec --no-startup-id shot --notify save area
+bindsym Ctrl+Print exec --no-startup-id shot --notify copy output
+bindsym --release Ctrl+$alt+Print exec --no-startup-id shot --notify copy window
+bindsym --release Ctrl+Shift+Print exec --no-startup-id shot --notify copy area
 
 # Handle notifications.
-bindsym $mod+BackSpace exec --no-startup-id notifyctl close
-bindsym $mod+Shift+BackSpace exec --no-startup-id notifyctl close-all
-bindsym $mod+grave exec --no-startup-id notifyctl history-pop
-bindsym $mod+Shift+grave exec --no-startup-id notifyctl context
+bindsym $mod+BackSpace exec --no-startup-id dunstctl close
+bindsym $mod+Shift+BackSpace exec --no-startup-id dunstctl close-all
+bindsym $mod+m exec --no-startup-id dunstctl history-pop
+bindsym $mod+Shift+m exec --no-startup-id dunstctl context
 
 # Disable inactive transparency for current window.
 bindsym $mod+t exec opacity 100
 
 # Edit any input field in Emacs.
-bindsym $mod+Ctrl+minus split v; exec emacsclient -c $(mktemp)
-bindsym $mod+Ctrl+Shift+minus split h; exec emacsclient -c $(mktemp)
+bindsym $mod+Ctrl+n split v; exec emacsclient -c $(mktemp)
+bindsym $mod+Ctrl+Shift+n split h; exec emacsclient -c $(mktemp)
 
 # Switch keyboard layout.
 bindsym $mod+space --no-startup-id layout-menu
