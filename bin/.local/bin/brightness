@@ -29,5 +29,5 @@ fi
 
 new_brightness=$(xbacklight -get)
 notify-send -a brightness -t 1000 -i colorhug-backlight \
-            -h int:transient:1 -h "int:value:$new_brightness" -h string:synchronous:brightness \
-            Brightness
+    -h int:transient:1 -h "int:value:$new_brightness" -h string:synchronous:brightness \
+    Brightness

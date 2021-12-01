@@ -48,6 +48,5 @@ else
     title='Volume'
 fi
 notify-send -a vol -t 1000 -i "$icon" \
-            -h int:transient:1 -h "int:value:$current" \
-            -h string:synchronous:volume \
-            "$title"
+    -h int:transient:1 -h "int:value:$current" -h string:synchronous:volume \
+    "$title"
