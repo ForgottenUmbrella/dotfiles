@@ -41,10 +41,11 @@ fi
 current="$(pulsemixer --get-volume | cut -d' ' -f1)%"
 if [ "$(pulsemixer --get-mute)" = 1 ]
 then
+    # Doesn't show because notify-send is dumb and can't find some icons.
     icon=audio-volume-muted
     title='Volume (muted)'
 else
-    icon=multimedia-volume-control
+    icon=audio-speakers
     title='Volume'
 fi
 notify-send -a vol -t 1000 -i "$icon" \
