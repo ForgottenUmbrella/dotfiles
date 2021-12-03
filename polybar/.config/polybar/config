@@ -234,9 +234,9 @@ format-prefix-foreground = ${colors.foreground-alt}
 [module/wifi]
 type = internal/network
 interface = wlp2s0
-label-connected = %{A1:wifi toggle:}%{A3:networkmanager_dmenu &:}%{A}%{A}
+label-connected = %{A1:wifi toggle:}%{A3:$TERMINAL -e nmtui &:}%{A}%{A}
 label-connected-foreground = ${colors.foreground-alt}
-label-disconnected = %{A1:wifi toggle:}%{A3:networkmanager_dmenu &:}睊%{A}%{A}
+label-disconnected = %{A1:wifi toggle:}%{A3:$TERMINAL -e nmtui &:}睊%{A}%{A}
 label-disconnected-foreground = ${colors.inactive}
 ;ramp-signal-0 = ▁
 ;ramp-signal-1 = ▂
