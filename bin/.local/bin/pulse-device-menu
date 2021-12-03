@@ -83,6 +83,6 @@ case "$choice" in
         input_ports
         ;;
     "$mute_prompt")
-        pulseaudio-ctl mute
+        pulsemixer --toggle-mute
         ;;
 esac
