@@ -282,8 +282,8 @@ systemctl enable apparmor.service
 
 # Personal apps and AUR TODO move all personals and optionals from pacstrap
 paru --sync --refresh --sysupgrade keepassxc dropbox anki firefox-beta antibody-bin \
-    wine-staging wine-nine wine-gecko wine-mono mantablockscreen \
-    rofi-lbonn-wayland-git rofi-dmenu btmenu polybar \
+    wine-staging wine-nine wine-gecko wine-mono mantablockscreen swaylock-effects \
+    rofi-lbonn-wayland rofi-dmenu polybar \
     otf-mplus tamsyn-font-otb tamzen-font ttf-symbola nerd-fonts-fira-code \
     ttf-monoid ttf-font-awesome ttf-ms-fonts \
     gammastep acpilight mpdris2 kunst-git xorg-xwininfo \

@@ -5,20 +5,20 @@
 
 # Dependencies:
 # i3-gaps/sway
-# rofi-lbonn-wayland-git (AUR)
+# rofi-lbonn-wayland (AUR)
 # polybar/waybar
 # picom + xorg-xwininfo/NA
 # dunst
 # acpilight
 # playerctl
-# pulseaudio-ctl (AUR)
+# pulsemixer
 # scrot/grim + slurp + jq = grimshot
 # xautolock/swayidle
-# mantablockscreen (AUR)/swaylock-effects-git (AUR)
+# mantablockscreen (AUR)/swaylock-effects (AUR)
 # polkit-gnome
 # python-pywal + (feh/NA)
-# redshift/gammastep
-# flashfocus-git (AUR)
+# gammastep
+# flashfocus (AUR)
 # mpd-notification (AUR)
 # rofi-emoji (AUR)
 # swaytools (AUR)
