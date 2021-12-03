@@ -22,6 +22,7 @@
 # mpd-notification (AUR)
 # rofi-emoji (AUR)
 # swaytools (AUR)
+# i3-focus-last-git (AUR)
 
 ## i3 bindings.
 set $alt Mod1
@@ -44,6 +45,7 @@ bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
+bindsym alt+Tab exec i3-focus-last
 
 # Move focused window.
 bindsym $mod+Shift+$left move left
@@ -326,6 +328,7 @@ exec --no-startup-id systemctl --user start battery-monitor.timer
 exec --no-startup-id systemctl --user restart flashfocus.service
 # wallplug requires DISPLAY, so it cannot be simply enabled.
 exec --no-startup-id systemctl --user start wallplug.timer
+exec --no-startup-id i3-focus-last server
 exec_always --no-startup-id "killall -q dunst; millfeed &"
 exec_always --no-startup-id ~/.config/i3/i3-autostart.sh
 
