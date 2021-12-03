@@ -74,7 +74,7 @@
                 "paused": "",
                 "playing": "",
             },
-            "on-click-right": "$TERMINAL --title dropdown -e ncmpcpp",
+            "on-click-right": "$TERMINAL -e ncmpcpp",
         },
         "idle_inhibitor": {
             "format": "{icon}",
@@ -133,7 +133,7 @@
             "format-linked": " (No IP)",
             "format-disconnected": "睊",
             "on-click": "wifi toggle",
-            "on-click-right": "$TERMINAL --title dropdown -e nmtui",
+            "on-click-right": "$TERMINAL -e nmtui",
             "tooltip-format": "{ifname} via {gwaddr}",
             "tooltip-format-wifi": "{essid} ({signalStrength}%)",
             "tooltip-format-ethernet": "{ipaddr}/{cidr}",
@@ -160,7 +160,7 @@
                 "critical": 50,
             },
             "on-click": "pulsemixer --toggle-mute",
-            "on-click-right": "$TERMINAL --title dropdown -e pulsemixer",
+            "on-click-right": "$TERMINAL -e pulsemixer",
         },
         "disk": {
             "interval": 21600,
@@ -178,7 +178,7 @@
             "format": "{icon}",
             "format-icons": "",
             "on-click": "~/.config/waybar/scripts/bluetooth.sh --toggle",
-            "on-click-right": "$TERMINAL --title dropdown -e bluetoothctl",
+            "on-click-right": "$TERMINAL -e bluetoothctl",
         },
         "custom/dropbox": {
             "exec":  "~/.config/waybar/scripts/dropbox.sh",
