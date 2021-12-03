@@ -93,7 +93,7 @@ awk "/^## $country$/{f=1}f==0{next}/^$/{exit}{print substr(\$0, 2)}" \
 pacstrap /mnt base linux linux-firmware base-devel pkgstats efibootmgr grub nftables \
     git fwupd man-db man-pages zsh emacs alacritty \
     plocate apparmor chrony pacman-contrib \
-    texinfo pulseaudio pulseaudio-bluetooth pulsemixer gnome-keyring \
+    texinfo pulsemixer gnome-keyring \
     networkmanager cups cups-pdf nss-mdns sane-airscan ipp-usb \
     ghostscript gsfonts foomatic-db-engine foomatic-db-ppds foomatic-db-nonfree-ppds \
     system-config-printer stow trash-cli xclip \
