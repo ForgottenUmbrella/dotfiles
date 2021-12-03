@@ -11,7 +11,7 @@ else
 fi
 
 pop() {
-    pw-cat -p /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+    pw-play /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
 }
 
 case "$1" in
