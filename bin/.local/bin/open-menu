@@ -1,11 +1,6 @@
 #!/bin/sh
-# Find and open a file in the home directory.
+# Find and open a non-hidden file in the home directory.
+# Depends on fd for speed.
 
-# Narrow down the list of all files first for efficiency.
-# A good choice of initial query might be a directory name.
-search=$(dmenu -p "Initial search query" | tr ' ' '*')
-path=$(find "$HOME" -ipath "*$search*" | dmenu -i -p "Open")
-if [ -z "$path" ]; then
-    exit
-fi
+path=$(fd . "$HOME" | dmenu -i -p "Open")
 xdg-open "$path"
