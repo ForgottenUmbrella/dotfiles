@@ -73,12 +73,8 @@ exec "$XDG_CONFIG_HOME/sway/import-gsettings.sh" \
     gtk-theme:gtk-theme-name \
     icon-theme:gtk-icon-theme-name \
     cursor-theme:gtk-cursor-theme-name
-# Needed for screen sharing.
-# Also fixes https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start.
-exec_always systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec_always hash dbus-update-activation-environment 2>/dev/null && \
-    dbus-update-activation-environment --systemd \
-    DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
+# Needed for screen sharing for now (https://bugs.archlinux.org/task/72297).
+exec_always dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP=sway
 
 # Distro-specific package fixes and system-wide config.
 include /etc/sway/config.d/*
