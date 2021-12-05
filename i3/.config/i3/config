@@ -176,7 +176,7 @@ bindsym Control+$alt+Shift+Right move container to workspace next
 
 # Reload configuration file.
 bindsym $mod+r reload
-# Restart i3 in-place (preserves session).
+# Restart i3 in-place (preserves session). Has no effect in sway.
 bindsym $mod+Shift+r restart
 
 ## Aesthetics.
