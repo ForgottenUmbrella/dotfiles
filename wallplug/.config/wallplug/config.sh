@@ -59,15 +59,10 @@ post_commands() {
     emacsclient -e "(load-theme 'ewal-spacemacs-modern t)"
     log 'Reloading Firefox pywalfox theme...'
     pywalfox update
-    #log 'Generating termite config...'
-    #cat "$config/termite/config" "$cache/wal/colors-termite" > "$cache/wal/termite-config"
     # XXX: Looks like dunst doesn't like its file disappearing while it runs.
     # Maybe need to restart it here?
     log 'Generating dunst config...'
     cat "$config/dunst/dunstrc" "$cache/wal/colors-dunst" > "$cache/wal/dunstrc"
-    log 'Generating mako config...'
-    cat "$cache/wal/mako-global" "$config/mako/config" \
-        "$cache/wal/mako-criteria" > "$cache/wal/mako-config"
     log 'Generating oomox GTK theme...'
     # Only xresources2 and xresources3 have decent readability.
     oomox_theme="/opt/oomox/scripted_colors/xresources/xresources2"
