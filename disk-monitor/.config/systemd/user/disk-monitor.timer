@@ -1,0 +1,8 @@
+[Unit]
+Description=Notify low disk space
+
+[Timer]
+OnBootSec=5min
+
+[Install]
+WantedBy=timers.target

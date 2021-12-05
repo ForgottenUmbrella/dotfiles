@@ -1,0 +1,7 @@
+[Unit]
+Description=Notify low disk space
+
+[Service]
+#Environment=DISPLAY=:0
+#Environment=DBUS_SESSION_BUS_ADDRESS=/run/user/1000/bus
+ExecStart=%h/.local/bin/disk-monitor.sh
