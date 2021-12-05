@@ -1,10 +1,8 @@
 # Wayland ignores the X Resources file, so load it yourself (for URxvt).
 exec xrdb ~/.Xresources
 
-# Use the i3 config, minus i3-specific Xresource colours.
-exec_always sed -E '/^\s*(set_from_resource|client)/d' \
-    "$XDG_CONFIG_HOME/i3/config" > "$XDG_CACHE_HOME/swayi3config"
-include "$XDG_CACHE_HOME/swayi3config"
+# Use the base i3 config.
+include "$XDG_CONFIG_HOME/i3/config"
 
 # Aesthetics.
 include "$XDG_CACHE_HOME/wal/colors-sway"

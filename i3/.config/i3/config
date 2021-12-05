@@ -182,21 +182,6 @@ bindsym $mod+Shift+r restart
 ## Aesthetics.
 font pango:monospace 12
 
-# Colours.
-set_from_resource $fg i3wm.color7 #f0f0f0
-set_from_resource $bg i3wm.color0 #f0f0f0
-set_from_resource $main i3wm.color2 #f0f0f0
-set_from_resource $altc i3wm.color1 #f0f0f0
-set_from_resource $alert i3wm.color5 #f0f0f0
-# Only child_border actually matters.
-# <colorclass>		<border>	<bg>	<text>	<indicator>	<child_border>
-client.focused		$main		$main	$fg	$alert        	$main
-client.focused_inactive	$altc		$altc	$fg	$altc		$altc
-client.unfocused	$altc		$altc	$fg	$altc		$altc
-client.urgent		$alert		$alert	$bg	$alert		$alert
-client.placeholder	$bg		$bg	$fg	$altc		$altc
-client.background $bg
-
 # Hide titlebar and set border.
 default_border pixel 5
 
@@ -340,6 +325,7 @@ exec --no-startup-id systemctl --user restart flashfocus.service
 exec --no-startup-id systemctl --user start wallplug.timer
 exec --no-startup-id i3-focus-last server
 exec_always --no-startup-id "killall -q dunst; millfeed &"
+# Responsible for i3 (i.e. Xresources)-specific colour theming too.
 exec_always --no-startup-id ~/.config/i3/i3-autostart.sh
 
 # Dropdown terminal.
