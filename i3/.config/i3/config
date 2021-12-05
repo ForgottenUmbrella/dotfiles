@@ -163,6 +163,16 @@ bindsym $mod+Control+Shift+9 move container to number workspace $ws9; workspace 
 bindsym $mod+Control+Shift+0 move container to number workspace $ws10; workspace number $ws10
 bindsym Control+Shift+$alt+Left move container to workspace prev
 bindsym Control+Shift+$alt+Right move container to workspace next
+bindsym $mod+Control+1 rename to $ws1
+bindsym $mod+Control+2 rename to $ws2
+bindsym $mod+Control+3 rename to $ws3
+bindsym $mod+Control+4 rename to $ws4
+bindsym $mod+Control+5 rename to $ws5
+bindsym $mod+Control+6 rename to $ws6
+bindsym $mod+Control+7 rename to $ws7
+bindsym $mod+Control+8 rename to $ws8
+bindsym $mod+Control+9 rename to $ws9
+bindsym $mod+Control+0 rename to $ws10
 
 # Reload configuration file.
 bindsym $mod+r reload
