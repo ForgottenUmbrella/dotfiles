@@ -31,11 +31,9 @@ notify_id_file="$notify_id_dir/notify-id"
 
 if [ "$status" = "Discharging" ] && [ "$capacity" -le "$low" ]; then
     notify-send.sh "Low battery ($low%)" \
-                   "Plug in the charger and save your work." \
-                   -a "$0" -u critical -i battery-caution \
-                   -R "$notify_id_file"
+        "Plug in the charger and save your work." \
+        -a "$0" -u critical -i battery-caution -R "$notify_id_file"
 elif [ "$status" = "Full" ]; then
     notify-send.sh "Battery fully charged" "Unplug the charger." \
-                   -a "$0" -i battery-full-charged \
-                   -R "$notify_id_file"
+        -a "$0" -i battery-full-charged -R "$notify_id_file"
 fi
