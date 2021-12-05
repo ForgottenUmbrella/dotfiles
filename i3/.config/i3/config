@@ -45,7 +45,7 @@ bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
-bindsym alt+Tab exec i3-focus-last
+bindsym $alt+Tab exec i3-focus-last
 
 # Move focused window.
 bindsym $mod+Shift+$left move left
