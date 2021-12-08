@@ -1,9 +1,8 @@
 #!/bin/sh
-# Launch i3-specific autostart programs and configuration.
+# Launch i3-specific autostart programs.
 
 if [ "$XDG_SESSION_DESKTOP" = 'i3' ]
 then
-    i3-msg include "$XDG_CONFIG_HOME/i3/colours"
     pgrep xautolock || xautolock -time 30 -locker 'lock && systemctl suspend-then-hibernate' &
     xmodmap ~/.Xmodmap
     killall -q picom; picom -b --experimental-backends

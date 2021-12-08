@@ -5,16 +5,7 @@ exec xrdb ~/.Xresources
 include "$XDG_CONFIG_HOME/i3/config"
 
 # Aesthetics.
-include "$XDG_CACHE_HOME/wal/colors-sway"
 output * bg "$wallpaper" fill
-# Client		Decoration 	Decoration	Decoration	Split		Window
-# <colorclass>		<border>	<bg>		<text>		<indicator>	<child_border>
-client.focused		$color2		$color2		$foreground	$color5        	$color2
-client.focused_inactive	$color1		$color1		$foreground	$color1		$color1
-client.unfocused	$color1		$color1		$foreground	$color1		$color1
-client.urgent		$color5		$color5		$background	$color5		$color5
-client.placeholder	$color1		$background	$foreground	$color1		$color1
-client.background $background
 
 # IO.
 input type:keyboard {

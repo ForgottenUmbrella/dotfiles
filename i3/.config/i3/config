@@ -180,6 +180,7 @@ bindsym $mod+r reload
 bindsym $mod+Shift+r restart
 
 ## Aesthetics.
+include "$XDG_CACHE_HOME/wal/colors-i3"
 font pango:monospace 12
 
 # Hide titlebar and set border.
@@ -325,7 +326,6 @@ exec --no-startup-id systemctl --user restart flashfocus.service
 exec --no-startup-id systemctl --user start wallplug.timer
 exec --no-startup-id i3-focus-last server
 exec_always --no-startup-id "killall -q dunst; millfeed &"
-# Responsible for i3 (i.e. Xresources)-specific colour theming too.
 exec_always --no-startup-id ~/.config/i3/i3-autostart.sh
 
 # Dropdown terminal.
