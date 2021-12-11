@@ -35,6 +35,7 @@
         ],
         // Modules configuration
         "sway/workspaces": {
+            "format": "{name}",
             "disable-scroll-wraparound": true,
         },
         "sway/language": {
