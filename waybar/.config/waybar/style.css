@@ -38,7 +38,7 @@ window#waybar {
     transition-property: background-color;
     transition-duration: .5s;
 }
-.modules-left, .modules.center, .modules-right {
+.modules-left, .modules-center, .modules-right {
     background-color: @background;
     opacity: 0.8;
     margin: 20px;
@@ -105,15 +105,20 @@ tooltip {
 #pulseaudio,
 #custom-bluetooth,
 #custom-dropbox,
+#custom-dunst,
 #custom-gammastep,
 #custom-keyboard,
+#custom-media,
+#custom-power,
 #custom-swap,
 #tray,
 #mode,
 #idle_inhibitor,
 #mpd,
 #window,
-#workspaces
+#workspaces,
+#language,
+#keyboard-state
 {
     padding: 0 10px;
 }

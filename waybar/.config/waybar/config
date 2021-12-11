@@ -5,8 +5,8 @@
         "modules-left": [
             "sway/workspaces",
             "sway/mode",
-            "sway/window",
             // "taskbar",
+            "sway/window",
         ],
         "modules-center": [
             "custom/dunst",
