@@ -1,6 +1,7 @@
 # -*- mode: conf -*-
     background = "{background}cc"
     foreground = "{foreground}"
+    highlight = "{color3}"
     frame_color = "{color2}"
 
 [urgency_low]
