@@ -1,22 +1,15 @@
 # -*- mode: conf -*-
-    # Defines color of the frame around the notification window.
+    background = "{background}cc"
+    foreground = "{foreground}"
     frame_color = "{color2}"
 
-# Set the background and foreground (text) color for all notifications
 [urgency_low]
-    background = "{background}"
-    foreground = "{foreground}"
     timeout = 2
-    #icon = /path/to/icon
 
 [urgency_normal]
-    background = "{background}"
-    foreground = "{foreground}"
     timeout = 5
 
 [urgency_critical]
-    background = "{background}"
-    foreground = "{foreground}"
     frame_color = "{color5}"
     timeout = 0
 
