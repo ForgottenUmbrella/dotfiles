@@ -55,9 +55,9 @@ exec swayidle -w \
    timeout 330 'swaymsg "output * dpms off"' \
    resume 'swaymsg "output * dpms on"' \
    timeout 900 'systemctl suspend-then-hibernate' \
-   before-sleep lock
+   before-sleep 'loginctl lock-session' \
    # after-resume 'swaymsg "output * dpms on' \
-   # lock lock \
+   lock lock \
    # unlock 'swaymsg "output * dpms on"'
 # GTK on Wayland ignores the settings.ini file, so load it yourself.
 exec "$XDG_CONFIG_HOME/sway/import-gsettings.sh" \
