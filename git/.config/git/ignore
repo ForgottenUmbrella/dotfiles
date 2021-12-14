@@ -36,25 +36,6 @@ ehthumbs.db
 Thumbs.db
 .directory
 
-
-# XXX: My custom ignores
-tags
-venv/
-*~
-__pycache__
-nohup.out
-**/build/
-**/*.pro.user
-**/CMakeLists.txt.user
-CMakeFiles/
-.#*
-.idea
-Makefile
-cmake_install.cmake
-\#*
-**/.mypy_cache/
-auto/
-
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
@@ -121,3 +102,20 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
+
+# XXX: My custom ignores
+tags
+venv/
+*~
+__pycache__
+nohup.out
+**/build/
+**/*.pro.user
+**/CMakeLists.txt.user
+CMakeFiles/
+.#*
+.idea
+cmake_install.cmake
+\#*
+**/.mypy_cache/
+auto/
