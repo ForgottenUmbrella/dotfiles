@@ -90,7 +90,6 @@
         "clock": {
             // "format": "🕓 {:%H:%M}",
             "format": "{:%Y-%m-%d %H:%M}",
-            "format-alt": "{:%H:%M}",
             "on-click": "dunstctl history-pop",
             "on-click-right": "dunstctl context",
         },
