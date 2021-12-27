@@ -52,4 +52,10 @@
     summary = "MPD Notification"
     format = "%b"
 
+[brightness]
+    history_ignore = true
+
+[vol]
+    history_ignore = true
+
 # To be continued by ~/.config/wal/templates/colors-dunst...
