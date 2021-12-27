@@ -38,4 +38,18 @@
     # Global rules
     alignment = left
     markup = full
-    # To be continued by ~/.config/wal/templates/colors-dunst...
+
+[urgency_low]
+    timeout = 2
+
+[urgency_normal]
+    timeout = 5
+
+[urgency_critical]
+    timeout = 0
+
+[mpd]
+    summary = "MPD Notification"
+    format = "%b"
+
+# To be continued by ~/.config/wal/templates/colors-dunst...
