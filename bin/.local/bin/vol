@@ -48,6 +48,6 @@ else
     icon=audio-speakers
     title='Volume'
 fi
-notify-send -a vol -t 1000 -i "$icon" \
+notify-send -a vol -u low -i "$icon" \
     -h int:transient:1 -h "int:value:$current" -h string:synchronous:volume \
     "$title"
