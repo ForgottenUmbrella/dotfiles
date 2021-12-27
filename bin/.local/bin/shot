@@ -28,7 +28,7 @@ notify() {
     title="$1"
     msg="$2"
     shift 2
-    [ -n "$notify" ] && notify-send -t 3000 -a shot "$title" "$msg" "$@"
+    [ -n "$notify" ] && notify-send -a shot "$title" "$msg" "$@"
 }
 
 die() {
