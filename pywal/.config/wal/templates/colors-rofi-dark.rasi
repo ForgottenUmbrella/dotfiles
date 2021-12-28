@@ -38,8 +38,12 @@
     /* background-color: @background; */
     background-color: {background.rgba};
     border: 0;
+    /* fullscreen: false; */
+    fullscreen: true;
     /* padding: 2.5ch; */
     padding: 200;
+    /* transparency: ""; */
+    transparency: "real";
 }}
 
 #mainbox {{

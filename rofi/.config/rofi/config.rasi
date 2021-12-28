@@ -1,7 +1,6 @@
 /* -*- comment-start: "/*"; comment-end: "*/"; -*- */
 configuration {
 	font: "Monospace 12";
-	fullscreen: true;
         run-shell-command: "sh -c '$TERMINAL -e {cmd}'";
         show-icons: true;
         ssh-command: "sh -c '$TERMINAL -e {ssh-client} {host} [-p {port}]'";
