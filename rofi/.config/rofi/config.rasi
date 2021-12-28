@@ -5,9 +5,10 @@ configuration {
         run-shell-command: "sh -c '$TERMINAL -e {cmd}'";
         show-icons: true;
         ssh-command: "sh -c '$TERMINAL -e {ssh-client} {host} [-p {port}]'";
-	theme: "~/.cache/wal/colors-rofi-dark.rasi";
 	kb-remove-to-eol: "";
 	kb-accept-entry: "Control+m,Return,KP_Enter";
 	kb-row-up: "Control+k,Control+p,Up";
 	kb-row-down: "Control+j,Control+n,Down";
 }
+
+@theme "~/.cache/wal/colors-rofi-dark.rasi"
