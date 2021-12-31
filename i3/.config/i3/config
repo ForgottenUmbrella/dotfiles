@@ -23,6 +23,7 @@
 # rofi-emoji (AUR)
 # swaytools (AUR)
 # i3-focus-last-git (AUR)
+# libinput-gestures (AUR)
 
 ## i3 bindings.
 set $alt Mod1
@@ -318,6 +319,7 @@ bindsym $mod+space --no-startup-id layout-menu
 #exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id fcitx5 -d
 exec --no-startup-id i3-focus-last server
+exec --no-startup-id libinput-gestures -c ~/.config/i3/libinput-gestures.conf
 exec --no-startup-id systemctl --user start gammastep.service
 exec --no-startup-id systemctl --user restart mpd-notification.service
 exec --no-startup-id systemctl --user start battery-monitor.timer
