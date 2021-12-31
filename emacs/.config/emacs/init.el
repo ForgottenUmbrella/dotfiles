@@ -1920,6 +1920,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package typescript-mode :ensure t)
 ;; Shell script mode.
 (use-package sh-script
+  :config
+  (sh-indent-after-continuation 'always "Don't align indentation.")
   :mode ("PKGBUILD" . sh-mode))
 ;; Haskell mode.
 (use-package haskell-mode :ensure t)
