@@ -1,0 +1,7 @@
+#!/bin/sh
+# Shadow /usr/bin/i3-dmenu-desktop to use rofi to launch applications.
+#
+# Not an alias so it can be used by the i3 config. Not an environment variable
+# so it can be used by libinput-gestures.conf.
+
+rofi -modi combi -show combi -combi-modi drun#run

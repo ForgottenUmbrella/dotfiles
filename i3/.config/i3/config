@@ -256,9 +256,8 @@ bindsym $mod+Shift+slash exec --no-startup-id i3-keys-menu
 bindsym $mod+comma exec --no-startup-id flash_window
 
 # Application launcher.
-set $menu rofi -modi combi -show combi -combi-modi drun#run
-bindsym $mod+d split v; exec $menu
-bindsym $mod+Shift+d split h; exec $menu
+bindsym $mod+d split v; exec i3-dmenu-desktop
+bindsym $mod+Shift+d split h; exec i3-dmenu-desktop
 # Window switcher.
 bindsym $mod+Tab exec winfocus
 # Terminal.
