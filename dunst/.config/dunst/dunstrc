@@ -53,9 +53,11 @@
     format = "%b"
 
 [brightness]
+    appname = brightness
     history_ignore = true
 
 [vol]
+    appname = vol
     history_ignore = true
 
 # To be continued by ~/.config/wal/templates/colors-dunst...
