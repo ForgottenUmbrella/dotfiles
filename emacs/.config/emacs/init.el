@@ -2079,7 +2079,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :custom
   (terminal-here-linux-terminal-command (intern (car (split-string
                                                       (getenv "TERMINAL"))))
-                                        "Determine terminal from $TERMINAL environmental variable.")
+                                        "Determine terminal from $TERMINAL environment variable.")
   :general
   (:keymaps 'leader-applications-shell-map
    "t" 'terminal-here-launch
