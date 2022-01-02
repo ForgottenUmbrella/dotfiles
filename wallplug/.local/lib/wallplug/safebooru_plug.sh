@@ -73,7 +73,7 @@ safebooru_plug() {
         log 'Downloading posts...'
         curl 'https://safebooru.donmai.us/posts.json' -G \
              --data-urlencode "tags=$tags" --data-urlencode random=true \
-             --data-urlencode limit=100 -o "$posts" --create-dirs ||
+             --data-urlencode limit=200 -o "$posts" --create-dirs ||
             die 'Failed to download posts'
     fi
     data=$(safebooru_filter_data "$posts")
