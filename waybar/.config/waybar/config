@@ -213,8 +213,8 @@
             "format": "{icon} {}",
             "return-type": "json",
             "format-icons": {
-                "Playing": "",
-                "Paused": "",
+                "Playing": "",
+                "Paused": "",
             },
             "exec": "~/.config/waybar/scripts/media.sh",
             "on-click": "playerctl play-pause",
