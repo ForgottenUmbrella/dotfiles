@@ -1,0 +1,4 @@
+[output *]
+image=~/.cache/wallplug/image
+filter=fast
+anchor=center
