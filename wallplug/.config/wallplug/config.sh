@@ -69,6 +69,8 @@ post_commands() {
     /opt/oomox/plugins/theme_materia/materia-theme/change_color.sh "$oomox_theme"
     log 'Generating oomox icons...'
     /opt/oomox/plugins/icons_papirus/change_color.sh "$oomox_theme"
+    # Needs to be moved for dunst to find it.
+    mv ~/.icons/oomox-xresources2 "$XDG_DATA_HOME/icons"
     # XXX: Is this necessary?
     # log 'Reloading GTK theme...'
     # gtk-reload
