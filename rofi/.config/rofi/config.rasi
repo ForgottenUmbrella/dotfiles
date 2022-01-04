@@ -3,10 +3,14 @@ configuration {
         run-shell-command: "sh -c '$TERMINAL -e {cmd}'";
         show-icons: true;
         ssh-command: "sh -c '$TERMINAL -e {ssh-client} {host} [-p {port}]'";
+        kb-remove-char-back: "BackSpace,Shift+BackSpace";
 	kb-remove-to-eol: "";
 	kb-accept-entry: "Control+m,Return,KP_Enter";
+        kb-mode-complete: "";
+	kb-row-left: "Control+h";
 	kb-row-up: "Control+k,Control+p,Up";
 	kb-row-down: "Control+j,Control+n,Down";
+	kb-row-right: "Control+l";
 }
 
 @theme "~/.cache/wal/colors-rofi-dark.rasi"
