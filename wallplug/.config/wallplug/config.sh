@@ -63,7 +63,14 @@ post_commands() {
     log 'Generating oomox GTK theme...'
     # Only xresources2 and xresources3 have decent readability.
     oomox_theme="/opt/oomox/scripted_colors/xresources/xresources2"
-    /opt/oomox/plugins/theme_materia/materia-theme/change_color.sh "$oomox_theme"
+    # XXX: libsass 3.6.3 is intentionally broken, leading to infinite memory
+    # consumption on certain GTK themes:
+    # https://github.com/themix-project/oomox/issues/387#issuecomment-1000955729
+    # https://github.com/nana-4/materia-theme/issues/407#issuecomment-510546138
+    # https://github.com/sass/libsass/issues/3033#issuecomment-558643562
+    # /opt/oomox/plugins/theme_materia/materia-theme/change_color.sh \
+    #     "$oomox_theme" --inkscape false
+    oomox-cli "$oomox_theme"
     log 'Generating oomox icons...'
     /opt/oomox/plugins/icons_papirus/change_color.sh "$oomox_theme"
     # Needs to be moved for dunst to find it.
