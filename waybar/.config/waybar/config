@@ -30,7 +30,8 @@
             "pulseaudio",
             // "network",
             "custom/bluetooth",
-            "battery",
+            "battery"
+            // Cannot have last element be a comment, hence no trailing comma.
             // "custom/power",
         ],
         // Modules configuration
