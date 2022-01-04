@@ -3,6 +3,7 @@
     {
         "position": "top",
         "modules-left": [
+            // "custom/start",
             "sway/workspaces",
             "sway/mode",
             // "taskbar",
@@ -225,6 +226,11 @@
             "format": "{icon}",
             "format-icons": "⏻",
             "on-click": "power-menu",
+        },
+        "custom/start": {
+            "format": "{icon}",
+            "format-icons": "☰",
+            "on-click": "i3-dmenu-desktop",
         },
         "custom/swap": {
             "exec": "~/.config/waybar/scripts/swap.sh",
