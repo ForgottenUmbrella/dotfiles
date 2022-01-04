@@ -1,4 +1,3 @@
-/* -*- mode: css -*- */
 * {{
     active-background: {color2};
     /* active-foreground: @foreground; */

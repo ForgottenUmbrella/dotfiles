@@ -1,4 +1,3 @@
-/* -*- comment-start: "/*"; comment-end: "*/"; -*- */
 configuration {
 	font: "Monospace 12";
         run-shell-command: "sh -c '$TERMINAL -e {cmd}'";
