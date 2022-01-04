@@ -74,8 +74,8 @@ safebooru_plug() {
            safebooru_outdated_tags \
                "$(jq -r '.[0].tag_string' "$posts")" "$tags"; then
         log 'Downloading posts...'
-             --data-urlencode "tags=$tags" --data-urlencode random=true \
         curl 'https://safebooru.donmai.us/posts.json' -L -G \
+             --data-urlencode "tags=$tags" \
              --data-urlencode limit=200 -o "$posts" --create-dirs ||
             die 'Failed to download posts'
     fi
