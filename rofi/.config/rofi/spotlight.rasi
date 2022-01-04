@@ -10,6 +10,7 @@ configuration {
 	window-thumbnail: true;
 }
 
+/* TODO: Use wal colours instead. */
 * {
 	transparent: #00000000;
 	foreground: #F2F2F2EE;
@@ -42,7 +43,6 @@ prompt {
 button {
 	action: "ok";
 	str: " ";
-	font: "FantasqueSansMono Nerd Font 11";
 	expand: false;
 	text-color: @foreground;
 	background-color: @transparent;
@@ -51,7 +51,6 @@ button {
 }
 
 entry {
-	font: "Inter Regular 11";
 	background-color: @transparent;
 	text-color: @foreground;
 	expand: true;
