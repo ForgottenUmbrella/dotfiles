@@ -1932,7 +1932,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package vimrc-mode :ensure t)
 ;; CSS mode.
 (use-package css-mode
-  :mode ("\\.rasi\\'" . css-mode))
+  :mode "\\.rasi\\'")
 
 ;;;;; Major mode extensions.
 ;; Provide documentation lookup with K in Elisp.
