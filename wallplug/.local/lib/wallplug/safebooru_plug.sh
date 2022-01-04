@@ -19,15 +19,17 @@ safebooru_test_ip=8.8.8.8
 safebooru_outdated_tags() {
     tag_string=$1
     shift; tags=$*
-    [ "$(python -c "print(all(word in $tag_string for word in '$tags'.split() if ':' not in word))")" != 'True' ]
+    [ "$(python -c "print(all(word in '$tag_string' \
+        for word in '$tags'.split() if ':' not in word))")" != 'True' ]
 }
 
 # Return whether the given data is of sufficient quality.
 safebooru_filter_tags() {
     data=$1
-    tag_string=$(echo "$data" | jq '.tag_string')
-    [ "$(python -c "print(all(tag in $tag_string for tag in ['highres']) \
-and all(tag not in $tag_string for tag in ['comic', 'animated']))")" = 'True' ]
+    tag_string=$(echo "$data" | jq -r '.tag_string')
+    [ "$(python -c "print(all(tag in '$tag_string' for tag in ['highres']) \
+        and all(tag not in '$tag_string' \
+        for tag in ['comic', 'animated']))")" = 'True' ]
 }
 
 # Wait for network access via rudimentary exponential backoff.
@@ -69,7 +71,8 @@ safebooru_plug() {
     # Cache image URLs so we don't waste the extra images returned from the API.
     if [ ! -f "$posts" ] || [ "$(wc -m < "$posts")" -le 3 ] ||
            [ "$(jq '.|type' "$posts")" = 'object' ] ||
-           safebooru_outdated_tags "$(jq '.[0].tag_string' "$posts")" "$tags"; then
+           safebooru_outdated_tags \
+               "$(jq -r '.[0].tag_string' "$posts")" "$tags"; then
         log 'Downloading posts...'
         curl 'https://safebooru.donmai.us/posts.json' -G \
              --data-urlencode "tags=$tags" --data-urlencode random=true \
