@@ -1922,7 +1922,10 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package sh-script
   :config
   (sh-indent-after-continuation 'always "Don't align indentation.")
-  :mode ("PKGBUILD" . sh-mode))
+  :mode ("PKGBUILD" . sh-mode)
+  :mode ("PKGBUILD" . (lambda ()
+                        "Set `fill-column' to 100 for PKGBUILD files."
+                        (setq fill-column 100))))
 ;; Haskell mode.
 (use-package haskell-mode :ensure t)
 ;; Vimscript mode.
