@@ -22,13 +22,11 @@
 # $image is the path to the wallpaper.
 # $command is a command that will modify the $image
 # and optionally store the URL at $url_file.
-# $alpha is the alpha for the colour scheme, from 0 to 100.
 # post_command is a function that runs additional commands after wal.
 . "$config/wallplug/config.sh"
 # Default values.
 image=${image:-$cache/wallplug/image}
 command=${command:-'safebooru_plug "touhou pool:scenery_porn"'}
-alpha=${alpha:-80}
 
 # Import plugins.
 # Plugins should be named in the form ${plugin}_plug.sh and any global definitions
@@ -39,7 +37,7 @@ alpha=${alpha:-80}
 # Echo help message.
 usage() {
     echo \
-"Usage: $(basename "$0") [-u] [-i path] [-c command] [-a alpha] [-h]
+"Usage: $(basename "$0") [-u] [-i path] [-c command] [-h]
 
 wallplug.sh - Set the wallpaper using \`wal' and your choice of image source.
 
@@ -47,12 +45,10 @@ Options:
   -u          print the current wallpaper's URL and exit
   -i path     set the wallpaper to a local file (oneshot)
   -c command  set the command to run to fetch the wallpaper (oneshot)
-  -a alpha    set the alpha (oneshot)
   -h          show this help message and exit
 
 To permanently change the source for images, modify the script's \`command'
 variable.
-To permanently change the alpha, modify the script's \`alpha' variable.
 
 The frequency of wallpaper changes is controlled by the systemd timer. Enable
 \`wallplug.timer' to set the wallpaper periodically.
@@ -65,14 +61,13 @@ and optionally write a source URL to \$XDG_CACHE_HOME/wallplug/current-url.
 # Set the wallpaper, colour scheme and notify change.
 set_wallpaper() {
     image=$1
-    alpha=$2
     wait_display
     log 'Setting via wal...'
     # XXX: script/feh only fails to set wallpaper when run through systemd
     # (colorscheme is successfully changed), but works fine when run from
     # terminal.
     # Further note that this only happens occasionally. Currently working.
-    wal -c; wal -i "$image" -a "$alpha"
+    wal -c; wal -i "$image"
     command -v post_commands >/dev/null 2>&1 && post_commands
     url=$(cat "$url_file" 2>/dev/null || printf '')
     notify-send 'New wallpaper' "$url" -i "$image" -u low
@@ -91,9 +86,6 @@ while getopts ':ui:c:a:h?' option; do
         c)
             command="$OPTARG"
             ;;
-        a)
-            alpha="$OPTARG"
-            ;;
         \? | h | *)
             usage
             exit
@@ -101,5 +93,5 @@ while getopts ':ui:c:a:h?' option; do
     esac
 done
 eval "$command"
-set_wallpaper "$image" "$alpha"
+set_wallpaper "$image"
 cat "$url_file"

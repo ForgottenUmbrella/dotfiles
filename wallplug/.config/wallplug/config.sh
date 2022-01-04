@@ -43,9 +43,6 @@ command='safebooru_plug "touhou outdoors"'
 #command='safebooru_plug "touhou stu_dts"'
 #command='safebooru_plug "touhou you_shimizu"'
 
-# Alpha of colour scheme.
-alpha=80
-
 # Commands to run after setting with wal.
 post_commands() {
     # Dependencies:
