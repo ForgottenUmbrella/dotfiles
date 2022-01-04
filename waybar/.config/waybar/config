@@ -25,13 +25,13 @@
             "custom/swap",
             // "temperature",
             // "keyboard-state",
-            "sway/language",
+            // "sway/language",
             // "backlight",
             "pulseaudio",
             // "network",
             "custom/bluetooth",
             "battery",
-            "custom/power",
+            // "custom/power",
         ],
         // Modules configuration
         "sway/workspaces": {
