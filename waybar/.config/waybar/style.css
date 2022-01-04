@@ -115,14 +115,16 @@ tooltip {
 #mode,
 #idle_inhibitor,
 #mpd,
-#window,
-#workspaces,
 #language,
 #keyboard-state
 {
     padding: 0 10px;
 }
 
+#window,
+#workspaces {
+    padding: 0 5px;
+}
 #battery.charging, #battery.plugged {
     background-color: @transient;
     color: @background;
