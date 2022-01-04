@@ -29,7 +29,7 @@
     format = "<b>%s %p</b>\n%b"
     hide_duplicate_count = true
     icon_position = left
-    icon_theme = oomox-xresources2
+    icon_theme = "oomox-xresources2, Adwaita"
     enable_recursive_icon_lookup = true
     dmenu = dmenu -i
     corner_radius = 5
