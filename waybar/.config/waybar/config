@@ -214,7 +214,7 @@
         "custom/media": {
             "format": "{icon} {}",
             "return-type": "json",
-            "max-length": 40,
+            "max-length": 50,
             "format-icons": {
                 "Playing": "",
                 "Paused": "",
