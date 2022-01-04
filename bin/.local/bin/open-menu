@@ -1,8 +1,6 @@
 #!/bin/sh
 # Find and open a non-hidden file in the home directory.
 # Depends on fd for speed.
-# Depends on rofi for the theme.
 
-path=$(fd | rofi -dmenu -i -p "Open" -keep-right \
-    -theme ~/.config/rofi/spotlight.rasi)
+path=$(fd | dmenu -i -p "Open" -keep-right)
 xdg-open "$path"
