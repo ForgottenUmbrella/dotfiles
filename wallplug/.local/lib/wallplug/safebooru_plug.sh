@@ -56,7 +56,8 @@ safebooru_filter_data() {
         [ "$new_id" != "$id" ] ||
             die 'Failed to remove image from URL cache'
         # Check URL is not null and data is of sufficient quality.
-        echo "$data" | jq '.file_url' -e > /dev/null && safebooru_filter_tags "$data"
+        echo "$data" | jq '.file_url' -e > /dev/null &&
+            safebooru_filter_tags "$data"
     do
         :
     done
