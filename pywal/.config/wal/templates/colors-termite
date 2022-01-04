@@ -7,7 +7,7 @@ cursor_foreground = {cursor}
 
 foreground = {foreground}
 foreground_bold = {color15}
-background = {background.rgba}
+background = {background}cc
 
 # If unset, will reverse foreground and background
 #highlight = #2f2f2f
