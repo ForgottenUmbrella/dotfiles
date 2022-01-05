@@ -590,6 +590,10 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
    (lambda ()
      "Maybe fix sporadic elisp indentation."
      (setq-local lisp-indent-function 'Fuco1/lisp-indent-function)))
+  :mode
+  ("/kdeconnect-[:alpha:]\{6\}\\.txt\\'" . (lambda ()
+                          "Delete temporary shared-text files."
+                          (delete-file (buffer-file-name) t)))
   :config
   (pixel-scroll-mode)
   (auto-save-visited-mode)
