@@ -75,6 +75,7 @@
     fixed-height: 0;
     border: 2px 0px 0px;
     border-color: @border-color;
+    columns: 2;
     spacing: 2px;
     scrollbar: true;
     padding: 2px 0px 0px;
