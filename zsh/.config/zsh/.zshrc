@@ -6,6 +6,7 @@ KEYTIMEOUT=1  # Don't wait for key bindings beginning with ESC.
 
 # Enable completion (efficiently).
 autoload -Uz compinit
+# Speed up zsh compinit by only checking completion cache once a day.
 comp_path="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
 if [[ -n $comp_path(#qN.mh+24) ]]
 then
