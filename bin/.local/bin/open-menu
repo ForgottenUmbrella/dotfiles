@@ -2,5 +2,5 @@
 # Find and open a non-hidden file in the home directory.
 # Depends on fd for speed.
 
-path=$(fd | dmenu -i -p "Open" -keep-right)
+path=$(fd | dmenu -p "Open" -keep-right)
 xdg-open "$path"
