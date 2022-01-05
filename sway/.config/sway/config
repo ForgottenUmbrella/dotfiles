@@ -1,6 +1,3 @@
-# Wayland ignores the X Resources file, so load it yourself (for URxvt).
-exec xrdb ~/.Xresources
-
 # Use the base i3 config.
 include "$XDG_CONFIG_HOME/i3/config"
 
