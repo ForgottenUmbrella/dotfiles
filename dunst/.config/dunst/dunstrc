@@ -31,7 +31,7 @@
     icon_position = left
     icon_theme = "oomox-xresources2, Adwaita"
     enable_recursive_icon_lookup = true
-    dmenu = dmenu -i
+    dmenu = dmenu
     corner_radius = 5
     mouse_left_click = do_action
     mouse_middle_click = close_current
