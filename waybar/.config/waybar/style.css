@@ -126,11 +126,11 @@ tooltip {
     padding: 0 5px;
 }
 
-/* If workspaces is the leftmost module, omit left margin. */
+/* If workspaces is the leftmost module, omit left padding. */
 .modules-left > widget:first-child > #workspaces {
     padding-left: 0;
 }
-/* If workspaces is the rightmost module, omit right margin.  */
+/* If workspaces is the rightmost module, omit right padding.  */
 .modules-right > widget:last-child > #workspaces {
     padding-right: 0;
 }
