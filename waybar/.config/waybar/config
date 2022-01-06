@@ -2,6 +2,7 @@
 [
     {
         "position": "top",
+        "ipc": true,
         "modules-left": [
             // "custom/start",
             "sway/workspaces",
