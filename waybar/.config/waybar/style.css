@@ -116,23 +116,15 @@ tooltip {
 #idle_inhibitor,
 #mpd,
 #language,
-#keyboard-state
+#keyboard-state,
+#window
 {
     padding: 0 10px;
 }
 
-#window,
-#workspaces {
-    padding: 0 5px;
-}
-
-/* If workspaces is the leftmost module, omit left padding. */
-.modules-left > widget:first-child > #workspaces {
-    padding-left: 0;
-}
-/* If workspaces is the rightmost module, omit right padding.  */
-.modules-right > widget:last-child > #workspaces {
-    padding-right: 0;
+/* Remove padding when no windows are open. */
+window#waybar.empty #window {
+    padding: 0;
 }
 
 #battery.charging, #battery.plugged {
