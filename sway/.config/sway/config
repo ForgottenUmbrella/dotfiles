@@ -4,9 +4,9 @@ include "$XDG_CONFIG_HOME/i3/config"
 # Aesthetics.
 output * bg "$wallpaper" fill
 border_images.focused "$XDG_CONFIG_HOME/sway/borders/rounded_and_shadows.png"
-border_images.focused_inactive "$XDG_CONFIG_HOME/sway/bordersrounded_and_shadows.png"
-border_images.unfocused "$XDG_CONFIG_HOME/sway/borderrounded_and_shadows.png"
-border_images.urgent "$XDG_CONFIG_HOME/sway/borders/ rounded_and_shadows.png"
+border_images.focused_inactive "$XDG_CONFIG_HOME/sway/borders/rounded_and_shadows.png"
+border_images.unfocused "$XDG_CONFIG_HOME/sway/borders/rounded_and_shadows.png"
+border_images.urgent "$XDG_CONFIG_HOME/sway/borders/rounded_and_shadows.png"
 
 # IO.
 input type:keyboard {
