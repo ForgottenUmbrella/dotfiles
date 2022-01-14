@@ -6,7 +6,7 @@ count=$(dunstctl count waiting)
 enabled=
 disabled=
 if [ "$count" != 0 ]; then
-    disabled=" $count"
+    disabled="$disabled $count"
 fi
 if dunstctl is-paused | grep -q "false" ; then
     text="$enabled"
