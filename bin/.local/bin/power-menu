@@ -2,7 +2,7 @@
 # Show a power menu to shutdown, logout, etc.
 
 lock=' Lock'
-logout=' Logout'
+logout=' Exit'
 suspend=' Suspend'
 hibernate=' Hibernate'
 shutdown=' Shutdown'
