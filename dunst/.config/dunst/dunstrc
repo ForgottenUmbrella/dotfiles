@@ -62,4 +62,8 @@
     appname = vol
     history_ignore = true
 
+[bell]
+    appname = bell
+    history_ignore = true
+
 # To be continued by ~/.config/wal/templates/colors-dunst...
