@@ -20,7 +20,7 @@ case "$choice" in
         i3-msg exit
         ;;
     "$suspend")
-        systemctl suspend
+        systemctl suspend-then-hibernate
         ;;
     "$hibernate")
         systemctl hibernate
