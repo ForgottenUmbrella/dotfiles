@@ -1279,6 +1279,11 @@ to `evil-lookup'. Based on Spacemacs."
    "M-j" 'spatial-navigate-forward-vertical-box
    "M-k" 'spatial-navigate-backward-vertical-box
    "M-l" 'spatial-navigate-forward-horizontal-box))
+;; Go to definition and usages.
+(use-package xref
+  :general
+  (:states 'motion
+   "C-}" 'xref-find-references))
 
 ;;;; Completion.
 ;; Completion framework.
