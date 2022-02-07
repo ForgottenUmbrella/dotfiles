@@ -2,7 +2,6 @@
 include "$XDG_CONFIG_HOME/i3/config"
 
 # Aesthetics.
-output * bg "$wallpaper" fill
 # XXX: Once the shader backend is implemented, use rounded corners.
 border_images.focused "$XDG_CONFIG_HOME/sway/borders/shadows.png"
 border_images.focused_inactive "$XDG_CONFIG_HOME/sway/borders/shadows.png"
@@ -51,6 +50,7 @@ bindsym $mod+Ctrl+space exec ime-menu
 bindsym --no-warn $mod+space input * xkb_switch_layout next
 
 # Sway-specific autostart.
+exec oguri && swayblur -b 5 -a 5
 exec /usr/share/sway/scripts/inactive-windows-transparency.py
 exec swayidle -w \
    timeout 300 lock \

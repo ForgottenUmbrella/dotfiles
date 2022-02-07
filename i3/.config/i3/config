@@ -25,6 +25,7 @@
 # i3-focus-last-git (AUR)
 # libinput-gestures (AUR)
 # kdeconnect
+# swayblur (AUR)
 
 ## i3 bindings.
 set $alt Mod1
