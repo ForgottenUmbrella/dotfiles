@@ -68,6 +68,10 @@ autoload -Uz select-word-style
 select-word-style bash
 WORDCHARS=''
 
+# Configure zsh help.
+unalias run-help 2>/dev/null
+autoload run-help
+
 # Aliases.
 # Open files in a new GUI Emacs frame.
 alias mx='emacsclient -nc'
@@ -85,6 +89,8 @@ alias open='xdg-open'
 alias gpuinfo='lspci | grep " VGA " | cut -d " " -f 1 | xargs lspci -v -s'
 # Update the GRUB configuration.
 alias grub-update='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+# View zsh help (with the same name as in bash).
+alias help='run-help'
 
 
 # Load plugins declared in $ZDOTDIR/.zsh_plugins.txt.
