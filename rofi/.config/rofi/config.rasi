@@ -3,14 +3,23 @@ configuration {
         run-shell-command: "sh -c '$TERMINAL -e {cmd}'";
         show-icons: true;
         ssh-command: "sh -c '$TERMINAL -e {ssh-client} {host} [-p {port}]'";
-        kb-remove-char-back: "BackSpace,Shift+BackSpace";
-	kb-remove-to-eol: "";
+        /* Key un-bindings. */
+        /* C-j */
 	kb-accept-entry: "Control+m,Return,KP_Enter";
+        /* C-w */
+        kb-clear-line: "";
+        /* C-l */
         kb-mode-complete: "";
-	kb-row-left: "Control+h";
-	kb-row-up: "Control+k,Control+p,Up";
+        /* C-h */
+        kb-remove-char-back: "BackSpace,Shift+BackSpace";
+        /* C-k */
+	kb-remove-to-eol: "";
+        /* Key bindings. */
+        kb-remove-word-back: "Control+w";
 	kb-row-down: "Control+j,Control+n,Down";
+	kb-row-left: "Control+h";
 	kb-row-right: "Control+l";
+	kb-row-up: "Control+k,Control+p,Up";
 }
 
 @theme "~/.cache/wal/colors-rofi-dark.rasi"
