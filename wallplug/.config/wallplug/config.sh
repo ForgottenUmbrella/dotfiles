@@ -46,12 +46,12 @@ command='safebooru_plug "touhou outdoors"'
 # Commands to run after setting with wal.
 post_commands() {
     # Dependencies:
-    # - mantablockscreen
+    # - mantablockscreen (i3)
     # - emacs
     # - python-pywalfox
     # - oomox
-    log 'Setting mantablockscreen...'
-    mantablockscreen -i "$image"
+    #log 'Setting mantablockscreen...'
+    #mantablockscreen -i "$image"
     log 'Reloading Emacs ewal theme...'
     emacsclient -e "(load-theme 'ewal-spacemacs-modern t)"
     log 'Reloading Firefox pywalfox theme...'
@@ -68,8 +68,8 @@ post_commands() {
     # https://github.com/themix-project/oomox/issues/387#issuecomment-1000955729
     # https://github.com/nana-4/materia-theme/issues/407#issuecomment-510546138
     # https://github.com/sass/libsass/issues/3033#issuecomment-558643562
-    # /opt/oomox/plugins/theme_materia/materia-theme/change_color.sh \
-    #     "$oomox_theme" --inkscape false
+    #/opt/oomox/plugins/theme_materia/materia-theme/change_color.sh \
+    #    "$oomox_theme" --inkscape false
     oomox-cli "$oomox_theme"
     log 'Generating oomox icons...'
     /opt/oomox/plugins/icons_papirus/change_color.sh "$oomox_theme"
@@ -77,6 +77,6 @@ post_commands() {
     rm -r "$XDG_DATA_HOME/icons/oomox-xresources2"
     mv ~/.icons/oomox-xresources2 "$XDG_DATA_HOME/icons"
     # XXX: Is this necessary?
-    # log 'Reloading GTK theme...'
-    # gtk-reload
+    #log 'Reloading GTK theme...'
+    #gtk-reload
 }
