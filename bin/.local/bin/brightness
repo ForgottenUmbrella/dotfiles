@@ -28,6 +28,6 @@ else
 fi
 
 new_brightness=$(xbacklight -get)
-notify-send -a brightness -u low -i display-brightness \
+notify-send -a brightness -u low -i display-brightness-symbolic \
     -h int:transient:1 -h "int:value:$new_brightness" -h string:synchronous:brightness \
     Brightness
