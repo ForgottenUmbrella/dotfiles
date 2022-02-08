@@ -72,6 +72,9 @@ WORDCHARS=''
 unalias run-help 2>/dev/null
 autoload run-help
 
+# Beeps
+unsetopt beep  # Disable beeps.
+
 # Aliases
 # Open files in a new GUI Emacs frame.
 alias mx='emacsclient -nc'
