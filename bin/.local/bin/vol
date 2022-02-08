@@ -38,14 +38,22 @@ then
     pop &
 fi
 
-current="$(pulsemixer --get-volume | cut -d' ' -f1)%"
+current="$(pulsemixer --get-volume | cut -d' ' -f1)"
 if [ "$(pulsemixer --get-mute)" = 1 ]
 then
     # Doesn't show because notify-send is dumb and can't find some icons.
     icon=audio-volume-muted
     title='Volume (muted)'
 else
-    icon=audio-speakers
+    if [ "$current" -lt 33 ]
+    then
+        icon=audio-volume-low
+    elif [ "$current" -lt 66 ]
+    then
+        icon=audio-volume-medium
+    else
+        icon=audio-volume-high
+    fi
     title='Volume'
 fi
 notify-send -a vol -u low -i "$icon" \
