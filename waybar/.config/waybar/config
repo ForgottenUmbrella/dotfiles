@@ -50,8 +50,8 @@
             "capslock": true,
             "scrolllock": true,
             "format-icons": {
-                "locked": "",
-                "unlocked": "",
+                "locked": "🔒",
+                "unlocked": "🔓",
             },
         },
         "wlr/taskbar": {
@@ -63,20 +63,20 @@
             "format-disconnected": "⏏",
             "format-stopped": "⏹",
             "consume-icons": {
-                "on": " ",
+                "on": "✂ ",
             },
             "random-icons": {
-                "on": " ",
+                "on": "🔀 ",
             },
             "repeat-icons": {
-                "on": " ",
+                "on": "🔁 ",
             },
             "single-icons": {
-                "on": "1 ",
+                "on": "🔂 ",
             },
             "state-icons": {
-                "paused": "",
-                "playing": "",
+                "paused": "⏸",
+                "playing": "▶",
             },
             "on-click-right": "$TERMINAL -e ncmpcpp",
         },
@@ -125,8 +125,8 @@
             "format": "{icon} {capacity}%",
             "format-alt": "{icon}",
             // "format-alt": "{icon} {time}",
-            "format-charging": " {capacity}%",
-            "format-plugged": " {capacity}%",
+            "format-charging": "🔃 {capacity}%",
+            "format-plugged": "🔌 {capacity}%",
             "format-critical": "{icon} {capacity}%",
             "format-icons": ["", "", "", "", ""],
         },
@@ -150,13 +150,13 @@
             "format-source": " {volume}%",
             "format-source-muted": " {volume}%",
             "format-icons": {
-                "headphone": "",
+                "headphone": "🎧",
                 "hands-free": "",
                 "headset": "",
-                "phone": "",
-                "portable": "",
-                "car": "",
-                "default": ["", "", ""],
+                "phone": "📞",
+                "portable": "📞",
+                "car": "🚘",
+                "default": ["🔈", "🔉", "🔊"],
             },
             "states": {
                 "warning": 30,
@@ -191,7 +191,7 @@
             "format-icons": {
                 "Not running": "",
                 "Downloading": "",
-                "Syncing": "",
+                "Syncing": "🔃",
                 "Uploading": "",
                 "Up to date": "",
             },
@@ -217,8 +217,8 @@
             "return-type": "json",
             "max-length": 50,
             "format-icons": {
-                "Playing": "",
-                "Paused": "",
+                "Playing": "⏸",
+                "Paused": "▶",
             },
             "exec": "~/.config/waybar/scripts/media.sh",
             "on-click": "playerctl play-pause",
