@@ -1,10 +1,10 @@
 #!/usr/bin/zsh
 
-# Use vi key bindings.
+# Vi key bindings
 bindkey -v
 KEYTIMEOUT=1  # Don't wait for key bindings beginning with ESC.
 
-# Enable completion (efficiently).
+# Completion
 autoload -Uz compinit
 # Speed up zsh compinit by only checking completion cache once a day.
 comp_path="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
@@ -19,7 +19,7 @@ zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'  # Smart case.
 zstyle ':completion:*' list-colors  # Colourised completion.
 autoload -Uz bashcompinit && bashcompinit
 
-# Set up history.
+# History
 HISTFILE=${ZDOTDIR:-$HOME}/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
@@ -29,13 +29,13 @@ setopt inc_append_history  # Update history immediately.
 setopt hist_ignore_dups  # Don't store duplicates.
 setopt hist_reduce_blanks  # Don't store blank lines.
 
-# Enable correction.
-setopt correct
-setopt correct_all
+# Typos
+setopt correct  # Correct command names.
+setopt correct_all  # Correct arguments.
 
-# Enable prompt.
+# Prompt
 autoload -Uz promptinit && promptinit
-setopt prompt_subst
+setopt prompt_subst  # Evaluate certain expressions in prompt.
 _prompt_symbol='%(!,#,❯)'
 _prompt_colour='%(?,%F{blue},%F{red})'
 _prompt_return_code='%(?,,%F{red}%? )'
@@ -54,25 +54,25 @@ PS3='#?'  # Select (for the `select` input command)
 PS4='+%N:%i>'  # Debug
 RPS1="$_current_directory"  # Default, right
 
-# Enable colours.
+# Colours
 autoload -Uz colors && colors
 (cat "${XDG_CACHE_HOME:-$HOME/.cache}/wal/sequences" &)
 . "${XDG_CACHE_HOME:-$HOME/.cache}/wal/colors-tty.sh"
 
-# Configure `cd`.
+# Auto `cd`
 setopt auto_cd  # Don't require explicit `cd`.
 setopt auto_pushd  # Always record directory history for `popd`.
 
-# Configure word movement.
+# Word movement
 autoload -Uz select-word-style
 select-word-style bash
 WORDCHARS=''
 
-# Configure zsh help.
+# Zsh help
 unalias run-help 2>/dev/null
 autoload run-help
 
-# Aliases.
+# Aliases
 # Open files in a new GUI Emacs frame.
 alias mx='emacsclient -nc'
 # Run wine in Japanese locale.
@@ -92,23 +92,24 @@ alias grub-update='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 # View zsh help (with the same name as in bash).
 alias help='run-help'
 
-
 # Load plugins declared in $ZDOTDIR/.zsh_plugins.txt.
 . "${ZDOTDIR:-$HOME}/.zsh_plugins.sh"
 # NOTE: To update plugins, run `antibody update`.
 
-# trystan2k/zsh-tab-title configuration.
+# Plugin settings
+
+# trystan2k/zsh-tab-title
 ZSH_TAB_TITLE_CONCAT_FOLDER_PROCESS=true
 
-# zsh-users/zsh-autosuggestions configuration.
+# zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 bindkey '^F' autosuggest-accept
 
-# zsh-users/zsh-history-substring-search configuration.
+# zsh-users/zsh-history-substring-search
 bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
 
-# softmoth/zsh-vim-mode configuration.
+# softmoth/zsh-vim-mode
 MODE_CURSOR_VIINS='blinking bar'  # Blink to show window focus.
 MODE_CURSOR_VISUAL='steady block'
 #MODE_INDICATOR_VIINS='%F{15}%F{8}[I]%f'
@@ -118,9 +119,7 @@ MODE_CURSOR_VISUAL='steady block'
 #MODE_INDICATOR_VISUAL='%F{12}%F{4}[V]%f'
 #MODE_INDICATOR_VLINE='%F{12}%F{4}[V]%f'
 
-# Plugin overrides.
-
-# Key bindings.
+# Key bindings
 autoload -Uz up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
 zle -N up-line-or-beginning-search
