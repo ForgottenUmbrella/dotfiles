@@ -1,3 +1,12 @@
+# Distro-specific package fixes and system-wide config.
+# Needs to run before starting anything to export environment variables.
+include /etc/sway/config.d/*
+# Needed for screen sharing for now (https://bugs.archlinux.org/task/72297).
+# Needed for Java applications (https://github.com/swaywm/sway/issues/595).
+exec dbus-update-activation-environment --systemd \
+    XDG_CURRENT_DESKTOP=sway \
+    _JAVA_AWT_WM_NONREPARENTING=1
+
 # Use the base i3 config.
 include "$XDG_CONFIG_HOME/i3/config"
 
@@ -66,11 +75,3 @@ exec "$XDG_CONFIG_HOME/sway/import-gsettings.sh" \
     icon-theme:gtk-icon-theme-name \
     cursor-theme:gtk-cursor-theme-name
 exec_always "killall oguri swayblur; oguri && swayblur -b 5 -a 5"
-# Needed for screen sharing for now (https://bugs.archlinux.org/task/72297).
-# Needed for Java applications (https://github.com/swaywm/sway/issues/595).
-exec_always dbus-update-activation-environment --systemd \
-    XDG_CURRENT_DESKTOP=sway \
-    _JAVA_AWT_WM_NONREPARENTING=1
-
-# Distro-specific package fixes and system-wide config.
-include /etc/sway/config.d/*
