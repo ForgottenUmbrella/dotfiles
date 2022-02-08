@@ -213,13 +213,15 @@ for_window [class="firefox" title=".*(?<!Mozilla Firefox)$"] floating enable
 # PIP videos.
 for_window [title="^Picture-in-Picture$"] floating enable
 
-# Windows that are supposed to float.
+# Other windows that are supposed to float.
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [window_role="Preferences"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
+# Disable transparency for floating windows.
+for_window [floating] exec opacity 100
 
 # Gaps.
 set $default_inner 20
@@ -307,7 +309,8 @@ bindsym $mod+m exec --no-startup-id dunstctl history-pop
 bindsym $mod+Shift+m exec --no-startup-id dunstctl context
 
 # Disable inactive transparency for current window.
-bindsym $mod+t exec opacity 100
+bindsym $mod+t mark --toggle opaque
+for_window [con_mark="opaque"] exec opacity 100
 
 # Edit any input field in Emacs.
 bindsym $mod+Ctrl+n split v; exec emacsclient -c $(mktemp)

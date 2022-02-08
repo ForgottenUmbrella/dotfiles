@@ -1,12 +1,14 @@
 #!/bin/sh
 # Usage: opacity VALUE
-# Set opacity of current window in X11, or toggle current transparency in Wayland.
-# VALUE shall be a between 0 and 100, where
-# a value of 0 means full transparency, and a value of 100 means full opacity.
+#
+# Set opacity of current window in i3 or sway.
+#
+# VALUE shall be a between 0 and 100, where a value of 0 means full
+# transparency, and a value of 100 means full opacity.
 
 if [ "$XDG_SESSION_TYPE" = wayland ]
 then
-    swaymsg mark --toggle opaque
+    swaymsg opacity "$(echo "scale=2; $1/100" | bc)"
 else
     picom-trans -c "$1"
 fi
