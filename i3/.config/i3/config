@@ -324,9 +324,9 @@ exec --no-startup-id i3-focus-last server
 exec --no-startup-id /usr/lib/kdeconnectd
 exec --no-startup-id libinput-gestures -c ~/.config/i3/libinput-gestures.conf
 exec --no-startup-id systemctl --user start gammastep.service
-exec --no-startup-id systemctl --user restart mpd-notification.service
+exec --no-startup-id systemctl --user start mpd-notification.service
 exec --no-startup-id systemctl --user start battery-monitor.timer
-exec --no-startup-id systemctl --user restart flashfocus.service
+exec --no-startup-id systemctl --user start flashfocus.service
 # wallplug requires DISPLAY, so it cannot be simply enabled.
 exec --no-startup-id systemctl --user start wallplug.timer
 exec_always --no-startup-id "killall -q dunst; millfeed &"
