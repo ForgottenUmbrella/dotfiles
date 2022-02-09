@@ -1609,8 +1609,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (major-prefix-def :prefix-command 'major-org-map :keymaps 'org-mode-map
     "'" 'org-edit-special
     ":" 'org-set-tags
-    "." 'org-time-stamp
-    "!" 'org-time-stamp-inactive
     "," 'org-ctrl-c-ctrl-c
     "*" 'org-ctrl-c-star
     "RET" 'ogr-ctrl-c-ret
@@ -1623,7 +1621,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
     "b" 'org-tree-to-indirect-buffer
     "c" 'org-capture
     "D" 'org-insert-drawer
-    "d" 'org-deadline
     "f" 'org-set-effort
     "H" 'org-shiftleft
     "C-H" 'org-shiftcontrolleft
@@ -1643,9 +1640,15 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
     "q" 'org-clock-cancel
     "R" 'org-refile
     "r" 'org-export-stack-refresh
-    "s" 'org-schedule
     "T" 'org-show-todo-tree
     "t" 'org-babel-tangle)
+  (:prefix-command 'major-org-dates-map :keymaps 'major-org-map :prefix "d"
+   :wk-full-keys nil
+   "" '(:ignore t :which-key "dates")
+   "d" 'org-deadline
+   "s" 'org-schedule
+   "t" 'org-time-stamp
+   "T" 'org-time-stamp-inactive)
   (:prefix-command 'major-org-export-map :keymaps 'major-org-map :prefix "e"
    :wk-full-keys nil
    "" '(:ignore t :which-key "export")
@@ -1664,9 +1667,11 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
    "l" 'org-insert-link
    "f" 'org-footnote-new
    "s" 'org-insert-structure-template)
-  (:prefix-command 'major-org-subheadings-map :keymaps 'major-org-map
-   :prefix "S" :wk-full-keys nil
-   "" '(:ignore t :which-key "subheadings")
+  (:prefix-command 'major-org-subtrees-map :keymaps 'major-org-map
+   :prefix "s" :wk-full-keys nil
+   "" '(:ignore t :which-key "trees/subtrees")
+   "a" 'org-toggle-archive-tag
+   "A" 'org-archive-subtree-default
    "h" 'org-promote-subtree
    "j" 'org-move-subtree-down
    "k" 'org-move-subtree-up
