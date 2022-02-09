@@ -39,9 +39,9 @@ and 100 is fully opaque.")
              ;(cons 'font (shell-command-to-string
                           ;"fc-match monospace -f %{family}-12")))
 ;; Fallback fonts. XXX: How many are absolutely necessary?
-(dolist (font (reverse '(;;"Misc Tamsyn"
-                         ;;"Tamzen"
-                         ;;"Font Awesome 5 Free"
-                         ;;"FuraMono Nerd Font"
-                         ))
-              (set-fontset-font t nil font nil 'prepend)))
+(dolist (font '(;;"Tamzen"
+                ;;"Symbola"
+                "Font Awesome 5 Free"
+                ;;"FuraMono Nerd Font"
+                )
+              (set-fontset-font t nil font)))
