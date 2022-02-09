@@ -1106,12 +1106,9 @@ to `evil-lookup'. Based on Spacemacs."
   (which-key-sort-order 'which-key-key-order-alpha
                         "Sort keybindings alphabetically.")
   (which-key-allow-evil-operators t "Remind of custom Vim objects.")
+  (which-key-allow-imprecise-window-fit nil "Don't obscure bottom row.")
   :config
   (which-key-mode)
-  (advice-add 'which-key--show-popup
-              :around (lambda (f &rest r)
-                        "Add extra line to work around issue #231."
-                        (apply f (list (cons (+ 1 (car (car r))) (cdr (car r)))))))
   :general
   (:keymaps 'leader-help-map
    "k" 'which-key-show-top-level
