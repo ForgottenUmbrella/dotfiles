@@ -59,11 +59,13 @@
 
 ;;;; Set up package management.
 ;; Provide key-binding commands and :g(f)hook options to use-package.
+;;
 ;; NOTE: Include `:demand t' if you use :general or :g(f)hook but still need the
 ;; external package or its :config to be loaded. Also, some (but not all)
 ;; built-in packages need :demand if you use :general-bind.
+;;
 ;; NOTE: :ghook adds the package mode to the given hook, whereas :gfhook adds
-;; the given function to the package's own hook.
+;; the given function to the package's own hook. Use :hook for everything else.
 (use-package general :ensure t)
 ;; Provide `auto-package-update-now' to update packages.
 (use-package auto-package-update :ensure t
@@ -820,11 +822,11 @@ to `evil-lookup'. Based on Spacemacs."
   (evil-commentary-mode))
 ;; Comma-delimited text objects (ii/ai).
 (use-package evil-args :ensure t
-  :ghook
-  ('(lisp-mode-hook emacs-lisp-mode-hook)
-   (lambda ()
-     "Don't pair single quotes."
-     (setq evil-args-delimiters '(" "))))
+  :hook
+  ((lisp-mode emacs-lisp-mode)
+   . (lambda ()
+       "Handle lisp lists as you would any other list."
+       (setq evil-args-delimiters '(" "))))
   :general
   (:keymaps 'evil-inner-text-objects-map "a" 'evil-inner-arg)
   (:keymaps 'evil-outer-text-objects-map "a" 'evil-outer-arg))
@@ -1042,12 +1044,12 @@ to `evil-lookup'. Based on Spacemacs."
 (use-package uniquify)
 ;; Interpret colour output in `compilation-mode'.
 (use-package ansi-color :after compile
-  :ghook
-  ('compilation-filter-hook
-   (lambda ()
-     "Interpret ANSI colour escapes in `compilation-mode'."
-     (ansi-color-apply-on-region compilation-filter-start
-                                 (point-max)))))
+  :hook
+  (compilation-filter
+   . (lambda ()
+       "Interpret ANSI colour escapes in `compilation-mode'."
+       (ansi-color-apply-on-region compilation-filter-start
+                                   (point-max)))))
 ;; Use ligatures.
 (use-package fira-code-mode :ensure t
   :ghook 'prog-mode-hook
@@ -1067,7 +1069,7 @@ to `evil-lookup'. Based on Spacemacs."
   (all-the-icons-ivy-rich-mode t))
 ;; Google style guides.
 (use-package google-c-style :ensure t
-  :ghook ('c-mode-common-hook '(google-set-c-style gogle-make-newline-indent)))
+  :hook (c-mode-common . (google-set-c-style google-make-newline-indent)))
 
 ;;;;; Themes.
 ;; NOTE: Defer all but the selected for faster startup.
@@ -1278,6 +1280,14 @@ to `evil-lookup'. Based on Spacemacs."
    "M-l" 'spatial-navigate-forward-horizontal-box))
 ;; Go to definition and usages.
 (use-package xref
+  :init
+  (defun xref-dwim ()
+    "Go to definition or usages of symbol at point."
+    (interactive)
+    (let ((prev-line (line-number-at-pos)))
+      (evil-jump-to-tag)
+      (when (neq prev-line (line-number-at-pos))
+        (xref-find-references))))
   :general
   (:states 'motion
    "C-}" 'xref-find-references))
@@ -2141,7 +2151,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
    "r" 'restart-emacs))
 ;; Save buffers periodically and on exit in case of crash.
 (use-package desktop :demand t
-  :ghook
+  ;:ghook
   ;; XXX: Hangs attempts to close emacs by forcing interaction.
   ;('emacs-startup-hook 'desktop-save-mode)
   :config
