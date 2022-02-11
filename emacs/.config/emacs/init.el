@@ -663,28 +663,6 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
 (use-package evil :ensure t :demand t :after undo-tree
   :init
   (setq-default evil-want-keybinding nil)
-  :custom
-  (evil-want-C-u-scroll t "Replace Emacs's C-u with Vim scrolling.")
-  (evil-want-Y-yank-to-eol t "Differentiate Y and yy for yanking.")
-  (evil-want-visual-char-semi-exclusive t
-                                        "Make visual mode less confusing.")
-  (evil-ex-substitute-global t "Substitute globally by default.")
-  (evil-vsplit-window-right t "Vertically split to the right.")
-  (evil-split-window-below t "Horizontally split below.")
-  (evil-cross-lines t "Allow horizontal movement to other lines.")
-  ;; XXX: Doesn't work: emacs-evil/evil#188
-  (evil-respect-visual-line-mode t "Respect visual line mode.")
-  (evil-auto-balance-windows nil
-                             "Don't spontaneously resize windows.")
-  (evil-symbol-word-search t
-                           "Operate * and # on words instead of symbols.")
-  (evil-search-module 'evil-search
-                      "Use evil's search module instead of Emacs's.")
-  (evil-undo-system 'undo-tree "Use undo-tree for undo until Emacs 28.")
-  (evil-ex-visual-char-range t "Default to substituting in actual selection.")
-  :config
-  (evil-mode)
-  (set-keymap-parent leader-windows-map evil-window-map)
   (defun my/append-to-register ()
     "Append to instead of replacing the unnamed (default) register.
 Actually appends to register z as a hack."
@@ -707,6 +685,35 @@ to `evil-lookup'. Based on Spacemacs."
     "Resize current window to be fairly small."
     (interactive)
     (evil-resize-window 10))
+  (defun evil-jump-to-tag-dwim ()
+    "Jump to tag under point, or its usages if already at definition."
+    (interactive)
+    (let ((prev-line (line-number-at-pos)))
+      (evil-jump-to-tag)
+      (when (neq prev-line (line-number-at-pos))
+        (xref-find-references))))
+  :custom
+  (evil-want-C-u-scroll t "Replace Emacs's C-u with Vim scrolling.")
+  (evil-want-Y-yank-to-eol t "Differentiate Y and yy for yanking.")
+  (evil-want-visual-char-semi-exclusive t
+                                        "Make visual mode less confusing.")
+  (evil-ex-substitute-global t "Substitute globally by default.")
+  (evil-vsplit-window-right t "Vertically split to the right.")
+  (evil-split-window-below t "Horizontally split below.")
+  (evil-cross-lines t "Allow horizontal movement to other lines.")
+  ;; XXX: Doesn't work: emacs-evil/evil#188
+  (evil-respect-visual-line-mode t "Respect visual line mode.")
+  (evil-auto-balance-windows nil
+                             "Don't spontaneously resize windows.")
+  (evil-symbol-word-search t
+                           "Operate * and # on words instead of symbols.")
+  (evil-search-module 'evil-search
+                      "Use evil's search module instead of Emacs's.")
+  (evil-undo-system 'undo-tree "Use undo-tree for undo until Emacs 28.")
+  (evil-ex-visual-char-range t "Default to substituting in actual selection.")
+  :config
+  (evil-mode)
+  (set-keymap-parent leader-windows-map evil-window-map)
   (pretty-hydra-define hydra-window (:title "Window Manipulation" :quit-key "q")
     ("Select"
      (("h" evil-window-left "←")
@@ -744,11 +751,12 @@ to `evil-lookup'. Based on Spacemacs."
    "C-_" 'my/append-to-register
    "Q" (kbd "@q")
    "K" 'evil-smart-doc-lookup
+   "<tab>" 'evil-toggle-fold
+   "C-]" evil-jump-to-tag-dwim
    "M--" 'evil-window-decrease-height
    "M-+" 'evil-window-increase-height
    "M-<" 'evil-window-decrease-width
-   "M->" 'evil-window-increase-width
-   "<tab>" 'evil-toggle-fold)
+   "M->" 'evil-window-increase-width)
   (:states 'insert
    "C-z" nil)  ;; Disable accidental Emacs state entry.
   (:keymaps 'evil-ex-search-keymap
@@ -838,7 +846,6 @@ to `evil-lookup'. Based on Spacemacs."
   (evil-collection-outline-enable-in-minor-mode-p nil "Don't hijack major mode paragraph navigation.")
   :init
   (evil-collection-init)
-  :config
   (defun next-comment ()
     "Move point to next comment."
     (interactive)
@@ -1119,14 +1126,15 @@ to `evil-lookup'. Based on Spacemacs."
    "K" 'which-key))
 ;; Enable undoing window management with SPC-w-u.
 (use-package winner :demand t
-  :config
-  (winner-mode)
+  :init
   (defun toggle-fullscreen-window ()
     "Toggle between deleting other windows and undoing the deletion."
     (interactive)
     (if (eql (length (window-list)) 1)
         (winner-undo)
       (delete-other-windows)))
+  :config
+  (winner-mode)
   (pretty-hydra-define+ hydra-window nil
     ("History"
      (("u" winner-undo "undo")
@@ -1280,14 +1288,6 @@ to `evil-lookup'. Based on Spacemacs."
    "M-l" 'spatial-navigate-forward-horizontal-box))
 ;; Go to definition and usages.
 (use-package xref
-  :init
-  (defun xref-dwim ()
-    "Go to definition or usages of symbol at point."
-    (interactive)
-    (let ((prev-line (line-number-at-pos)))
-      (evil-jump-to-tag)
-      (when (neq prev-line (line-number-at-pos))
-        (xref-find-references))))
   :general
   (:states 'motion
    "C-}" 'xref-find-references))
@@ -1435,6 +1435,21 @@ to `evil-lookup'. Based on Spacemacs."
 ;;;; Correction.
 ;; Highlight errors.
 (use-package flycheck :ensure t :demand t
+  :init
+  (defun toggle-flycheck-error-list ()
+    "Toggle flycheck's error list window.
+If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
+    (interactive)
+    (-if-let (window (flycheck-get-error-list-window))
+        (quit-window nil window)
+      (flycheck-list-errors)))
+  (defun goto-flycheck-error-list ()
+    "Open and go to the error list buffer. From Spacemacs."
+    (interactive)
+    (unless (get-buffer-window
+             (get-buffer flycheck-error-list-buffer))
+      (flycheck-list-errors)
+      (switch-to-buffer-other-window flycheck-error-list-buffer)))
   :custom
   (flycheck-disabled-checkers '(emacs-lisp-checkdoc)
                               "Don't complain about arcane ELisp conventions.")
@@ -1452,20 +1467,6 @@ to `evil-lookup'. Based on Spacemacs."
   (warn-missing-hook-executable "mypy" "mypy" "Python type-checking"
                                 'python-mode-hook)
   (flycheck-add-next-checker 'python-pylint 'python-mypy)
-  (defun toggle-flycheck-error-list ()
-    "Toggle flycheck's error list window.
-If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
-    (interactive)
-    (-if-let (window (flycheck-get-error-list-window))
-        (quit-window nil window)
-      (flycheck-list-errors)))
-  (defun goto-flycheck-error-list ()
-    "Open and go to the error list buffer. From Spacemacs."
-    (interactive)
-    (unless (get-buffer-window
-             (get-buffer flycheck-error-list-buffer))
-      (flycheck-list-errors)
-      (switch-to-buffer-other-window flycheck-error-list-buffer)))
   :general
   (:keymaps 'leader-errors-map
    "b" 'flycheck-buffer
@@ -1862,13 +1863,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   ;; Need to declare so it can be used by the pipenv package.
   (defvar major-python-virtualenv-map (make-sparse-keymap)
     "Nested keymap for virtualenv-related commands in Python major mode.")
-  :custom
-  (python-fill-docstring-style 'pep-257-nn
-                               "Format docstrings properly.")
-  (python-indent-guess-indent-offset-verbose nil "Silence indent guesses.")
-  (python-fill-string-function 'python-fill-string-72 "Wrap docstrings to 72.")
-  (python-fill-comment-function 'python-fill-comment-72 "Wrap comments to 72.")
-  :config
   (defun python-fill-string-72 (&optional justify)
     "Fill docstrings to 72 characters."
     (interactive)
@@ -1889,6 +1883,12 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                                  (shell-quote-argument (buffer-file-name))))
           (revert-buffer t t t))
       (message "Error: Cannot find autoflake executable.")))
+  :custom
+  (python-fill-docstring-style 'pep-257-nn
+                               "Format docstrings properly.")
+  (python-indent-guess-indent-offset-verbose nil "Silence indent guesses.")
+  (python-fill-string-function 'python-fill-string-72 "Wrap docstrings to 72.")
+  (python-fill-comment-function 'python-fill-comment-72 "Wrap comments to 72.")
   :general
   (:keymaps 'python-mode-map "RET" 'newline-and-indent)
   (major-prefix-def :prefix-command 'major-python-map
