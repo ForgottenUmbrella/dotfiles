@@ -32,8 +32,6 @@
 ;; Enable additional package repos.
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-;; TODO: Remove this once Emacs 28 is released.
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 ;; Pre-compute autoloads to activate packages quickly.
 (setq package-quickstart t)
 
