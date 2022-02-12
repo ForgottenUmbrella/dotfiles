@@ -109,6 +109,11 @@ bindsym $mod+Shift+minus move scratchpad
 # Cycle through scratchpad windows.
 bindsym $mod+minus scratchpad show
 bindsym XF86Search scratchpad show
+# Dropdown terminal.
+exec $TERMINAL --title 'dropdown'
+for_window [title="^dropdown$"] move scratchpad
+for_window [title="^dropdown$"] sticky enable
+bindsym $mod+Ctrl+minus exec $TERMINAL --title 'dropdown', scratchpad show
 
 # Marks.
 #bindsym $mod+m exec --no-startup-id i3-input -F 'mark %s' -l 1 -P 'Mark: '
@@ -334,8 +339,3 @@ exec --no-startup-id systemctl --user start flashfocus.service
 exec --no-startup-id systemctl --user start wallplug.timer
 exec_always --no-startup-id "killall -q dunst; millfeed &"
 exec_always --no-startup-id ~/.config/i3/i3-autostart.sh
-
-# Dropdown terminal.
-exec $TERMINAL --title 'dropdown'
-for_window [title="^dropdown$"] move scratchpad
-for_window [title="^dropdown$"] sticky enable
