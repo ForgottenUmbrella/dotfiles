@@ -750,7 +750,7 @@ to `evil-lookup'. Based on Spacemacs."
    "Q" (kbd "@q")
    "K" 'evil-smart-doc-lookup
    "<tab>" 'evil-toggle-fold
-   "C-]" evil-jump-to-tag-dwim
+   "C-]" 'evil-jump-to-tag-dwim
    "M--" 'evil-window-decrease-height
    "M-+" 'evil-window-increase-height
    "M-<" 'evil-window-decrease-width
@@ -1936,7 +1936,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package typescript-mode :ensure t)
 ;; Shell script mode.
 (use-package sh-script
-  :config
+  :custom
   (sh-indent-after-continuation 'always "Don't align indentation.")
   :mode ("/PKGBUILD\\'" . (lambda ()
                             "Configure mode and settings for PKGBUILD files."
