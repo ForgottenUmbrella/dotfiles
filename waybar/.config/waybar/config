@@ -125,7 +125,7 @@
             "format": "{icon} {capacity}%",
             "format-alt": "{icon}",
             // "format-alt": "{icon} {time}",
-            "format-charging": "🔃 {capacity}%",
+            "format-charging": " {capacity}%",
             "format-plugged": "🔌 {capacity}%",
             "format-critical": "{icon} {capacity}%",
             "format-icons": ["", "", "", "", ""],
@@ -191,7 +191,7 @@
             "format-icons": {
                 "Not running": "",
                 "Downloading": "",
-                "Syncing": "🔃",
+                "Syncing": "",
                 "Uploading": "",
                 "Up to date": "",
             },
