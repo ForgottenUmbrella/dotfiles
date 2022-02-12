@@ -1195,10 +1195,10 @@ to `evil-lookup'. Based on Spacemacs."
   :general
   (:keymaps 'leader-buffers-map
    "X" 'clean-buffer-list))
-;; Fold code blocks.
-(use-package hideshow
-  :ghook
-  ('prog-mode-hook 'hs-minor-mode))
+;; Fold code blocks (including vim-style {{{ markers }}}).
+(use-package origami :ensure t
+  :config
+  (global-origami-mode))
 ;; Fold comment headings.
 (use-package outline
   :general
