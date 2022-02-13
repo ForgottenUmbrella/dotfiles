@@ -92,6 +92,7 @@ awk "/^## $country$/{f=1}f==0{next}/^$/{exit}{print substr(\$0, 2)}" \
 # Base installation
 pacstrap /mnt base linux linux-firmware base-devel pkgstats efibootmgr grub nftables \
     git fwupd man-db man-pages zsh emacs alacritty \
+    fd fzf ripgrep tldr tree \
     plocate apparmor chrony pacman-contrib \
     texinfo pulsemixer gnome-keyring \
     networkmanager cups cups-pdf nss-mdns sane-airscan ipp-usb \
@@ -281,12 +282,13 @@ sed --in-place \
 systemctl enable apparmor.service
 
 # Personal apps and AUR TODO move all personals and optionals from pacstrap
-paru --sync --refresh --sysupgrade keepassxc dropbox anki firefox-beta antibody-bin \
+paru --sync --refresh --sysupgrade antibody-bin bluez-utils gcalcli notify-send.sh \
+    keepassxc dropbox anki-bin firefox-beta \
     wine-staging wine-nine wine-gecko wine-mono \
-    sway-borders-git mantablockscreen swaylock-effects \
-    rofi-lbonn-wayland rofi-dmenu polybar \
+    sway-borders-git mantablockscreen swaylock-effects swayblur swayidle swaytools \
+    rofi-lbonn-wayland rofi-dmenu rofi-emoji polybar \
     otf-mplus tamsyn-font-otb tamzen-font ttf-symbola nerd-fonts-fira-code \
-    ttf-monoid ttf-font-awesome ttf-ms-fonts \
+    ttf-monoid ttf-font-awesome ttf-windows \
     gammastep acpilight mpdris2 kunst-git xorg-xwininfo i3-focus-last-git \
     ranger w3m dxvk-bin ashuffle bashmount kvantum-qt5 lxappearance \
     fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-qt fcitx5-mozc
