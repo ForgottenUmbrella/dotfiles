@@ -1,51 +1,48 @@
 # Flip through images.
-next_img C-n C-j C-Right space Right
-prev_img C-p C-k C-Left BackSpace Left
-jump_first asciicircum Home
-jump_last dollar End
+jump_first Home 0
+jump_last End dollar
 
 # Panning.
-scroll_left h Left
-scroll_down j Down
-scroll_up k Up
-scroll_right l Right
-scroll_left_page B
-scroll_down_page C-d
-scroll_up_page C-u
-scroll_right_page W
+scroll_left C-Left h
+scroll_down C-Down j
+scroll_up C-Up k
+scroll_right C-Right l
+scroll_left_page 1-Left b
+scroll_down_page 1-Down C-d
+scroll_up_page 1-Up C-u
+scroll_right_page 1-Right e
 
 # Zooming.
-zoom_in plus
-zoom_out minus
-zoom_default equal
-zoom_fit 0
+zoom_in Up C-plus
+zoom_out Down C-minus
+zoom_default asterisk C-equal
+zoom_fit slash C-0
 
-# Hiding and deleting.
-remove d Delete
-delete D C-Delete
+# Hiding and trashing (in sensible theme).
+remove Delete x
+action_1 1 X
 
 # Information toggles.
-toggle_actions question a
-toggle_filenames f
-toggle_fullscreen F F11
+toggle_actions a question
+toggle_fullscreen f F11 1-Return
 
 # Menu navigation.
 menu_close Escape C-bracketleft
-menu_parent H
-menu_down J
-menu_up K
-menu_child L
+menu_parent Left h
+menu_down Down j
+menu_up Up k
+menu_child Right l
 
 # Unbind conflicts.
 # h
 toggle_pause
 # k
 toggle_keep_vp
-# L
-save_filelist
-# plus
-reload_plus
-# minus
-reload_minus
+# d
+toggle_filenames F
+# e
+toggle_exif
+# x
+close
 # 0
-action_0
+action_0 Return

@@ -94,6 +94,8 @@ alias gpuinfo='lspci | grep " VGA " | cut -d " " -f 1 | xargs lspci -v -s'
 alias grub-update='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 # View zsh help (with the same name as in bash).
 alias help='run-help'
+# View images with sensible defaults.
+alias fe='feh -Tsensible'
 
 # Load plugins declared in $ZDOTDIR/.zsh_plugins.txt.
 . "${ZDOTDIR:-$HOME}/.zsh_plugins.sh"
