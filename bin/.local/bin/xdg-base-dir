@@ -1,0 +1,55 @@
+#!/bin/sh
+# Find an XDG base dir according to environment or default value.
+
+usage() {
+    echo \
+"Usage: $(basename $0) <NAME> [-h]
+
+xdg-base-dir - Find an XDG base dir according to environment or default value.
+
+This command expects the name of an XDG base dir as argument. The possible
+names are (casing doesn't matter):
+  CONFIG
+  CACHE
+  DATA
+  STATE
+  RUNTIME
+
+Options:
+  -h, --help  show this help message and exit"
+}
+
+# CONFIG CACHE DATA STATE RUNTIME*
+config=${XDG_CONFIG_HOME:+$HOME/.config}
+cache=${XDG_CACHE_HOME:+$HOME/.cache}
+data=${XDG_DATA_HOME:+$HOME/.local/share}
+state=${XDG_STATE_HOME:+$HOME/.local/state}
+runtime=$XDG_RUNTIME_DIR
+
+case $(echo $1 | tr '[:upper:]' '[:lower:]') in
+    config)
+        echo $config
+        ;;
+    cache)
+        echo $cache
+        ;;
+    data)
+        echo $data
+        ;;
+    state)
+        echo $state
+        ;;
+    runtime)
+        echo $runtime
+        ;;
+    -h|--help)
+        usage
+        exit
+        ;;
+    *)
+        echo Unrecognised name or option \'$1\'.
+        echo
+        usage
+        exit 1
+        ;;
+esac
