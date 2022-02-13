@@ -1,6 +1,6 @@
 #!/bin/sh
 # List explicitly installed packages and enabled systemd services.
 
-pacman -Qeq | less
+pacman -Qeqt | less
 systemctl list-unit-files --state enabled
 systemctl --user list-unit-files --state enabled
