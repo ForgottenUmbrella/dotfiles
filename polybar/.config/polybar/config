@@ -252,7 +252,7 @@ label-disconnected-foreground = ${colors.inactive}
 type = custom/script
 exec = ~/.config/polybar/scripts/isrunning-bluetooth.sh
 click-left = ~/.config/polybar/scripts/isrunning-bluetooth.sh --toggle
-click-right = btmenu
+click-right = $TERMINAL -e bluetoothctl
 interval = 10
 
 [module/backlight]
