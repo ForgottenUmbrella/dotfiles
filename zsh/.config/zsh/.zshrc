@@ -7,7 +7,7 @@ KEYTIMEOUT=1  # Don't wait for key bindings beginning with ESC.
 # Completion
 autoload -Uz compinit
 # Speed up zsh compinit by only checking completion cache once a day.
-comp_path="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
+comp_path="$(xdg-base-dir cache)/zsh/zcompdump"
 if [[ -n $comp_path(#qN.mh+24) ]]
 then
     compinit -d "$comp_path"
@@ -56,8 +56,8 @@ RPS1="$_current_directory"  # Default, right
 
 # Colours
 autoload -Uz colors && colors
-(cat "${XDG_CACHE_HOME:-$HOME/.cache}/wal/sequences" &)
-. "${XDG_CACHE_HOME:-$HOME/.cache}/wal/colors-tty.sh"
+(cat "$(xdg-base-dir cache)/wal/sequences" &)
+. "$(xdg-base-dir cache)/wal/colors-tty.sh"
 
 # Auto `cd`
 setopt auto_cd  # Don't require explicit `cd`.

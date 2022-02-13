@@ -25,7 +25,7 @@ if [ "$1" = "-g" ] || [ "$1" = "--get" ]; then
     echo "Capacity: $capacity%"
 fi
 
-notify_id_dir="${XDG_DATA_HOME:-$HOME/.local/share}/battery-monitor"
+notify_id_dir="$(xdg-base-dir data)/battery-monitor"
 mkdir -p "$notify_id_dir"
 notify_id_file="$notify_id_dir/notify-id"
 

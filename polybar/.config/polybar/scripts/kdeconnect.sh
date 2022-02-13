@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Based on https://github.com/HackeSta/polybar-kdeconnect.
 
-. ~/.cache/wal/colors.sh
+. "$(xdg-base-dir cache)"/wal/colors.sh
 fg_alt=$color6
 inactive=$color1
 alert=$color5

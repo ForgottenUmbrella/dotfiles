@@ -15,7 +15,7 @@ fi
 
 updates=$(("$updates_arch" + "$updates_aur"))
 
-. ~/.cache/wal/colors.sh
+. "$(xdg-base-dir cache)"/wal/colors.sh
 bg=$color0
 alert=$color5
 

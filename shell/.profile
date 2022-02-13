@@ -1,7 +1,8 @@
 # Ensure systemd environment variables are available on Xorg.
 # Note that GDM loads systemd environment variables on Wayland.
 set -a
-. ~/.config/environment.d/*
+# Chicken-and-egg?
+. "${XDG_CONFIG_HOME:+$HOME/.config}"/environment.d/*
 set +a
 
 # Start keyring.

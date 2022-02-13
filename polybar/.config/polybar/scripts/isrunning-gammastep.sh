@@ -1,7 +1,7 @@
 #!/bin/sh
 # Indicate status of gammastep.
 
-. ~/.cache/wal/colors.sh
+. "$(xdg-base-dir cache)"/wal/colors.sh
 fg_alt=$color6
 inactive=$color1
 

@@ -1,7 +1,7 @@
 #!/bin/sh
 # Show the status of the Pomodoro timer via `pomo`.
 
-. ~/.cache/wal/colors.sh
+. "$(xdg-base-dir cache)"/wal/colors.sh
 inactive=$color1
 bg=$color0
 fg_alt=$color6

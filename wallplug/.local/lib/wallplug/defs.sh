@@ -3,9 +3,9 @@
 # shellcheck disable=SC2034
 
 # Cache directory.
-cache=${XDG_CACHE_HOME:-$HOME/.cache}
+cache=$(xdg-base-dir cache)
 # Config directory.
-config=${XDG_CONFIG_HOME:-$HOME/.config}
+config=$(xdg-base-dir config)
 # Local libraries.
 lib=$HOME/.local/lib
 # Where image URL is stored.
