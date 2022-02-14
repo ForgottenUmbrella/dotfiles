@@ -1,5 +1,6 @@
 #!/bin/sh
 # Take a screenshot on X11 or Wayland.
+# Depends on grimshot (AUR).
 
 usage() {
     echo "Usage: $(basename "$0") [--notify] {copy|save|usage} [active|screen|output|area|window] [FILE]
@@ -40,7 +41,7 @@ die() {
 
 if [ "$XDG_SESSION_TYPE" = 'wayland' ]
 then
-    /usr/share/sway/scripts/grimshot "$@"
+    grimshot "$@"
 else
     if [ "$1" = '--notify' ]
     then
