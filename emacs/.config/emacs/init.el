@@ -1931,7 +1931,11 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :custom
   (doc-view-continuous t "View pages continuously."))
 ;; Rust mode.
-(use-package rustic :ensure t)
+(use-package rustic :ensure t
+  :gfhook
+  (nil (lambda ()
+         "Set Rustic mode `fill-column' to 100."
+         (setq fill-column 100))))
 ;; TypeScript mode.
 (use-package typescript-mode :ensure t)
 ;; Shell script mode.
