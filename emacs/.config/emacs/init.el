@@ -1487,7 +1487,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :ghook
   'eval-expression-minibuffer-setup-hook
   ;; XXX: Tag handling is broken: Fuco1/smartparens#397
-  ('(nxml-mode-hook html-mode-hook) 'turn-off-smartparens-mode)
+  ;; See "<" sp-pair in :config for possible workaround?
+  ;;('(nxml-mode-hook html-mode-hook) 'turn-off-smartparens-mode)
   :custom
   (sp-escape-quotes-after-insert nil "Don't escape quotes.")
   (sp-show-pair-from-inside t "Always highlight pairs.")
@@ -1497,6 +1498,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (show-smartparens-global-mode)
   (sp-local-pair 'minibuffer-inactive-mode "'" nil :actions nil)
   (sp-local-pair 'conf-mode "Section" "EndSection")
+  (sp-pair "<" nil :actions :rem)
   :general
   (:keymaps 'leader-toggles-map
    "p" 'smartparens-mode))
