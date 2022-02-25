@@ -50,6 +50,7 @@ for_window [app_id=zoom] {
 }
 # Stupid thing opens in occcupied workspace, crashing.
 for_window [title="Zoom Meeting|Webinar"] floating enable
+for_window [title=zoom] floating enable
 for_window [app_id=totem] inhibit_idle focus
 
 # Custom bindings.
