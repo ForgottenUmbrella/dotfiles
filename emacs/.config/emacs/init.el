@@ -688,7 +688,7 @@ to `evil-lookup'. Based on Spacemacs."
     (interactive)
     (let ((prev-line (line-number-at-pos)))
       (evil-jump-to-tag)
-      (when (neq prev-line (line-number-at-pos))
+      (when (/= prev-line (line-number-at-pos))
         (xref-find-references))))
   :custom
   (evil-want-C-u-scroll t "Replace Emacs's C-u with Vim scrolling.")
