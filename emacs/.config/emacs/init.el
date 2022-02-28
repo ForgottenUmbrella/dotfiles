@@ -1319,9 +1319,10 @@ to `evil-lookup'. Based on Spacemacs."
               ivy-occur-mode-map
               ivy-reverse-i-search-map
               ivy-switch-buffer-map)
+   ;; XXX: Are these necessary?
    "C-w" 'ivy-backward-kill-word
-   "C-j" 'ivy-next-line
-   "C-k" 'ivy-previous-line
+   "C-j" 'ivy-next-line-or-history
+   "C-k" 'ivy-previous-line-or-history
    "C-l" 'ivy-alt-done
    "<tab>" 'ivy-alt-done
    "C-d" 'ivy-scroll-down-command
