@@ -28,7 +28,7 @@
             // "temperature",
             // "keyboard-state",
             // "sway/language",
-            // "backlight",
+            "backlight",
             "pulseaudio",
             // "network",
             "custom/bluetooth",
