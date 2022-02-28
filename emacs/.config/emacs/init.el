@@ -452,6 +452,16 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
   (:keymaps 'help-mode-map :states 'normal
    "[" 'help-go-back
    "]" 'help-go-forward)
+  ;; Minibuffer.
+  (:keymaps '(minibuffer-local-map
+              minibuffer-local-ns-map
+              minibuffer-local-completion-map
+              minibuffer-local-must-match-map
+              minibuffer-local-filename-completion-map
+              minibuffer-local-filename-must-match-map)
+   "C-w" 'backward-kill-word
+   "C-p" 'previous-line-or-history-element
+   "C-n" 'next-line-or-history-element)
   ;; Leader key.
   (leader-def "SPC" 'execute-extended-command
     "?" 'describe-bindings
