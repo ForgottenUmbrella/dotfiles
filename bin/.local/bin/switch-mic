@@ -28,4 +28,5 @@ then
 else
     echo "Unrecognised device or option '$1'"
     echo "$usage"
+    exit 1
 fi
