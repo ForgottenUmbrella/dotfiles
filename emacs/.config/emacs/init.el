@@ -591,10 +591,11 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
   :gfhook
   ('find-file-not-found-functions
    (lambda ()
-     "Create non-existent parent directories and return nil."
+     "Create non-existent parent directories, disable read-only and return nil."
      (let ((parent-dir (file-name-directory buffer-file-name)))
-         (make-directory parent-dir t)))
        (when (not (file-directory-p parent-dir))
+         (make-directory parent-dir t)
+         (read-only-mode 0)))
      nil))
   ('emacs-lisp-mode-hook
    (lambda ()
