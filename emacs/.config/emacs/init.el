@@ -1776,7 +1776,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 (use-package auctex :ensure t
   :gfhook
   ('LaTeX-mode-hook 'latex-electric-env-pair-mode)
-  ('LaTeX-mode-hook 'auto-fill-mode)
   :mode ("\\.tex\\'" . LaTeX-mode)
   :custom
   (TeX-view-program-list '(("Evince" "xdg-open"))
