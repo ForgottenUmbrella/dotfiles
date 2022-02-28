@@ -593,8 +593,8 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
    (lambda ()
      "Create non-existent parent directories and return nil."
      (let ((parent-dir (file-name-directory buffer-file-name)))
-       (when (not (file-exists-p parent-dir))
          (make-directory parent-dir t)))
+       (when (not (file-directory-p parent-dir))
      nil))
   ('emacs-lisp-mode-hook
    (lambda ()
