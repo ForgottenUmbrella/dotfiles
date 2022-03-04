@@ -16,6 +16,10 @@ border_images.focused "$XDG_CONFIG_HOME/sway/borders/shadows.png"
 border_images.focused_inactive "$XDG_CONFIG_HOME/sway/borders/shadows.png"
 border_images.unfocused "$XDG_CONFIG_HOME/sway/borders/shadows.png"
 border_images.urgent "$XDG_CONFIG_HOME/sway/borders/shadows.png"
+swaybg_command oguri-swaybg
+output * {
+    background $wallpaper fill
+}
 
 # IO.
 input type:keyboard {
@@ -73,4 +77,6 @@ exec "$XDG_CONFIG_HOME/sway/import-gsettings.sh" \
     gtk-theme:gtk-theme-name \
     icon-theme:gtk-icon-theme-name \
     cursor-theme:gtk-cursor-theme-name
-exec_always "killall oguri swayblur; oguri && swayblur -b 5 -a 5"
+exec_always {
+    "killall swayblur; swayblur -b 5 -a 5"
+}
