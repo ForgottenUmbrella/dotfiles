@@ -1573,7 +1573,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 
 ;;;; Major modes.
 ;; Org mode.
-(use-package org :ensure org-plus-contrib
+(use-package org :ensure org-contrib
   :gfhook
   'toggle-truncate-lines
   :custom
