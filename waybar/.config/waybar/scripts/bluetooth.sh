@@ -2,16 +2,25 @@
 # Report whether Bluetooth is enabled in JSON.
 # All scripts based on https://github.com/polybar/polybar-scripts.
 
-if ! command -v bluetooth > /dev/null; then
+if ! command -v bluetoothctl > /dev/null
+then
     exit
 fi
 
-if [ "$1" = --toggle ]; then
-    bluetooth toggle
+power=$(bluetoothctl show | awk '/Powered/ {print $2}')
+
+if [ "$1" = --toggle ]
+then
+    if [ "$power" = "on" ]
+    then
+        bluetoothctl power off
+    else
+        bluetoothctl power on
+    fi
 fi
 
-out=$(bluetooth)
-if [ "$out" = "bluetooth = on" ]; then
+if [ "$power" = "on" ]
+then
     text='On'
     class='active'
 else
@@ -20,7 +29,7 @@ else
 fi
 
 alt="$class"
-tooltip="$out"
+tooltip="$power"
 
 printf '{"text": "%s", "alt": "%s", "tooltip": "%s", "class": "%s"}' \
        "$text" "$alt" "$tooltip" "$class"

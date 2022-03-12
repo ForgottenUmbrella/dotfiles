@@ -6,16 +6,26 @@
 fg_alt=$color6
 inactive=$color1
 
-if ! command -v bluetooth > /dev/null; then
+if ! command -v bluetoothctl > /dev/null
+then
     exit
 fi
 
-if [ "$1" = --toggle ]; then
-    bluetooth toggle
+power=$(bluetoothctl show | awk '/Powered/ {print $2}')
+
+if [ "$1" = --toggle ]
+then
+    if [ "$power" = "on" ]
+    then
+        bluetoothctl power off
+    else
+        bluetoothctl power on
+    fi
 fi
 
-if [ "$(bluetooth)" = "bluetooth = on" ]; then
-	  echo "%{F$fg_alt}%{F-}"
+if [ "$power" = "on" ]
+then
+    echo "%{F$fg_alt}%{F-}"
 else
     echo "%{F$inactive}%{F-}"
 fi
