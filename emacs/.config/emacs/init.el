@@ -1804,6 +1804,16 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (defun latex/font-serif () (interactive) (TeX-font nil ?\C-r))
   (defun latex/font-oblique () (interactive) (TeX-font nil ?\C-s))
   (defun latex/font-upright () (interactive) (TeX-font nil ?\C-u))
+  :config
+  (dolist (item '(("parts"
+                   (lambda ()
+                     "Insert `\part{}' inside parts environments."
+                     (TeX-insert-macro "part")))
+                  ("questions"
+                   (lambda ()
+                     "Insert `\question{}' inside questions environments."
+                     (TeX-insert-macro "question")))))
+    (add-to-list 'LaTeX-item-list item))
   :general
   (major-prefix-def :prefix-command 'major-latex-map
     :keymaps 'LaTeX-mode-map
