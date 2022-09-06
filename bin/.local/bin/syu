@@ -2,6 +2,7 @@
 # Update my system. btw i use arch
 
 paru -Sc --noconfirm
+sudo pacman -Sy archlinux-keyring && sudo pacman -Su
 paru -Syu --noconfirm "$@"
 sudo -E pacdiff
 fwupdmgr refresh && fwupdmgr update
