@@ -69,6 +69,7 @@ tooltip {
 
 #workspaces button {
     color: @foreground;
+    padding: 5px 10px;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
