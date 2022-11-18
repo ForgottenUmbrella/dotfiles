@@ -70,7 +70,7 @@ set_wallpaper() {
     wal -c; wal -i "$image"
     command -v post_commands >/dev/null 2>&1 && post_commands
     url=$(cat "$url_file" 2>/dev/null || printf '')
-    notify-send 'New wallpaper' "$url" -i "$image" -u low
+    notify-send.sh 'New wallpaper' "$url" -i "$image" -u low -R "$cache/wallplug/notify"
 }
 
 while getopts ':ui:c:a:h?' option; do
