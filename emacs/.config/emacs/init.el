@@ -1463,8 +1463,25 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :custom
   (flycheck-disabled-checkers '(emacs-lisp-checkdoc)
                               "Don't complain about arcane ELisp conventions.")
+  (flycheck-gcc-openmp t "Enable OpenMP for GCC.")
+  :hook
+  (c++-mode . (lambda ()
+                "Use latest version of C++."
+                (dolist (compiler '("clang" "gcc"))
+                        (dolist (var-val '(("language-standard" . "c++20")))
+                                (set (read (string-join (list "flycheck"
+                                                              compiler
+                                                              (car var-val))
+                                                        "-"))
+                                     (cdr var-val))))))
   :config
   (global-flycheck-mode)
+  (dolist (compiler '("clang" "gcc"))
+          (dolist (var-val '(("include-path" . ("../include")))
+                            ("pedantic" . t))
+                  (set (read (string-join
+                              (list "flycheck" compiler (car var-val)) "-"))
+                       (cdr var-val))))
   (warn-missing-hook-executable "cppcheck" "cppcheck" "C++ linting"
                                 'c++-mode-hook)
   (warn-missing-hook-executable "eslint" "eslint"
