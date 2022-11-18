@@ -1346,8 +1346,6 @@ https://github.com/syl20bnr/spacemacs/issues/14064#issuecomment-723324830"
   (counsel-mode t)
   (warn-missing-executable "ripgrep" "rg" "Counsel searching")
   :general
-  (:keymaps 'counsel-find-file-map
-   "C-h" 'counsel-up-directory)
   (:keymaps 'leader-buffers-map
    "b" 'counsel-switch-buffer)
   (:keymaps 'leader-files-map
