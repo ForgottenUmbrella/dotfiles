@@ -1004,26 +1004,30 @@ to `evil-lookup'. Based on Spacemacs."
   :general
   (:keymaps 'leader-zoom-map
    "x" 'text-scale-adjust))
-;; Adjust font size of all frames with C-+ and C--.
-(use-package default-text-scale :ensure t
+;; Adjust font size with C-+ and C--.
+(use-package face-remap
   :init
-  (pretty-hydra-define hydra-default-text (:title "Zoom" :quit-key "q")
+  (defun text-scale-reset ()
+    "Reset font size of current frame."
+    (interactive)
+    (text-scale-decrease text-scale-mode-amount))
+  (pretty-hydra-define hydra-text (:title "Zoom" :quit-key "q")
     ("Increase"
-     (("k" default-text-scale-increase)
-      ("+" default-text-scale-increase))
+     (("k" text-scale-increase)
+      ("+" text-scale-increase))
      "Decrease"
-     (("j" default-text-scale-decrease)
-      ("-" default-text-scale-decrease))
+     (("j" text-scale-decrease)
+      ("-" text-scale-decrease))
      "Reset"
-     (("0" default-text-scale-reset))))
+     (("0" text-scale-reset))))
   :general
   (:states 'motion
-   "C-+" 'default-text-scale-increase
-   "C-=" 'default-text-scale-increase
-   "C--" 'default-text-scale-decrease
-   "C-0" 'default-text-scale-reset)
+   "C-+" 'text-scale-increase
+   "C-=" 'text-scale-increase
+   "C--" 'text-scale-decrease
+   "C-0" 'text-scale-reset)
   (:keymaps 'leader-zoom-map
-   "f" 'hydra-default-text/body))
+   "f" 'hydra-text/body))
 ;; Show indentation margins.
 (use-package highlight-indent-guides :ensure t
   :after whitespace  ; Load whitespace first due to conflict.
