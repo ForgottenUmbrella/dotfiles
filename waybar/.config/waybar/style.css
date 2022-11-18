@@ -10,6 +10,8 @@
     border-radius: 5px;
     font-family: monospace, Symbola;
     font-size: 12px;
+    /* Not supported :( */
+    /* font-size-adjust: 0.8125; */
 }
 
 *.active {
