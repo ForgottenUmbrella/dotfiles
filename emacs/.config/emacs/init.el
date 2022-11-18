@@ -1531,7 +1531,7 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   :general
   (:keymaps 'leader-toggles-map
    "p" 'smartparens-mode))
-;; Highlight typos.
+;; Highlight and correct typos.
 (use-package flyspell
   :ghook
   'text-mode-hook
@@ -1543,7 +1543,8 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
    "S" 'flyspell-mode)
   (:keymaps 'flyspell-mode-map
    ;; Don't accidentally autocorrect words when trying to escape insert mode.
-   "C-;" nil))
+   "C-;" nil
+   "<mouse-3>" 'flyspell-correct-word))
 ;; Correct typos with SPC-S.
 (use-package flyspell-popup :ensure t
   :general
