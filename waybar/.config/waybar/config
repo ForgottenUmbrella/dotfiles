@@ -118,6 +118,7 @@
             "format-icons": ["🌑", "🌒", "🌓", "🌔", "🌕"],
             "on-scroll-up": "brightness -inc 1",
             "on-scroll-down": "brightness -dec 1",
+            "smooth-scrolling-threshold": 5,
         },
         "battery": {
             "states": {
@@ -166,6 +167,7 @@
             },
             "on-click": "pulsemixer --toggle-mute",
             "on-click-right": "$TERMINAL -e pulsemixer",
+            "smooth-scrolling-threshold": 5,
         },
         "disk": {
             "interval": 21600,
