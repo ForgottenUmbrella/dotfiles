@@ -1,7 +1,8 @@
 #!/bin/sh
 # Unmount drives through dmenu.
 
-path=$(find /run/media -maxdepth 1 | dmenu -i -p "Unmount")
+# TODO fix this
+path=$(find /run/media -maxdepth 2 | dmenu -i -p "Unmount")
 if [ -z "$path" ]; then
     exit
 fi
