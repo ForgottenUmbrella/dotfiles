@@ -7,14 +7,15 @@
 \author{Leo Long Pham}
 \usepackage[T1]{fontenc}
 \usepackage[a4paper,margin=1in]{geometry}
-\qformat{\large \textbf{\thequestion. \thequestiontitle{} (\thepoints)}\hfill}
-\marksnotpoints{}
+\qformat{\large \textbf{\thequestion. \thequestiontitle\if@placepoints~(\thepoints)\else\fi}\hfill}
+\marksnotpoints
+\bracketedpoints
 \newcommand*{\hint}[1]{[\emph{Hint: #1}]}
 \renewcommand{\labelitemi}{\(\blacktriangleright\)}
 
 \begin{document}
-\maketitle{}
+\maketitle
 \begin{questions}
-  \question{} $0
+  \question $0
 \end{questions}
 \end{document}
