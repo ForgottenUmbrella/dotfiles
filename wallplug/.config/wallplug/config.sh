@@ -42,6 +42,7 @@ command='safebooru_plug "touhou outdoors"'
 #command='safebooru_plug "touhou michi_l_(streetlamp)"'
 #command='safebooru_plug "touhou stu_dts"'
 #command='safebooru_plug "touhou you_shimizu"'
+#command='safebooru_plug "touhou 38_(sanjuuhachi)"'
 
 # Commands to run after setting with wal.
 post_commands() {
