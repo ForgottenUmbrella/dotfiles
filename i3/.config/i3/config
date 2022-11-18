@@ -318,8 +318,8 @@ bindsym $mod+Ctrl+Shift+n split h; exec emacsclient -c $(mktemp)
 bindsym $mod+space --no-startup-id layout-menu
 
 ## Autostart.
-# XXX: Maybe redundant since GDM starts gnome-keyring-daemon already (at least on sway)
-#exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# Not redundant; performs a different task from gnome-keyring-daemon.
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id fcitx5 -d
 exec --no-startup-id i3-focus-last server
 exec --no-startup-id /usr/lib/kdeconnectd
