@@ -1618,6 +1618,18 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
                             "Add support for more languages in babel.")
   (org-tags-column 0 "Don't indent tags.")
   (org-latex-prefer-user-labels t "Use my labels in LaTeX export.")
+  (org-latex-hyperref-template
+   "\\hypersetup{
+        pdfauthor={%a},
+        pdftitle={%t},
+        pdfkeywords={%k},
+        pdfsubject={%d},
+        pdfcreator={%c},
+        pdflang={%L},
+        colorlinks=true,
+        linkcolor=blue,
+        urlcolor=blue
+    }" "Render links sanely.")
   :config
   (require 'org-mouse)
   :general
