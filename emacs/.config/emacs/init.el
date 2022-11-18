@@ -1788,7 +1788,23 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 ;; C/C++ mode.
 (use-package cc-mode
   :config
-  (add-to-list 'c-default-style '(other . "stroustrup"))
+  (c-add-style "1tbs"
+               '("stroustrup"
+                 (c-offsets-alist
+                  (access-label . 0)
+                  (arglist-cont . 0)
+                  (arglist-intro . +)
+                  (block-close . 0)
+                  (class-close . 0)
+                  (defun-block-intro . +)
+                  (defun-close . 0)
+                  (inclass . +)
+                  (inline-close . 0)
+                  (statement . 0)
+                  (template-args-cont . +)
+                  (topmost-intro . 0)
+                  (topmost-intro-cont . +))))
+  (add-to-list 'c-default-style '(other . "1tbs"))
   :mode ("\\.h\\'" . c++-mode)
   :general
   (major-prefix-def :prefix-command 'major-cc-map :keymaps 'c-mode-base-map
