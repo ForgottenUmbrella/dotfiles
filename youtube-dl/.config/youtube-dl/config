@@ -1,0 +1,2 @@
+# Don't bork *live* stream recordings at end.
+--hls-use-mpegts
