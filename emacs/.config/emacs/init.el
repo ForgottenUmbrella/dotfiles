@@ -2021,6 +2021,12 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 ;; CSS mode.
 (use-package css-mode
   :mode "\\.rasi\\'")
+(use-package web-mode :ensure t
+  :mode "\\.[jt]sx?\\'"
+  :custom
+  (web-mode-content-types-alist
+   '(("jsx" . "\\.js[x]?\\'") ("tsx" . "\\.ts[x]?\\'"))
+   "Enable syntax highlighting in jsx/tsx files."))
 
 ;;;;; Major mode extensions.
 ;; Provide documentation lookup with K in Elisp.
