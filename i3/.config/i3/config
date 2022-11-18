@@ -26,6 +26,7 @@
 # libinput-gestures (AUR)
 # kdeconnect
 # swayblur (AUR)
+# NA/nwg-look-bin (AUR)
 
 ## i3 bindings.
 set $alt Mod1
