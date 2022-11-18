@@ -1,0 +1,4 @@
+CompileFlags:
+  Add: [-DLIBCXX_ENABLE_INCOMPLETE_FEATURES=on]
+Diagnostics:
+  UnusedIncludes: Strict
