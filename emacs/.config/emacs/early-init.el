@@ -25,6 +25,8 @@
 (scroll-bar-mode -1)
 ;; Disable tool bar.
 (tool-bar-mode -1)
+;; Disable blinking cursor.
+(blink-cursor-mode -1)
 ;; Enable transparency.
 (defvar my/transparency '(90 . 80)
   "Cons of active and inactive frame alpha values, where 0 is fully transparent
