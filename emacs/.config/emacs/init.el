@@ -1193,6 +1193,10 @@ to `evil-lookup'. Based on Spacemacs."
 https://github.com/syl20bnr/spacemacs/issues/14064#issuecomment-723324830"
     nil)
   (global-undo-tree-mode)
+  :custom
+  (undo-tree-history-directory-alist
+   (list (cons "." (concat user-emacs-directory "undo/")))
+   "Don't litter undo history."))
 ;; Navigate to recent files with SPC-f-r.
 (use-package recentf
   :custom
