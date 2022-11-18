@@ -766,8 +766,7 @@ to `evil-lookup'. Based on Spacemacs."
    "M-+" 'evil-window-increase-height
    "M-<" 'evil-window-decrease-width
    "M->" 'evil-window-increase-width)
-  (:states 'insert
-   "C-z" nil)  ;; Disable accidental Emacs state entry.
+  ("C-z" nil)  ;; Disable accidental Emacs state entry.
   (:keymaps 'evil-ex-search-keymap
    "C-w" 'backward-kill-word)
   (leader-def "<tab>" 'evil-switch-to-windows-last-buffer)
