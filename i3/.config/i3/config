@@ -58,10 +58,6 @@ bindsym $mod+Shift+$right move right
 
 # Resize window.
 set $resize_delta 3
-bindsym $mod+Up resize grow height $resize_delta px or $resize_delta ppt
-bindsym $mod+Down resize shrink height $resize_delta px or $resize_delta ppt
-bindsym $mod+Left resize shrink width $resize_delta px or $resize_delta ppt
-bindsym $mod+Right resize grow width $resize_delta px or $resize_delta ppt
 bindsym $mod+Ctrl+$left resize grow left $resize_delta px or $resize_delta ppt
 bindsym $mod+Ctrl+$down resize grow down $resize_delta px or $resize_delta ppt
 bindsym $mod+Ctrl+$up resize grow up $resize_delta px or $resize_delta ppt
