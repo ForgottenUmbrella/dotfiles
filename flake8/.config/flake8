@@ -1,6 +1,12 @@
 [flake8]
 ignore =
+    # Alignment is overrated.
+    E131,
+    # I use comments without spaces for code.
+    E265,
     # Import hacks are always intentional.
     E402,
+    # Closures are useful.
+    E731,
     # Plainly false. Line breaks must occur *before* operators.
     W503
