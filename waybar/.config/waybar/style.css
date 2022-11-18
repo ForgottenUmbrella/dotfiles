@@ -96,6 +96,7 @@ tooltip {
 
 #clock,
 #battery,
+#bluetooth,
 #cpu,
 #memory,
 #disk,
@@ -110,7 +111,6 @@ tooltip {
 #custom-keyboard,
 #custom-media,
 #custom-power,
-#custom-swap,
 #tray,
 #mode,
 #idle_inhibitor,

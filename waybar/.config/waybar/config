@@ -24,14 +24,14 @@
             // "cpu",
             "disk",
             "memory",
-            "custom/swap",
+            "memory#swap",
             // "temperature",
             // "keyboard-state",
             // "sway/language",
             "backlight",
             "pulseaudio",
-            "custom/bluetooth",
             "network",
+            "bluetooth",
             "battery"
             // Cannot have last element be a comment, hence no trailing comma.
             // "custom/power",
@@ -174,12 +174,8 @@
             },
             "on-click": "gnome-disks",
         },
-        "custom/bluetooth": {
-            "exec": "~/.config/waybar/scripts/bluetooth.sh",
-            "return-type": "json",
-            "interval": 60,
-            "format": "{icon}",
-            "format-icons": "",
+        "bluetooth": {
+            "format": "",
             "on-click": "~/.config/waybar/scripts/bluetooth.sh --toggle",
             "on-click-right": "$TERMINAL -e bluetoothctl",
         },
@@ -233,11 +229,9 @@
             "format-icons": "☰",
             "on-click": "i3-dmenu-desktop",
         },
-        "custom/swap": {
-            "exec": "~/.config/waybar/scripts/swap.sh",
-            "return-type": "json",
+        "memory#swap": {
             "interval": 30,
-            "format": "{icon} {percentage}%",
+            "format": "{icon} {swapPercentage}%",
             "format-icons": "",
         },
     },
