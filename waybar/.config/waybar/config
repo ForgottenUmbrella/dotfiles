@@ -94,6 +94,7 @@
             // "format": "🕓 {:%H:%M}",
             "format": "{:%Y-%m-%d %H:%M}",
             "tooltip-format": "{calendar}",
+            "interval": 30,
             "on-click": "dunstctl history-pop",
             "on-click-right": "dunstctl context",
         },
