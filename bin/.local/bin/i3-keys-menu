@@ -13,8 +13,9 @@ i3-msg -t get_config |
     { print }' |
     # Print bindings with normalised number of spaces.
     awk '/^bindsym/ {
-        printf "%s|", $2;
-        for (i = 3; i < NF; ++i) {
+        i = $2 == "--release" ? 3 : 2;
+        printf "%s|", $i;
+        for (i = i + 1; i < NF; ++i) {
             printf "%s ", $i;
         }
         print $NF;
