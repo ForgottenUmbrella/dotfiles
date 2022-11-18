@@ -1188,7 +1188,11 @@ to `evil-lookup'. Based on Spacemacs."
   (:keymaps 'leader-applications-map
    "u" 'undo-tree-visualize)
   :config
-  (global-undo-tree-mode))
+  (defun undo-tree-overridden-undo-bindings-p ()
+    "Don't automagically disable yourself.
+https://github.com/syl20bnr/spacemacs/issues/14064#issuecomment-723324830"
+    nil)
+  (global-undo-tree-mode)
 ;; Navigate to recent files with SPC-f-r.
 (use-package recentf
   :custom
