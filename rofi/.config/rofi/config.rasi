@@ -3,6 +3,7 @@ configuration {
         run-shell-command: "sh -c '$TERMINAL -e {cmd}'";
         show-icons: true;
         ssh-command: "sh -c '$TERMINAL -e {ssh-client} {host} [-p {port}]'";
+        matching: "regex";
         /* Key un-bindings. */
         /* C-j */
 	kb-accept-entry: "Control+m,Return,KP_Enter";
