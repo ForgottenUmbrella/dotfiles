@@ -30,8 +30,8 @@
             // "sway/language",
             "backlight",
             "pulseaudio",
-            // "network",
             "custom/bluetooth",
+            "network",
             "battery"
             // Cannot have last element be a comment, hence no trailing comma.
             // "custom/power",
