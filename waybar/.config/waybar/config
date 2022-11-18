@@ -162,8 +162,8 @@
                 "default": ["🔈", "🔉", "🔊"],
             },
             "states": {
-                "warning": 30,
-                "critical": 50,
+                // "warning": 30,
+                // "critical": 60,
             },
             "on-click": "pulsemixer --toggle-mute",
             "on-click-right": "$TERMINAL -e pulsemixer",
