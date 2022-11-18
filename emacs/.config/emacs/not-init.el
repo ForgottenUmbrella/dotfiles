@@ -163,6 +163,8 @@
 (use-package evil-unimpaired :after move-text
              :straight (evil-unimpaired :host github
                                         :repo "zmaas/evil-unimpaired"))
+;; Adjust font size of all frames. (Replaced with face-remap.)
+(use-package default-text-scale :ensure t)
 
 ;; TODO: Determine whether the below semantic packages really are replaced by lsp.
 ;; Show current function/class's signature at the top of the frame.
@@ -201,3 +203,18 @@
              (if (executable-find "tern")
                  (add-to-list 'company-backends 'company-tern)
                (message "tern is not installed; install for JavaScript auto-completion")))
+;; Find out why Emacs is slow with SPC-a-t.
+(use-package explain-pause-mode
+  :straight (explain-pause-mode :host github
+                                :repo "lastquestion/explain-pause-mode")
+  :config
+  ;;(explain-pause-mode)  ; Disabled for now, due to weird bugs?
+  :general
+  (:keymaps 'leader-applications-map
+   "t" 'explain-pause-top))
+;; Navigate TODO items in a project.
+(use-package doom-todo-ivy
+  :ghook ('after-init-hook 'doom-todo-ivy)
+  :general
+  (:keymaps 'leader-jumps-map
+   "T" 'doom/ivy-tasks))

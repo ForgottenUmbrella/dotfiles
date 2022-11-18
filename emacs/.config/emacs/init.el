@@ -1086,9 +1086,6 @@ to `evil-lookup'. Based on Spacemacs."
 (use-package all-the-icons-ivy-rich :ensure t :after counsel-projectile
   :config
   (all-the-icons-ivy-rich-mode t))
-;; Google style guides.
-(use-package google-c-style :ensure t
-  :hook (c-mode-common . (google-set-c-style google-make-newline-indent)))
 
 ;;;;; Themes.
 ;; NOTE: Defer all but the selected for faster startup.
@@ -1248,12 +1245,6 @@ to `evil-lookup'. Based on Spacemacs."
 (use-package so-long
   :config
   (global-so-long-mode))
-;; Navigate TODO items in a project.
-(use-package doom-todo-ivy
-  :straight (doom-todo-ivy :host github :repo "jsmestad/doom-todo-ivy")
-  :general
-  (:keymaps 'leader-jumps-map
-   "T" 'doom/ivy-tasks))
 ;; Manage projects with SPC-p.
 (use-package projectile :ensure t :demand t
   :custom
@@ -2138,15 +2129,6 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
   (:keymaps 'leader-applications-shell-map
    "t" 'terminal-here-launch
    "p" 'terminal-here-project-launch))
-;; Find out why Emacs is slow with SPC-a-t.
-(use-package explain-pause-mode
-  :straight (explain-pause-mode :host github
-                                :repo "lastquestion/explain-pause-mode")
-  :config
-  ;;(explain-pause-mode)  ; Disabled for now, due to weird bugs?
-  :general
-  (:keymaps 'leader-applications-map
-   "t" 'explain-pause-top))
 ;; Set of debuggers in Emacs.
 (use-package gud
   :general
