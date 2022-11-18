@@ -21,4 +21,6 @@ i3-msg -t get_config |
         print $NF;
     }' |
     # Format and display.
-    column -s '|' -t | dmenu -i -p 'i3 keybindings'
+    column -s '|' -t | dmenu -i -p 'i3 keybindings' |
+    # Execute if chosen.
+    sed -E 's/[A-z+]+ +//' | xargs i3-msg --
