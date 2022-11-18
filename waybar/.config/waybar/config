@@ -93,6 +93,7 @@
         "clock": {
             // "format": "🕓 {:%H:%M}",
             "format": "{:%Y-%m-%d %H:%M}",
+            "tooltip-format": "{calendar}",
             "on-click": "dunstctl history-pop",
             "on-click-right": "dunstctl context",
         },
