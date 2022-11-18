@@ -2,11 +2,11 @@
 # Show a power menu to shutdown, logout, etc.
 
 lock=' Lock'
-logout=' Exit'
-suspend=' Suspend'
+logout=' Exit/Log out'
+suspend=' Sleep/Suspend'
 hibernate=' Hibernate'
-shutdown=' Shutdown'
-reboot=' Reboot'
+shutdown=' Power off/Shutdown'
+reboot=' Reboot/Restart'
 cancel=' Cancel'
 
 choice=$(printf '%s\n%s\n%s\n%s\n%s\n%s\n%s' \
