@@ -173,7 +173,7 @@
             "interval": 21600,
             "format": " 🖴 {percentage_used}%",
             "states": {
-                "warning": 60,
+                "warning": 80,
                 "critical": 90,
             },
             "on-click": "gnome-disks",
