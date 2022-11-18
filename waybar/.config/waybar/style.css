@@ -120,6 +120,7 @@ tooltip {
 #window
 {
     padding: 0 10px;
+    color: @foreground;
 }
 
 /* Remove padding when no windows are open. */
