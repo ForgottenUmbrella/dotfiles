@@ -8,15 +8,25 @@
 \usepackage{amssymb}
 \usepackage{esint}
 \usepackage{interval}
+\usepackage{listofitems}
 \newcommand*{\nats}{\mathbb{N}}
 \newcommand*{\ints}{\mathbb{Z}}
 \newcommand*{\rats}{\mathbb{Q}}
 \newcommand*{\reals}{\mathbb{R}}
 \newcommand*{\comps}{\mathbb{C}}
 \newcommand*{\id}{\mathds{1}}
+\newcommand*{\cycle}[2][\;]{%
+  \readlist\thecycle{#2}%
+  (\foreachitem\i\in\thecycle{\ifnum\icnt=1\else#1\fi\i})%
+}
+\renewcommand*{\vec}[1]{\boldsymbol{\mathbf{#1}}}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\diag}{diag}
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\gen}{\langle}{\rangle}
 \mathtoolsset{showonlyrefs}
 \intervalconfig{soft open fences}
 \numberwithin{equation}{question}
-\renewcommand*{\vec}[1]{\boldsymbol{\mathbf{#1}}}
