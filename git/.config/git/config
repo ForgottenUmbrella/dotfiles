@@ -3,7 +3,7 @@
 	excludesfile = ~/.config/git/ignore
 	attributesfile = ~/.config/git/attributes
 [user]
-	email = forgottenumbrella@tutanota.com
+	email = wsrgs@proton.me
 	name = Leo Pham
 [credential]
 	# helper = cache --timeout=3600
