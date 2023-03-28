@@ -1458,8 +1458,9 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
       (flycheck-list-errors)
       (switch-to-buffer-other-window flycheck-error-list-buffer)))
   :custom
-  (flycheck-disabled-checkers '(emacs-lisp-checkdoc)
-                              "Don't complain about arcane ELisp conventions.")
+  (flycheck-disabled-checkers '(emacs-lisp-checkdoc javascript-jshint json-jsonlist)
+                              "Don't complain about arcane ELisp conventions.
+Prefer ESLint over JSHint.")
   (flycheck-gcc-openmp t "Enable OpenMP for GCC.")
   :hook
   (c++-mode . (lambda ()
@@ -2018,12 +2019,15 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 ;; CSS mode.
 (use-package css-mode
   :mode "\\.rasi\\'")
-(use-package web-mode :ensure t
+;; React (JSX/TSX) mode.
+(use-package web-mode :ensure t :after flycheck
   :mode "\\.[jt]sx?\\'"
   :custom
   (web-mode-content-types-alist
    '(("jsx" . "\\.js[x]?\\'") ("tsx" . "\\.ts[x]?\\'"))
-   "Enable syntax highlighting in jsx/tsx files."))
+   "Enable syntax highlighting in jsx/tsx files.")
+  :config
+  (flycheck-add-mode 'javascript-eslint 'web-mode))
 
 ;;;;; Major mode extensions.
 ;; Provide documentation lookup with K in Elisp.
@@ -2124,6 +2128,12 @@ If the error list is visible, hide it. Otherwise, show it. From Spacemacs."
 ;; Enable Java debugger built into DAP mode.
 ;; NOTE: Not passing `:ensure t' is equivalent to a bare `require'.
 (use-package dap-java)
+;; Use project-local config for Node.JS projects.
+(use-package add-node-modules-path :ensure t
+  :ghook ('web-mode-hook 'add-node-modules-path))
+;; Automatically format JS files.
+(use-package prettier-js-mode :ensure t
+  :ghook 'web-mode-hook)
 
 ;;;; Applications.
 ;; Create and check regexes with SPC-a-r.
