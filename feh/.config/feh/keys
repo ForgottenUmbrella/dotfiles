@@ -20,7 +20,7 @@ zoom_fit slash C-0
 
 # Hiding and trashing (in sensible theme).
 remove Delete x
-action_1 1 X
+action_1 1 S-Delete X
 
 # Information toggles.
 toggle_actions a question
