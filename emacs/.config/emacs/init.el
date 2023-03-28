@@ -1,8 +1,5 @@
 ;;; Set up customisation.
-;; Save custom.el in $XDG_CONFIG_HOME instead of cluttering $HOME.
-;; NOTE: `setq' sets a buffer-local variable locally,
-;; whereas `setq-default' sets a buffer-local variable globally.
-;; Both forms may set ordinary (global) variables, but `setq' is terser.
+;; Save customisations in own file instead of clobbering this file.
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file t)
 
