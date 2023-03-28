@@ -14,8 +14,8 @@
 	default = current
 [diff]
 	colorMoved = zebra
-[diff "image"]
-	command = ~/.local/bin/git-imgdiff
+# [diff "image"]
+# 	command = ~/.local/bin/git-imgdiff
 [fetch]
 	prune = true
 [init]
