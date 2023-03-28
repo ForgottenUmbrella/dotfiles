@@ -20,3 +20,5 @@
 	prune = true
 [init]
 	defaultBranch = master
+[safe]
+	directory = /opt/flutter
