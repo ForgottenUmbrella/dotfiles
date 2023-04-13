@@ -20,10 +20,10 @@ Options:
 }
 
 # CONFIG CACHE DATA STATE RUNTIME*
-config=${XDG_CONFIG_HOME:+$HOME/.config}
-cache=${XDG_CACHE_HOME:+$HOME/.cache}
-data=${XDG_DATA_HOME:+$HOME/.local/share}
-state=${XDG_STATE_HOME:+$HOME/.local/state}
+config=${XDG_CONFIG_HOME:-$HOME/.config}
+cache=${XDG_CACHE_HOME:-$HOME/.cache}
+data=${XDG_DATA_HOME:-$HOME/.local/share}
+state=${XDG_STATE_HOME:-$HOME/.local/state}
 runtime=$XDG_RUNTIME_DIR
 
 case $(echo $1 | tr '[:upper:]' '[:lower:]') in
