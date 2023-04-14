@@ -2132,7 +2132,7 @@ Prefer ESLint over JSHint.")
 (use-package add-node-modules-path :ensure t
   :ghook ('web-mode-hook 'add-node-modules-path))
 ;; Automatically format JS files.
-(use-package prettier-js-mode :ensure t
+(use-package prettier-js :ensure t
   :ghook 'web-mode-hook)
 
 ;;;; Applications.
