@@ -56,8 +56,10 @@ RPS1="$_current_directory"  # Default, right
 
 # Colours
 autoload -Uz colors && colors
-(cat "$(xdg-base-dir cache)/wal/sequences" &)
-. "$(xdg-base-dir cache)/wal/colors-tty.sh"
+if type wal > /dev/null; then
+  (cat "$(xdg-base-dir cache)/wal/sequences" &)
+  . "$(xdg-base-dir cache)/wal/colors-tty.sh"
+fi
 
 # Auto `cd`
 setopt auto_cd  # Don't require explicit `cd`.
@@ -97,6 +99,20 @@ alias help='run-help'
 # View images with sensible defaults.
 alias fe='feh -Tsensible'
 
+# Work config (macOS). Modifies PATH.
+if [ "$(uname)" = 'Darwin' ]; then
+  . /opt/homebrew/opt/asdf/libexec/asdf.sh
+  export PGHOST='localhost'
+
+  export PNPM_HOME="$HOME/Library/pnpm"
+  export PATH="$PNPM_HOME:$PATH"
+
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+
+  export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+  export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
+fi
+
 # Load plugins declared in $ZDOTDIR/.zsh_plugins.txt.
 . "${ZDOTDIR:-$HOME}/.zsh_plugins.sh"
 # NOTE: To update plugins, run `antibody update`.
@@ -129,5 +145,9 @@ autoload -Uz up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-. /usr/share/fzf/key-bindings.zsh  # C-T for files, C-R for history, M-C for cd.
-. /usr/share/fzf/completion.zsh  # **<TAB>
+if [ "$(uname)" = 'Linux' ]; then
+  . /usr/share/fzf/key-bindings.zsh  # C-T for files, C-R for history, M-C for cd.
+  . /usr/share/fzf/completion.zsh  # **<TAB>
+else
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fi
