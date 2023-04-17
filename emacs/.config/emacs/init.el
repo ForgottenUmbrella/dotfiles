@@ -1587,6 +1587,10 @@ Prefer ESLint over JSHint.")
   :general
   (:keymaps 'leader-errors-map
    "d" 'display-local-help))
+;; Use shared editor configuration for style and formatting.
+(use-package editorconfig :ensure t
+  :config
+  (editorconfig-mode 1))
 
 ;;;; Major modes.
 ;; Org mode.
