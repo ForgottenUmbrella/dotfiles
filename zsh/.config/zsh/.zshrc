@@ -111,6 +111,7 @@ if [ "$(uname)" = 'Darwin' ]; then
 
   export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
   export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
+  export PATH="$PATH:/Applications/Emacs.app/Contents/MacOS/bin"
 fi
 
 # Load plugins declared in $ZDOTDIR/.zsh_plugins.txt.
