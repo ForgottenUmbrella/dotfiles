@@ -1072,7 +1072,8 @@ to `evil-lookup'. Based on Spacemacs."
   :config
   (warn-missing-file "otf-fira-code-symbol"
                      "/usr/share/fonts/OTF/FiraCode-Regular-Symbol.otf"
-                     "ligatures"))
+                     "ligatures")
+  (fira-code-mode-set-font))
 ;; Soft-wrap at fill-column when visual-line-mode is on.
 (use-package visual-fill-column :ensure t
   :ghook 'visual-line-mode)
