@@ -88,8 +88,6 @@ alias findbroken='find . -xtype l | grep -v "cache\|virtualenvs\|Trash"'
 alias capsctrl='setxkbmap -option ctrl:nocaps; xmodmap ~/.Xmodmap'
 # Merge PDFs given as input into a single compressed merged.pdf.
 alias pdfmerge='gs -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -o merged.pdf'
-# Open files.
-alias open='xdg-open'
 # Get GPU info.
 alias gpuinfo='lspci | grep " VGA " | cut -d " " -f 1 | xargs lspci -v -s'
 # Update the GRUB configuration.
