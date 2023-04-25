@@ -659,6 +659,7 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
                             "Ignore all whitespace when searching.")
   (window-divider-default-places t "Show window dividers everywhere.")
   (blink-matching-paren nil "Don't jump spontaneously to matching character.")
+  (server-raise-frame nil "Don't steal focus.")
   :custom-face
   (window-divider-first-pixel ((t (:inherit window-divider))))
   (window-divider-last-pixel ((t (:inherit window-divider)))))
@@ -674,6 +675,18 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
 Actually appends to register z as a hack."
     (interactive)
     (evil-use-register "@Z"))
+  (defun my/evil-shift-left ()
+    "Shift left and keep visual selection."
+    (interactive)
+    (evil-shift-left evil-visual-beginning evil-visual-end)
+    (evil-normal-state)
+    (evil-visual-restore))
+  (defun my/evil-shift-right ()
+    "Shift right and keep visual selection."
+    (interactive)
+    (evil-shift-right evil-visual-beginning evil-visual-end)
+    (evil-normal-state)
+    (evil-visual-restore))
   (defun evil-smart-doc-lookup ()
     "Run documentation lookup command specific to the major mode.
 Use command bound to `, h h' if defined, otherwise fall back
@@ -754,6 +767,9 @@ to `evil-lookup'. Based on Spacemacs."
          "Use black-hole register for deletion."
          (interactive)
          (evil-use-register ?_))
+   (:states 'visual
+    "<" 'my/evil-shift-left
+    ">" 'my/evil-shift-right)
    "C-_" 'my/append-to-register
    "Q" (kbd "@q")
    "K" 'evil-smart-doc-lookup
