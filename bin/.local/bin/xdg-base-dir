@@ -8,7 +8,7 @@ usage() {
 xdg-base-dir - Find an XDG base dir according to environment or default value.
 
 This command expects the name of an XDG base dir as argument. The possible
-names are (casing doesn't matter):
+(case-insensitive) names are:
   CONFIG
   CACHE
   DATA
