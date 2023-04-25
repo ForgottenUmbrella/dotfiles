@@ -32,18 +32,24 @@
   "Cons of active and inactive frame alpha values, where 0 is fully transparent
 and 100 is fully opaque.")
 (add-to-list 'default-frame-alist (cons 'alpha my/transparency))
+
 ;; Set font in a daemon-compatible way.
-(add-to-list 'default-frame-alist (cons 'font "Misc Tamsyn-12"))
-             ;; XXX: Emacs' font lookup ignores OTB fonts despite supporting them,
-             ;; so do the lookup yourself.
-             ;; XXX: Unreliable if shell-command-to-string produces errors.
-             ;; https://emacs.stackexchange.com/questions/21422/how-to-discard-stderr-when-running-a-shell-function
-             ;(cons 'font (shell-command-to-string
-                          ;"fc-match monospace -f %{family}-12")))
+(defun my/set-font ()
+  "Set default and fallback fonts."
+  (set-face-attribute 'default nil :font "Misc Tamsyn-12")
+    ;; XXX: Emacs' font lookup ignores OTB fonts despite supporting them,
+    ;; so do the lookup yourself.
+    ;; XXX: Unreliable if shell-command-to-string produces errors.
+    ;; https://emacs.stackexchange.com/questions/21422/how-to-discard-stderr-when-running-a-shell-function
+    ;(shell-command-to-string "fc-match monospace -f %{family}-12")
 ;; Fallback fonts. XXX: How many are absolutely necessary?
-(dolist (font '(;;"Tamzen"
-                ;;"Symbola"
-                "Font Awesome 5 Free"
-                ;;"FuraMono Nerd Font"
-                )
-              (set-fontset-font t nil font)))
+  (dolist (font '(;;"Tamzen"
+                  "Font Awesome 5 Free"
+                  ;;"FuraMono Nerd Font"
+                  )
+                (set-fontset-font t nil font nil 'append)))
+  (remove-hook 'server-after-make-frame-hook 'my/set-font))
+
+(if (daemonp)
+    (add-hook 'server-after-make-frame-hook 'my/set-font)
+  (my/set-font))
