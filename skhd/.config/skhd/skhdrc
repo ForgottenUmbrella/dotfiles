@@ -1,0 +1,3 @@
+cmd+alt-return: open  -n /Applications/Development/iTerm.app
+cmd+alt-n: open  -n '/Applications/Development/Emacs Client.app'
+cmd+alt-i: open  -n /Applications/Development/Firefox.app
