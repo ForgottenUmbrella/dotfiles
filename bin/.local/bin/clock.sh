@@ -12,7 +12,7 @@ case "$1" in
     out)
         clock_in=$(cat "$timestamp")
         clock_out=$(date +%s)
-        printf %.2f $(echo "scale = 3; ($clock_out - $clock_in) / 3600" | bc)
+        printf '%.2f\n' $(echo "scale = 3; ($clock_out - $clock_in) / 3600" | bc)
         ;;
     *)
         echo \
