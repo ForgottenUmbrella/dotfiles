@@ -659,7 +659,6 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
                             "Ignore all whitespace when searching.")
   (window-divider-default-places t "Show window dividers everywhere.")
   (blink-matching-paren nil "Don't jump spontaneously to matching character.")
-  (server-raise-frame nil "Don't steal focus.")
   :custom-face
   (window-divider-first-pixel ((t (:inherit window-divider))))
   (window-divider-last-pixel ((t (:inherit window-divider)))))
