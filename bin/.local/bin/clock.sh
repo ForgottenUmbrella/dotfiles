@@ -1,7 +1,9 @@
 #!/bin/sh
 # Clock in and out to print how many hours you've worked today.
 
-timestamp=$(xdg-base-dir cache)/clock/clock-in
+cache=$(xdg-base-dir cache)/clock
+mkdir -p "$cache"
+timestamp=$cache/clock-in
 
 case "$1" in
     in)
