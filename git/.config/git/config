@@ -12,6 +12,7 @@
 	rebase = true
 [push]
 	default = current
+        autoSetupRemote = true
 [diff]
 	colorMoved = zebra
 # [diff "image"]
