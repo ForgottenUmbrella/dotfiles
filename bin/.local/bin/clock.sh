@@ -8,10 +8,12 @@ timestamp=$cache/clock-in
 case "$1" in
     in)
         date +%s > "$timestamp"
+        date +%R
         ;;
     out)
         clock_in=$(cat "$timestamp")
         clock_out=$(date +%s)
+        date +%R
         printf '%.2f\n' $(echo "scale = 3; ($clock_out - $clock_in) / 3600" | bc)
         ;;
     *)
