@@ -3,6 +3,8 @@
 # (SPC-c-c).
 # NOTE: After removing plugins, run `antibody purge your/plugin`.
 
+# Synchronise Vim-mode clipboard with system.
+kutsan/zsh-system-clipboard
 # Use fish prompt.
 #robbyrussell/oh-my-zsh path:themes/fishy.zsh-theme
 # Go back quickly.
