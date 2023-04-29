@@ -659,6 +659,7 @@ From https://github.com/Fuco1/.emacs.d/blob/master/site-lisp/my-redef.el"
                             "Ignore all whitespace when searching.")
   (window-divider-default-places t "Show window dividers everywhere.")
   (blink-matching-paren nil "Don't jump spontaneously to matching character.")
+  (truncate-lines t "Don't wrap lines as it messes with visual line numbers.")
   :custom-face
   (window-divider-first-pixel ((t (:inherit window-divider))))
   (window-divider-last-pixel ((t (:inherit window-divider)))))
@@ -1091,7 +1092,7 @@ to `evil-lookup'. Based on Spacemacs."
   (fira-code-mode-set-font))
 ;; Soft-wrap at fill-column when visual-line-mode is on.
 (use-package visual-fill-column :ensure t
-  :ghook 'visual-line-mode)
+  :ghook 'visual-line-mode-hook)
 ;; Icons for company mode.
 (use-package company-box :ensure t
   :ghook 'company-mode)
