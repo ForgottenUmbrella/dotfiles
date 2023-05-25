@@ -77,6 +77,9 @@ autoload run-help
 # Beeps
 unsetopt beep  # Disable beeps.
 
+# Glob hidden files
+setopt GLOB_DOTS
+
 # Aliases
 # Open files in a new GUI Emacs frame.
 alias mx='emacsclient -nc'
