@@ -99,6 +99,10 @@ alias grub-update='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias help='run-help'
 # View images with sensible defaults.
 alias fe='feh -Tsensible'
+# Copy files with CoW if possible to save space.
+alias cp='cp --reflink=auto'
+# Follow symlinks.
+alias ls='ls -H'
 
 # Work config (macOS). Modifies PATH.
 if [ "$(uname)" = 'Darwin' ]; then
