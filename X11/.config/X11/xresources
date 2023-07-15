@@ -1,4 +1,4 @@
-! -*- compile-command: "xrdb ~/.Xresources"; -*-
+! -*- compile-command: "xrdb ~/.config/X11/xresources"; -*-
 
 ! Scrolling options:
 ! Do not scroll to latest output when viewing elsewhere.
