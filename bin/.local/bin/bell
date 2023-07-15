@@ -1,5 +1,5 @@
 #!/bin/sh
-# Send a notification, mark the window as urgent and/or sound a bell.
+# Send a notification, mark the window as urgent and sound a bell.
 
 notify-send 'Bell' 'Terminal requested attention' -a bell --icon bell \
     --transient
