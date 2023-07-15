@@ -7,7 +7,7 @@
 	name = Leo Pham
 [credential]
 	# helper = cache --timeout=3600
-	helper = /usr/share/git/credential/gnome-keyring/git-credential-gnome-keyring
+	helper = /usr/lib/git-core/git-credential-libsecret
 [pull]
 	rebase = true
 [push]
