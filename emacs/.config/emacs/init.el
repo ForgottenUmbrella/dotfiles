@@ -1506,9 +1506,9 @@ Prefer ESLint over JSHint.")
                                 "shell script linting" 'sh-mode-hook)
   (warn-missing-hook-executable "python-pylint" "pylint"
                                 "Python linting" 'python-mode-hook)
-  (warn-missing-hook-executable "mypy" "mypy" "Python type-checking"
+  (warn-missing-hook-executable "pyright" "pyright" "Python type-checking"
                                 'python-mode-hook)
-  (flycheck-add-next-checker 'python-pylint 'python-mypy)
+  (flycheck-add-next-checker 'python-pylint 'python-pyright)
   :general
   (:keymaps 'leader-errors-map
    "b" 'flycheck-buffer
