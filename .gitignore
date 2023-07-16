@@ -15,3 +15,4 @@ kde/
 **/zsh/.histfile
 **/emacs/flycheck_init.el
 **/snip-menu/email
+/nvim/.config/nvim/lazy-lock.json
