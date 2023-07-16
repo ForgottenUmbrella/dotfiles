@@ -36,6 +36,9 @@ require('lazy').setup({
     keys = { '.' },
   },
   {
+    'tpope/vim-sleuth',
+  },
+  {
     'tpope/vim-surround',
     keys = { 'cs', 'ds', 'ys' },
   },
