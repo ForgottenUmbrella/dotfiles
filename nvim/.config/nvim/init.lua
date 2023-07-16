@@ -78,6 +78,8 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 --- Lines
+---- Folding
+vim.opt.foldlevelstart = 99  -- Start unfolded
 vim.opt.foldmethod = 'indent'
 ---- Line numbers
 vim.opt.number = true
