@@ -79,17 +79,15 @@ vim.opt.smartcase = true
 
 --- Lines
 vim.opt.foldmethod = 'indent'
----- Scrolling
-vim.opt.mousescroll = {
-  ver = 3,
-}
-vim.opt.scrolloff = 2  -- Always show some lines above/below the cursor
 ---- Line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
----- Line width
+---- Line length
 vim.opt.colorcolumn = { 80 }
 vim.opt.textwidth = 79
+---- Scrolling
+vim.opt.mousescroll = 'ver:1'
+vim.opt.scrolloff = 2  -- Always show some lines above/below the cursor
 
 --- Spell-check
 vim.opt.spell = true
@@ -109,11 +107,11 @@ vim.opt.splitright = true
 local hl_group = vim.api.nvim_create_augroup('hl_group', { clear = true })
 vim.api.nvim_create_autocmd({ 'CmdlineEnter' }, {
   group = hl_group,
-  pattern = '[/\?]',
+  pattern = '[/?]',
   command = 'set hlsearch',
 })
 vim.api.nvim_create_autocmd({ 'CmdlineLeave' }, {
   group = hl_group,
-  pattern = '[/\?]',
+  pattern = '[/?]',
   command = 'set nohlsearch',
 })
