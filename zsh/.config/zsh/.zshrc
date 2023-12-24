@@ -31,7 +31,6 @@ setopt hist_reduce_blanks  # Don't store blank lines.
 
 # Typos
 setopt correct  # Correct command names.
-setopt correct_all  # Correct arguments.
 
 # Prompt
 autoload -Uz promptinit && promptinit
