@@ -766,9 +766,6 @@ to `evil-lookup'. Based on Spacemacs."
          "Use black-hole register for deletion."
          (interactive)
          (evil-use-register ?_))
-   (:states 'visual
-    "<" 'my/evil-shift-left
-    ">" 'my/evil-shift-right)
    "C-_" 'my/append-to-register
    "Q" (kbd "@q")
    "K" 'evil-smart-doc-lookup
@@ -778,6 +775,9 @@ to `evil-lookup'. Based on Spacemacs."
    "M-+" 'evil-window-increase-height
    "M-<" 'evil-window-decrease-width
    "M->" 'evil-window-increase-width)
+  (:states 'visual
+   "<" 'my/evil-shift-left
+   ">" 'my/evil-shift-right)
   ("C-z" nil)  ;; Disable accidental Emacs state entry.
   (:keymaps 'evil-ex-search-keymap
    "C-w" 'backward-kill-word)
