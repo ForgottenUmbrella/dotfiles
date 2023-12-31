@@ -19,16 +19,16 @@ safebooru_test_ip=8.8.8.8
 safebooru_outdated_tags() {
     tag_string=$1
     shift; tags=$*
-    [ "$(python -c "print(all(word in '$tag_string' \
-        for word in '$tags'.split() if ':' not in word))")" != 'True' ]
+    [ "$(python -c "print(all(word in \"$tag_string\" \
+        for word in \"$tags\".split() if ':' not in word))")" != 'True' ]
 }
 
 # Return whether the given data is of sufficient quality.
 safebooru_filter_tags() {
     data=$1
     tag_string=$(echo "$data" | jq -r '.tag_string')
-    [ "$(python -c "print(all(tag in '$tag_string' for tag in ['highres']) \
-        and all(tag not in '$tag_string' \
+    [ "$(python -c "print(all(tag in \"$tag_string\" for tag in ['highres']) \
+        and all(tag not in \"$tag_string\" \
         for tag in ['comic', 'animated']))")" = 'True' ]
 }
 
