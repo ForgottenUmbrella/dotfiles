@@ -48,9 +48,6 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
-;; Install use-package via straight, for modular package configuration.
-;; NOTE: Use :ensure with external (not buit-in) packages.
-(straight-use-package 'use-package)
 
 ;;;; Set up package management.
 ;; Provide key-binding commands and :g(f)hook options to use-package.
@@ -61,6 +58,8 @@
 ;;
 ;; NOTE: :ghook adds the package mode to the given hook, whereas :gfhook adds
 ;; the given function to the package's own hook. Use :hook for everything else.
+;;
+;; NOTE: Use :ensure with external (not buit-in) packages.
 (use-package general :ensure t)
 ;; Provide `auto-package-update-now' to update packages.
 (use-package auto-package-update :ensure t
