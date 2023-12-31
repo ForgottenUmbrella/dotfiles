@@ -85,6 +85,9 @@ safebooru_plug() {
     log "Downloading image..."
     url=$(echo "$data" | jq '.file_url' -r)
     curl "$url" -o "$image" || die 'Failed to download image'
+    # Check that we're not being redirected to a Captcha page.
+    file -b "$image" | grep -q '^HTML document' &&
+        die "Image URL did not resolve to image: $url"
     # Note where it can be viewed.
     id=$(echo "$data" | jq '.id')
     echo "https://safebooru.donmai.us/posts/$id" > "$url_file"
