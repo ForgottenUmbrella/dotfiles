@@ -13,6 +13,7 @@
 [push]
 	default = current
         autoSetupRemote = true
+        followTags = true
 [diff]
 	colorMoved = zebra
 # [diff "image"]
