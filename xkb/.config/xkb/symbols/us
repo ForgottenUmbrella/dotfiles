@@ -1,0 +1,8 @@
+// Eliminate CapsLock, making it another Ctrl.
+partial modifier_keys
+xkb_symbols "colemak-nobs" {
+    include "us(colemak)"
+
+    replace key <CAPS> { [ Control_L ], type[group1] = "ONE_LEVEL" };
+    modifier_map Control { <CAPS> };
+};
