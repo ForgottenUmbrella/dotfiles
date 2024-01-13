@@ -1,5 +1,5 @@
 #!/bin/sh
-# Plugin to grab images from safebooru.
+# Plugin to grab images from safebooru (and Gelbooru).
 # The argument to safebooru_plug is a search query.
 
 # Dependencies:
@@ -25,8 +25,7 @@ safebooru_outdated_tags() {
 
 # Return whether the given data is of sufficient quality.
 safebooru_filter_tags() {
-    data=$1
-    tag_string=$(echo "$data" | jq -r '.tag_string')
+    tag_string=$1
     [ "$(python -c "print(all(tag in \"$tag_string\" for tag in ['highres']) \
         and all(tag not in \"$tag_string\" \
         for tag in ['comic', 'animated']))")" = 'True' ]
@@ -46,6 +45,7 @@ safebooru_wait_network() {
 # Purge posts until one with a valid URL is found, and echo its data.
 safebooru_filter_data() {
     posts=$1
+    tag_string_key=$2
     until
         data=$(jq '.[0]' "$posts")
         # Remove the image from the URL cache.
@@ -57,7 +57,7 @@ safebooru_filter_data() {
             die 'Failed to remove image from URL cache'
         # Check URL is not null and data is of sufficient quality.
         echo "$data" | jq '.file_url' -e > /dev/null &&
-            safebooru_filter_tags "$data"
+            safebooru_filter_tags "$(echo "$data" | jq -r ".$tag_string_key")"
     do
         :
     done
@@ -67,7 +67,7 @@ safebooru_filter_data() {
 # Modify wallpaper file and set image URL from a safebooru.donmai.us search.
 safebooru_plug() {
     tags=$*
-    posts=$cache/wallplug/posts.json
+    posts=$cache/wallplug/safebooru_posts.json
     safebooru_wait_network "$safebooru_test_ip"
     # Cache image URLs so we don't waste the extra images returned from the API.
     if [ ! -f "$posts" ] || [ "$(wc -m < "$posts")" -le 3 ] ||
@@ -76,11 +76,11 @@ safebooru_plug() {
                "$(jq -r '.[0].tag_string' "$posts")" "$tags"; then
         log 'Downloading posts...'
         curl 'https://safebooru.donmai.us/posts.json' -L -G \
-             --data-urlencode "tags=$tags" \
-             --data-urlencode limit=200 -o "$posts" --create-dirs ||
+            --data-urlencode "tags=$tags" \
+            --data-urlencode limit=200 -o "$posts" --create-dirs ||
             die 'Failed to download posts'
     fi
-    data=$(safebooru_filter_data "$posts")
+    data=$(safebooru_filter_data "$posts" 'tag_string')
     # Download the image.
     log "Downloading image..."
     url=$(echo "$data" | jq '.file_url' -r)
@@ -91,4 +91,29 @@ safebooru_plug() {
     # Note where it can be viewed.
     id=$(echo "$data" | jq '.id')
     echo "https://safebooru.donmai.us/posts/$id" > "$url_file"
+}
+
+gelbooru_plug() {
+    tags="$* rating:general"
+    posts=$cache/wallplug/gelbooru_posts.json
+    mkdir -p "$cache/wallplug"
+    safebooru_wait_network "$safebooru_test_ip"
+    # Cache image URLs so we don't waste the extra images returned from the API.
+    if [ ! -f "$posts" ] || [ "$(wc -m < "$posts")" -le 3 ] ||
+           safebooru_outdated_tags \
+               "$(jq -r '.[0].tags' "$posts")" "$tags"; then
+        log 'Downloading posts...'
+        curl 'https://gelbooru.com/index.php?page=dapi&s=post&q=index&json=1' \
+            -L -G --data-urlencode "tags=$tags" \
+            --data-urlencode limit=200 | jq '.post' > "$posts" ||
+            die 'Failed to download posts'
+    fi
+    data=$(safebooru_filter_data "$posts" 'tags')
+    # Download the image.
+    log "Downloading image..."
+    url=$(echo "$data" | jq '.file_url' -r)
+    curl "$url" -o "$image" || die 'Failed to download image'
+    # Note where it can be viewed.
+    id=$(echo "$data" | jq '.id')
+    echo "https://gelbooru.com/index.php?page=post&s=view&id=$id" > "$url_file"
 }
