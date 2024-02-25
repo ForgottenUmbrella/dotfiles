@@ -26,6 +26,7 @@
         followTags = true
 [rebase]
         autosquash = true
+        updateRefs = true
 [safe]
 	directory = /admin
 	directory = /opt/flutter
