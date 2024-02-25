@@ -16,6 +16,7 @@
         followTags = true
 [diff]
 	colorMoved = zebra
+        algorithm = histogram
 # [diff "image"]
 # 	command = ~/.local/bin/git-imgdiff
 [fetch]
@@ -25,3 +26,11 @@
 [safe]
 	directory = /opt/flutter
 	directory = /admin
+[merge]
+        conflictstyle = zdiff3
+[rebase]
+        autosquash = true
+[branch]
+        sort = -committerdate
+[tag]
+        sort = -taggerdate
