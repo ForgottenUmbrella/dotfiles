@@ -1603,6 +1603,10 @@ Prefer ESLint over JSHint.")
 (use-package editorconfig :ensure t
   :config
   (editorconfig-mode 1))
+;; Guess indentation style from file.
+(use-package dtrt-indent :ensure t
+  :config
+  (dtrt-indent-global-mode))
 
 ;;;; Major modes.
 ;; Org mode.
