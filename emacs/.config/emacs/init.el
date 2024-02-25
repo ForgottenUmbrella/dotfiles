@@ -1529,9 +1529,6 @@ Prefer ESLint over JSHint.")
 (use-package smartparens :ensure t :demand t
   :ghook
   'eval-expression-minibuffer-setup-hook
-  ;; XXX: Tag handling is broken: Fuco1/smartparens#397
-  ;; See "<" sp-pair in :config for possible workaround?
-  ;;('(nxml-mode-hook html-mode-hook) 'turn-off-smartparens-mode)
   :custom
   (sp-escape-quotes-after-insert nil "Don't escape quotes.")
   (sp-show-pair-from-inside t "Always highlight pairs.")
@@ -2047,7 +2044,8 @@ Prefer ESLint over JSHint.")
    '(("jsx" . "\\.js[x]?\\'") ("tsx" . "\\.ts[x]?\\'"))
    "Enable syntax highlighting in jsx/tsx files.")
   :config
-  (flycheck-add-mode 'javascript-eslint 'web-mode))
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (setq web-mode-enable-auto-pairing nil))
 
 ;;;;; Major mode extensions.
 ;; Provide documentation lookup with K in Elisp.
