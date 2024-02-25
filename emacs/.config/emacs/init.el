@@ -1251,8 +1251,8 @@ https://github.com/syl20bnr/spacemacs/issues/14064#issuecomment-723324830"
    "g y" 'outline-previous-visible-heading))
 ;; Navigate to and focus on comment headings with SPC-j-o and SPC-n-n.
 (use-package outshine :ensure t
-  :ghook
-  ('prog-mode-hook 'outshine-mode)
+  ;; :ghook
+  ;; ('prog-mode-hook 'outshine-mode)
   :general
   (:keymaps 'leader-jumps-map
    "o" 'outshine-imenu)
