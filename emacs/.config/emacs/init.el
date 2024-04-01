@@ -1081,14 +1081,6 @@ to `evil-lookup'. Based on Spacemacs."
        "Interpret ANSI colour escapes in `compilation-mode'."
        (ansi-color-apply-on-region compilation-filter-start
                                    (point-max)))))
-;; Use ligatures.
-(use-package fira-code-mode :ensure t
-  :ghook 'prog-mode-hook
-  :config
-  (warn-missing-file "otf-fira-code-symbol"
-                     "/usr/share/fonts/OTF/FiraCode-Regular-Symbol.otf"
-                     "ligatures")
-  (fira-code-mode-set-font))
 ;; Soft-wrap at fill-column when visual-line-mode is on.
 (use-package visual-fill-column :ensure t
   :ghook 'visual-line-mode-hook)
