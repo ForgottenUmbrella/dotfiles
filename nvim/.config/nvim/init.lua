@@ -143,3 +143,10 @@ vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
     mod_hl('Normal', { ctermbg = 'NONE' })
   end,
 })
+
+--- Use :help in this file
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  group = vim.api.nvim_create_augroup('init_group', { }),
+  pattern = 'init.lua',
+  command = 'set keywordprg='
+})
