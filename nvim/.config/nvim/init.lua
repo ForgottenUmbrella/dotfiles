@@ -109,6 +109,18 @@ vim.opt_global.shiftwidth = 4  -- Number of spaces to indent with
 --- Windows
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+vim.opt.title = true
+
+-- Functions
+--- Modify an existing highlight group without completely overriding it
+local function mod_hl(hl_name, opts)
+  local is_ok, hl_def = pcall(vim.api.nvim_get_hl, { name = hl_name })
+  if is_ok then
+    for k, v in pairs(opts) do
+      hl_def[k] = v
+    end
+  end
+end
 
 -- Autocommands
 --- Only highlight searches, not search-and-replace
@@ -121,4 +133,13 @@ vim.api.nvim_create_autocmd({ 'CmdlineLeave' }, {
   group = vim.api.nvim_create_augroup('hl_group', { clear = false }),
   pattern = '[/?]',
   command = 'set nohlsearch',
+})
+
+--- Override colour scheme to use a transparent background
+vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
+  group = vim.api.nvim_create_augroup('colour_group', { }),
+  pattern = '*',
+  callback = function()
+    mod_hl('Normal', { ctermbg = 'NONE' })
+  end,
 })
