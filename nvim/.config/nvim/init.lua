@@ -1,4 +1,6 @@
 -- vim: nospell
+-- For reference, see `:help lua-guide`
+
 -- Bootstrap lazy.nvim package manager
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -41,7 +43,7 @@ require('lazy').setup({
   },
   {
     'tpope/vim-surround',
-    keys = { 'cs', 'ds', 'ys' },
+    keys = { 'cs', 'ds', 'S', 'ys' },
   },
   {
     'tpope/vim-unimpaired',
@@ -84,25 +86,25 @@ vim.opt.smartcase = true
 --- Lines
 ---- Folding
 vim.opt.foldlevelstart = 99  -- Start unfolded
-vim.opt.foldmethod = 'indent'
+vim.opt_global.foldmethod = 'indent'
 ---- Line numbers
-vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt_global.number = true
+vim.opt_global.relativenumber = true
 ---- Line length
-vim.opt.colorcolumn = { 80 }
-vim.opt.textwidth = 79
+vim.opt_global.colorcolumn = { 80 }
+vim.opt_global.textwidth = 79
 ---- Scrolling
 vim.opt.mousescroll = 'ver:1'
 vim.opt.scrolloff = 2  -- Always show some lines above/below the cursor
 
 --- Spell-check
-vim.opt.spell = true
+vim.opt_global.spell = true
 
 --- Whitespace
-vim.opt.list = true  -- Show whitespace
+vim.opt_global.list = true  -- Show whitespace
 ---- Indentation
-vim.opt.expandtab = true  -- Use spaces for indentation
-vim.opt.shiftwidth = 4  -- Number of spaces to indent with
+vim.opt_global.expandtab = true  -- Use spaces for indentation
+vim.opt_global.shiftwidth = 4  -- Number of spaces to indent with
 
 --- Windows
 vim.opt.splitbelow = true
@@ -110,14 +112,13 @@ vim.opt.splitright = true
 
 -- Autocommands
 --- Only highlight searches, not search-and-replace
-local hl_group = vim.api.nvim_create_augroup('hl_group', { clear = true })
 vim.api.nvim_create_autocmd({ 'CmdlineEnter' }, {
-  group = hl_group,
+  group = vim.api.nvim_create_augroup('hl_group', { }),
   pattern = '[/?]',
   command = 'set hlsearch',
 })
 vim.api.nvim_create_autocmd({ 'CmdlineLeave' }, {
-  group = hl_group,
+  group = vim.api.nvim_create_augroup('hl_group', { clear = false }),
   pattern = '[/?]',
   command = 'set nohlsearch',
 })
