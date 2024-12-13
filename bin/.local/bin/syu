@@ -1,6 +1,8 @@
 #!/bin/sh
 # Update my system. btw i use arch
 
+trap exit INT
+
 sudo pacman -Sy archlinux-keyring && sudo pacman -Su
 paru -Syu --noconfirm "$@"
 paru -Sc --noconfirm
