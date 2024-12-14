@@ -1,0 +1,9 @@
+[Unit]
+Description=Watch GDrive files for changes and trigger rclone sync
+
+[Path]
+PathChanged="$HOME"/GDrive/
+Unit=rclone-gdrive.service
+
+[Install]
+WantedBy=multi-user.target

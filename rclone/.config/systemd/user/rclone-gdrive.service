@@ -1,0 +1,9 @@
+[Unit]
+Description=Sync files with GDrive
+
+[Service]
+Type=oneshot
+ExecStart=rclone bisync "$HOME"/GDrive gdrive:/
+
+[Install]
+WantedBy=multi-user.target
