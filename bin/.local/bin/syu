@@ -3,11 +3,20 @@
 
 trap exit INT
 
+# Update keyring first in case it's been a while since the last system update.
 sudo pacman -Sy archlinux-keyring && sudo pacman -Su
+# Update LTS (backup) kernel separately to avoid breaking both kernels simultaneously.
+sudo pacman -S linux-lts
+# Update everything and install any additional packages.
 paru -Syu --noconfirm "$@"
+# Delete archives of uninstalled packages.
 paru -Sc --noconfirm
+# Update config files.
 sudo -E pacdiff
+
 fwupdmgr refresh && fwupdmgr update
+
 echo 'Updating Emacs packages...'
 emacsclient --eval '(auto-package-update-now)'
+
 antibody update
