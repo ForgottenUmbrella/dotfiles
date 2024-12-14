@@ -43,11 +43,11 @@ and 100 is fully opaque.")
     ;; https://emacs.stackexchange.com/questions/21422/how-to-discard-stderr-when-running-a-shell-function
     ;(shell-command-to-string "fc-match monospace -f %{family}-12")
 ;; Fallback fonts. XXX: How many are absolutely necessary?
-  (dolist (font '(;;"Tamzen"
-                  "Font Awesome 5 Free"
-                  ;;"FuraMono Nerd Font"
-                  )
-                (set-fontset-font t nil font nil 'append)))
+  ;(dolist (font '(;;"Tamzen"
+  ;                ;;"Font Awesome 5 Free"
+  ;                ;;"FuraMono Nerd Font"
+  ;                )
+  ;              (set-fontset-font t nil font nil 'append)))
   (remove-hook 'server-after-make-frame-hook 'my/set-font))
 
 (if (daemonp)
