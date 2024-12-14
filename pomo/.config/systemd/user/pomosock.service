@@ -7,4 +7,4 @@ RemainAfterExit=true
 ExecStop=-rm %h/.pomo/pomo.sock
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target

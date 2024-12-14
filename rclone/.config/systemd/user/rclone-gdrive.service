@@ -6,4 +6,4 @@ Type=oneshot
 ExecStart=rclone bisync "$HOME"/GDrive gdrive:/
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
