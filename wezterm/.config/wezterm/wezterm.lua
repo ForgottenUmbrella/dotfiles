@@ -7,17 +7,17 @@ config.font = wezterm.font_with_fallback {
 config.hide_tab_bar_if_only_one_tab = true
 config.keys = {
   {
-    mods = 'CTRL|ALT',
+    mods = 'ALT',
     key = 's',
     action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
   },
   {
-    mods = 'CTRL|ALT|SHIFT',
+    mods = 'ALT|SHIFT',
     key = 's',
     action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
   },
   {
-    mods = 'CTRL|SHIFT',
+    mods = 'ALT',
     key = 'w',
     action = wezterm.action.CloseCurrentPane { confirm = false },
   },
