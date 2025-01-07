@@ -88,12 +88,11 @@ require('lazy').setup({
 --- (but don't override the selection clipboard '*)
 vim.opt.clipboard = { 'unnamedplus' }
 
---- Search and replace
-vim.opt.gdefault = true  -- Replace all occurrences by default
-vim.opt.hlsearch = true
----- Context-dependent case sensitivity (disable with \C flag)
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+--- Colorscheme
+vim.opt.colorscheme = 'habamax'
+
+--- Files
+vim.opt.autochdir = true  -- Set working directory to current file's directory
 
 --- Lines
 ---- Folding
@@ -109,6 +108,12 @@ vim.opt.textwidth = 79
 vim.opt.mousescroll = 'ver:5'
 vim.opt.scrolloff = 2  -- Always show some lines above/below the cursor
 
+--- Search and replace
+vim.opt.gdefault = true  -- Replace all occurrences by default
+---- Context-dependent case sensitivity (disable with \C flag)
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 --- Spell-check
 vim.opt.spell = true
 
@@ -117,6 +122,7 @@ vim.opt.list = true  -- Show whitespace
 ---- Indentation
 vim.opt.expandtab = true  -- Use spaces for indentation
 vim.opt.shiftwidth = 4  -- Number of spaces to indent with
+vim.opt.tabstop = 4  -- Render tabs as 4 spaces wide
 
 --- Windows
 vim.opt.splitbelow = true
