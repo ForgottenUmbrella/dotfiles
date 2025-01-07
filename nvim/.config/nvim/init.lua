@@ -18,14 +18,6 @@ vim.opt.rtp:prepend(lazypath)
 -- Packages
 require('lazy').setup({
   {
-    'afreakk/unimpaired-which-key.nvim',
-    dependencies = { 'tpope/vim-unimpaired' },
-    config = function()
-      local wk = require('which-key')
-      wk.add(require('unimpaired-which-key'))
-    end,
-  },
-  {
     'dahu/vim-fanfingtastic',
     keys = { 'F', 'f', 'T', 't', ';', ',' },
   },
@@ -39,32 +31,18 @@ require('lazy').setup({
     opts = { },
   },
   {
-    'tpope/vim-commentary',
-    keys = { 'gc' },
-  },
-  {
     'tpope/vim-repeat',
     keys = { '.' },
   },
   {
     'tpope/vim-sleuth',
+    -- Auto-detect code style
   },
   {
     'tpope/vim-surround',
     keys = {
       { 'cs', 'ds', 'ys' },
       { 'S', mode = 'v' },
-    },
-  },
-  {
-    'tpope/vim-unimpaired',
-    keys = { '[', ']' },
-  },
-  {
-    'tversteeg/registers.nvim',
-    keys = {
-      { "'", mode = { 'n', 'v' } },
-      { '<C-R>', mode = 'i' },
     },
   },
   {
