@@ -53,6 +53,14 @@ PS3='#?'  # Select (for the `select` input command)
 PS4='+%N:%i>'  # Debug
 RPS1="$_current_directory"  # Default, right
 
+# Window title (see PROMPT_PERCENT for explanation of %sequences)
+function precmd() {
+  print -Pn -- '\e]2;%~\a'
+}
+function preexec() {
+    print -Pn -- '\e]2%# ' && print -n -- "${(q)1}\a"
+}
+
 # Colours
 autoload -Uz colors && colors
 if type wal > /dev/null; then

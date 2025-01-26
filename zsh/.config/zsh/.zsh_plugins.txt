@@ -9,8 +9,6 @@ kutsan/zsh-system-clipboard
 #robbyrussell/oh-my-zsh path:themes/fishy.zsh-theme
 # Go back quickly.
 Tarrasch/zsh-bd
-# Dynamic terminal title.
-trystan2k/zsh-tab-title
 # Colourise ls and add the usual aliases.
 zpm-zsh/ls
 # Colourise everything else.
