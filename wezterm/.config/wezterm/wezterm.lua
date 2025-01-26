@@ -26,6 +26,26 @@ config.keys = {
     key = 'w',
     action = wezterm.action.CloseCurrentPane { confirm = false },
   },
+  {
+    mods = 'ALT',
+    key = 'h',
+    action = wezterm.action.ActivatePaneDirection 'Left',
+  },
+  {
+    mods = 'ALT',
+    key = 'j',
+    action = wezterm.action.ActivatePaneDirection 'Down',
+  },
+  {
+    mods = 'ALT',
+    key = 'k',
+    action = wezterm.action.ActivatePaneDirection 'Up',
+  },
+  {
+    mods = 'ALT',
+    key = 'l',
+    action = wezterm.action.ActivatePaneDirection 'Right',
+  },
 }
 config.window_background_opacity = 0.8
 config.window_close_confirmation = 'NeverPrompt'
