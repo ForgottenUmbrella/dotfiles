@@ -72,7 +72,7 @@ require('lazy').setup({
 vim.opt.clipboard = { 'unnamedplus' }
 
 --- Colorscheme
-vim.opt.colorscheme = 'habamax'
+vim.cmd.colorscheme('habamax')
 
 --- Files
 vim.opt.autochdir = true  -- Set working directory to current file's directory
@@ -99,6 +99,7 @@ vim.opt.smartcase = true
 
 --- Spell-check
 vim.opt.spell = true
+vim.opt.spelloptions = { 'camel' }  -- Recognise CamelCase.
 
 --- Whitespace
 vim.opt.list = true  -- Show whitespace
