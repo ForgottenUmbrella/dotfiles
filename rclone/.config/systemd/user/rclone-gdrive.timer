@@ -2,8 +2,8 @@
 Description=Ensure GDrive is in sync
 
 [Timer]
-OnBootSec=1h
-OnUnitActiveSec=1h
+OnBootSec=1m
+OnUnitActiveSec=10m
 
 [Install]
 WantedBy=timers.target
