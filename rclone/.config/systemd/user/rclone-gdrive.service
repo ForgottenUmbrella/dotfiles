@@ -3,7 +3,7 @@ Description=Sync files with GDrive
 
 [Service]
 Type=oneshot
-ExecStart=rclone bisync "$HOME"/GDrive GDrive:/
+ExecStart=rclone bisync %h/GDrive GDrive:/
 
 [Install]
 WantedBy=default.target

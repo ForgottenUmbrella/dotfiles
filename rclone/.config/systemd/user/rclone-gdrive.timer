@@ -1,5 +1,5 @@
 [Unit]
-Description=Ensure GDrive is in sync
+Description=Periodically sync GDrive
 
 [Timer]
 OnBootSec=1m
