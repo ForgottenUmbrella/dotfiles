@@ -776,6 +776,9 @@ to `evil-lookup'. Based on Spacemacs."
    "M-+" 'evil-window-increase-height
    "M-<" 'evil-window-decrease-width
    "M->" 'evil-window-increase-width)
+  (:states 'normal
+   "<mouse-2>" nil  ;; Disable accidental pasting with middle click
+   "<down-mouse-2>" nil)
   (:states 'visual
    "<" 'my/evil-shift-left
    ">" 'my/evil-shift-right)
