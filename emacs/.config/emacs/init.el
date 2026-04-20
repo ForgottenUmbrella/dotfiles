@@ -760,6 +760,7 @@ to `evil-lookup'. Based on Spacemacs."
       ("=" balance-windows "balance"))))
   :general
   ("C-l" 'evil-ex-nohighlight)
+  ("C-z" nil)  ;; Disable accidental Emacs state entry.
   ;; NOTE: 'motion is for non-editing commands.
   (:states 'motion
    "_" (lambda ()
@@ -778,7 +779,6 @@ to `evil-lookup'. Based on Spacemacs."
   (:states 'visual
    "<" 'my/evil-shift-left
    ">" 'my/evil-shift-right)
-  ("C-z" nil)  ;; Disable accidental Emacs state entry.
   (:keymaps 'evil-ex-search-keymap
    "C-w" 'backward-kill-word)
   (leader-def "<tab>" 'evil-switch-to-windows-last-buffer)
