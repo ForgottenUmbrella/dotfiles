@@ -1,0 +1,7 @@
+--type-add=test:*.integration.ts*
+--type-add=test:*.spec.ts*
+--type-add=test:*.system-integration.ts
+--type-add=test:*_test.go
+--type-add=tsx:*.tsx
+--hidden
+--follow
