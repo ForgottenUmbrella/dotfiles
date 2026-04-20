@@ -36,7 +36,8 @@ and 100 is fully opaque.")
 ;; Set font in a daemon-compatible way.
 (defun my/set-font ()
   "Set default and fallback fonts."
-  (set-face-attribute 'default nil :font "Misc Tamsyn-12")
+  (ignore-errors
+      (set-face-attribute 'default nil :font "Misc Tamsyn-12"))
     ;; XXX: Emacs' font lookup ignores OTB fonts despite supporting them,
     ;; so do the lookup yourself.
     ;; XXX: Unreliable if shell-command-to-string produces errors.
