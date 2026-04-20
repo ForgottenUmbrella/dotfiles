@@ -2250,3 +2250,12 @@ Prefer ESLint over JSHint.")
   :general
   (:keymaps 'leader-applications-map
    "d" 'desktop-read))
+;; Save scratch buffer.
+(use-package persistent-scratch :demand t
+  :config
+  (persistent-scratch-setup-default))
+;; Fix PATH not being loaded correctly.
+(use-package exec-path-from-shell :ensure t
+  :config
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
