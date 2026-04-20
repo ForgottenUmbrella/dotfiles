@@ -111,18 +111,9 @@ alias cp='cp --reflink=auto'
 # Follow symlinks.
 alias ls='ls -H'
 
-# Work config (macOS). Modifies PATH.
-if [ "$(uname)" = 'Darwin' ]; then
-  . /opt/homebrew/opt/asdf/libexec/asdf.sh
-  export PGHOST='localhost'
-
-  export PNPM_HOME="$HOME/Library/pnpm"
-  export PATH="$PNPM_HOME:$PATH"
-
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-
-  export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
-  export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
+# Load per-host config.
+if [ -f "$ZDOTDIR/$(hostname).zshrc" ]; then
+  . "$ZDOTDIR/$(hostname).zshrc"
 fi
 
 # Load plugins declared in $ZDOTDIR/.zsh_plugins.txt.
