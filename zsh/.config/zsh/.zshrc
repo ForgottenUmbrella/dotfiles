@@ -128,8 +128,8 @@ ZSH_TAB_TITLE_CONCAT_FOLDER_PROCESS=true
 # zpm-zsh/colorize
 # Fix for differences between BSD and GNU utils.
 if [ "$(uname)" = 'Darwin' ]; then
-    alias colourify='grc -es --colour=auto'
-    alias diff='colourify /usr/bin/diff'
+  alias colourify='grc -es --colour=auto'
+  alias diff='colourify /usr/bin/diff'
 fi
 
 # zsh-users/zsh-autosuggestions
