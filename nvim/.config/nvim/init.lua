@@ -1,7 +1,7 @@
--- vim: nospell
+-- vim: nospell foldmethod=marker
 -- For reference, see `:help lua-guide`
 
--- Bootstrap lazy.nvim package manager
+-- Bootstrap lazy.nvim package manager {{{1
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -15,12 +15,13 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Packages
+-- Packages {{{1
 require('lazy').setup({
   {
     'dahu/vim-fanfingtastic',
     keys = { 'F', 'f', 'T', 't', ';', ',' },
   },
+
   {
     'folke/which-key.nvim',
     event = 'VeryLazy',
@@ -35,14 +36,17 @@ require('lazy').setup({
       },
     },
   },
+
   {
     'tpope/vim-repeat',
     keys = { '.' },
   },
+
   {
     'tpope/vim-sleuth',
     -- Auto-detect code style
   },
+
   {
     'tpope/vim-surround',
     keys = {
@@ -50,6 +54,7 @@ require('lazy').setup({
       { 'S', mode = 'v' },
     },
   },
+
   {
     'wellle/targets.vim',
     keys = {
@@ -59,6 +64,7 @@ require('lazy').setup({
       'ci', 'di', 'yi',
     },
   },
+
   {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
@@ -66,55 +72,55 @@ require('lazy').setup({
   },
 })
 
--- Built-in options
---- Clipboard: use system C-c C-v clipboard by default
---- (but don't override the selection clipboard '*)
+-- Built-in options {{{1
+-- Clipboard: use system C-c C-v clipboard by default {{{2
+-- (but don't override the selection clipboard '*)
 vim.opt.clipboard = { 'unnamedplus' }
 
---- Colorscheme
+-- Colorscheme {{{2
 vim.cmd.colorscheme('habamax')
 
---- Files
+-- Files {{{2
 vim.opt.autochdir = true  -- Set working directory to current file's directory
 
---- Lines
----- Folding
+-- Lines {{{2
+-- Folding {{{3
 vim.opt.foldlevelstart = 99  -- Start unfolded
-vim.opt.foldmethod = 'indent'
----- Line numbers
+vim.opt.foldmethod = 'syntax'
+-- Line numbers {{{3
 vim.opt.number = true
 vim.opt.relativenumber = true
----- Line length
+-- Line length {{{3
 vim.opt.colorcolumn = { 80 }
 vim.opt.textwidth = 79
----- Scrolling
+-- Scrolling {{{{3
 vim.opt.mousescroll = 'ver:5'
 vim.opt.scrolloff = 2  -- Always show some lines above/below the cursor
 
---- Search and replace
+-- Search and replace {{{2
 vim.opt.gdefault = true  -- Replace all occurrences by default
----- Context-dependent case sensitivity (disable with \C flag)
+-- Context-dependent case sensitivity (disable with \C flag) {{{3
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
---- Spell-check
+-- Spell-check {{{2
 vim.opt.spell = true
 vim.opt.spelloptions = { 'camel' }  -- Recognise CamelCase.
 
---- Whitespace
+-- Whitespace {{{2
 vim.opt.list = true  -- Show whitespace
----- Indentation
+-- Indentation {{{3
 vim.opt.expandtab = true  -- Use spaces for indentation
 vim.opt.shiftwidth = 4  -- Number of spaces to indent with
 vim.opt.tabstop = 4  -- Render tabs as 4 spaces wide
 
---- Windows
+-- Windows {{{2
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.title = true
 
--- Functions
---- Modify an existing highlight group without completely overriding it
+-- Functions {{{1
+-- Modify an existing highlight group without completely overriding it {{{2
 local function mod_hl(hl_name, opts)
   local is_ok, hl_def = pcall(vim.api.nvim_get_hl, 0, { name = hl_name })
   if is_ok then
@@ -125,8 +131,8 @@ local function mod_hl(hl_name, opts)
   end
 end
 
--- Autocommands
---- Override colour scheme to use a transparent background
+-- Autocommands {{{1
+-- Override colour scheme to use a transparent background {{{2
 local colour_group = vim.api.nvim_create_augroup('colour_group', { })
 vim.api.nvim_create_autocmd({ 'VimEnter', 'ColorScheme' }, {
   group = colour_group,
@@ -136,7 +142,7 @@ vim.api.nvim_create_autocmd({ 'VimEnter', 'ColorScheme' }, {
   end,
 })
 
---- Use :help in this file
+-- Use :help in this file {{{2
 local init_group = vim.api.nvim_create_augroup('init_group', { })
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   group = init_group,
