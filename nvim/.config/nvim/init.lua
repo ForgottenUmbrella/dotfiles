@@ -49,6 +49,10 @@ require('lazy').setup({
     },
   },
 
+  {
+    'neovim/nvim-lspconfig',
+  },
+
   -- Extra a/i text objects
   {
     'nvim-mini/mini.ai',
