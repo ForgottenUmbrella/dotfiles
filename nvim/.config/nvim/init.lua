@@ -60,9 +60,6 @@ require('lazy').setup({
     opts = {
       kind = 'replace',
     },
-    keys = {
-      { '<leader>gs', '<cmd>Neogit<cr>', desc = 'Show Neogit UI' },
-    },
     lazy = true,
     cmd = 'Neogit',
   },
