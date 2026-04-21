@@ -44,6 +44,12 @@ require('lazy').setup({
   },
 
   {
+    'nvim-mini/mini.pairs',
+    event = 'InsertEnter',
+    opts = { },
+  },
+
+  {
     'tpope/vim-repeat',
     keys = { '.' },
   },
@@ -59,12 +65,6 @@ require('lazy').setup({
       { 'cs', 'ds', 'ys' },
       { 'S', mode = 'v' },
     },
-  },
-
-  {
-    'windwp/nvim-autopairs',
-    event = 'InsertEnter',
-    opts = { },
   },
 })
 
