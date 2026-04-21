@@ -35,6 +35,7 @@ require('lazy').setup({
     },
   },
 
+  -- Extra a/i text objects
   {
     'nvim-mini/mini.ai',
     opts = { },
@@ -92,11 +93,11 @@ vim.opt.clipboard = { 'unnamedplus' }
 vim.cmd.colorscheme('habamax')
 
 -- Files {{{2
-vim.opt.autochdir = true  -- Set working directory to current file's directory
+vim.opt.autochdir = true -- Set working directory to current file's directory
 
 -- Lines {{{2
 -- Folding {{{3
-vim.opt.foldlevelstart = 99  -- Start unfolded
+vim.opt.foldlevelstart = 99 -- Start unfolded
 vim.opt.foldmethod = 'syntax'
 -- Line numbers {{{3
 vim.opt.number = true
@@ -105,25 +106,25 @@ vim.opt.relativenumber = true
 vim.opt.colorcolumn = { 80 }
 vim.opt.textwidth = 79
 -- Scrolling {{{{3
-vim.opt.mousescroll = 'ver:5'
-vim.opt.scrolloff = 2  -- Always show some lines above/below the cursor
+vim.opt.mousescroll = 'ver:3'
+vim.opt.scrolloff = 2 -- Always show some lines above/below the cursor
 
 -- Search and replace {{{2
-vim.opt.gdefault = true  -- Replace all occurrences by default
+vim.opt.gdefault = true -- Replace all occurrences by default
 -- Context-dependent case sensitivity (disable with \C flag) {{{3
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Spell-check {{{2
 vim.opt.spell = true
-vim.opt.spelloptions = { 'camel' }  -- Recognise CamelCase.
+vim.opt.spelloptions = { 'camel' } -- Recognise CamelCase.
 
 -- Whitespace {{{2
-vim.opt.list = true  -- Show whitespace
--- Indentation {{{3
-vim.opt.expandtab = true  -- Use spaces for indentation
-vim.opt.shiftwidth = 4  -- Number of spaces to indent with
-vim.opt.tabstop = 4  -- Render tabs as 4 spaces wide
+vim.opt.list = true -- Show whitespace
+-- Default indentation (overridden by file convention/editorconfig) {{{3
+vim.opt.expandtab = true -- Use spaces for indentation
+vim.opt.shiftwidth = 4 -- Number of spaces to indent with
+vim.opt.tabstop = 4 -- Render tabs as 4 spaces wide
 
 -- Windows {{{2
 vim.opt.splitbelow = true
