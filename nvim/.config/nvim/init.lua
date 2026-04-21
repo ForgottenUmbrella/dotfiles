@@ -15,6 +15,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Set leader key for package keybindings
+vim.g.mapleader = ' '
+
 -- Packages {{{1
 require('lazy').setup({
   {
@@ -47,6 +50,21 @@ require('lazy').setup({
     'nvim-mini/mini.pairs',
     event = 'InsertEnter',
     opts = { },
+  },
+
+  {
+    'NeogitOrg/neogit',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    opts = {
+      kind = 'replace',
+    },
+    keys = {
+      { '<leader>gs', '<cmd>Neogit<cr>', desc = 'Show Neogit UI' },
+    },
+    lazy = true,
+    cmd = 'Neogit',
   },
 
   {
