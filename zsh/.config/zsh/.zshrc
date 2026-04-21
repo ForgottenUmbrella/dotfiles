@@ -58,7 +58,7 @@ function precmd() {
   print -Pn -- '\e]2;%~\a'
 }
 function preexec() {
-    print -Pn -- '\e]2%# ' && print -n -- "${(q)1}\a"
+    print -Pn -- '\e]2;%# ' && print -n -- "${(q)1}\a"
 }
 
 # Colours
