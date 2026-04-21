@@ -162,20 +162,27 @@ local function mod_hl(hl_name, opts)
 end
 
 -- Autocommands {{{1
+local config_group = vim.api.nvim_create_augroup('config_group', { })
+
 -- Override colour scheme to use a transparent background {{{2
-local colour_group = vim.api.nvim_create_augroup('colour_group', { })
 vim.api.nvim_create_autocmd({ 'VimEnter', 'ColorScheme' }, {
-  group = colour_group,
+  group = config_group,
   pattern = '*',
   callback = function()
     mod_hl('Normal', { ctermbg = 'NONE', bg = 'NONE' })
   end,
 })
 
+-- Format on save {{{2
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+  group = config_group,
+  pattern = '*',
+  callback = vim.lsp.buf.format,
+})
+
 -- Use :help in this file {{{2
-local init_group = vim.api.nvim_create_augroup('init_group', { })
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
-  group = init_group,
+  group = config_group,
   pattern = 'init.lua',
   callback = function()
     vim.opt.keywordprg = ':help!'
