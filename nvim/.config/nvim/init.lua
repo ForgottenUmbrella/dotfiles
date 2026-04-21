@@ -18,11 +18,6 @@ vim.opt.rtp:prepend(lazypath)
 -- Packages {{{1
 require('lazy').setup({
   {
-    'dahu/vim-fanfingtastic',
-    keys = { 'F', 'f', 'T', 't', ';', ',' },
-  },
-
-  {
     'folke/which-key.nvim',
     event = 'VeryLazy',
     opts = { },
