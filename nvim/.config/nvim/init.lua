@@ -33,6 +33,17 @@ require('lazy').setup({
   },
 
   {
+    'nvim-mini/mini.ai',
+    opts = { },
+    keys = {
+      'cA', 'dA', 'yA',
+      'ca', 'da', 'ya',
+      'cI', 'dI', 'yI',
+      'ci', 'di', 'yi',
+    },
+  },
+
+  {
     'tpope/vim-repeat',
     keys = { '.' },
   },
@@ -47,16 +58,6 @@ require('lazy').setup({
     keys = {
       { 'cs', 'ds', 'ys' },
       { 'S', mode = 'v' },
-    },
-  },
-
-  {
-    'wellle/targets.vim',
-    keys = {
-      'cA', 'dA', 'yA',
-      'ca', 'da', 'ya',
-      'cI', 'dI', 'yI',
-      'ci', 'di', 'yi',
     },
   },
 
