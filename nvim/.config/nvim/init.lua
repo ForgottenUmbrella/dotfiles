@@ -161,5 +161,7 @@ local init_group = vim.api.nvim_create_augroup('init_group', { })
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   group = init_group,
   pattern = 'init.lua',
-  command = 'set keywordprg='
+  callback = function()
+    vim.opt.keywordprg = ':help!'
+  end,
 })
