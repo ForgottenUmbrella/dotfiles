@@ -48,9 +48,9 @@ require('lazy').setup({
     keys = { '.' },
   },
 
+  -- Auto-detect code style
   {
     'tpope/vim-sleuth',
-    -- Auto-detect code style
   },
 
   {
