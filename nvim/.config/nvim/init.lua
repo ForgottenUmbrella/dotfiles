@@ -200,7 +200,7 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
 -- Use :help in this file (modeline does not support keywordprg) {{{2
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   group = config_group,
-  pattern = 'init.lua',
+  pattern = vim.env.MYVIMRC,
   callback = function()
     vim.opt.keywordprg = ':help!'
   end,
