@@ -136,7 +136,7 @@ vim.opt.smartcase = true
 
 -- Spell-check {{{2
 vim.opt.spell = true
-vim.opt.spelloptions = { 'camel' } -- Recognise CamelCase.
+vim.opt.spelloptions = { 'camel' } -- Recognise CamelCase
 
 -- Whitespace {{{2
 vim.opt.list = true -- Show whitespace
