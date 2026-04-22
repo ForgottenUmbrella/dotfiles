@@ -108,9 +108,6 @@ require('lazy').setup({
 -- (but don't override the selection clipboard '*)
 vim.opt.clipboard = { 'unnamedplus' }
 
--- Colorscheme {{{2
-vim.cmd.colorscheme('habamax')
-
 -- Files {{{2
 vim.opt.autochdir = true -- Set working directory to current file's directory
 
@@ -166,13 +163,32 @@ end
 local config_group = vim.api.nvim_create_augroup('config_group', { })
 
 -- Override colour scheme to use a transparent background {{{2
-vim.api.nvim_create_autocmd({ 'VimEnter', 'ColorScheme' }, {
+local term_bg = vim.o.background
+vim.api.nvim_create_autocmd({ 'ColorSchemePre' }, {
   group = config_group,
   pattern = '*',
   callback = function()
-    mod_hl('Normal', { ctermbg = 'NONE', bg = 'NONE' })
+    -- Reset background so colour schemes that support term_bg stick to it
+    vim.opt.background = term_bg
   end,
 })
+vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
+  group = config_group,
+  pattern = '*',
+  callback = function()
+    -- Only set transparency if the colour scheme supports the term_bg
+    if vim.o.background == term_bg then
+      mod_hl('Normal', { ctermbg = 'NONE', bg = 'NONE' })
+    end
+  end,
+})
+-- Only set colour scheme after setting up the autocmd
+if term_bg == 'light' then
+  vim.cmd.colorscheme('wildcharm')
+else
+  vim.cmd.colorscheme('habamax')
+end
+
 
 -- Format on save {{{2
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
