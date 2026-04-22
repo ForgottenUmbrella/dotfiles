@@ -28,10 +28,6 @@ vim.g.netrw_banner = 0
 vim.g.netrw_browse_split = 4 -- Open files in previous window
 vim.g.netrw_liststyle = 3 -- Use tree view
 vim.g.netrw_winsize = 25
--- LSP {{{3
-vim.keymap.set('n', '<C-}>', vim.lsp.buf.type_definition, {
-  desc = 'LSP: Type Definition',
-})
 
 -- External packages {{{2
 require('lazy').setup({
