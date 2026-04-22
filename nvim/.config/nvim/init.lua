@@ -1,5 +1,6 @@
 -- vim: nospell foldmethod=marker
--- For reference, see `:help lua-guide`
+-- For reference, see `:help lua-guide`.
+-- Reload with `:luafile %`.
 
 -- Bootstrap lazy.nvim package manager {{{1
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
