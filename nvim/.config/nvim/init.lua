@@ -104,9 +104,6 @@ require('lazy').setup({
 -- (but don't override the selection clipboard '*)
 vim.opt.clipboard = { 'unnamedplus' }
 
--- Files {{{2
-vim.opt.autochdir = true -- Set working directory to current file's directory
-
 -- Lines {{{2
 -- Folding {{{3
 vim.opt.foldlevelstart = 99 -- Start unfolded
