@@ -156,27 +156,29 @@ end
 local config_group = vim.api.nvim_create_augroup('config_group', { })
 
 -- Override colour scheme to use a transparent background {{{2
-local term_bg = vim.opt.background:get()
+if my_term_bg == nil then
+  my_term_bg = vim.opt.background:get()
+end
 vim.api.nvim_create_autocmd({ 'ColorSchemePre' }, {
   group = config_group,
   pattern = '*',
   callback = function()
-    -- Reset background so colour schemes that support term_bg stick to it
-    vim.opt.background = term_bg
+    -- Reset background so colour schemes that support my_term_bg stick to it
+    vim.opt.background = my_term_bg
   end,
 })
 vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
   group = config_group,
   pattern = '*',
   callback = function()
-    -- Only set transparency if the colour scheme supports the term_bg
-    if vim.opt.background:get() == term_bg then
+    -- Only set transparency if the colour scheme supports my_term_bg
+    if vim.opt.background:get() == my_term_bg then
       mod_hl('Normal', { ctermbg = 'NONE', bg = 'NONE' })
     end
   end,
 })
 -- Only set colour scheme after setting up the autocmd
-if term_bg == 'light' then
+if my_term_bg == 'light' then
   vim.cmd.colorscheme('wildcharm')
 else
   vim.cmd.colorscheme('habamax')
