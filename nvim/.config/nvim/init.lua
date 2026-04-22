@@ -156,7 +156,7 @@ end
 local config_group = vim.api.nvim_create_augroup('config_group', { })
 
 -- Override colour scheme to use a transparent background {{{2
-local term_bg = vim.o.background
+local term_bg = vim.opt.background:get()
 vim.api.nvim_create_autocmd({ 'ColorSchemePre' }, {
   group = config_group,
   pattern = '*',
@@ -170,7 +170,7 @@ vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
   pattern = '*',
   callback = function()
     -- Only set transparency if the colour scheme supports the term_bg
-    if vim.o.background == term_bg then
+    if vim.opt.background:get() == term_bg then
       mod_hl('Normal', { ctermbg = 'NONE', bg = 'NONE' })
     end
   end,
@@ -193,8 +193,8 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
 -- Use :help in this file (modeline does not support keywordprg) {{{2
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   group = config_group,
-  pattern = vim.env.MYVIMRC,
+  pattern = 'init.lua', -- Can't use MYVIMRC because it's a symlink
   callback = function()
-    vim.opt.keywordprg = ':help!'
+    vim.opt_local.keywordprg = ':help!'
   end,
 })
