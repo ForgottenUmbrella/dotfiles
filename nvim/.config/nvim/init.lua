@@ -180,7 +180,7 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   callback = vim.lsp.buf.format,
 })
 
--- Use :help in this file {{{2
+-- Use :help in this file (modeline does not support keywordprg) {{{2
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   group = config_group,
   pattern = 'init.lua',
