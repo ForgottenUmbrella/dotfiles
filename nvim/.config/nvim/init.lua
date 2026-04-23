@@ -32,6 +32,10 @@ vim.g.netrw_winsize = 25
 -- External packages {{{2
 require('lazy').setup({
   {
+    'neovim/nvim-lspconfig',
+  },
+
+  {
     -- Not nvim-mini/mini.clue (doesn't support operator-pending mode)
     'folke/which-key.nvim',
     event = 'VeryLazy',
@@ -45,10 +49,6 @@ require('lazy').setup({
         desc = 'Buffer Local Keymaps (which-key)',
       },
     },
-  },
-
-  {
-    'neovim/nvim-lspconfig',
   },
 
   -- Extra a/i text objects
