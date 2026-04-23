@@ -62,7 +62,7 @@ require('lazy').setup({
       'ci', 'di', 'yi',
     },
   },
-
+  -- Balanced pairs
   {
     'nvim-mini/mini.pairs',
     event = 'InsertEnter',
@@ -87,10 +87,10 @@ require('lazy').setup({
     opts = {
       kind = 'replace',
     },
-    lazy = true,
     cmd = 'Neogit',
   },
 
+  -- Debug Adapter Protocol
   {
     'rcarriga/nvim-dap-ui',
     dependencies = {
@@ -98,7 +98,6 @@ require('lazy').setup({
       'nvim-neotest/nvim-nio',
     },
   },
-
   {
     'theHamsta/nvim-dap-virtual-text',
     opts = { },
