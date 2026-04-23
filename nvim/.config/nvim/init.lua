@@ -172,6 +172,15 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   callback = vim.lsp.buf.format,
 })
 
+-- Don't resume commenting on new lines {{{2
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  group = config_group,
+  pattern = '*.lua',
+  callback = function()
+    vim.opt.formatoptions:remove({ 'r', 'o' })
+  end,
+})
+
 -- Use :help in this file (modeline does not support keywordprg) {{{2
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   group = config_group,
