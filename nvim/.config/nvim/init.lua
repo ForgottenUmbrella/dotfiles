@@ -23,11 +23,9 @@ vim.g.mapleader = ' '
 -- Built-in packages {{{2
 vim.cmd.packadd('nvim.difftool')
 vim.cmd.packadd('nvim.undotree')
--- File explorer {{{3
-vim.g.netrw_banner = 0
-vim.g.netrw_browse_split = 4 -- Open files in previous window
-vim.g.netrw_liststyle = 3 -- Use tree view
-vim.g.netrw_winsize = 25
+-- Disable netrw (buggy) {{{2
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1
 
 -- External packages {{{2
 require('lazy').setup({
@@ -66,6 +64,24 @@ require('lazy').setup({
   {
     'nvim-mini/mini.pairs',
     event = 'InsertEnter',
+    opts = { },
+  },
+
+  -- File tree operations
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'MunifTanjim/nui.nvim',
+    },
+    lazy = false, -- Neo-tree implements lazy-loading itself
+  },
+  {
+    'antosha417/nvim-lsp-file-operations',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-neo-tree/neo-tree.nvim',
+    },
     opts = { },
   },
 
