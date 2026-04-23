@@ -57,8 +57,7 @@ require('lazy').setup({
     opts = { },
     keys = {
       {
-        '<Leader>?',
-        function()
+        '<Leader>?', function()
           require('which-key').show({ global = false })
         end,
         desc = 'Buffer Local Keymaps (which-key)',
@@ -89,6 +88,30 @@ require('lazy').setup({
     opts = {
       autoread = true,
     },
+  },
+  -- Surround operator
+  {
+    'nvim-mini/mini.surround',
+    opts = {
+      mappings = {
+        add = 'ys',
+        delete = 'ds',
+        find = '',
+        find_left = '',
+        highlight = '',
+        replace = 'cs',
+      },
+      search_method = 'cover_or_next',
+    },
+    keys = {
+      { 'ys', '<Nop>', mode = 'x' },
+      {
+        'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]],
+        mode = 'x',
+        silent = true,
+      },
+      { 'yss', 'ys_', remap = true },
+    }
   },
 
   {
@@ -125,22 +148,9 @@ require('lazy').setup({
     opts = { },
   },
 
-  {
-    'tpope/vim-repeat',
-    keys = { '.' },
-  },
-
   -- Auto-detect code style
   {
     'tpope/vim-sleuth',
-  },
-
-  {
-    'tpope/vim-surround',
-    keys = {
-      { 'cs', 'ds', 'ys' },
-      { 'S', mode = 'v' },
-    },
   },
 })
 
