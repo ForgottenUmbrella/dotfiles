@@ -116,7 +116,6 @@ vim.opt.relativenumber = true
 vim.opt.colorcolumn = { 80 }
 vim.opt.textwidth = 79
 -- Scrolling {{{{3
-vim.opt.mousescroll = 'ver:3'
 vim.opt.scrolloff = 2 -- Always show some lines above/below the cursor
 
 -- Search and replace {{{2
