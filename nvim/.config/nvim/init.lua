@@ -2,20 +2,6 @@
 -- For reference, see `:help lua-guide`.
 -- Reload with `:luafile %`.
 
--- Bootstrap lazy.nvim package manager {{{1
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-  'git',
-  'clone',
-  '--filter=blob:none',
-  'https://github.com/folke/lazy.nvim.git',
-  '--branch=stable', -- latest stable release
-  lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
-
 -- Set leader key for package keybindings
 vim.g.mapleader = ' '
 
@@ -23,133 +9,80 @@ vim.g.mapleader = ' '
 -- Built-in packages {{{2
 vim.cmd.packadd('nvim.difftool')
 vim.cmd.packadd('nvim.undotree')
--- Disable netrw (buggy) {{{2
+-- Disable netrw (buggy) {{{3
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
 
 -- External packages {{{2
-require('lazy').setup({
-  -- Language Server Protocol
-  { 'neovim/nvim-lspconfig' },
-  {
-    'antosha417/nvim-lsp-file-operations',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-neo-tree/neo-tree.nvim',
-    },
-    opts = { },
-  },
-  {
-    'nvim-neo-tree/neo-tree.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'MunifTanjim/nui.nvim',
-    },
-    lazy = false, -- Neo-tree implements lazy-loading itself
-  },
-
-  {
-    -- Not nvim-mini/mini.clue (doesn't support operator-pending mode)
-    'folke/which-key.nvim',
-    event = 'VeryLazy',
-    opts = { },
-    keys = {
-      {
-        '<Leader>?', function()
-          require('which-key').show({ global = false })
-        end,
-        desc = 'Buffer Local Keymaps (which-key)',
-      },
-    },
-  },
-
-  -- Extra a/i text objects
-  {
-    'nvim-mini/mini.ai',
-    opts = { },
-    keys = {
-      'cA', 'dA', 'yA',
-      'ca', 'da', 'ya',
-      'cI', 'dI', 'yI',
-      'ci', 'di', 'yi',
-    },
-  },
-  -- Balanced pairs
-  {
-    'nvim-mini/mini.pairs',
-    event = 'InsertEnter',
-    opts = { },
-  },
-  -- Improve sessions to auto-update and restore
-  {
-    'nvim-mini/mini.sessions',
-    opts = {
-      autoread = true,
-    },
-  },
-  -- Surround operator
-  {
-    'nvim-mini/mini.surround',
-    opts = {
-      mappings = {
-        add = 'ys',
-        delete = 'ds',
-        find = '',
-        find_left = '',
-        highlight = '',
-        replace = 'cs',
-      },
-      search_method = 'cover_or_next',
-    },
-    keys = {
-      { 'ys', '<Nop>', mode = 'x' },
-      {
-        'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]],
-        mode = 'x',
-        silent = true,
-      },
-      { 'yss', 'ys_', remap = true },
-    },
-    lazy = false,
-  },
-
-  {
-    'nvim-orgmode/orgmode',
-    event = 'VeryLazy',
-    ft = { 'org' },
-    opts = { },
-    config = function()
-      vim.lsp.enable('org')
-    end,
-  },
-
-  {
-    'NeogitOrg/neogit',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-    },
-    opts = {
-      kind = 'replace',
-    },
-    cmd = 'Neogit',
-  },
-
-  -- Debug Adapter Protocol
-  {
-    'rcarriga/nvim-dap-ui',
-    dependencies = {
-      'mfussenegger/nvim-dap',
-      'nvim-neotest/nvim-nio',
-    },
-  },
-  {
-    'theHamsta/nvim-dap-virtual-text',
-    opts = { },
-  },
-
-  -- Auto-detect code style
-  { 'tpope/vim-sleuth' },
+-- Dependencies {{{3
+vim.pack.add({
+  -- Required by: neo-tree.nvim
+  'https://github.com/MunifTanjim/nui.nvim',
+  -- Required by: nvim-lsp-file-operations, neo-tree.nvim, neogit
+  'https://github.com/nvim-lua/plenary.nvim',
+  -- Required by: nvim-dap-ui
+  'https://github.com/nvim-neotest/nvim-nio',
 })
+-- Language Server Protocol {{{3
+vim.pack.add({
+  'https://github.com/neovim/nvim-lspconfig',
+  -- Load neo-tree first so nvim-lsp-file-operations can support it
+  'https://github.com/nvim-neo-tree/neo-tree.nvim',
+  'https://github.com/antosha417/nvim-lsp-file-operations',
+  -- Auto-detect code style
+  'https://github.com/tpope/vim-sleuth',
+})
+require('lsp-file-operations').setup()
+-- WhichKey {{{3
+-- Not nvim-mini/mini.clue (doesn't support operator-pending mode)
+vim.pack.add({ 'https://github.com/folke/which-key.nvim' })
+local wk = require('which-key')
+wk.setup()
+vim.keymap.set('n', '<Leader>?', function()
+  wk.show({ global = false })
+end, { desc = 'Buffer Local Keymaps (which-key)' })
+-- mini.nvim {{{3
+vim.pack.add({
+  'https://github.com/nvim-mini/mini.ai',
+  'https://github.com/nvim-mini/mini.pairs',
+  'https://github.com/nvim-mini/mini.sessions',
+  'https://github.com/nvim-mini/mini.surround',
+})
+require('mini.ai').setup()
+require('mini.pairs').setup()
+require('mini.sessions').setup({
+  autoread = true,
+})
+require('mini.surround').setup({
+  mappings = {
+    add = 'ys',
+    delete = 'ds',
+    find = '',
+    find_left = '',
+    highlight = '',
+    replace = 'cs',
+  },
+  search_method = 'cover_or_next',
+})
+vim.keymap.del('x', 'ys')
+vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
+vim.keymap.set('n', 'yss', 'ys_', { remap = true })
+vim.lsp.enable('org')
+-- Magit {{{3
+vim.pack.add({ 'https://github.com/NeogitOrg/neogit' })
+require('neogit').setup({
+  kind = 'replace',
+})
+-- Org mode {{{3
+vim.pack.add({ 'https://github.com/nvim-orgmode/orgmode' })
+require('orgmode').setup()
+-- Debug Adapter Protocol {{{3
+vim.pack.add({
+  'https://github.com/mfussenegger/nvim-dap',
+  'https://github.com/rcarriga/nvim-dap-ui',
+  'https://github.com/theHamsta/nvim-dap-virtual-text',
+})
+require('nvim-dap-virtual-text').setup()
 
 -- Built-in options {{{1
 -- Clipboard: use system C-c C-v clipboard by default {{{2
@@ -166,7 +99,7 @@ vim.opt.relativenumber = true
 -- Line length {{{3
 vim.opt.colorcolumn = { 80 }
 vim.opt.textwidth = 79
--- Scrolling {{{{3
+-- Scrolling {{{3
 vim.opt.scrolloff = 2 -- Always show some lines above/below the cursor
 
 -- Search and replace {{{2
@@ -247,3 +180,15 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
     vim.opt_local.keywordprg = ':help!'
   end,
 })
+
+-- Commands {{{1
+-- Clean up unused plugins {{{2
+vim.api.nvim_create_user_command('PlugClean', function()
+  local plugins_to_delete = { }
+  for _, plugin in ipairs(vim.pack.get()) do
+    if not plugin.spec.active then
+      table.insert(plugins_to_delete, plugin.spec.name)
+    end
+  end
+  vim.pack.del(plugins_to_delete)
+end, { desc = 'Remove unused plugins' })
