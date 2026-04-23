@@ -70,6 +70,16 @@ require('lazy').setup({
   },
 
   {
+    'nvim-orgmode/orgmode',
+    event = 'VeryLazy',
+    ft = { 'org' },
+    opts = { },
+    config = function()
+      vim.lsp.enable('org')
+    end,
+  },
+
+  {
     'NeogitOrg/neogit',
     dependencies = {
       'nvim-lua/plenary.nvim',
