@@ -32,6 +32,7 @@ vim.g.netrw_winsize = 25
 -- External packages {{{2
 require('lazy').setup({
   {
+    -- Not nvim-mini/mini.clue (doesn't support operator-pending mode)
     'folke/which-key.nvim',
     event = 'VeryLazy',
     opts = { },
