@@ -82,6 +82,19 @@ require('lazy').setup({
   },
 
   {
+    'rcarriga/nvim-dap-ui',
+    dependencies = {
+      'mfusseneggar/nvim-dap',
+      'nvim-neotest/nvim-nio',
+    },
+  },
+
+  {
+    'theHamsta/nvim-dap-virtual-text',
+    opts = { },
+  },
+
+  {
     'tpope/vim-repeat',
     keys = { '.' },
   },
