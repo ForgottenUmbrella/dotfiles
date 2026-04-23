@@ -30,9 +30,7 @@ vim.g.loaded_netrw = 1
 -- External packages {{{2
 require('lazy').setup({
   -- Language Server Protocol
-  {
-    'neovim/nvim-lspconfig',
-  },
+  { 'neovim/nvim-lspconfig' },
   {
     'antosha417/nvim-lsp-file-operations',
     dependencies = {
@@ -111,7 +109,8 @@ require('lazy').setup({
         silent = true,
       },
       { 'yss', 'ys_', remap = true },
-    }
+    },
+    lazy = false,
   },
 
   {
@@ -139,7 +138,7 @@ require('lazy').setup({
   {
     'rcarriga/nvim-dap-ui',
     dependencies = {
-      'mfusseneggar/nvim-dap',
+      'mfussenegger/nvim-dap',
       'nvim-neotest/nvim-nio',
     },
   },
@@ -149,9 +148,7 @@ require('lazy').setup({
   },
 
   -- Auto-detect code style
-  {
-    'tpope/vim-sleuth',
-  },
+  { 'tpope/vim-sleuth' },
 })
 
 -- Built-in options {{{1
