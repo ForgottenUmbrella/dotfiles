@@ -83,6 +83,13 @@ require('lazy').setup({
     event = 'InsertEnter',
     opts = { },
   },
+  -- Improve sessions to auto-update and restore
+  {
+    'nvim-mini/mini.sessions',
+    opts = {
+      autoread = true,
+    },
+  },
 
   {
     'nvim-orgmode/orgmode',
