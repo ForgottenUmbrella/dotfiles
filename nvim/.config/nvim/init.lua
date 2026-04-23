@@ -142,15 +142,11 @@ vim.opt.splitright = true
 vim.opt.title = true
 
 -- Functions {{{1
--- Modify an existing highlight group without completely overriding it {{{2
+-- Modify an existing highlight group without completely replacing it {{{2
 local function mod_hl(hl_name, opts)
-  local is_ok, hl_def = pcall(vim.api.nvim_get_hl, 0, { name = hl_name })
-  if is_ok then
-    for k, v in pairs(opts) do
-      hl_def[k] = v
-    end
-    vim.api.nvim_set_hl(0, hl_name, hl_def)
-  end
+  old_hl = vim.api.nvim_get_hl(0, { name = hl_name })
+  new_hl = vim.tbl_extend('force', old_hl, opts)
+  vim.api.nvim_set_hl(0, hl_name, new_hl)
 end
 
 -- Autocommands {{{1
