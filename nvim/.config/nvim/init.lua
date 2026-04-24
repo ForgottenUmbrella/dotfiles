@@ -2,18 +2,18 @@
 -- For reference, see `:help lua-guide`.
 -- Reload with `:luafile %`.
 
--- Set leader key for package keybindings
+-- Set leader key for plugin keybindings
 vim.g.mapleader = ' '
 
--- Packages {{{1
--- Built-in packages {{{2
+-- Plugins {{{1
+-- Built-in plugins {{{2
 vim.cmd.packadd('nvim.difftool')
 vim.cmd.packadd('nvim.undotree')
 -- Disable netrw (buggy) {{{3
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
 
--- External packages {{{2
+-- External plugins {{{2
 -- Dependencies {{{3
 vim.pack.add({
   -- Required by: neo-tree.nvim
