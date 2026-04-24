@@ -132,6 +132,7 @@ end, { desc = 'Remove unused plugins' })
 -- Clipboard: use system C-c C-v clipboard by default {{{2
 -- (but don't override the selection clipboard '*)
 vim.opt.clipboard = { 'unnamedplus' }
+vim.opt.ttimeoutlen = 0 -- Don't ignore Esc immediately after keypress
 
 -- Lines {{{2
 -- Folding {{{3
