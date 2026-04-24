@@ -102,7 +102,15 @@ vim.keymap.set('n', 'yss', 'ys_', { remap = true, desc = 'Surround line' })
 vim.lsp.enable('org')
 -- Magit {{{3
 vim.pack.add({ 'https://github.com/NeogitOrg/neogit' })
-require('neogit').setup()
+require('neogit').setup({
+  mappings = {
+    popup = {
+      ["F"] = "PullPopup",
+      ["p"] = "PushPopup",
+      ["P"] = false,
+    },
+  },
+})
 -- Org mode {{{3
 vim.pack.add({ 'https://github.com/nvim-orgmode/orgmode' })
 require('orgmode').setup()
