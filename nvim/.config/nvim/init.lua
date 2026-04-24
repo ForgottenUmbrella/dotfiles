@@ -70,9 +70,7 @@ vim.keymap.set('n', 'yss', 'ys_', { remap = true })
 vim.lsp.enable('org')
 -- Magit {{{3
 vim.pack.add({ 'https://github.com/NeogitOrg/neogit' })
-require('neogit').setup({
-  kind = 'replace',
-})
+require('neogit').setup()
 -- Org mode {{{3
 vim.pack.add({ 'https://github.com/nvim-orgmode/orgmode' })
 require('orgmode').setup()
