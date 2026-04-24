@@ -37,7 +37,39 @@ require('lsp-file-operations').setup()
 -- Not nvim-mini/mini.clue (doesn't support operator-pending mode)
 vim.pack.add({ 'https://github.com/folke/which-key.nvim' })
 local wk = require('which-key')
-wk.setup()
+wk.setup({
+  icons = {
+    mappings = false,
+    keys = {
+      Up = "<Up>",
+      Down = "<Down>",
+      Left = "<Left>",
+      Right = "<Right>",
+      C = "C-",
+      M = "M-",
+      S = "S-",
+      CR = "<CR>",
+      Esc = "<Esc>",
+      ScrollWheelDown = "<ScrollDown>",
+      ScrollWheelUp = "<ScrollUp>",
+      BS = "<BS>",
+      Space = "<Space>",
+      Tab = "<Tab>",
+      F1 = "<F1>",
+      F2 = "<F2>",
+      F3 = "<F3>",
+      F4 = "<F4>",
+      F5 = "<F5>",
+      F6 = "<F6>",
+      F7 = "<F7>",
+      F8 = "<F8>",
+      F9 = "<F9>",
+      F10 = "<F10>",
+      F11 = "<F11>",
+      F12 = "<F12>",
+    },
+  },
+})
 vim.keymap.set('n', '<Leader>?', function()
   wk.show({ global = false })
 end, { desc = 'Buffer Local Keymaps (which-key)' })
@@ -66,7 +98,7 @@ require('mini.surround').setup({
 })
 vim.keymap.del('x', 'ys')
 vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
-vim.keymap.set('n', 'yss', 'ys_', { remap = true })
+vim.keymap.set('n', 'yss', 'ys_', { remap = true, desc = 'Surround line' })
 vim.lsp.enable('org')
 -- Magit {{{3
 vim.pack.add({ 'https://github.com/NeogitOrg/neogit' })
