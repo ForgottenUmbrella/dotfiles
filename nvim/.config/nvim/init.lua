@@ -82,6 +82,20 @@ vim.pack.add({
 })
 require('nvim-dap-virtual-text').setup()
 
+-- Clean up unused plugins {{{2
+local plugins_to_delete = { }
+for _, plugin in ipairs(vim.pack.get()) do
+  if not plugin.spec.active then
+    table.insert(plugins_to_delete, plugin.spec.name)
+  end
+end
+if #plugins_to_delete > 0 then
+  print('Run :PlugClean to remove unused plugins')
+end
+vim.api.nvim_create_user_command('PlugClean', function()
+  vim.pack.del(plugins_to_delete)
+end, { desc = 'Remove unused plugins' })
+
 -- Built-in options {{{1
 -- Clipboard: use system C-c C-v clipboard by default {{{2
 -- (but don't override the selection clipboard '*)
@@ -187,15 +201,3 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
     vim.opt_local.keywordprg = ':help!'
   end,
 })
-
--- Commands {{{1
--- Clean up unused plugins {{{2
-vim.api.nvim_create_user_command('PlugClean', function()
-  local plugins_to_delete = { }
-  for _, plugin in ipairs(vim.pack.get()) do
-    if not plugin.spec.active then
-      table.insert(plugins_to_delete, plugin.spec.name)
-    end
-  end
-  vim.pack.del(plugins_to_delete)
-end, { desc = 'Remove unused plugins' })
