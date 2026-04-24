@@ -129,45 +129,46 @@ vim.api.nvim_create_user_command('PlugClean', function()
 end, { desc = 'Remove unused plugins' })
 
 -- Built-in options {{{1
--- Clipboard: use system C-c C-v clipboard by default {{{2
--- (but don't override the selection clipboard '*)
+-- OS/terminal integration {{{2
+-- Use system C-c C-v clipboard by default (but don't override selection '*)
 vim.opt.clipboard = { 'unnamedplus' }
 vim.opt.ttimeoutlen = 0 -- Don't ignore Esc immediately after keypress
 
--- Lines {{{2
--- Folding {{{3
-vim.opt.foldlevelstart = 99 -- Start unfolded
-vim.opt.foldmethod = 'syntax'
--- Line numbers {{{3
-vim.opt.number = true
-vim.opt.relativenumber = true
--- Line length {{{3
-vim.opt.colorcolumn = { 80 }
-vim.opt.textwidth = 79
--- Scrolling {{{3
-vim.opt.scrolloff = 2 -- Always show some lines above/below the cursor
-
--- Search and replace {{{2
+-- Behaviour {{{2
 vim.opt.gdefault = true -- Replace all occurrences by default
 -- Context-dependent case sensitivity (disable with \C flag) {{{3
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-
--- Spell-check {{{2
-vim.opt.spell = true
-vim.opt.spelloptions = { 'camel' } -- Recognise CamelCase
-
--- Whitespace {{{2
-vim.opt.list = true -- Show whitespace
 -- Default indentation (overridden by file convention/editorconfig) {{{3
 vim.opt.expandtab = true -- Use spaces for indentation
 vim.opt.shiftwidth = 4 -- Number of spaces to indent with
 vim.opt.tabstop = 4 -- Render tabs as 4 spaces wide
 
--- Windows {{{2
+-- UI {{{2
+-- Windows {{{3
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.title = true
+
+-- Lines {{{3
+-- Line numbers {{{4
+vim.opt.number = true
+vim.opt.relativenumber = true
+-- Folding {{{4
+vim.opt.foldlevelstart = 99 -- Start unfolded
+vim.opt.foldmethod = 'syntax'
+-- Scrolling {{{4
+vim.opt.scrolloff = 2 -- Always show some lines above/below the cursor
+-- Line length {{{4
+vim.opt.colorcolumn = { 80 }
+vim.opt.textwidth = 79
+
+-- Show whitespace {{{3
+vim.opt.list = true
+
+-- Spell-check {{{3
+vim.opt.spell = true
+vim.opt.spelloptions = { 'camel' } -- Recognise CamelCase
 
 -- Functions {{{1
 -- Modify an existing highlight group without completely replacing it {{{2
