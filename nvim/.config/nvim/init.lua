@@ -99,7 +99,6 @@ require('mini.surround').setup({
 vim.keymap.del('x', 'ys')
 vim.keymap.set('x', 'S', [[<Cmd>lua MiniSurround.add('visual')<CR>]], { silent = true })
 vim.keymap.set('n', 'yss', 'ys_', { remap = true, desc = 'Surround line' })
-vim.lsp.enable('org')
 -- Magit {{{3
 vim.pack.add({ 'https://github.com/NeogitOrg/neogit' })
 require('neogit').setup({
@@ -114,6 +113,7 @@ require('neogit').setup({
 -- Org mode {{{3
 vim.pack.add({ 'https://github.com/nvim-orgmode/orgmode' })
 require('orgmode').setup()
+vim.lsp.enable('org')
 -- Debug Adapter Protocol {{{3
 vim.pack.add({
   'https://github.com/mfussenegger/nvim-dap',
