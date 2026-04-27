@@ -23,6 +23,50 @@ vim.pack.add({
   -- Required by: nvim-dap-ui
   'https://github.com/nvim-neotest/nvim-nio',
 })
+-- WhichKey {{{3
+-- Not nvim-mini/mini.clue (doesn't support operator-pending mode)
+vim.pack.add({ 'https://github.com/folke/which-key.nvim' })
+local wk = require('which-key')
+wk.setup({
+  icons = {
+    mappings = false,
+    keys = {
+      Up = '<Up>',
+      Down = '<Down>',
+      Left = '<Left>',
+      Right = '<Right>',
+      C = 'C-',
+      M = 'M-',
+      S = 'S-',
+      CR = '<CR>',
+      Esc = '<Esc>',
+      ScrollWheelDown = '<ScrollDown>',
+      ScrollWheelUp = '<ScrollUp>',
+      BS = '<BS>',
+      Space = '<Space>',
+      Tab = '<Tab>',
+      F1 = '<F1>',
+      F2 = '<F2>',
+      F3 = '<F3>',
+      F4 = '<F4>',
+      F5 = '<F5>',
+      F6 = '<F6>',
+      F7 = '<F7>',
+      F8 = '<F8>',
+      F9 = '<F9>',
+      F10 = '<F10>',
+      F11 = '<F11>',
+      F12 = '<F12>',
+    },
+  },
+})
+wk.add({
+  { '<Leader>a', group = 'applications' },
+  { '<Leader>au', '<Cmd>Undotree<CR>', desc = 'Undo tree' },
+})
+vim.keymap.set('n', '<Leader>?', function()
+  wk.show({ global = false })
+end, { desc = 'Buffer Local Keymaps (which-key)' })
 -- Language Server Protocol {{{3
 vim.pack.add({
   'https://github.com/neovim/nvim-lspconfig',
@@ -33,46 +77,9 @@ vim.pack.add({
   'https://github.com/tpope/vim-sleuth',
 })
 require('lsp-file-operations').setup()
--- WhichKey {{{3
--- Not nvim-mini/mini.clue (doesn't support operator-pending mode)
-vim.pack.add({ 'https://github.com/folke/which-key.nvim' })
-local wk = require('which-key')
-wk.setup({
-  icons = {
-    mappings = false,
-    keys = {
-      Up = "<Up>",
-      Down = "<Down>",
-      Left = "<Left>",
-      Right = "<Right>",
-      C = "C-",
-      M = "M-",
-      S = "S-",
-      CR = "<CR>",
-      Esc = "<Esc>",
-      ScrollWheelDown = "<ScrollDown>",
-      ScrollWheelUp = "<ScrollUp>",
-      BS = "<BS>",
-      Space = "<Space>",
-      Tab = "<Tab>",
-      F1 = "<F1>",
-      F2 = "<F2>",
-      F3 = "<F3>",
-      F4 = "<F4>",
-      F5 = "<F5>",
-      F6 = "<F6>",
-      F7 = "<F7>",
-      F8 = "<F8>",
-      F9 = "<F9>",
-      F10 = "<F10>",
-      F11 = "<F11>",
-      F12 = "<F12>",
-    },
-  },
+wk.add({
+  { '<Leader>at', '<Cmd>NeoTree<CR>', desc = 'File tree' },
 })
-vim.keymap.set('n', '<Leader>?', function()
-  wk.show({ global = false })
-end, { desc = 'Buffer Local Keymaps (which-key)' })
 -- mini.nvim {{{3
 vim.pack.add({
   'https://github.com/nvim-mini/mini.ai',
@@ -104,16 +111,22 @@ vim.pack.add({ 'https://github.com/NeogitOrg/neogit' })
 require('neogit').setup({
   mappings = {
     popup = {
-      ["F"] = "PullPopup",
-      ["p"] = "PushPopup",
-      ["P"] = false,
+      ['F'] = 'PullPopup',
+      ['p'] = 'PushPopup',
+      ['P'] = false,
     },
   },
+})
+wk.add({
+  { '<Leader>ag', '<Cmd>NeoGit<CR>', desc = 'Magit' },
 })
 -- Org mode {{{3
 vim.pack.add({ 'https://github.com/nvim-orgmode/orgmode' })
 require('orgmode').setup()
 vim.lsp.enable('org')
+wk.add({
+  { '<Leader>o', group = 'org mode' },
+})
 -- Debug Adapter Protocol {{{3
 vim.pack.add({
   'https://github.com/mfussenegger/nvim-dap',
@@ -121,6 +134,9 @@ vim.pack.add({
   'https://github.com/theHamsta/nvim-dap-virtual-text',
 })
 require('nvim-dap-virtual-text').setup()
+wk.add({
+  { '<Leader>ad', '<Cmd>DapViewOpen<CR>', desc = 'Debugger' },
+})
 
 -- Clean up unused plugins {{{2
 local plugins_to_delete = { }
