@@ -20,8 +20,6 @@ vim.pack.add({
   'https://github.com/MunifTanjim/nui.nvim',
   -- Required by: nvim-lsp-file-operations, neo-tree.nvim, neogit
   'https://github.com/nvim-lua/plenary.nvim',
-  -- Required by: nvim-dap-ui
-  'https://github.com/nvim-neotest/nvim-nio',
 })
 -- WhichKey {{{3
 -- Not nvim-mini/mini.clue (doesn't support operator-pending mode)
@@ -130,10 +128,9 @@ wk.add({
 -- Debug Adapter Protocol {{{3
 vim.pack.add({
   'https://github.com/mfussenegger/nvim-dap',
-  'https://github.com/rcarriga/nvim-dap-ui',
-  'https://github.com/theHamsta/nvim-dap-virtual-text',
+  'https://github.com/igorlfs/nvim-dap-view',
 })
-require('nvim-dap-virtual-text').setup()
+require('nvim-dap-view').setup()
 wk.add({
   { '<Leader>ad', '<Cmd>DapViewOpen<CR>', desc = 'Debugger' },
 })
