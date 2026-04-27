@@ -1,4 +1,4 @@
--- vim: nospell foldmethod=marker
+-- vim: foldmethod=marker
 -- For reference, see `:help lua-guide`.
 -- Reload with `:luafile %`.
 
@@ -176,7 +176,7 @@ vim.opt.list = true
 
 -- Spell-check {{{3
 vim.opt.spell = true
-vim.opt.spelloptions = { 'camel' } -- Recognise CamelCase
+vim.opt.spelloptions = { 'camel', 'noplainbuffer' }
 
 -- Functions {{{1
 -- Modify an existing highlight group without completely replacing it {{{2
