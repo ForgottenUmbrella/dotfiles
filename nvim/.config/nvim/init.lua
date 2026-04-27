@@ -227,12 +227,31 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   callback = vim.lsp.buf.format,
 })
 
+-- Use LSP for folding {{{2
+vim.api.nvim_create_autocmd({ 'LspAttach' }, {
+  group = config_group,
+  pattern = '*',
+  callback = function()
+    vim.opt_local.foldmethod = 'expr'
+    vim.opt_local.foldexpr = 'v:lua.im.lsp.foldexpr()'
+  end,
+})
+
+-- Highlight on yank {{{2
+vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
+  group = config_group,
+  pattern = '*',
+  callback = function()
+    vim.hl.on_yank({ hlgroup = 'Visual', timeout = 300 })
+  end,
+})
+
 -- Don't resume commenting on new lines {{{2
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   group = config_group,
   pattern = '*.lua',
   callback = function()
-    vim.opt.formatoptions:remove({ 'r', 'o' })
+    vim.opt_local.formatoptions:remove({ 'r', 'o' })
   end,
 })
 
