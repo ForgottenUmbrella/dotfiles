@@ -143,6 +143,7 @@ vim.opt.clipboard = { 'unnamedplus' }
 vim.opt.ttimeoutlen = 0 -- Don't ignore Esc immediately after keypress
 
 -- Behaviour {{{2
+vim.opt.undofile = true -- Allow undoing changes after exit
 vim.opt.gdefault = true -- Replace all occurrences by default
 -- Context-dependent case sensitivity (disable with \C flag) {{{3
 vim.opt.ignorecase = true
@@ -159,6 +160,7 @@ vim.opt.splitright = true
 vim.opt.title = true
 
 -- Lines {{{3
+vim.opt.cursorline = true
 -- Line numbers {{{4
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -217,7 +219,6 @@ if my_term_bg == 'light' then
 else
   vim.cmd.colorscheme('habamax')
 end
-
 
 -- Format on save {{{2
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
