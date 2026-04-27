@@ -97,7 +97,7 @@ require('mini.surround').setup({
   search_method = 'cover_or_next',
 })
 vim.keymap.del('x', 'ys')
-vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
+vim.keymap.set('x', 'S', [[<Cmd>lua MiniSurround.add('visual')<CR>]], { silent = true })
 vim.keymap.set('n', 'yss', 'ys_', { remap = true, desc = 'Surround line' })
 vim.lsp.enable('org')
 -- Magit {{{3
