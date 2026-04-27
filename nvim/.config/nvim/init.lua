@@ -130,7 +130,7 @@ for _, plugin in ipairs(vim.pack.get()) do
   end
 end
 if #plugins_to_delete > 0 then
-  print('Run :PlugClean to remove unused plugins')
+  vim.notify('Run :PlugClean to remove unused plugins', vim.log.levels.WARN)
 end
 vim.api.nvim_create_user_command('PlugClean', function()
   vim.pack.del(plugins_to_delete)
