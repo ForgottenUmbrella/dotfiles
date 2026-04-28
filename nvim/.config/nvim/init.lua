@@ -116,7 +116,7 @@ require('neogit').setup({
   },
 })
 wk.add({
-  { '<Leader>ag', '<Cmd>NeoGit<CR>', desc = 'Magit' },
+  { '<Leader>ag', '<Cmd>Neogit<CR>', desc = 'Magit' },
 })
 -- Org mode {{{3
 vim.pack.add({ 'https://github.com/nvim-orgmode/orgmode' })
@@ -130,7 +130,7 @@ vim.pack.add({
   'https://github.com/mfussenegger/nvim-dap',
   'https://github.com/igorlfs/nvim-dap-view',
 })
-require('nvim-dap-view').setup()
+require('dap-view').setup()
 wk.add({
   { '<Leader>ad', '<Cmd>DapViewOpen<CR>', desc = 'Debugger' },
 })
@@ -138,7 +138,7 @@ wk.add({
 -- Clean up unused plugins {{{2
 local plugins_to_delete = { }
 for _, plugin in ipairs(vim.pack.get()) do
-  if not plugin.spec.active then
+  if not plugin.active then
     table.insert(plugins_to_delete, plugin.spec.name)
   end
 end
