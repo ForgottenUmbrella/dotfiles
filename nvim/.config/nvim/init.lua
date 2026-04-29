@@ -108,12 +108,19 @@ wk.add({
 })
 -- mini.nvim {{{3
 vim.pack.add({
-  'https://github.com/nvim-mini/mini.ai',
-  'https://github.com/nvim-mini/mini.pairs',
-  'https://github.com/nvim-mini/mini.sessions',
-  'https://github.com/nvim-mini/mini.surround',
+  'https://github.com/nvim-mini/mini.ai', -- Around/inner text objects
+  'https://github.com/nvim-mini/mini.indentscope', -- Indentation text objects
+  'https://github.com/nvim-mini/mini.pairs', -- Balanced pairs
+  'https://github.com/nvim-mini/mini.sessions', -- Auto-updating sessions
+  'https://github.com/nvim-mini/mini.surround', -- Surround operator
 })
 require('mini.ai').setup()
+mini_indentscope = require('mini.indentscope')
+mini_indentscope.setup({
+  draw = {
+    animation = mini_indentscope.gen_animation.none(),
+  },
+})
 require('mini.pairs').setup()
 require('mini.sessions').setup({
   autoread = true,
