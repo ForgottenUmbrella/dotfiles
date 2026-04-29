@@ -18,7 +18,11 @@ vim.g.loaded_netrw = 1
 vim.pack.add({
   -- Required by: neo-tree.nvim
   'https://github.com/MunifTanjim/nui.nvim',
-  -- Required by: nvim-lsp-file-operations, neo-tree.nvim, neogit
+  -- Required by:
+  -- nvim-lsp-file-operations
+  -- neo-tree.nvim
+  -- neogit
+  -- typescript-tools.nvim
   'https://github.com/nvim-lua/plenary.nvim',
 })
 -- WhichKey {{{3
@@ -68,13 +72,37 @@ end, { desc = 'Buffer Local Keymaps (which-key)' })
 -- Language Server Protocol {{{3
 vim.pack.add({
   'https://github.com/neovim/nvim-lspconfig',
+  'https://github.com/mason-org/mason.nvim',
+  'https://github.com/mason-org/mason-lspconfig.nvim',
+  'https://github.com/pmizio/typescript-tools.nvim',
+  'https://github.com/creativenull/efmls-configs-nvim',
   -- Load neo-tree first so nvim-lsp-file-operations can support it
   'https://github.com/nvim-neo-tree/neo-tree.nvim',
   'https://github.com/antosha417/nvim-lsp-file-operations',
-  -- Auto-detect code style
-  'https://github.com/tpope/vim-sleuth',
+  'https://github.com/tpope/vim-sleuth', -- Auto-detect code style
 })
+require('mason').setup()
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    'efm', -- Integrates with non-LSP tools like formatters and linters
+    'gopls', -- Go
+    'tailwindcss-language-server', -- Tailwind
+  },
+})
+require('typescript-tools').setup()
 require('lsp-file-operations').setup()
+local efm_languages = require('efmls-configs.defaults').languages()
+vim.lsp.config('efm', {
+  filetypes = vim.tbl_keys(efm_languages),
+  settings = {
+    rootMarkers = { '.git/' },
+    languages = efm_languages,
+  },
+  init_options = {
+    documentFormatting = true,
+    documentRangeFormatting = true,
+  },
+})
 wk.add({
   { '<Leader>at', '<Cmd>NeoTree<CR>', desc = 'File tree' },
 })
