@@ -2,7 +2,7 @@
 -- For reference, see `:help lua-guide`.
 -- Reload with `:luafile %`.
 
--- Set leader key for plugin keybindings
+-- Set leader key for plugin keymaps
 vim.g.mapleader = ' '
 
 -- Plugins {{{1
@@ -15,7 +15,7 @@ vim.g.loaded_netrw = 1
 
 -- Usability {{{2
 vim.pack.add({
-  -- Show keybindings (mini.clue doesn't support operator-pending mode)
+  -- Show keymaps (mini.clue doesn't support operator-pending mode)
   'https://github.com/folke/which-key.nvim',
   -- Better window movement
   'https://github.com/sindrets/winshift.nvim',
@@ -58,11 +58,12 @@ wk.setup({
 })
 wk.add({
   { '<Leader>a', group = 'applications' },
-  { '<Leader>au', '<Cmd>Undotree<CR>', desc = 'Undo tree' },
 })
+vim.keymap.set('n', '<Leader>au', '<Cmd>Undotree<CR>')
 vim.keymap.set('n', '<Leader>?', function()
   wk.show({ global = false })
 end, { desc = 'Buffer Local Keymaps (which-key)' })
+vim.keymap.del('n', '<C-W><C-D>') -- Clashes with C-d to show more keymaps
 require('winshift').setup()
 vim.keymap.set('n', '<C-W>m', '<Cmd>WinShift<CR>')
 vim.keymap.set('n', '<C-W>X', '<Cmd>WinShift swap<CR>')
@@ -106,9 +107,7 @@ vim.pack.add({
   'https://github.com/antosha417/nvim-lsp-file-operations',
 })
 require('lsp-file-operations').setup()
-wk.add({
-  { '<Leader>at', '<Cmd>NeoTree<CR>', desc = 'File tree' },
-})
+vim.keymap.set('n', '<Cmd>NeoTree<CR>')
 
 -- mini.nvim {{{2
 vim.pack.add({
@@ -158,9 +157,7 @@ require('neogit').setup({
     },
   },
 })
-wk.add({
-  { '<Leader>ag', '<Cmd>Neogit<CR>', desc = 'Magit' },
-})
+vim.keymap.set('n', '<Leader>ag', '<Cmd>Neogit<CR>')
 
 -- Org mode {{{2
 vim.pack.add({ 'https://github.com/nvim-orgmode/orgmode' })
@@ -176,9 +173,7 @@ vim.pack.add({
   'https://github.com/igorlfs/nvim-dap-view',
 })
 require('dap-view').setup()
-wk.add({
-  { '<Leader>ad', '<Cmd>DapViewOpen<CR>', desc = 'Debugger' },
-})
+vim.keymap.set('n', '<Leader>ad', '<Cmd>DapViewOpen<CR>')
 
 -- Clean up unused plugins {{{2
 local plugins_to_delete = { }
