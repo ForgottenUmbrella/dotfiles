@@ -13,21 +13,13 @@ vim.cmd.packadd('nvim.undotree')
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
 
--- External plugins {{{2
--- Dependencies {{{3
+-- Usability {{{2
 vim.pack.add({
-  -- Required by: neo-tree.nvim
-  'https://github.com/MunifTanjim/nui.nvim',
-  -- Required by:
-  -- nvim-lsp-file-operations
-  -- neo-tree.nvim
-  -- neogit
-  -- typescript-tools.nvim
-  'https://github.com/nvim-lua/plenary.nvim',
+  -- Show keybindings (mini.clue doesn't support operator-pending mode)
+  'https://github.com/folke/which-key.nvim',
+  -- Auto-detect code style
+  'https://github.com/tpope/vim-sleuth',
 })
--- WhichKey {{{3
--- Not nvim-mini/mini.clue (doesn't support operator-pending mode)
-vim.pack.add({ 'https://github.com/folke/which-key.nvim' })
 local wk = require('which-key')
 wk.setup({
   icons = {
@@ -69,17 +61,15 @@ wk.add({
 vim.keymap.set('n', '<Leader>?', function()
   wk.show({ global = false })
 end, { desc = 'Buffer Local Keymaps (which-key)' })
--- Language Server Protocol {{{3
+
+-- Language Server Protocol {{{2
 vim.pack.add({
   'https://github.com/neovim/nvim-lspconfig',
-  'https://github.com/mason-org/mason.nvim',
+  'https://github.com/mason-org/mason.nvim', -- Dependency
   'https://github.com/mason-org/mason-lspconfig.nvim',
+  'https://github.com/nvim-lua/plenary.nvim', -- Dependency
   'https://github.com/pmizio/typescript-tools.nvim',
   'https://github.com/creativenull/efmls-configs-nvim',
-  -- Load neo-tree first so nvim-lsp-file-operations can support it
-  'https://github.com/nvim-neo-tree/neo-tree.nvim',
-  'https://github.com/antosha417/nvim-lsp-file-operations',
-  'https://github.com/tpope/vim-sleuth', -- Auto-detect code style
 })
 require('mason').setup()
 require('mason-lspconfig').setup({
@@ -90,7 +80,6 @@ require('mason-lspconfig').setup({
   },
 })
 require('typescript-tools').setup()
-require('lsp-file-operations').setup()
 local efm_languages = require('efmls-configs.defaults').languages()
 vim.lsp.config('efm', {
   filetypes = vim.tbl_keys(efm_languages),
@@ -103,10 +92,20 @@ vim.lsp.config('efm', {
     documentRangeFormatting = true,
   },
 })
+
+-- File tree {{{3
+vim.pack.add({
+  'https://github.com/MunifTanjim/nui.nvim', -- Dependency (neo-tree.nvim)
+  'https://github.com/nvim-lua/plenary.nvim', -- Dependency (neo-tree.nvim, nvim-lsp-file-operations)
+  'https://github.com/nvim-neo-tree/neo-tree.nvim', -- Dependency (nvim-lsp-file-operations)
+  'https://github.com/antosha417/nvim-lsp-file-operations',
+})
+require('lsp-file-operations').setup()
 wk.add({
   { '<Leader>at', '<Cmd>NeoTree<CR>', desc = 'File tree' },
 })
--- mini.nvim {{{3
+
+-- mini.nvim {{{2
 vim.pack.add({
   'https://github.com/nvim-mini/mini.ai', -- Around/inner text objects
   'https://github.com/nvim-mini/mini.indentscope', -- Indentation text objects
@@ -139,8 +138,12 @@ require('mini.surround').setup({
 vim.keymap.del('x', 'ys')
 vim.keymap.set('x', 'S', [[<Cmd>lua MiniSurround.add('visual')<CR>]], { silent = true })
 vim.keymap.set('n', 'yss', 'ys_', { remap = true, desc = 'Surround line' })
--- Magit {{{3
-vim.pack.add({ 'https://github.com/NeogitOrg/neogit' })
+
+-- Magit {{{2
+vim.pack.add({
+  'https://github.com/nvim-lua/plenary.nvim', -- Dependency
+  'https://github.com/NeogitOrg/neogit',
+})
 require('neogit').setup({
   mappings = {
     popup = {
@@ -153,16 +156,18 @@ require('neogit').setup({
 wk.add({
   { '<Leader>ag', '<Cmd>Neogit<CR>', desc = 'Magit' },
 })
--- Org mode {{{3
+
+-- Org mode {{{2
 vim.pack.add({ 'https://github.com/nvim-orgmode/orgmode' })
 require('orgmode').setup()
 vim.lsp.enable('org')
 wk.add({
   { '<Leader>o', group = 'org mode' },
 })
--- Debug Adapter Protocol {{{3
+
+-- Debug Adapter Protocol {{{2
 vim.pack.add({
-  'https://github.com/mfussenegger/nvim-dap',
+  'https://github.com/mfussenegger/nvim-dap', -- Dependency
   'https://github.com/igorlfs/nvim-dap-view',
 })
 require('dap-view').setup()
