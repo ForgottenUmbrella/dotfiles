@@ -17,8 +17,6 @@ vim.g.loaded_netrw = 1
 vim.pack.add({
   -- Show keymaps (mini.clue doesn't support operator-pending mode)
   'https://github.com/folke/which-key.nvim',
-  -- Better window movement
-  'https://github.com/sindrets/winshift.nvim',
   -- Auto-detect code style
   'https://github.com/tpope/vim-sleuth',
 })
@@ -64,9 +62,6 @@ vim.keymap.set('n', '<Leader>?', function()
   wk.show({ global = false })
 end, { desc = 'Buffer Local Keymaps (which-key)' })
 vim.keymap.del('n', '<C-W><C-D>') -- Clashes with C-d to show more keymaps
-require('winshift').setup()
-vim.keymap.set('n', '<C-W>m', '<Cmd>WinShift<CR>')
-vim.keymap.set('n', '<C-W>X', '<Cmd>WinShift swap<CR>')
 
 -- Language Server Protocol {{{2
 vim.pack.add({
