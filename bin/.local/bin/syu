@@ -8,7 +8,7 @@ sudo pacman -Sy archlinux-keyring && sudo pacman -Su
 # Update LTS (backup) kernel separately to avoid breaking both kernels simultaneously.
 sudo pacman -S linux-lts
 # Update everything and install any additional packages.
-paru -Syu --noconfirm "$@"
+paru -Syu "$@"
 # Delete archives of uninstalled packages.
 paru -Sc --noconfirm
 # Update config files.
@@ -16,10 +16,10 @@ sudo -E pacdiff
 
 fwupdmgr refresh && fwupdmgr update
 
+echo 'Updating Neovim packages...'
+nvim --headless '+lua vim.pack.update()' +qa
+
 echo 'Updating Emacs packages...'
 emacsclient --eval '(auto-package-update-now)'
-
-echo 'Updating Neovim packages...'
-nvim --headless '+Lazy! sync' +qa
 
 antibody update
