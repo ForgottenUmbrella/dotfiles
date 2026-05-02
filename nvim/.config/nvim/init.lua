@@ -9,6 +9,7 @@ vim.g.mapleader = ' '
 -- Built-in plugins {{{2
 vim.cmd.packadd('nvim.difftool') -- Diff multiple files in quickfix list
 vim.cmd.packadd('nvim.undotree')
+vim.keymap.set('n', '<Leader>au', '<Cmd>Undotree<CR>')
 -- Disable netrw (buggy) {{{3
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
@@ -57,7 +58,6 @@ wk.setup({
 wk.add({
   { '<Leader>a', group = 'applications' },
 })
-vim.keymap.set('n', '<Leader>au', '<Cmd>Undotree<CR>')
 vim.keymap.set('n', '<Leader>?', function()
   wk.show({ global = false })
 end, { desc = 'Buffer Local Keymaps (which-key)' })
@@ -76,8 +76,8 @@ require('mason').setup()
 require('mason-lspconfig').setup({
   ensure_installed = {
     'efm', -- Integrates with non-LSP tools like formatters and linters
-    'gopls', -- Go
-    'tailwindcss', -- Tailwind
+    'gopls',
+    'tailwindcss',
   },
 })
 require('typescript-tools').setup()
@@ -124,6 +124,7 @@ require('mini.sessions').setup({
   autoread = true,
 })
 require('mini.surround').setup({
+  -- Match vim-surround keymaps
   mappings = {
     add = 'ys',
     delete = 'ds',
