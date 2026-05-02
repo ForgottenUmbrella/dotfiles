@@ -106,6 +106,9 @@ alias grub-update='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias help='run-help'
 # View images with sensible defaults.
 alias fe='feh -Tsensible'
+# Set brightness to minimum.
+alias min-brightness='sudo su -c "echo 1 > /sys/class/backlight/intel_backlight/brightness"'
+
 # Copy files with CoW if possible to save space.
 alias cp='cp --reflink=auto'
 # Follow symlinks.
