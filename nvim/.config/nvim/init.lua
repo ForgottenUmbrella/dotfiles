@@ -139,11 +139,15 @@ vim.keymap.del('x', 'ys')
 vim.keymap.set('x', 'S', [[<Cmd>lua MiniSurround.add('visual')<CR>]], { silent = true })
 vim.keymap.set('n', 'yss', 'ys_', { remap = true, desc = 'Surround line' })
 
--- Magit {{{2
+-- Git {{{2
 vim.pack.add({
+  'https://github.com/FabijanZulj/blame.nvim',
   'https://github.com/NeogitOrg/neogit',
+  'https://github.com/whiteinge/diffconflicts', -- Resolve merge conflicts
 })
+require('blame').setup()
 require('neogit').setup({
+  -- Match Magit keymaps
   mappings = {
     popup = {
       ['F'] = 'PullPopup',
@@ -152,7 +156,13 @@ require('neogit').setup({
     },
   },
 })
-vim.keymap.set('n', '<Leader>ag', '<Cmd>Neogit<CR>')
+wk.add({
+  { '<Leader>g', group = 'git' },
+})
+vim.keymap.set('n', '<Leader>gb', '<Cmd>BlameToggle<CR>')
+vim.keymap.set('n', '<Leader>gs', '<Cmd>Neogit<CR>')
+vim.keymap.set('n', '<Leader>gl', '<Cmd>NeogitLog<CR>')
+vim.keymap.set('n', '<Leader>gc', '<Cmd>DiffConflicts<CR>')
 
 -- Org mode {{{2
 vim.pack.add({ 'https://github.com/nvim-orgmode/orgmode' })

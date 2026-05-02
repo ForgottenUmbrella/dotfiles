@@ -1,5 +1,13 @@
 {
   "plugins": {
+    "blame.nvim": {
+      "rev": "179da7aaacce7c52874af636255ede72dd6fe796",
+      "src": "https://github.com/FabijanZulj/blame.nvim"
+    },
+    "diffconflicts": {
+      "rev": "4972d1401e008c5e9afeb703eddd1b2c2a1d1199",
+      "src": "https://github.com/whiteinge/diffconflicts"
+    },
     "efmls-configs-nvim": {
       "rev": "5dc52088c231f2721f545570fcb541b04802ce6b",
       "src": "https://github.com/creativenull/efmls-configs-nvim"
