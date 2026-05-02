@@ -82,7 +82,7 @@ require('mason-lspconfig').setup({
   ensure_installed = {
     'efm', -- Integrates with non-LSP tools like formatters and linters
     'gopls', -- Go
-    'tailwindcss-language-server', -- Tailwind
+    'tailwindcss', -- Tailwind
   },
 })
 require('typescript-tools').setup()
@@ -107,7 +107,7 @@ vim.pack.add({
   'https://github.com/antosha417/nvim-lsp-file-operations',
 })
 require('lsp-file-operations').setup()
-vim.keymap.set('n', '<Cmd>NeoTree<CR>')
+vim.keymap.set('n', '<Leader>at', '<Cmd>NeoTree<CR>')
 
 -- mini.nvim {{{2
 vim.pack.add({
@@ -185,7 +185,7 @@ end
 if #plugins_to_delete > 0 then
   local choice = vim.fn.confirm(
     'Remove unused plugins? ' .. vim.inspect(plugins_to_delete),
-    '&Yes\n&No', 1, 'Question',
+    '&Yes\n&No', 1, 'Question'
   )
   if choice == 1 then
     vim.pack.del(plugins_to_delete)
