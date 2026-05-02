@@ -140,7 +140,6 @@ vim.keymap.set('n', 'yss', 'ys_', { remap = true, desc = 'Surround line' })
 
 -- Magit {{{2
 vim.pack.add({
-  'https://github.com/nvim-lua/plenary.nvim', -- Dependency
   'https://github.com/NeogitOrg/neogit',
 })
 require('neogit').setup({
