@@ -7,7 +7,7 @@ vim.g.mapleader = ' '
 
 -- Plugins {{{1
 -- Built-in plugins {{{2
-vim.cmd.packadd('nvim.difftool')
+vim.cmd.packadd('nvim.difftool') -- Diff multiple files in quickfix list
 vim.cmd.packadd('nvim.undotree')
 -- Disable netrw (buggy) {{{3
 vim.g.loaded_netrwPlugin = 1
