@@ -100,6 +100,7 @@ wk.setup({
 })
 wk.add({
   { '<Leader>a', group = 'applications' },
+  { '<Leader>t', group = 'toggles' },
 })
 vim.keymap.set('n', '<Leader>?', function()
   wk.show({ global = false })
@@ -231,30 +232,60 @@ local function mod_hl(hl_name, opts)
   vim.api.nvim_set_hl(0, hl_name, new_hl)
 end
 
+-- Manage background transparency {{{2
+-- Use a global (static) variable that will persist across reloads
+if _G.my_term_bg == nil then
+  _G.my_term_bg = vim.opt.background:get()
+end
+local original_bg_hl
+
+-- Clear the background to use the terminal's background.
+-- Returns whether the operation succeeded.
+local function clear_bg()
+  -- Only set transparency if colour scheme matches terminal background
+  if vim.opt.background:get() ~= my_term_bg then
+    return false
+  end
+  original_bg_hl = vim.api.nvim_get_hl(0, { name = 'Normal' })
+  mod_hl('Normal', { ctermbg = 'NONE', bg = 'NONE' })
+  return true
+end
+
+-- Set background back to original definition from colour scheme.
+local function revert_bg()
+  vim.api.nvim_set_hl(0, 'Normal', original_bg_hl)
+  original_bg_hl = nil
+end
+
+vim.keymap.set('n', '<Leader>tb', function()
+  if original_bg_hl then
+    revert_bg()
+  elseif not clear_bg() then
+    vim.notify(
+      'Colour scheme is incompatible with terminal background',
+      vim.log.levels.WARN
+    )
+  end
+end, { desc = 'Toggle background' })
+
 -- Autocommands {{{1
 local config_group = vim.api.nvim_create_augroup('config_group', { })
 
 -- Override colour scheme to use a transparent background {{{2
-if my_term_bg == nil then
-  my_term_bg = vim.opt.background:get()
-end
 vim.api.nvim_create_autocmd({ 'ColorSchemePre' }, {
   group = config_group,
   pattern = '*',
   callback = function()
-    -- Reset background so colour schemes that support my_term_bg stick to it
-    vim.opt.background = my_term_bg
+    -- Reset background option so that dynamic colour schemes follow the
+    -- terminal's light/dark mode setting instead of whatever the previous
+    -- colour scheme overrode the option to be.
+    vim.opt.background = _G.my_term_bg
   end,
 })
 vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
   group = config_group,
   pattern = '*',
-  callback = function()
-    -- Only set transparency if the colour scheme supports my_term_bg
-    if vim.opt.background:get() == my_term_bg then
-      mod_hl('Normal', { ctermbg = 'NONE', bg = 'NONE' })
-    end
-  end,
+  callback = clear_bg,
 })
 -- Only set colour scheme after setting up the autocmd
 if my_term_bg == 'light' then
