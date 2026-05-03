@@ -1,6 +1,9 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
+if wezterm.gui and wezterm.gui.get_appearance():find 'Light' then
+  config.color_scheme = 'dayfox'
+end
 if not wezterm.target_triple:find 'apple' then
   config.font = wezterm.font_with_fallback {
     'monospace',
