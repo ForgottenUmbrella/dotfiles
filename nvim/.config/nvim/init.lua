@@ -1,4 +1,3 @@
--- vim: foldmethod=marker
 -- For reference, see `:help lua-guide`.
 -- Reload with `:luafile %`.
 
@@ -324,3 +323,5 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
     vim.opt_local.keywordprg = ':help!'
   end,
 })
+
+-- vim: foldmethod=marker
