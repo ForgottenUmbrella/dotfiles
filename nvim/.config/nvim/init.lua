@@ -223,23 +223,6 @@ vim.pack.add({
 require('dap-view').setup()
 vim.keymap.set('n', '<Leader>ad', '<Cmd>DapViewOpen<CR>')
 
--- Clean up unused plugins {{{2
-local plugins_to_delete = { }
-for _, plugin in ipairs(vim.pack.get()) do
-  if not plugin.active then
-    table.insert(plugins_to_delete, plugin.spec.name)
-  end
-end
-if #plugins_to_delete > 0 then
-  local choice = vim.fn.confirm(
-    'Remove unused plugins? ' .. vim.inspect(plugins_to_delete),
-    '&Yes\n&No', 1, 'Question'
-  )
-  if choice == 1 then
-    vim.pack.del(plugins_to_delete)
-  end
-end
-
 -- Functions {{{1
 -- Modify an existing highlight group without completely replacing it {{{2
 local function mod_hl(hl_name, opts)
@@ -306,21 +289,35 @@ vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
   end,
 })
 
--- Don't resume commenting on new lines {{{2
+--- Use :help in this file (modeline does not support keywordprg) {{{2
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   group = config_group,
-  pattern = '*.lua',
+  pattern = 'nvim/init.lua', -- Can't use MYVIMRC because it's a symlink
   callback = function()
-    vim.opt_local.formatoptions:remove({ 'r', 'o' })
+    vim.opt_local.keywordprg = ':help!'
   end,
 })
 
--- Use :help in this file (modeline does not support keywordprg) {{{2
-vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+-- Clean up unused plugins {{{2
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost' }, {
   group = config_group,
-  pattern = 'init.lua', -- Can't use MYVIMRC because it's a symlink
+  pattern = 'nvim/init.lua',
   callback = function()
-    vim.opt_local.keywordprg = ':help!'
+    local plugins_to_delete = { }
+    for _, plugin in ipairs(vim.pack.get()) do
+      if not plugin.active then
+        table.insert(plugins_to_delete, plugin.spec.name)
+      end
+    end
+    if #plugins_to_delete > 0 then
+      local choice = vim.fn.confirm(
+        'Remove unused plugins? ' .. vim.inspect(plugins_to_delete),
+        '&Yes\n&No', 1, 'Question'
+      )
+      if choice == 1 then
+        vim.pack.del(plugins_to_delete)
+      end
+    end
   end,
 })
 
