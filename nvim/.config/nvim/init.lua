@@ -1,10 +1,54 @@
 -- For reference, see `:help lua-guide`.
 -- Reload with `:luafile %`.
 
+-- Built-in options {{{1
+-- OS/terminal integration {{{2
+-- Use system C-c C-v clipboard by default (but don't override selection '*)
+vim.opt.clipboard = { 'unnamedplus' }
+vim.opt.ttimeoutlen = 0 -- Don't ignore Esc immediately after keypress
+
+-- Behaviour {{{2
+vim.opt.undofile = true -- Allow undoing changes after exit
+vim.opt.gdefault = true -- Replace all occurrences by default
+-- Context-dependent case sensitivity (disable with \C flag) {{{3
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+-- Default indentation (overridden by file convention/editorconfig) {{{3
+vim.opt.expandtab = true -- Use spaces for indentation
+vim.opt.shiftwidth = 4 -- Number of spaces to indent with
+vim.opt.tabstop = 4 -- Render tabs as 4 spaces wide
+
+-- UI {{{2
+-- Windows {{{3
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.title = true
+
+-- Lines {{{3
+vim.opt.cursorline = true
+-- Line numbers {{{4
+vim.opt.number = true
+vim.opt.relativenumber = true
+-- Folding {{{4
+vim.opt.foldlevelstart = 99 -- Start unfolded
+vim.opt.foldmethod = 'syntax'
+-- Scrolling {{{4
+vim.opt.scrolloff = 2 -- Always show some lines above/below the cursor
+-- Line length {{{4
+vim.opt.colorcolumn = { 80 }
+vim.opt.textwidth = 79
+
+-- Show whitespace {{{3
+vim.opt.list = true
+
+-- Spell-check {{{3
+vim.opt.spell = true
+vim.opt.spelloptions = { 'camel', 'noplainbuffer' }
+
+-- Plugins {{{1
 -- Set leader key for plugin keymaps
 vim.g.mapleader = ' '
 
--- Plugins {{{1
 -- Built-in plugins {{{2
 vim.cmd.packadd('nvim.difftool') -- Diff multiple files in quickfix list
 vim.cmd.packadd('nvim.undotree')
@@ -196,50 +240,6 @@ if #plugins_to_delete > 0 then
   end
 end
 
--- Built-in options {{{1
--- OS/terminal integration {{{2
--- Use system C-c C-v clipboard by default (but don't override selection '*)
-vim.opt.clipboard = { 'unnamedplus' }
-vim.opt.ttimeoutlen = 0 -- Don't ignore Esc immediately after keypress
-
--- Behaviour {{{2
-vim.opt.undofile = true -- Allow undoing changes after exit
-vim.opt.gdefault = true -- Replace all occurrences by default
--- Context-dependent case sensitivity (disable with \C flag) {{{3
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
--- Default indentation (overridden by file convention/editorconfig) {{{3
-vim.opt.expandtab = true -- Use spaces for indentation
-vim.opt.shiftwidth = 4 -- Number of spaces to indent with
-vim.opt.tabstop = 4 -- Render tabs as 4 spaces wide
-
--- UI {{{2
--- Windows {{{3
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-vim.opt.title = true
-
--- Lines {{{3
-vim.opt.cursorline = true
--- Line numbers {{{4
-vim.opt.number = true
-vim.opt.relativenumber = true
--- Folding {{{4
-vim.opt.foldlevelstart = 99 -- Start unfolded
-vim.opt.foldmethod = 'syntax'
--- Scrolling {{{4
-vim.opt.scrolloff = 2 -- Always show some lines above/below the cursor
--- Line length {{{4
-vim.opt.colorcolumn = { 80 }
-vim.opt.textwidth = 79
-
--- Show whitespace {{{3
-vim.opt.list = true
-
--- Spell-check {{{3
-vim.opt.spell = true
-vim.opt.spelloptions = { 'camel', 'noplainbuffer' }
-
 -- Functions {{{1
 -- Modify an existing highlight group without completely replacing it {{{2
 local function mod_hl(hl_name, opts)
@@ -293,7 +293,7 @@ vim.api.nvim_create_autocmd({ 'LspAttach' }, {
   pattern = '*',
   callback = function()
     vim.opt_local.foldmethod = 'expr'
-    vim.opt_local.foldexpr = 'v:lua.im.lsp.foldexpr()'
+    vim.opt_local.foldexpr = 'v:lua.vim.lsp.foldexpr()'
   end,
 })
 
