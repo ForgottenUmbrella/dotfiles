@@ -48,6 +48,7 @@ vim.opt.spelloptions = { 'camel', 'noplainbuffer' }
 -- Plugins {{{1
 -- Set leader key for plugin keymaps
 vim.g.mapleader = ' '
+vim.keymap.set('n', '<Leader><Leader>', ':', { desc = 'Run command' })
 
 -- Built-in plugins {{{2
 vim.cmd.packadd('nvim.difftool') -- Diff multiple files in quickfix list
