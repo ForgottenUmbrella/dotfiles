@@ -20,15 +20,16 @@ if not is_macos then
 end
 config.hide_tab_bar_if_only_one_tab = true
 config.keys = {
+  -- Force C-[ to map to Esc for misbehaving programs
+  {
+    mods = 'CTRL',
+    key = '[',
+    action = wezterm.action.SendString '\x1b',
+  },
   {
     mods = mod,
     key = 's',
     action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
-  },
-  {
-    mods = mod,
-    key = 'v',
-    action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
   },
   {
     mods = mod .. '|SHIFT',
