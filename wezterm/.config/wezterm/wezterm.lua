@@ -5,6 +5,7 @@ if wezterm.gui and wezterm.gui.get_appearance():find 'Light' then
   config.color_scheme = 'dayfox'
 end
 if not wezterm.target_triple:find 'apple' then
+  -- Apple doesn't have a monospace font alias
   config.font = wezterm.font_with_fallback {
     'monospace',
   }
