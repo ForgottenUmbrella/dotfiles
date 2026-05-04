@@ -1,10 +1,18 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
+local is_macos = wezterm.target_triple:find 'apple'
+local mod
+if is_macos then
+  mod = 'CMD'
+else
+  mod = 'ALT'
+end
+
 if wezterm.gui and wezterm.gui.get_appearance():find 'Light' then
   config.color_scheme = 'dayfox'
 end
-if not wezterm.target_triple:find 'apple' then
+if not is_macos then
   -- Apple doesn't have a monospace font alias
   config.font = wezterm.font_with_fallback {
     'monospace',
@@ -13,17 +21,22 @@ end
 config.hide_tab_bar_if_only_one_tab = true
 config.keys = {
   {
-    mods = 'ALT',
+    mods = mod,
     key = 's',
     action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
   },
   {
-    mods = 'ALT|SHIFT',
+    mods = mod,
+    key = 'v',
+    action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+  },
+  {
+    mods = mod .. '|SHIFT',
     key = 's',
     action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
   },
   {
-    mods = 'ALT',
+    mods = mod,
     key = 'w',
     action = wezterm.action.CloseCurrentPane { confirm = false },
   },
@@ -33,22 +46,22 @@ config.keys = {
     action = wezterm.action.CloseCurrentPane { confirm = false },
   },
   {
-    mods = 'ALT',
+    mods = mod,
     key = 'h',
     action = wezterm.action.ActivatePaneDirection 'Left',
   },
   {
-    mods = 'ALT',
+    mods = mod,
     key = 'j',
     action = wezterm.action.ActivatePaneDirection 'Down',
   },
   {
-    mods = 'ALT',
+    mods = mod,
     key = 'k',
     action = wezterm.action.ActivatePaneDirection 'Up',
   },
   {
-    mods = 'ALT',
+    mods = mod,
     key = 'l',
     action = wezterm.action.ActivatePaneDirection 'Right',
   },
