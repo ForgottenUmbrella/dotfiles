@@ -1,6 +1,6 @@
 if pgrep wezterm
 then
-    wezterm start &
+    wezterm cli spawn --new-window
+else
+    osascript -e 'tell application "WezTerm" to activate'
 fi
-
-osascript -e 'tell application "WezTerm" to activate'
