@@ -1,6 +1,8 @@
 local wezterm = require 'wezterm'
-local config = wezterm.config_builder()
+local resurrect = wezterm.plugin.require 'https://github.com/MLFlexer/resurrect.wezterm'
+wezterm.plugin.update_all()
 
+local config = wezterm.config_builder()
 local is_macos = wezterm.target_triple:find 'apple'
 
 -- Appearance {{{1
@@ -53,6 +55,8 @@ end
 
 -- Behaviour {{{1
 config.window_close_confirmation = 'NeverPrompt'
+resurrect.state_manager.periodic_save()
+wezterm.on('gui-startup', resurrect.state_manager.resurrect_on_gui_startup)
 
 -- Keybindings {{{1
 local mod
