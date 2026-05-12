@@ -10,8 +10,14 @@
 [diff]
         algorithm = histogram
 	colorMoved = zebra
+	tool = nvimdiff
 # [diff "image"]
 # 	command = ~/.local/bin/git-imgdiff
+[difftool]
+	prompt = false
+	trustExitCode = true
+[difftool "nvimdiff"]
+	cmd = nvim -d $LOCAL $REMOTE
 [fetch]
 	prune = true
 [init]
