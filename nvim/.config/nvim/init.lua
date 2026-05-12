@@ -147,7 +147,7 @@ vim.pack.add({
   'https://github.com/antosha417/nvim-lsp-file-operations',
 })
 require('lsp-file-operations').setup()
-vim.keymap.set('n', '<Leader>at', '<Cmd>Neotree<CR>')
+vim.keymap.set('n', '<Leader>at', '<Cmd>Neotree toggle<CR>')
 
 -- mini.nvim {{{2
 vim.pack.add({
