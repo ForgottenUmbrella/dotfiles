@@ -307,8 +307,10 @@ vim.api.nvim_create_autocmd({ 'LspAttach' }, {
   group = config_group,
   pattern = '*',
   callback = function()
-    vim.opt_local.foldmethod = 'expr'
-    vim.opt_local.foldexpr = 'v:lua.vim.lsp.foldexpr()'
+    if not vim.opt.diff:get() then
+      vim.opt_local.foldmethod = 'expr'
+      vim.opt_local.foldexpr = 'v:lua.vim.lsp.foldexpr()'
+    end
   end,
 })
 
