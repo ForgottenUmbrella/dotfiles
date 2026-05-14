@@ -54,7 +54,11 @@ if is_macos then
 end
 
 -- Behaviour {{{1
-config.term = 'wezterm'
+if wezterm.run_child_process { 'infocmp', 'wezterm' } then
+  config.term = 'wezterm'
+else
+  wezterm.log_warn 'wezterm terminfo entry not installed; TUIs may produce rendering artifacts'
+end
 config.window_close_confirmation = 'NeverPrompt'
 resurrect.state_manager.periodic_save()
 wezterm.on('gui-startup', resurrect.state_manager.resurrect_on_gui_startup)
