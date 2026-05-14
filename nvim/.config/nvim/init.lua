@@ -307,6 +307,13 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   callback = vim.lsp.buf.format,
 })
 
+-- Delete trailing whitespace on save {{{2
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+  group = config_group,
+  pattern = '*',
+  command = [[%s/\s\+$//e]],
+})
+
 -- Use LSP for folding {{{2
 vim.api.nvim_create_autocmd({ 'LspAttach' }, {
   group = config_group,
