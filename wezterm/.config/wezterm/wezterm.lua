@@ -79,16 +79,6 @@ else
   mod = 'ALT'
 end
 
-wezterm.on('toggle-opacity', function(window, pane)
-  local overrides = window:get_config_overrides() or {}
-  if not overrides.window_background_opacity then
-    overrides.window_background_opacity = config.window_background_opacity
-  else
-    overrides.window_background_opacity = nil
-  end
-  window:set_config_overrides(overrides)
-end)
-
 config.keys = {
   -- Force C-[ to map to Esc for misbehaving programs
   {
@@ -99,12 +89,29 @@ config.keys = {
   {
     mods = mod,
     key = 's',
-    action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+    action = wezterm.action.SplitVertical {},
   },
   {
     mods = mod .. '|SHIFT',
     key = 's',
-    action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+    action = wezterm.action.SplitHorizontal {},
+  },
+  {
+    mods = mod .. '|CTRL',
+    key = 's',
+    action = wezterm.action.SplitPane { direction = 'Down', top_level = true },
+  },
+  {
+    mods = mod .. '|CTRL|SHIFT',
+    key = 's',
+    action = wezterm.action.SplitPane { direction = 'Right', top_level = true },
+  },
+  {
+    mods = mod .. '|CTRL',
+    key = 't',
+    action = wezterm.action_callback(function(window, pane)
+      pane:move_to_new_window()
+    end)
   },
   {
     mods = mod,
@@ -137,9 +144,22 @@ config.keys = {
     action = wezterm.action.ActivatePaneDirection 'Right',
   },
   {
-    mods = mod .. '|CTRL',
-    key = 't',
-    action = wezterm.action.EmitEvent 'toggle-opacity',
+    mods = mod,
+    key = 'x',
+    action = wezterm.action.PaneSelect { mode = 'SwapWithActive' },
+  },
+  {
+    mods = mod,
+    key = 'o',
+    action = wezterm.action_callback(function(window, pane)
+      local overrides = window:get_config_overrides() or {}
+      if not overrides.window_background_opacity then
+        overrides.window_background_opacity = config.window_background_opacity
+      else
+        overrides.window_background_opacity = nil
+      end
+      window:set_config_overrides(overrides)
+    end),
   },
 }
 -- }}}
