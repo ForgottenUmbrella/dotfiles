@@ -51,22 +51,24 @@ vim.g.mapleader = ' '
 vim.keymap.set('n', '<Leader><Leader>', ':', { desc = 'Run command' })
 
 -- Built-in plugins {{{2
-vim.cmd.packadd('nvim.difftool') -- Diff multiple files in quickfix list
-vim.cmd.packadd('nvim.undotree')
+vim.cmd.packadd 'nvim.difftool' -- Diff multiple files in quickfix list
+vim.cmd.packadd 'nvim.undotree'
 vim.keymap.set('n', '<Leader>au', '<Cmd>Undotree<CR>')
 -- Disable netrw (buggy) {{{3
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
 
 -- Usability {{{2
-vim.pack.add({
-  -- Show keymaps (mini.clue doesn't support operator-pending mode)
+vim.pack.add {
+  -- Show keymaps (not mini.clue, doesn't support operator-pending mode)
   'https://github.com/folke/which-key.nvim',
+  -- Auto-update sessions
+  'https://github.com/nvim-mini/mini.sessions',
   -- Auto-detect code style
   'https://github.com/tpope/vim-sleuth',
-})
-local wk = require('which-key')
-wk.setup({
+}
+local wk = require 'which-key'
+wk.setup {
   icons = {
     mappings = false,
     keys = {
@@ -98,34 +100,37 @@ wk.setup({
       F12 = '<F12>',
     },
   },
-})
-wk.add({
+}
+wk.add {
   { '<Leader>a', group = 'applications' },
   { '<Leader>t', group = 'toggles' },
-})
+}
 vim.keymap.set('n', '<Leader>?', function()
-  wk.show({ global = false })
+  wk.show { global = false }
 end, { desc = 'Buffer Local Keymaps (which-key)' })
 vim.keymap.del('n', '<C-W><C-D>') -- Clashes with C-d to show more keymaps
+require('mini.sessions').setup {
+  autoread = true,
+}
 
 -- Language Server Protocol {{{2
-vim.pack.add({
+vim.pack.add {
   'https://github.com/neovim/nvim-lspconfig',
   'https://github.com/mason-org/mason.nvim', -- Dependency
   'https://github.com/mason-org/mason-lspconfig.nvim',
   'https://github.com/nvim-lua/plenary.nvim', -- Dependency
   'https://github.com/pmizio/typescript-tools.nvim',
   'https://github.com/creativenull/efmls-configs-nvim',
-})
-require('mason').setup()
-require('mason-lspconfig').setup({
+}
+require('mason').setup { }
+require('mason-lspconfig').setup {
   ensure_installed = {
     'efm', -- Integrates with non-LSP tools like formatters and linters
     'gopls',
     'tailwindcss',
   },
-})
-require('typescript-tools').setup()
+}
+require('typescript-tools').setup { }
 local efm_languages = require('efmls-configs.defaults').languages()
 vim.lsp.config('efm', {
   filetypes = vim.tbl_keys(efm_languages),
@@ -140,13 +145,13 @@ vim.lsp.config('efm', {
 })
 
 -- File tree {{{3
-vim.pack.add({
+vim.pack.add {
   'https://github.com/MunifTanjim/nui.nvim', -- Dependency (neo-tree.nvim)
   'https://github.com/nvim-lua/plenary.nvim', -- Dependency (neo-tree.nvim, nvim-lsp-file-operations)
   'https://github.com/nvim-neo-tree/neo-tree.nvim', -- Dependency (nvim-lsp-file-operations)
   'https://github.com/antosha417/nvim-lsp-file-operations',
-})
-require('lsp-file-operations').setup()
+}
+require('lsp-file-operations').setup { }
 vim.keymap.set('n', '<Leader>at', '<Cmd>Neotree toggle<CR>')
 
 -- mini.nvim {{{2
@@ -185,13 +190,13 @@ vim.keymap.set('x', 'S', [[<Cmd>lua MiniSurround.add('visual')<CR>]], { silent =
 vim.keymap.set('n', 'yss', 'ys_', { remap = true, desc = 'Surround line' })
 
 -- Git {{{2
-vim.pack.add({
+vim.pack.add {
   'https://github.com/FabijanZulj/blame.nvim',
   'https://github.com/NeogitOrg/neogit',
   'https://github.com/whiteinge/diffconflicts', -- Resolve merge conflicts
-})
-require('blame').setup()
-require('neogit').setup({
+}
+require('blame').setup { }
+require('neogit').setup {
   -- Match Magit keymaps
   mappings = {
     popup = {
@@ -200,29 +205,29 @@ require('neogit').setup({
       ['P'] = false,
     },
   },
-})
-wk.add({
+}
+wk.add {
   { '<Leader>g', group = 'git' },
-})
+}
 vim.keymap.set('n', '<Leader>gb', '<Cmd>BlameToggle<CR>')
 vim.keymap.set('n', '<Leader>gs', '<Cmd>Neogit<CR>')
 vim.keymap.set('n', '<Leader>gl', '<Cmd>NeogitLog<CR>')
 vim.keymap.set('n', '<Leader>gc', '<Cmd>DiffConflicts<CR>')
 
 -- Org mode {{{2
-vim.pack.add({ 'https://github.com/nvim-orgmode/orgmode' })
-require('orgmode').setup()
-vim.lsp.enable('org')
-wk.add({
+vim.pack.add { 'https://github.com/nvim-orgmode/orgmode' }
+require('orgmode').setup { }
+vim.lsp.enable 'org'
+wk.add {
   { '<Leader>o', group = 'org mode' },
-})
+}
 
 -- Debug Adapter Protocol {{{2
-vim.pack.add({
+vim.pack.add {
   'https://github.com/mfussenegger/nvim-dap', -- Dependency
   'https://github.com/igorlfs/nvim-dap-view',
-})
-require('dap-view').setup()
+}
+require('dap-view').setup { }
 vim.keymap.set('n', '<Leader>ad', '<Cmd>DapViewOpen<CR>')
 
 -- Functions {{{1
@@ -290,9 +295,9 @@ vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
 })
 -- Only set colour scheme after setting up the autocmd
 if my_term_bg == 'light' then
-  vim.cmd.colorscheme('wildcharm')
+  vim.cmd.colorscheme 'wildcharm'
 else
-  vim.cmd.colorscheme('habamax')
+  vim.cmd.colorscheme 'habamax'
 end
 
 -- Format on save {{{2
@@ -319,14 +324,14 @@ vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
   group = config_group,
   pattern = '*',
   callback = function()
-    vim.hl.on_yank({ hlgroup = 'Visual', timeout = 300 })
+    vim.hl.on_yank { hlgroup = 'Visual', timeout = 300 }
   end,
 })
 
 --- Use :help in this file (modeline does not support keywordprg) {{{2
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   group = config_group,
-  pattern = 'nvim/init.lua', -- Can't use MYVIMRC because it's a symlink
+  pattern = '**/nvim/init.lua', -- Can't use MYVIMRC because it's a symlink
   callback = function()
     vim.opt_local.keywordprg = ':help!'
   end,
