@@ -16,10 +16,14 @@ sudo -E pacdiff
 
 fwupdmgr refresh && fwupdmgr update
 
-echo 'Updating Neovim packages...'
+echo 'Updating WezTerm plugins...'
+__wezterm_set_user_var update 1
+
+echo 'Updating Neovim plugins...'
 nvim --headless '+lua vim.pack.update()' +qa
 
 echo 'Updating Emacs packages...'
 emacsclient --eval '(auto-package-update-now)'
 
+echo 'Updating zsh plugins...'
 antibody update

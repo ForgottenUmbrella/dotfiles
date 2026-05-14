@@ -1,6 +1,5 @@
 local wezterm = require 'wezterm'
 local resurrect = wezterm.plugin.require 'https://github.com/MLFlexer/resurrect.wezterm'
-wezterm.plugin.update_all()
 
 local config = wezterm.config_builder()
 local is_macos = wezterm.target_triple:find 'apple'
@@ -60,8 +59,16 @@ else
   wezterm.log_warn 'wezterm terminfo entry not installed; TUIs may produce rendering artifacts'
 end
 config.window_close_confirmation = 'NeverPrompt'
+
 resurrect.state_manager.periodic_save()
 wezterm.on('gui-startup', resurrect.state_manager.resurrect_on_gui_startup)
+
+-- Use a user var to trigger updates from CLI
+wezterm.on('user-var-changed', function(window, pane, name, value)
+  if name == 'update' then
+    wezterm.plugin.update_all()
+  end
+end)
 
 -- Keybindings {{{1
 local mod
