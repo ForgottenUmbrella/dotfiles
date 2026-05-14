@@ -154,40 +154,25 @@ vim.pack.add {
 require('lsp-file-operations').setup { }
 vim.keymap.set('n', '<Leader>at', '<Cmd>Neotree toggle<CR>')
 
--- mini.nvim {{{2
-vim.pack.add({
-  'https://github.com/nvim-mini/mini.ai', -- Around/inner text objects
-  'https://github.com/nvim-mini/mini.indentscope', -- Indentation text objects
-  'https://github.com/nvim-mini/mini.pairs', -- Balanced pairs
-  'https://github.com/nvim-mini/mini.sessions', -- Auto-updating sessions
-  'https://github.com/nvim-mini/mini.surround', -- Surround operator
-})
-require('mini.ai').setup()
-mini_indentscope = require('mini.indentscope')
-mini_indentscope.setup({
+-- Editing {{{2
+vim.pack.add {
+  -- Surround operator (not mini.surround, limits search to find match)
+  'https://github.com/keylechui/nvim-surround',
+  -- Around/inner text objects
+  'https://github.com/nvim-mini/mini.ai',
+  -- Indentation text object
+  'https://github.com/nvim-mini/mini.indentscope',
+  -- Balanced pairs
+  'https://github.com/nvim-mini/mini.pairs',
+}
+require('mini.ai').setup { }
+mini_indentscope = require 'mini.indentscope'
+mini_indentscope.setup {
   draw = {
     animation = mini_indentscope.gen_animation.none(),
   },
-})
-require('mini.pairs').setup()
-require('mini.sessions').setup({
-  autoread = true,
-})
-require('mini.surround').setup({
-  -- Match vim-surround keymaps
-  mappings = {
-    add = 'ys',
-    delete = 'ds',
-    find = '',
-    find_left = '',
-    highlight = '',
-    replace = 'cs',
-  },
-  search_method = 'cover_or_next',
-})
-vim.keymap.del('x', 'ys')
-vim.keymap.set('x', 'S', [[<Cmd>lua MiniSurround.add('visual')<CR>]], { silent = true })
-vim.keymap.set('n', 'yss', 'ys_', { remap = true, desc = 'Surround line' })
+}
+require('mini.pairs').setup { }
 
 -- Git {{{2
 vim.pack.add {
