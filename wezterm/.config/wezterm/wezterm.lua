@@ -108,10 +108,17 @@ config.keys = {
   },
   {
     mods = mod .. '|CTRL',
-    key = 't',
+    key = 'n',
     action = wezterm.action_callback(function(window, pane)
       pane:move_to_new_window()
-    end)
+    end),
+  },
+  {
+    mods = mod .. '|CTRL',
+    key = 't',
+    action = wezterm.action_callback(function(window, pane)
+      pane:move_to_new_tab()
+    end),
   },
   {
     mods = mod,
