@@ -288,11 +288,7 @@ vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
 })
 
 -- Only set colour scheme after setting up the autocommand
-if my_term_bg == 'light' then
-  vim.cmd.colorscheme 'wildcharm'
-else
-  vim.cmd.colorscheme 'habamax'
-end
+vim.cmd.colorscheme(my_term_bg == 'light' and 'wildcharm' or 'habamax')
 
 -- Format on save {{{2
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
