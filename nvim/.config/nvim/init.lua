@@ -26,6 +26,7 @@ if vim.fn.executable('fd') then
 else
   vim.notify('fd not installed; :find will be slow', vim.log.levels.WARN)
 end
+vim.opt.wildmode = { 'noselect:lastused', 'full' }
 
 -- UI {{{2
 -- Windows {{{3
@@ -324,6 +325,19 @@ vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
     vim.hl.on_yank { hlgroup = 'Visual', timeout = 300 }
   end,
 })
+
+-- Autocomplete command line (cmdline-autocompletion) {{{2
+vim.api.nvim_create_autocmd({ 'CmdlineChanged' }, {
+  group = config_group,
+  pattern = '[:/?]',
+  callback = vim.fn.wildtrigger,
+})
+vim.keymap.set('c', '<Up>', function()
+  return vim.fn.wildmenumode() and '<C-e><Up>' or '<Up>'
+end, { expr = true })
+vim.keymap.set('c', '<Down>', function()
+  return vim.fn.wildmenumode() and '<C-e><Down>' or '<Down>'
+end, { expr = true })
 
 --- Use :help in this file (modeline does not support keywordprg) {{{2
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
