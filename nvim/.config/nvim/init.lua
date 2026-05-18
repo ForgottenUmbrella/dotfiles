@@ -18,6 +18,7 @@ vim.opt.expandtab = true -- Use spaces for indentation
 vim.opt.shiftwidth = 4 -- Number of spaces to indent with
 vim.opt.tabstop = 4 -- Render tabs as 4 spaces wide
 -- Completion {{{3
+vim.opt.complete:append { 'F', 'o' }
 function _G.my_findfunc(cmdarg, cmdcomplete)
   return vim.fn.systemlist { 'fd', '--full-path', '--hidden', '--follow', cmdarg }
 end
@@ -26,7 +27,7 @@ if vim.fn.executable('fd') then
 else
   vim.notify('fd not installed; :find will be slow', vim.log.levels.WARN)
 end
-vim.opt.wildmode = { 'noselect:lastused', 'full' }
+vim.opt.wildmode:prepend { 'noselect:lastused' } -- For cmdline-autocompletion
 
 -- UI {{{2
 -- Windows {{{3
