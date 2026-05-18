@@ -17,6 +17,15 @@ vim.opt.smartcase = true
 vim.opt.expandtab = true -- Use spaces for indentation
 vim.opt.shiftwidth = 4 -- Number of spaces to indent with
 vim.opt.tabstop = 4 -- Render tabs as 4 spaces wide
+-- Completion {{{3
+function _G.my_findfunc(cmdarg, cmdcomplete)
+  return vim.fn.systemlist { 'fd', '--full-path', '--hidden', '--follow', cmdarg }
+end
+if vim.fn.executable('fd') then
+  vim.opt.findfunc = 'v:lua.my_findfunc'
+else
+  vim.notify('fd not installed; :find will be slow', vim.log.levels.WARN)
+end
 
 -- UI {{{2
 -- Windows {{{3
