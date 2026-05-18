@@ -1,6 +1,7 @@
 -- For reference, see `:help lua-guide`.
 -- Reload with `:luafile %`.
 _G.my = {} -- Namespace for my globals
+local config_group = vim.api.nvim_create_augroup('config_group', {})
 
 -- Built-in options {{{1
 -- OS/terminal integration {{{2
@@ -130,21 +131,42 @@ require('mini.sessions').setup {
 -- Language Server Protocol {{{2
 vim.pack.add {
   'https://github.com/neovim/nvim-lspconfig',
-  'https://github.com/mason-org/mason.nvim', -- Dependency
-  'https://github.com/mason-org/mason-lspconfig.nvim',
+  'https://github.com/mason-org/mason.nvim',
   'https://github.com/nvim-lua/plenary.nvim', -- Dependency
   'https://github.com/pmizio/typescript-tools.nvim',
   'https://github.com/creativenull/efmls-configs-nvim',
 }
-require('mason').setup { }
-require('mason-lspconfig').setup {
-  ensure_installed = {
-    'efm', -- Integrates with non-LSP tools like formatters and linters
-    'gopls',
-    'tailwindcss',
-  },
-}
-require('typescript-tools').setup { }
+require('mason').setup {}
+local registry = require 'mason-registry'
+---Ensure an LSP server is installed and enabled.
+---@param spec[1] string The mason package providing the server
+---@param spec.lspconfig? string The name of the lspconfig to enable. Defaults
+---to spec[1].
+---@param spec.requires? string[] Executables that must be available to
+---install the server
+local function mason_lsp_ensure(spec)
+  local pkg_name = spec[1]
+  local lspconfig = spec.lspconfig or pkg_name
+  if vim.fn.executable(pkg_name) or registry.is_installed(pkg_name) then
+    return
+  end
+  for _, required in ipairs(spec.requires or {}) do
+    if not vim.fn.executable(required) then
+      vim.notify(
+        string.format(
+          'Skipping install of %s LSP server; %s is required but not installed',
+          pkg_name, required
+        ),
+        vim.log.levels.WARN
+      )
+      return
+    end
+  end
+  vim.cmd.MasonInstall(pkg_name)
+  vim.lsp.enable(lspconfig)
+end
+-- Integrates with non-LSP tools like formatters & linters
+mason_lsp_ensure { 'efm' }
 local efm_languages = require('efmls-configs.defaults').languages()
 vim.lsp.config('efm', {
   filetypes = vim.tbl_keys(efm_languages),
@@ -157,6 +179,30 @@ vim.lsp.config('efm', {
     documentRangeFormatting = true,
   },
 })
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  group = config_group,
+  pattern = 'go',
+  callback = function()
+    mason_lsp_ensure {
+      'gopls',
+      requires = { 'go' },
+    }
+  end,
+  once = true,
+})
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  group = config_group,
+  pattern = { 'javascriptreact', 'typescriptreact' },
+  callback = function()
+    mason_lsp_ensure {
+      'tailwindcss-language-server',
+      lspconfig = 'tailwind',
+      requires = { 'npm' },
+    }
+  end,
+  once = true,
+})
+require('typescript-tools').setup {}
 
 -- File tree {{{3
 vim.pack.add {
