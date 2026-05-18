@@ -1,5 +1,6 @@
 -- For reference, see `:help lua-guide`.
 -- Reload with `:luafile %`.
+_G.my = {} -- Namespace for my globals
 
 -- Built-in options {{{1
 -- OS/terminal integration {{{2
@@ -19,11 +20,13 @@ vim.opt.shiftwidth = 4 -- Number of spaces to indent with
 vim.opt.tabstop = 4 -- Render tabs as 4 spaces wide
 -- Completion {{{3
 vim.opt.complete:append { 'F', 'o' }
-function _G.my_findfunc(cmdarg, cmdcomplete)
-  return vim.fn.systemlist { 'fd', '--full-path', '--hidden', '--follow', cmdarg }
+function my.findfunc(cmdarg, cmdcomplete)
+  return vim.fn.systemlist {
+    'fd', '--full-path', '--hidden', '--follow', cmdarg,
+  }
 end
-if vim.fn.executable('fd') then
-  vim.opt.findfunc = 'v:lua.my_findfunc'
+if vim.fn.executable 'fd' then
+  vim.opt.findfunc = 'v:lua.my.findfunc'
 else
   vim.notify('fd not installed; :find will be slow', vim.log.levels.WARN)
 end
@@ -162,7 +165,7 @@ vim.pack.add {
   'https://github.com/nvim-neo-tree/neo-tree.nvim', -- Dependency (nvim-lsp-file-operations)
   'https://github.com/antosha417/nvim-lsp-file-operations',
 }
-require('lsp-file-operations').setup { }
+require('lsp-file-operations').setup {}
 vim.keymap.set('n', '<Leader>at', '<Cmd>Neotree toggle<CR>')
 
 -- Editing {{{2
@@ -176,14 +179,14 @@ vim.pack.add {
   -- Balanced pairs
   'https://github.com/nvim-mini/mini.pairs',
 }
-require('mini.ai').setup { }
+require('mini.ai').setup {}
 mini_indentscope = require 'mini.indentscope'
 mini_indentscope.setup {
   draw = {
     animation = mini_indentscope.gen_animation.none(),
   },
 }
-require('mini.pairs').setup { }
+require('mini.pairs').setup {}
 
 -- Git {{{2
 vim.pack.add {
@@ -191,7 +194,7 @@ vim.pack.add {
   'https://github.com/NeogitOrg/neogit',
   'https://github.com/whiteinge/diffconflicts', -- Resolve merge conflicts
 }
-require('blame').setup { }
+require('blame').setup {}
 require('neogit').setup {
   -- Match Magit keymaps
   mappings = {
@@ -212,7 +215,7 @@ vim.keymap.set('n', '<Leader>gc', '<Cmd>DiffConflicts<CR>')
 
 -- Org mode {{{2
 vim.pack.add { 'https://github.com/nvim-orgmode/orgmode' }
-require('orgmode').setup { }
+require('orgmode').setup {}
 vim.lsp.enable 'org'
 wk.add {
   { '<Leader>o', group = 'org mode' },
@@ -223,14 +226,12 @@ vim.pack.add {
   'https://github.com/mfussenegger/nvim-dap', -- Dependency
   'https://github.com/igorlfs/nvim-dap-view',
 }
-require('dap-view').setup { }
+require('dap-view').setup {}
 vim.keymap.set('n', '<Leader>ad', '<Cmd>DapViewOpen<CR>')
 
 -- Autocommands {{{1
-local config_group = vim.api.nvim_create_augroup('config_group', { })
-
 -- Override colour scheme to use a transparent background {{{2
--- Modify an existing highlight group without completely replacing it.
+---Modify an existing highlight group without completely replacing it.
 local function mod_hl(hl_name, opts)
   old_hl = vim.api.nvim_get_hl(0, { name = hl_name })
   new_hl = vim.tbl_extend('force', old_hl, opts)
@@ -238,16 +239,16 @@ local function mod_hl(hl_name, opts)
 end
 
 -- Use a global (static) variable that will persist across reloads
-if _G.my_term_bg == nil then
-  _G.my_term_bg = vim.opt.background:get()
+if my.term_bg == nil then
+  my.term_bg = vim.opt.background:get()
 end
 local original_bg_hl
 
--- Clear the background to use the terminal's background.
--- Returns whether the operation succeeded.
+---Clear the background to use the terminal's background.
+---Returns whether the operation succeeded.
 local function clear_bg()
   -- Only set transparency if colour scheme matches terminal background
-  if vim.opt.background:get() ~= my_term_bg then
+  if vim.opt.background:get() ~= my.term_bg then
     return false
   end
   original_bg_hl = vim.api.nvim_get_hl(0, { name = 'Normal' })
@@ -255,7 +256,7 @@ local function clear_bg()
   return true
 end
 
--- Set background back to original definition from colour scheme.
+---Set background back to original definition from colour scheme.
 local function revert_bg()
   vim.api.nvim_set_hl(0, 'Normal', original_bg_hl)
   original_bg_hl = nil
@@ -279,7 +280,7 @@ vim.api.nvim_create_autocmd({ 'ColorSchemePre' }, {
     -- Reset background option so that dynamic colour schemes follow the
     -- terminal's light/dark mode setting instead of whatever the previous
     -- colour scheme overrode the option to be.
-    vim.opt.background = _G.my_term_bg
+    vim.opt.background = my.term_bg
   end,
 })
 
@@ -290,7 +291,7 @@ vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
 })
 
 -- Only set colour scheme after setting up the autocommand
-vim.cmd.colorscheme(my_term_bg == 'light' and 'wildcharm' or 'habamax')
+vim.cmd.colorscheme(my.term_bg == 'light' and 'wildcharm' or 'habamax')
 
 -- Format on save {{{2
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
@@ -340,7 +341,7 @@ vim.keymap.set('c', '<Down>', function()
   return vim.fn.wildmenumode() and '<C-e><Down>' or '<Down>'
 end, { expr = true })
 
---- Use :help in this file (modeline does not support keywordprg) {{{2
+-- Use :help in this file (modeline does not support keywordprg) {{{2
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   group = config_group,
   pattern = '**/nvim/init.lua', -- Can't use MYVIMRC because it's a symlink
@@ -354,7 +355,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost' }, {
   group = config_group,
   pattern = 'nvim/init.lua',
   callback = function()
-    local plugins_to_delete = { }
+    local plugins_to_delete = {}
     for _, plugin in ipairs(vim.pack.get()) do
       if not plugin.active then
         table.insert(plugins_to_delete, plugin.spec.name)
