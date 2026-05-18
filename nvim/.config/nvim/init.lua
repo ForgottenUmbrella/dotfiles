@@ -215,15 +215,17 @@ vim.pack.add {
 require('dap-view').setup { }
 vim.keymap.set('n', '<Leader>ad', '<Cmd>DapViewOpen<CR>')
 
--- Functions {{{1
--- Modify an existing highlight group without completely replacing it {{{2
+-- Autocommands {{{1
+local config_group = vim.api.nvim_create_augroup('config_group', { })
+
+-- Override colour scheme to use a transparent background {{{2
+-- Modify an existing highlight group without completely replacing it.
 local function mod_hl(hl_name, opts)
   old_hl = vim.api.nvim_get_hl(0, { name = hl_name })
   new_hl = vim.tbl_extend('force', old_hl, opts)
   vim.api.nvim_set_hl(0, hl_name, new_hl)
 end
 
--- Manage background transparency {{{2
 -- Use a global (static) variable that will persist across reloads
 if _G.my_term_bg == nil then
   _G.my_term_bg = vim.opt.background:get()
@@ -259,10 +261,6 @@ vim.keymap.set('n', '<Leader>tb', function()
   end
 end, { desc = 'Toggle background' })
 
--- Autocommands {{{1
-local config_group = vim.api.nvim_create_augroup('config_group', { })
-
--- Override colour scheme to use a transparent background {{{2
 vim.api.nvim_create_autocmd({ 'ColorSchemePre' }, {
   group = config_group,
   pattern = '*',
@@ -273,12 +271,14 @@ vim.api.nvim_create_autocmd({ 'ColorSchemePre' }, {
     vim.opt.background = _G.my_term_bg
   end,
 })
+
 vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
   group = config_group,
   pattern = '*',
   callback = clear_bg,
 })
--- Only set colour scheme after setting up the autocmd
+
+-- Only set colour scheme after setting up the autocommand
 if my_term_bg == 'light' then
   vim.cmd.colorscheme 'wildcharm'
 else
