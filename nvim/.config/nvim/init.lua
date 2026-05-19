@@ -217,7 +217,7 @@ vim.keymap.set('n', '<Leader>at', '<Cmd>Neotree toggle<CR>')
 -- Editing {{{2
 vim.pack.add {
   -- Surround operator (not mini.surround, limits search to find match)
-  'https://github.com/keylechui/nvim-surround',
+  'https://github.com/kylechui/nvim-surround',
   -- Around/inner text objects
   'https://github.com/nvim-mini/mini.ai',
   -- Indentation text object
