@@ -31,7 +31,7 @@ local mode_hl_map = {
   c = '%#DiffText#',
 }
 
-local git_status
+local git_status = ''
 if vim.fn.executable 'git' then
   vim.api.nvim_create_autocmd(
     { 'BufEnter', 'FocusGained', 'BufWritePost', 'User' }, {
@@ -52,11 +52,13 @@ if vim.fn.executable 'git' then
           '\t'
         )
       )
-      git_status = table.concat({
-        has_uncommitted_changes and '*' or '',
-        ahead > 0 and string.format('%d+', ahead) or '',
-        behind > 0 and string.format('%d-', behind) or '',
-      }, ' ')
+      git_status = vim.trim(
+        table.concat {
+          has_uncommitted_changes and '* ' or '',
+          tonumber(ahead) > 0 and string.format('%d+ ', ahead) or '',
+          tonumber(behind) > 0 and string.format('%d- ', behind) or '',
+        }
+      )
     end,
   })
 end
@@ -67,8 +69,14 @@ function my.statusline()
     vim.api.nvim_get_current_win() == tonumber(vim.g.actual_curwin)
   if not is_active then
     return table.concat {
-      '%#StatusLine#', vim.fn.winnr(),
-      '%#StatusLineNC#', file,
+      '%#StatusLine#',
+      ' ',
+      vim.fn.winnr(),
+      ' ',
+
+      '%#StatusLineNC#',
+      ' ',
+      file,
     }
   end
 
@@ -76,17 +84,26 @@ function my.statusline()
   local mode_text = mode_text_map[mode] or 'UNKNOWN'
   local mode_hl = mode_hl_map[mode] or '%#IncSearch#'
   local cwd_path = vim.split(vim.fn.getcwd(), '/')
-  local ruler = '%l,%c%V %p'
+  local progress = table.concat {
+    vim.ui.progress_status(),
+    vim.opt.busy:get() > 0 and '◐' or '',
+  }
+  local ruler = '%l,%c%V %3.p%%'
 
   return table.concat {
     mode_hl,
+    ' ',
     mode_text,
+    ' ',
 
     '%#StatusLine#',
+    ' ',
     cwd_path[#cwd_path],
     git_status,
+    ' ',
 
     '%#StatusLineNC#',
+    ' ',
     file,
     ' ',
     vim.diagnostic.status(),
@@ -94,11 +111,12 @@ function my.statusline()
     '%=',
 
     '%#StatusLine#',
-    vim.ui.progress_status(),
-    vim.opt.busy:get() > 0 and '◐' or '',
+    progress ~= '' and string.format(' %s ', progress) or '',
 
     mode_hl,
+    ' ',
     ruler,
+    ' ',
   }
 end
 

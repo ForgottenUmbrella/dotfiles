@@ -32,7 +32,8 @@ if vim.fn.executable 'fd' then
 else
   vim.notify('fd not installed; :find will be slow', vim.log.levels.WARN)
 end
-vim.opt.wildmode:prepend { 'noselect:lastused' } -- For cmdline-autocompletion
+-- Set noselect for cmdline-autocompletion
+vim.opt.wildmode:prepend { 'noselect:lastused' }
 
 -- UI {{{2
 -- Windows {{{3
@@ -58,7 +59,7 @@ vim.opt.textwidth = 79
 vim.opt.list = true
 
 -- Statusline {{{3
-dofile './statusline.lua'
+require 'my.statusline'
 
 -- Spell-check {{{3
 vim.opt.spell = true
@@ -133,7 +134,7 @@ require('mini.sessions').setup {
 }
 
 -- Language Server Protocol {{{2
-dofile './lsp.lua'
+require 'my.lsp'
 
 -- File tree {{{3
 vim.pack.add {
@@ -210,7 +211,7 @@ require('dap-view').setup {}
 vim.keymap.set('n', '<Leader>ad', '<Cmd>DapViewOpen<CR>')
 
 -- Autocommands {{{1
-dofile './background.lua'
+require 'my.background'
 
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   group = my.augroup,
@@ -247,7 +248,9 @@ vim.api.nvim_create_autocmd({ 'CmdlineChanged' }, {
   group = my.augroup,
   pattern = '[:/?]',
   desc = 'cmdline-autocompletion',
-  callback = vim.fn.wildtrigger,
+  callback = function()
+    vim.fn.wildtrigger()
+  end,
 })
 vim.keymap.set('c', '<Up>', function()
   return vim.fn.wildmenumode() and '<C-e><Up>' or '<Up>'

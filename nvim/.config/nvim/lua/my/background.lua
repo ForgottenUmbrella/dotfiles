@@ -21,7 +21,7 @@ local function clear_bg()
     return false
   end
   original_bg_hl = vim.api.nvim_get_hl(0, { name = 'Normal' })
-  mod_hl('Normal', { ctermbg = 'NONE', bg = 'NONE' })
+  mod_hl('Normal', { ctermbg = 'NONE', guibg = 'NONE' })
   return true
 end
 
