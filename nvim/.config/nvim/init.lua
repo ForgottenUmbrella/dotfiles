@@ -261,7 +261,7 @@ end, { expr = true })
 
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   group = my.augroup,
-  pattern = '**/nvim/init.lua', -- Can't use MYVIMRC because it's a symlink
+  pattern = '**/nvim/**/*.lua',
   desc = 'Use :help in nvim/init.lua',
   callback = function()
     -- Can't be set via modeline
@@ -271,7 +271,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
 
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost' }, {
   group = my.augroup,
-  pattern = '**/nvim/init.lua',
+  pattern = '**/nvim/**/*.lua',
   desc = 'Clean up unused plugins',
   callback = function()
     local plugins_to_delete = {}

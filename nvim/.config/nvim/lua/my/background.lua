@@ -21,7 +21,7 @@ local function clear_bg()
     return false
   end
   original_bg_hl = vim.api.nvim_get_hl(0, { name = 'Normal' })
-  mod_hl('Normal', { ctermbg = 'NONE', guibg = 'NONE' })
+  mod_hl('Normal', { ctermbg = 'NONE', bg = 'NONE' })
   return true
 end
 
@@ -56,8 +56,16 @@ vim.api.nvim_create_autocmd({ 'ColorSchemePre' }, {
 vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
   group = my.augroup,
   desc = 'Make background transparent',
-  callback = clear_bg,
+  callback = function()
+    clear_bg() -- Swallow return value so the autocmd doesn't get deleted
+  end,
 })
 
--- Only set colour scheme after setting up the autocommand
-vim.cmd.colorscheme(my.term_bg == 'light' and 'wildcharm' or 'habamax')
+vim.api.nvim_create_autocmd({ 'VimEnter' }, {
+  group = my.augroup,
+  desc = 'Set colourscheme when ready',
+  callback = function()
+    vim.cmd.colorscheme(my.term_bg == 'light' and 'wildcharm' or 'habamax')
+  end,
+  nested = true,
+})

@@ -52,13 +52,17 @@ if vim.fn.executable 'git' then
           '\t'
         )
       )
-      git_status = vim.trim(
-        table.concat {
-          has_uncommitted_changes and '* ' or '',
-          tonumber(ahead) > 0 and string.format('%d+ ', ahead) or '',
-          tonumber(behind) > 0 and string.format('%d- ', behind) or '',
-        }
-      )
+      local git_segments = {}
+      if has_uncommitted_changes then
+        table.insert(git_segments, '[*]')
+      end
+      if tonumber(ahead) > 0 then
+        table.insert(git_segments, string.format('[%d+]', ahead))
+      end
+      if tonumber(behind) > 0 then
+        table.insert(git_segments, string.format('[%d-]', behind))
+      end
+      git_status = table.concat(git_segments, ' ')
     end,
   })
 end
@@ -99,8 +103,8 @@ function my.statusline()
     '%#StatusLine#',
     ' ',
     cwd_path[#cwd_path],
-    git_status,
     ' ',
+    git_status ~= '' and string.format('%s ', git_status) or '',
 
     '%#StatusLineNC#',
     ' ',
