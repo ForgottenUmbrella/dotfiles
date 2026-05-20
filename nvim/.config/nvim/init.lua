@@ -1,7 +1,8 @@
 -- For reference, see `:help lua-guide`.
 -- Reload with `:luafile %`.
+
 _G.my = {} -- Namespace for my globals
-local config_group = vim.api.nvim_create_augroup('config_group', {})
+my.augroup = vim.api.nvim_create_augroup('my_augroup', {})
 
 -- Built-in options {{{1
 -- OS/terminal integration {{{2
@@ -129,88 +130,7 @@ require('mini.sessions').setup {
 }
 
 -- Language Server Protocol {{{2
-vim.pack.add {
-  'https://github.com/neovim/nvim-lspconfig',
-  'https://github.com/mason-org/mason.nvim',
-  'https://github.com/nvim-lua/plenary.nvim', -- Dependency
-  'https://github.com/pmizio/typescript-tools.nvim',
-  'https://github.com/creativenull/efmls-configs-nvim',
-}
-require('mason').setup {}
-local registry = require 'mason-registry'
----Ensure an LSP server is installed and enabled.
----@param spec string|table If string, the mason package providing the server
----to install. Otherwise a full spec with the following fields.
----@param spec[1] string The mason package providing the server to install
----@param spec.lspconfig? string The name of the lspconfig to enable. Defaults
----to spec[1].
----@param spec.requires? string|string[] Executable(s) that must be available
----to install the server
-local function mason_lsp_ensure(spec)
-  if type(spec) == 'string' then
-    spec = { spec }
-  end
-  local pkg_name = spec[1]
-  local lspconfig = spec.lspconfig or pkg_name
-  local requires = type(spec.requires) == 'string' and
-    { spec.requires } or
-    spec.requires or {}
-  if vim.fn.executable(pkg_name) or registry.is_installed(pkg_name) then
-    return
-  end
-  for _, required in ipairs(requires) do
-    if not vim.fn.executable(required) then
-      vim.notify(
-        string.format(
-          'Skipping install of %s LSP server; \z
-          %s is required but not installed',
-          pkg_name, required
-        ),
-        vim.log.levels.WARN
-      )
-      return
-    end
-  end
-  vim.cmd.MasonInstall(pkg_name)
-  vim.lsp.enable(lspconfig)
-end
--- Integrates with non-LSP tools like formatters & linters
-mason_lsp_ensure 'efm'
-local efm_languages = require('efmls-configs.defaults').languages()
-vim.lsp.config('efm', {
-  filetypes = vim.tbl_keys(efm_languages),
-  settings = {
-    rootMarkers = { '.git/' },
-    languages = efm_languages,
-  },
-  init_options = {
-    documentFormatting = true,
-    documentRangeFormatting = true,
-  },
-})
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-  group = config_group,
-  pattern = 'go',
-  desc = 'Install go LSP server',
-  callback = function()
-    mason_lsp_ensure { 'gopls', requires = 'go' }
-  end,
-  once = true,
-})
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-  group = config_group,
-  pattern = { 'javascriptreact', 'typescriptreact' },
-  desc = 'Install tailwind LSP server',
-  callback = function()
-    mason_lsp_ensure {
-      'tailwindcss-language-server',
-      lspconfig = 'tailwind',
-      requires = 'npm',
-    }
-  end,
-  once = true,
-})
-require('typescript-tools').setup {}
+dofile './lsp.lua'
 
 -- File tree {{{3
 vim.pack.add {
@@ -287,85 +207,22 @@ require('dap-view').setup {}
 vim.keymap.set('n', '<Leader>ad', '<Cmd>DapViewOpen<CR>')
 
 -- Autocommands {{{1
--- Override colour scheme to use a transparent background {{{2
----Modify an existing highlight group without completely replacing it.
-local function mod_hl(hl_name, opts)
-  local old_hl = vim.api.nvim_get_hl(0, { name = hl_name })
-  local new_hl = vim.tbl_extend('force', old_hl, opts)
-  vim.api.nvim_set_hl(0, hl_name, new_hl)
-end
-
--- Use a global (static) variable that will persist across reloads
-if my.term_bg == nil then
-  my.term_bg = vim.opt.background:get()
-end
-local original_bg_hl
-
----Clear the background to use the terminal's background.
----Returns whether the operation succeeded.
-local function clear_bg()
-  -- Only set transparency if colour scheme matches terminal background
-  if vim.opt.background:get() ~= my.term_bg then
-    return false
-  end
-  original_bg_hl = vim.api.nvim_get_hl(0, { name = 'Normal' })
-  mod_hl('Normal', { ctermbg = 'NONE', bg = 'NONE' })
-  return true
-end
-
----Set background back to original definition from colour scheme.
-local function revert_bg()
-  vim.api.nvim_set_hl(0, 'Normal', original_bg_hl)
-  original_bg_hl = nil
-end
-
-vim.keymap.set('n', '<Leader>tb', function()
-  if original_bg_hl then
-    revert_bg()
-  elseif not clear_bg() then
-    vim.notify(
-      'Colour scheme is incompatible with terminal background',
-      vim.log.levels.WARN
-    )
-  end
-end, { desc = 'Toggle background' })
-
-vim.api.nvim_create_autocmd({ 'ColorSchemePre' }, {
-  group = config_group,
-  desc = 'Reset background option',
-  callback = function()
-    -- Reset background option so that dynamic colour schemes follow the
-    -- terminal's light/dark mode setting instead of whatever the previous
-    -- colour scheme overrode the option to be.
-    vim.opt.background = my.term_bg
-  end,
-})
-
-vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
-  group = config_group,
-  desc = 'Make background transparent',
-  callback = clear_bg,
-})
-
--- Only set colour scheme after setting up the autocommand
-vim.cmd.colorscheme(my.term_bg == 'light' and 'wildcharm' or 'habamax')
--- }}}
+dofile './background.lua'
 
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-  group = config_group,
+  group = my.augroup,
   desc = 'Format on save',
   callback = vim.lsp.buf.format,
 })
 
--- Delete trailing whitespace on save {{{2
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-  group = config_group,
+  group = my.augroup,
   desc = 'Delete trailing whitespace on save',
   command = [[%s/\s\+$//e]],
 })
 
 vim.api.nvim_create_autocmd({ 'LspAttach' }, {
-  group = config_group,
+  group = my.augroup,
   desc = 'Use LSP for folding',
   callback = function()
     if not vim.opt.diff:get() then
@@ -376,7 +233,7 @@ vim.api.nvim_create_autocmd({ 'LspAttach' }, {
 })
 
 vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
-  group = config_group,
+  group = my.augroup,
   desc = 'Highlight on yank',
   callback = function()
     vim.hl.on_yank { hlgroup = 'Visual', timeout = 300 }
@@ -384,7 +241,7 @@ vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
 })
 
 vim.api.nvim_create_autocmd({ 'CmdlineChanged' }, {
-  group = config_group,
+  group = my.augroup,
   pattern = '[:/?]',
   desc = 'cmdline-autocompletion',
   callback = vim.fn.wildtrigger,
@@ -397,7 +254,7 @@ vim.keymap.set('c', '<Down>', function()
 end, { expr = true })
 
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
-  group = config_group,
+  group = my.augroup,
   pattern = '**/nvim/init.lua', -- Can't use MYVIMRC because it's a symlink
   desc = 'Use :help in nvim/init.lua',
   callback = function()
@@ -407,7 +264,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
 })
 
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost' }, {
-  group = config_group,
+  group = my.augroup,
   pattern = '**/nvim/init.lua',
   desc = 'Clean up unused plugins',
   callback = function()
