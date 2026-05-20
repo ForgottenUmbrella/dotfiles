@@ -191,6 +191,7 @@ vim.lsp.config('efm', {
 vim.api.nvim_create_autocmd({ 'FileType' }, {
   group = config_group,
   pattern = 'go',
+  desc = 'Install go LSP server',
   callback = function()
     mason_lsp_ensure { 'gopls', requires = 'go' }
   end,
@@ -199,6 +200,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
 vim.api.nvim_create_autocmd({ 'FileType' }, {
   group = config_group,
   pattern = { 'javascriptreact', 'typescriptreact' },
+  desc = 'Install tailwind LSP server',
   callback = function()
     mason_lsp_ensure {
       'tailwindcss-language-server',
@@ -288,8 +290,8 @@ vim.keymap.set('n', '<Leader>ad', '<Cmd>DapViewOpen<CR>')
 -- Override colour scheme to use a transparent background {{{2
 ---Modify an existing highlight group without completely replacing it.
 local function mod_hl(hl_name, opts)
-  old_hl = vim.api.nvim_get_hl(0, { name = hl_name })
-  new_hl = vim.tbl_extend('force', old_hl, opts)
+  local old_hl = vim.api.nvim_get_hl(0, { name = hl_name })
+  local new_hl = vim.tbl_extend('force', old_hl, opts)
   vim.api.nvim_set_hl(0, hl_name, new_hl)
 end
 
@@ -330,7 +332,7 @@ end, { desc = 'Toggle background' })
 
 vim.api.nvim_create_autocmd({ 'ColorSchemePre' }, {
   group = config_group,
-  pattern = '*',
+  desc = 'Reset background option',
   callback = function()
     -- Reset background option so that dynamic colour schemes follow the
     -- terminal's light/dark mode setting instead of whatever the previous
@@ -341,31 +343,30 @@ vim.api.nvim_create_autocmd({ 'ColorSchemePre' }, {
 
 vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
   group = config_group,
-  pattern = '*',
+  desc = 'Make background transparent',
   callback = clear_bg,
 })
 
 -- Only set colour scheme after setting up the autocommand
 vim.cmd.colorscheme(my.term_bg == 'light' and 'wildcharm' or 'habamax')
+-- }}}
 
--- Format on save {{{2
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   group = config_group,
-  pattern = '*',
+  desc = 'Format on save',
   callback = vim.lsp.buf.format,
 })
 
 -- Delete trailing whitespace on save {{{2
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   group = config_group,
-  pattern = '*',
+  desc = 'Delete trailing whitespace on save',
   command = [[%s/\s\+$//e]],
 })
 
--- Use LSP for folding {{{2
 vim.api.nvim_create_autocmd({ 'LspAttach' }, {
   group = config_group,
-  pattern = '*',
+  desc = 'Use LSP for folding',
   callback = function()
     if not vim.opt.diff:get() then
       vim.opt_local.foldmethod = 'expr'
@@ -374,19 +375,18 @@ vim.api.nvim_create_autocmd({ 'LspAttach' }, {
   end,
 })
 
--- Highlight on yank {{{2
 vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
   group = config_group,
-  pattern = '*',
+  desc = 'Highlight on yank',
   callback = function()
     vim.hl.on_yank { hlgroup = 'Visual', timeout = 300 }
   end,
 })
 
--- Autocomplete command line (cmdline-autocompletion) {{{2
 vim.api.nvim_create_autocmd({ 'CmdlineChanged' }, {
   group = config_group,
   pattern = '[:/?]',
+  desc = 'cmdline-autocompletion',
   callback = vim.fn.wildtrigger,
 })
 vim.keymap.set('c', '<Up>', function()
@@ -396,19 +396,20 @@ vim.keymap.set('c', '<Down>', function()
   return vim.fn.wildmenumode() and '<C-e><Down>' or '<Down>'
 end, { expr = true })
 
--- Use :help in this file (modeline does not support keywordprg) {{{2
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   group = config_group,
   pattern = '**/nvim/init.lua', -- Can't use MYVIMRC because it's a symlink
+  desc = 'Use :help in nvim/init.lua',
   callback = function()
+    -- Can't be set via modeline
     vim.opt_local.keywordprg = ':help!'
   end,
 })
 
--- Clean up unused plugins {{{2
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost' }, {
   group = config_group,
-  pattern = 'nvim/init.lua',
+  pattern = '**/nvim/init.lua',
+  desc = 'Clean up unused plugins',
   callback = function()
     local plugins_to_delete = {}
     for _, plugin in ipairs(vim.pack.get()) do
