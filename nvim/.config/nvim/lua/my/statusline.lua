@@ -126,3 +126,10 @@ end
 
 vim.opt.statusline = '%{% v:lua.my.statusline() %}'
 vim.opt.showmode = false
+
+vim.api.nvim_create_autocmd({ 'ModeChanged' }, {
+  group = my.augroup,
+  desc = 'Redraw statusline on mode change',
+  -- Visual line/block mode doesn't update statusline automatically
+  command = 'redrawstatus',
+})
