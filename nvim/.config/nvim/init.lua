@@ -57,6 +57,9 @@ vim.opt.textwidth = 79
 -- Show whitespace {{{3
 vim.opt.list = true
 
+-- Statusline {{{3
+dofile './statusline.lua'
+
 -- Spell-check {{{3
 vim.opt.spell = true
 vim.opt.spelloptions = { 'camel', 'noplainbuffer' }
