@@ -37,6 +37,7 @@ vim.opt.wildmode:prepend { 'noselect:lastused' }
 
 -- UI {{{2
 -- Windows {{{3
+require('vim._core.ui2').enable {}
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.title = true
