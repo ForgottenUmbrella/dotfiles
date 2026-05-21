@@ -32,6 +32,7 @@ if vim.fn.executable 'fd' then
 else
   vim.notify('fd not installed; :find will be slow', vim.log.levels.WARN)
 end
+vim.opt.pumheight = 10
 -- Set noselect for cmdline-autocompletion
 vim.opt.wildmode:prepend { 'noselect:lastused' }
 
@@ -64,6 +65,7 @@ vim.opt.list = true
 
 -- Statusline {{{3
 require 'my.statusline'
+vim.opt.cmdheight = 0
 
 -- Spell-check {{{3
 vim.opt.spell = true
@@ -264,12 +266,11 @@ vim.api.nvim_create_autocmd({ 'CmdlineChanged' }, {
     vim.fn.wildtrigger()
   end,
 })
-vim.keymap.set('c', '<Up>', function()
-  return vim.fn.wildmenumode() and '<C-e><Up>' or '<Up>'
-end, { expr = true })
-vim.keymap.set('c', '<Down>', function()
-  return vim.fn.wildmenumode() and '<C-e><Down>' or '<Down>'
-end, { expr = true })
+for _, key in ipairs { '<Up>', '<Down>', '<Right>' } do
+  vim.keymap.set('c', key, function()
+    return vim.fn.wildmenumode() and '<C-e>' .. key or key
+  end, { expr = true })
+end
 
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   group = my.augroup,

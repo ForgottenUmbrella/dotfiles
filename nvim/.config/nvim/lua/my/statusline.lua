@@ -79,9 +79,7 @@ end
 
 function my.statusline()
   local file = '%f %h%w%m%r'
-  local is_active =
-    vim.api.nvim_get_current_win() == tonumber(vim.g.actual_curwin)
-  if not is_active then
+  if vim.api.nvim_get_current_win() ~= tonumber(vim.g.actual_curwin) then
     return table.concat {
       '%#StatusLine# ',
       vim.fn.winnr(), ' ',
@@ -95,16 +93,34 @@ function my.statusline()
   local width = vim.api.nvim_win_get_width(0)
   local mode = vim.api.nvim_get_mode().mode
   local mode_info = modes[mode] or {
-    long = string.format('UNKNOWN-%s', mode),
-    short = string.format('?%s', mode),
+    long = 'UNKNOWN-' .. mode,
+    short = '?' .. mode,
     hl = '%#MyStatusLineNormal#',
   }
   local cwd_path = vim.split(vim.fn.getcwd(), '/')
+  local searchcount = ''
+  if vim.v.hlsearch == 1 then
+    local ok, search = pcall(vim.fn.searchcount)
+    if ok and search.current > 0 then
+      local dir = vim.v.searchforward == 1 and '/' or '?'
+      local current = search.current > search.maxcount and
+        search.current .. '+' or
+        search.current
+      local total = search.total > search.maxcount and
+        search.total .. '+' or
+        search.total
+      searchcount = string.format('%s%s [%s/%s]',
+        dir, vim.fn.getreg('/'), current, total)
+    end
+  end
+  local reg = vim.fn.reg_recording()
+  local macro = reg ~= '' and 'recording @' .. reg or ''
   local progress = table.concat {
     vim.ui.progress_status(),
     vim.opt.busy:get() > 0 and '◐' or '',
   }
-  local ruler = width >= 80 and '%6(%l:%c%V%) %3p%%' or '%l:%c%V %p%%'
+  local percentage = '%3p%%'
+  local ruler = width >= 80 and '%6(%l:%c%V%)' or '%l:%c%V'
 
   return table.concat {
     mode_info.hl, ' ',
@@ -113,7 +129,7 @@ function my.statusline()
     width >= 80 and table.concat {
       '%#StatusLine# ',
       cwd_path[#cwd_path], ' ',
-      git_status ~= '' and string.format('%s ', git_status) or '',
+      git_status ~= '' and git_status .. ' ' or '',
     } or '',
 
     '%#StatusLineNC# ',
@@ -121,8 +137,12 @@ function my.statusline()
     file, ' ',
     vim.diagnostic.status(),
     '%=',
+    searchcount ~= '' and searchcount .. ' ' or '',
+    macro ~= '' and macro .. ' ' or '',
+    progress ~= '' and progress .. ' ' or '',
 
-    progress ~= '' and string.format('%#StatusLine# %s ', progress) or '',
+    '%#StatusLine# ',
+    percentage, ' ',
 
     mode_info.hl, ' ',
     ruler, ' ',
@@ -130,6 +150,7 @@ function my.statusline()
 end
 
 vim.opt.statusline = '%{% v:lua.my.statusline() %}'
+vim.opt.shortmess:append { s = true, S = true, q = true }
 vim.opt.showmode = false
 
 vim.api.nvim_create_autocmd({ 'ModeChanged' }, {
