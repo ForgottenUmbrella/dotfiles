@@ -32,7 +32,7 @@ if vim.fn.executable 'fd' then
 else
   vim.notify('fd not installed; :find will be slow', vim.log.levels.WARN)
 end
-vim.opt.pumheight = 10
+vim.opt.pumheight = 5
 -- Set noselect for cmdline-autocompletion
 vim.opt.wildmode:prepend { 'noselect:lastused' }
 
