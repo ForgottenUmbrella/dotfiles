@@ -53,6 +53,7 @@ if is_macos then
 end
 
 -- Behaviour {{{1
+config.enable_csi_u_key_encoding = true
 if wezterm.run_child_process { 'infocmp', 'wezterm' } then
   config.term = 'wezterm'
 else
