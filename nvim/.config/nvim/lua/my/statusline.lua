@@ -62,17 +62,11 @@ if vim.fn.executable 'git' then
           '\t'
         )
       )
-      local git_segments = {}
-      if has_uncommitted_changes then
-        table.insert(git_segments, '[*]')
-      end
-      if tonumber(ahead) > 0 then
-        table.insert(git_segments, string.format('[%d+]', ahead))
-      end
-      if tonumber(behind) > 0 then
-        table.insert(git_segments, string.format('[%d-]', behind))
-      end
-      git_status = table.concat(git_segments, ' ')
+      git_status = table.concat {
+        has_uncommitted_changes and '[*]' or '',
+        tonumber(ahead) > 0 and string.format('[%d+]', ahead) or '',
+        tonumber(behind) > 0 and string.format('[%d-]', behind) or '',
+      }
     end,
   })
 end
