@@ -1,4 +1,4 @@
--- Override colour scheme to use a transparent background.
+-- Set colour scheme with a transparent background.
 
 ---Modify an existing highlight group without completely replacing it.
 local function mod_hl(hl_name, opts)

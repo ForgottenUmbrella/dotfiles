@@ -36,6 +36,8 @@ end
 vim.opt.wildmode:prepend { 'noselect:lastused' }
 
 -- UI {{{2
+require 'my.colourscheme'
+
 -- Windows {{{3
 require('vim._core.ui2').enable {}
 vim.opt.splitbelow = true
@@ -212,8 +214,6 @@ require('dap-view').setup {}
 vim.keymap.set('n', '<Leader>ad', '<Cmd>DapViewOpen<CR>')
 
 -- Autocommands {{{1
-require 'my.background'
-
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   group = my.augroup,
   desc = 'Format on save',
