@@ -150,8 +150,18 @@ vim.pack.add {
   'https://github.com/nvim-neo-tree/neo-tree.nvim',
   'https://github.com/antosha417/nvim-lsp-file-operations',
 }
+require('neo-tree').setup {
+  filesystem = {
+    filtered_items = {
+      hide_dotfiles = false,
+    },
+  },
+  mappings = {
+    ['<Tab>'] = 'open',
+  },
+}
 require('lsp-file-operations').setup {}
-vim.keymap.set('n', '<Leader>at', '<Cmd>Neotree toggle<CR>')
+vim.keymap.set('n', '<Leader>at', '<Cmd>Neotree toggle reveal<CR>')
 
 -- Editing {{{2
 vim.pack.add {
