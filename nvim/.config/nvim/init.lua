@@ -51,7 +51,8 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 -- Folding {{{4
 vim.opt.foldlevelstart = 99 -- Start unfolded
-vim.opt.foldmethod = 'syntax'
+vim.opt.foldmethod = 'indent' -- Most syntax files don't define folds
+vim.keymap.set('n', '<Tab>', 'za')
 -- Scrolling {{{4
 vim.opt.scrolloff = 2 -- Always show some lines above/below the cursor
 -- Line length {{{4
