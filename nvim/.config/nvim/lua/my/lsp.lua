@@ -28,23 +28,24 @@ local function mason_lsp_ensure(spec)
   local requires = type(spec.requires) == 'string' and
     { spec.requires } or
     spec.requires or {}
-  if vim.fn.executable(pkg_name) or registry.is_installed(pkg_name) then
-    return
-  end
-  for _, required in ipairs(requires) do
-    if not vim.fn.executable(required) then
-      vim.notify(
-        string.format(
-          'Skipping install of %s LSP server; \z
-          %s is required but not installed',
-          pkg_name, required
-        ),
-        vim.log.levels.WARN
-      )
-      return
+
+  if not (vim.fn.executable(pkg_name) or registry.is_installed(pkg_name)) then
+    for _, required in ipairs(requires) do
+      if not vim.fn.executable(required) then
+        vim.notify(
+          string.format(
+            'Skipping install of %s LSP server; \z
+            %s is required but not installed',
+            pkg_name, required
+          ),
+          vim.log.levels.WARN
+        )
+        return
+      end
     end
+    vim.cmd.MasonInstall(pkg_name)
   end
-  vim.cmd.MasonInstall(pkg_name)
+
   vim.lsp.enable(lspconfig)
 end
 
