@@ -229,12 +229,6 @@ vim.keymap.set('n', '<Leader>ad', '<Cmd>DapViewOpen<CR>')
 -- Autocommands {{{1
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   group = my.augroup,
-  desc = 'Format on save',
-  callback = vim.lsp.buf.format,
-})
-
-vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-  group = my.augroup,
   desc = 'Delete trailing whitespace on save',
   command = [[%s/\s\+$//e]],
 })
