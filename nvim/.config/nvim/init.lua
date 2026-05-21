@@ -40,15 +40,16 @@ vim.opt.wildmode:prepend { 'noselect:lastused' }
 -- UI {{{2
 require 'my.colourscheme'
 require 'my.statusline'
-vim.opt.cmdheight = 0
-
--- Windows {{{3
 require('vim._core.ui2').enable {
   msg = {
     -- Show messages in a toast instead of covering statusline (cmdheight=0)
     targets = 'msg',
   },
 }
+vim.opt.cmdheight = 0
+vim.opt.shortmess:append 'W'
+
+-- Windows {{{3
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.title = true
