@@ -256,9 +256,7 @@ vim.api.nvim_create_autocmd({ 'CmdlineChanged' }, {
   group = my.augroup,
   pattern = '[:/?]',
   desc = 'cmdline-autocompletion',
-  callback = function()
-    vim.fn.wildtrigger()
-  end,
+  callback = function() vim.fn.wildtrigger() end,
 })
 for _, key in ipairs { '<Up>', '<Down>', '<Right>' } do
   vim.keymap.set('c', key, function()
@@ -270,10 +268,8 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   group = my.augroup,
   pattern = '**/nvim/**/*.lua',
   desc = 'Use :help in nvim/init.lua',
-  callback = function()
-    -- Can't be set via modeline
-    vim.opt_local.keywordprg = ':help!'
-  end,
+  -- Can't be set via modeline
+  callback = function() vim.opt_local.keywordprg = ':help!' end,
 })
 
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost' }, {

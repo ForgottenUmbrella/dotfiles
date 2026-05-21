@@ -42,20 +42,17 @@ end, { desc = 'Toggle background' })
 vim.api.nvim_create_autocmd({ 'ColorSchemePre' }, {
   group = my.augroup,
   desc = 'Reset background option',
-  callback = function()
-    -- Reset background option so that dynamic colour schemes follow the
-    -- terminal's light/dark mode setting instead of whatever the previous
-    -- colour scheme overrode the option to be.
-    vim.opt.background = my.term_bg
-  end,
+  -- Reset background option so that dynamic colour schemes follow the
+  -- terminal's light/dark mode setting instead of whatever the previous
+  -- colour scheme overrode the option to be.
+  callback = function() vim.opt.background = my.term_bg end,
 })
 
 vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
   group = my.augroup,
   desc = 'Make background transparent',
-  callback = function()
-    clear_bg() -- Swallow return value so the autocmd doesn't get deleted
-  end,
+  -- Swallow return value so the autocmd doesn't get deleted
+  callback = function() clear_bg() end,
 })
 
 vim.api.nvim_create_autocmd({ 'VimEnter' }, {
