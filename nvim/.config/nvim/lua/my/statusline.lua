@@ -49,23 +49,25 @@ if vim.fn.executable 'git' then
     pattern = { '*', 'NeogitStatusRefreshed' },
     desc = 'Update git statusline',
     callback = function()
-      local has_uncommitted_changes = vim.system(
+      local status_result = vim.system(
         { 'git', 'status', '--porcelain' },
         { text = true }
-      ):wait().stdout ~= ''
-      local ahead, behind = unpack(
-        vim.split(
-          vim.system(
-            { 'git', 'rev-list', '--left-right', '--count', 'HEAD...@{u}' },
-            { text = true }
-          ):wait().stdout,
-          '\t'
-        )
-      )
+      ):wait()
+      if status_result.code ~= 0 then
+        -- Not a git repository.
+        git_status = ''
+        return
+      end
+      local has_uncommitted_changes = status_result.stdout ~= ''
+      local branch_diff = vim.system(
+        { 'git', 'rev-list', '--left-right', '--count', 'HEAD...@{u}' },
+        { text = true }
+      ):wait()
+      local ahead, behind = unpack(vim.split(branch_diff.stdout, '\t'))
       git_status = table.concat {
         has_uncommitted_changes and '[*]' or '',
-        tonumber(ahead) > 0 and string.format('[%d+]', ahead) or '',
-        tonumber(behind) > 0 and string.format('[%d-]', behind) or '',
+        (tonumber(ahead) or 0) > 0 and string.format('[%d+]', ahead) or '',
+        (tonumber(behind) or 0) > 0 and string.format('[%d-]', behind) or '',
       }
     end,
   })
@@ -144,7 +146,7 @@ function my.statusline()
 end
 
 vim.opt.statusline = '%{% v:lua.my.statusline() %}'
-vim.opt.shortmess:append { s = true, S = true, q = true }
+vim.opt.shortmess:append 'sSq'
 vim.opt.showmode = false
 
 vim.api.nvim_create_autocmd({ 'ModeChanged' }, {
