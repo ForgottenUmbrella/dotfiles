@@ -86,7 +86,7 @@ function my.statusline()
     }
   end
 
-  local mode = vim.api.nvim_get_mode().mode
+  local mode = vim.api.nvim_get_mode().mode:sub(1, 1)
   local mode_info = modes[mode] or {
     long = 'UNKNOWN-' .. mode,
     short = '?' .. mode,
