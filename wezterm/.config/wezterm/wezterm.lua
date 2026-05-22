@@ -53,7 +53,6 @@ if is_macos then
 end
 
 -- Behaviour {{{1
-config.enable_csi_u_key_encoding = true
 if wezterm.run_child_process { 'infocmp', 'wezterm' } then
   config.term = 'wezterm'
 else
@@ -72,6 +71,7 @@ wezterm.on('user-var-changed', function(window, pane, name, value)
 end)
 
 -- Keybindings {{{1
+config.enable_kitty_keyboard = true
 local mod
 if is_macos then
   mod = 'CMD'
