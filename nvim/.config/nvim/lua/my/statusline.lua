@@ -134,7 +134,7 @@ function my.statusline()
     vim.diagnostic.status(),
     '%=',
     searchcount ~= '' and searchcount .. ' ' or '',
-    vim.w.quickfix_title ~= '' and vim.w.quickfix_title .. ' ' or '',
+    (vim.w.quickfix_title or '') ~= '' and vim.w.quickfix_title .. ' ' or '',
     macro ~= '' and macro .. ' ' or '',
     progress ~= '' and progress .. ' ' or '',
 
