@@ -1,5 +1,5 @@
 -- For reference, see `:help lua-guide`.
--- Reload with `:luafile %`.
+-- Reload with `:restart`.
 
 _G.my = {} -- Namespace for my globals
 my.augroup = vim.api.nvim_create_augroup('my_augroup', {})
