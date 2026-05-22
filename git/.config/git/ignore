@@ -104,3 +104,4 @@ cmake_install.cmake
 \#*
 **/.mypy_cache/
 auto/
+Session.vim
