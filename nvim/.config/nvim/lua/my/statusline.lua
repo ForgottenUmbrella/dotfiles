@@ -134,6 +134,7 @@ function my.statusline()
     vim.diagnostic.status(),
     '%=',
     searchcount ~= '' and searchcount .. ' ' or '',
+    vim.w.quickfix_title ~= '' and vim.w.quickfix_title .. ' ' or '',
     macro ~= '' and macro .. ' ' or '',
     progress ~= '' and progress .. ' ' or '',
 
@@ -150,6 +151,7 @@ end
 vim.opt.statusline = '%{% v:lua.my.statusline() %}'
 vim.opt.shortmess:append 'sSq'
 vim.opt.showmode = false
+vim.g.qf_disable_statusline = 1
 
 vim.api.nvim_create_autocmd({ 'ModeChanged' }, {
   group = my.augroup,
