@@ -86,7 +86,6 @@ function my.statusline()
     }
   end
 
-  local width = vim.api.nvim_win_get_width(0)
   local mode = vim.api.nvim_get_mode().mode
   local mode_info = modes[mode] or {
     long = 'UNKNOWN-' .. mode,
@@ -116,7 +115,8 @@ function my.statusline()
     vim.opt.busy:get() > 0 and '◐' or '',
   }
   local percentage = '%3p%%'
-  local ruler = width >= 80 and '%6(%l:%c%V%)' or '%l:%c%V'
+  local ruler = '%l:%c'
+  local width = vim.api.nvim_win_get_width(0)
 
   return table.concat {
     mode_info.hl, ' ',
@@ -137,11 +137,13 @@ function my.statusline()
     macro ~= '' and macro .. ' ' or '',
     progress ~= '' and progress .. ' ' or '',
 
-    '%#StatusLine# ',
-    percentage, ' ',
+    width >= 80 and table.concat {
+      '%#StatusLine# ',
+      percentage, ' ',
+    } or '',
 
     mode_info.hl, ' ',
-    ruler, ' ',
+    width >= 100 and string.format('%%6(%s%%)', ruler) or ruler, ' ',
   }
 end
 
