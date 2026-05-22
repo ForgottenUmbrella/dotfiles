@@ -85,6 +85,7 @@ vim.keymap.set('n', '<Leader><Leader>', ':', { desc = 'Run command' })
 vim.cmd.packadd 'nvim.difftool' -- Diff multiple files in quickfix list
 vim.cmd.packadd 'nvim.undotree'
 vim.keymap.set('n', '<Leader>au', '<Cmd>Undotree<CR>')
+vim.g.markdown_folding = 1
 -- Disable netrw (buggy) {{{3
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
@@ -222,6 +223,7 @@ vim.lsp.enable 'org'
 wk.add {
   { '<Leader>o', group = 'org mode' },
 }
+vim.g.org_folding = 1
 
 -- Debug Adapter Protocol {{{2
 vim.pack.add {
