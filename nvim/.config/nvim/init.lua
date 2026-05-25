@@ -70,7 +70,10 @@ vim.keymap.set('n', '<Tab>', 'za')
 -- Scrolling {{{4
 vim.opt.scrolloff = 2 -- Always show some lines above/below the cursor
 -- Line length {{{4
+vim.opt.breakindent = true
 vim.opt.colorcolumn = { 80 }
+vim.opt.linebreak = true
+vim.opt.smoothscroll = true
 vim.opt.textwidth = 79
 
 -- Show whitespace {{{3
