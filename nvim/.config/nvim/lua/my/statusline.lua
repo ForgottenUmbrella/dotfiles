@@ -66,8 +66,8 @@ if vim.fn.executable 'git' then
       local ahead, behind = unpack(vim.split(branch_diff.stdout, '\t'))
       git_status = table.concat {
         has_uncommitted_changes and '[*]' or '',
-        (tonumber(ahead) or 0) > 0 and string.format('[%d+]', ahead) or '',
-        (tonumber(behind) or 0) > 0 and string.format('[%d-]', behind) or '',
+        (tonumber(ahead) or 0) > 0 and string.format('[+%d]', ahead) or '',
+        (tonumber(behind) or 0) > 0 and string.format('[-%d]', behind) or '',
       }
     end,
   })
@@ -131,7 +131,7 @@ function my.statusline()
     '%#StatusLineNC# ',
     '%<',
     file, ' ',
-    vim.diagnostic.status(),
+    vim.diagnostic.status(), '%#StatusLineNC#', -- Reset diagnostic styling
     '%=',
     searchcount ~= '' and searchcount .. ' ' or '',
     (vim.w.quickfix_title or '') ~= '' and vim.w.quickfix_title .. ' ' or '',
