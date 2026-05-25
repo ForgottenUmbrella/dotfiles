@@ -247,8 +247,9 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
 vim.api.nvim_create_autocmd({ 'LspAttach' }, {
   group = my.augroup,
   desc = 'Use LSP for folding',
-  callback = function()
-    if not vim.opt.diff:get() then
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if not client:supports_method 'textDocument/foldingRange' then
       vim.opt_local.foldmethod = 'expr'
       vim.opt_local.foldexpr = 'v:lua.vim.lsp.foldexpr()'
     end
