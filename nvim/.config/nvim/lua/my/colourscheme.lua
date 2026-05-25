@@ -34,7 +34,7 @@ vim.keymap.set('n', '<Leader>tb', function()
   elseif not clear_bg() then
     vim.notify(
       'Colour scheme is incompatible with terminal background',
-      vim.log.levels.WARN
+      vim.log.levels.ERROR
     )
   end
 end, { desc = 'Toggle background' })
