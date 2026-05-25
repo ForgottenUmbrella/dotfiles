@@ -13,6 +13,11 @@ vim.opt.ttimeoutlen = 0 -- Don't ignore Esc immediately after keypress
 -- Behaviour {{{2
 vim.opt.undofile = true -- Allow undoing changes after exit
 vim.opt.gdefault = true -- Replace all occurrences by default
+if vim.fn.executable 'rg' then
+  vim.opt.grepprg = 'rg --vimgrep ' -- Remove -uu flags added by default
+else
+  vim.notify('ripgrep not installed; :grep will be slow', vim.log.levels.WARN)
+end
 -- Context-dependent case sensitivity (disable with \C flag) {{{3
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
