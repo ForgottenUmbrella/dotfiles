@@ -39,7 +39,7 @@ else
   vim.notify('fd not installed; :find will be slow', vim.log.levels.WARN)
 end
 -- Set noselect for cmdline-autocompletion
-vim.opt.wildmode:prepend { 'noselect:lastused' }
+vim.opt.wildmode:prepend { 'noselect:lastused', 'longest' }
 
 -- UI {{{2
 require 'my.colourscheme'
