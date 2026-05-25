@@ -1,5 +1,5 @@
 -- For reference, see `:help lua-guide`.
--- Reload with `:restart`.
+-- Reload with `:Restart`.
 
 _G.my = {} -- Namespace for my globals
 my.augroup = vim.api.nvim_create_augroup('my_augroup', {})
@@ -302,4 +302,10 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost' }, {
   end,
 })
 
+-- User commands {{{1
+vim.api.nvim_create_user_command('Restart', function()
+  local session = stdpath('run') .. '/restart.vim'
+  vim.cmd.mksession { session, bang = true }
+  vim.cmd.restart('source ' .. session)
+end, { desc = 'Reload nvim config' })
 -- vim: foldmethod=marker
