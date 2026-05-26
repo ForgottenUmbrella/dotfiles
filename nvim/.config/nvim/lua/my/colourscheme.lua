@@ -1,16 +1,13 @@
 -- Set colour scheme with a transparent background.
 
--- Use a global (static) variable that will persist across reloads
-if my.term_bg == nil then
-  my.term_bg = vim.opt.background:get()
-end
+local term_bg = vim.opt.background:get()
 local original_bg_hl
 
 ---Clear the background to use the terminal's background.
 ---Returns whether the operation succeeded.
 local function clear_bg()
   -- Only set transparency if colour scheme matches terminal background
-  if vim.opt.background:get() ~= my.term_bg then
+  if vim.opt.background:get() ~= term_bg then
     return false
   end
   original_bg_hl = vim.api.nvim_get_hl(0, { name = 'Normal' })
@@ -45,7 +42,7 @@ vim.api.nvim_create_autocmd({ 'ColorSchemePre' }, {
   -- Reset background option so that dynamic colour schemes follow the
   -- terminal's light/dark mode setting instead of whatever the previous
   -- colour scheme overrode the option to be.
-  callback = function() vim.opt.background = my.term_bg end,
+  callback = function() vim.opt.background = term_bg end,
 })
 
 vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
@@ -59,7 +56,7 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
   group = my.augroup,
   desc = 'Set colourscheme when ready',
   callback = function()
-    vim.cmd.colorscheme(my.term_bg == 'light' and 'wildcharm' or 'habamax')
+    vim.cmd.colorscheme(term_bg == 'light' and 'wildcharm' or 'habamax')
   end,
   nested = true,
 })
