@@ -74,7 +74,7 @@ if vim.fn.executable 'git' then
 end
 
 function my.statusline()
-  local file = '%f %h%w%m%r'
+  local file = '%f%( %h%w%m%r%)'
   if vim.api.nvim_get_current_win() ~= tonumber(vim.g.actual_curwin) then
     return table.concat {
       '%#StatusLine# ',
@@ -131,7 +131,8 @@ function my.statusline()
     '%#StatusLineNC# ',
     '%<',
     file, ' ',
-    vim.diagnostic.status(), '%#StatusLineNC#', -- Reset diagnostic styling
+    vim.diagnostic.status():gsub('%%#(%a+)#', '%%$%1$'), -- Respect bg
+    '%#StatusLineNC#', -- Reset diagnostic styling
     '%=',
     searchcount ~= '' and searchcount .. ' ' or '',
     (vim.w.quickfix_title or '') ~= '' and vim.w.quickfix_title .. ' ' or '',
