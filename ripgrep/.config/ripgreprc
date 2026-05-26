@@ -5,4 +5,3 @@
 --type-add=tsx:*.tsx
 --hidden
 --follow
---glob=!.git/rr-cache
