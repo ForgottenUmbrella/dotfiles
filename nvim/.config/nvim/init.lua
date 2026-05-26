@@ -148,9 +148,16 @@ vim.keymap.set('n', '<Leader>?', function()
   wk.show { global = false }
 end, { desc = 'Buffer Local Keymaps (which-key)' })
 vim.keymap.del('n', '<C-W><C-D>') -- Clashes with C-d to show more keymaps
-require('mini.sessions').setup {
+
+local mini_sessions = require 'mini.sessions'
+mini_sessions.setup {
   autoread = true,
 }
+-- Auto-update session on a timer in case of crashes
+local session_timer = vim.uv.new_timer()
+session_timer:start(15*60*1000, 15*60*1000, vim.schedule_wrap(function()
+  mini_sessions.write(nil, { force = false, verbose = false })
+end))
 
 -- Language Server Protocol {{{2
 require 'my.lsp'
