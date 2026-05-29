@@ -18,6 +18,7 @@ if vim.fn.executable 'rg' then
 else
   vim.notify('ripgrep not installed; :grep will be slow', vim.log.levels.WARN)
 end
+vim.opt.sessionoptions:remove 'buffers'
 -- Context-dependent case sensitivity (disable with \C flag) {{{3
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
