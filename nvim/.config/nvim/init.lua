@@ -293,7 +293,7 @@ vim.api.nvim_create_autocmd({ 'CmdlineChanged' }, {
 })
 for _, key in ipairs { '<Up>', '<Down>', '<Right>' } do
   vim.keymap.set('c', key, function()
-    return vim.fn.wildmenumode() and '<C-e>' .. key or key
+    return vim.fn.wildmenumode() == 1 and '<C-e>' .. key or key
   end, { expr = true })
 end
 
