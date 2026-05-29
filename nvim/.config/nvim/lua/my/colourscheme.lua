@@ -47,9 +47,24 @@ vim.api.nvim_create_autocmd({ 'ColorSchemePre' }, {
 
 vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
   group = my.augroup,
-  desc = 'Make background transparent',
-  -- Swallow return value so the autocmd doesn't get deleted
-  callback = function() clear_bg() end,
+  desc = 'Customise colourscheme',
+  callback = function()
+    clear_bg()
+    vim.api.nvim_set_hl(0, 'NormalFloat', { link = 'Normal' })
+    local float_bg = vim.api.nvim_get_hl(0, {
+      name = 'NormalFloat',
+      link = false,
+    }).bg
+    local border_fg = vim.api.nvim_get_hl(0, {
+      name = 'Type', -- Mode indicator colour from statusline
+      link = false,
+    }).fg
+    vim.api.nvim_set_hl(0, 'FloatBorder', {
+      bg = float_bg,
+      fg = border_fg,
+      bold = true,
+    })
+  end,
 })
 
 vim.api.nvim_create_autocmd({ 'VimEnter' }, {

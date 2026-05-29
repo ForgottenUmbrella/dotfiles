@@ -58,6 +58,7 @@ vim.opt.shortmess:append 'W'
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.title = true
+vim.opt.winborder = 'rounded'
 
 -- Lines {{{3
 vim.opt.cursorline = true
