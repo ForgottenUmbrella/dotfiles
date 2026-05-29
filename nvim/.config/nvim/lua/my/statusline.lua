@@ -149,7 +149,7 @@ function my.statusline()
 end
 
 vim.opt.statusline = '%{% v:lua.my.statusline() %}'
-vim.opt.shortmess:append 'sSq'
+vim.opt.shortmess:append 'Sq'
 vim.opt.showmode = false
 vim.g.qf_disable_statusline = 1
 
