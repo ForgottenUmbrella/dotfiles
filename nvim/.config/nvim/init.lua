@@ -159,6 +159,10 @@ local mini_sessions = require 'mini.sessions'
 mini_sessions.setup {
   autoread = true,
 }
+vim.api.nvim_create_user_command('Mksession', function(opts)
+  local file = opts.fargs[1]
+  mini_sessions.write(file)
+end, { desc = 'Initialise directory session', nargs = '?', complete = 'file' })
 -- Auto-update session on a timer in case of crashes
 my.session_timer = vim.uv.new_timer() -- Global for runtime interaction
 my.session_timer:start(15*60*1000, 15*60*1000, vim.schedule_wrap(function()
