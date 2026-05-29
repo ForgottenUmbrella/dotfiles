@@ -190,7 +190,7 @@ require('neo-tree').setup {
     },
   },
   mappings = {
-    ['<Tab>'] = 'open',
+    ['<Space>'] = { nowait = true },
   },
 }
 require('lsp-file-operations').setup {}
