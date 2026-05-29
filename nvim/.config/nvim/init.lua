@@ -339,16 +339,14 @@ end, { desc = 'Reload nvim config' })
 vim.api.nvim_create_user_command('Wrap', function(opts)
   local wrap_col = opts.fargs[1]
   vim.cmd.vnew()
-  vim.opt_local.number = false
-  vim.opt_local.relativenumber = false
-  vim.opt_local.fillchars = { eob = ' ' }
+  vim.api.nvim_win_set_config(0, { style = 'minimal' })
   vim.opt_local.statusline = ' '
-  vim.opt_local.winhighlight = {
+  vim.opt_local.winhighlight:append {
     StatusLine = 'Normal',
     StatusLineNC = 'Normal',
   }
   vim.opt_local.modifiable = false
-  vim.cmd.execute [[normal \<C-w>p]]
+  vim.cmd.wincmd 'p'
   vim.cmd.resize { wrap_col, mods = { vertical = true } }
 end, { desc = 'Soft-wrap window', nargs = 1 })
 
