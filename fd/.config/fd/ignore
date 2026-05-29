@@ -1,0 +1,15 @@
+*cache*/
+*log*/
+site-packages/
+node_modules/
+go/pkg/
+sub/objects/
+.local/share/
+.local/state/
+.zsh_sessions/
+.docker/
+pg/
+clickhouse/store/
+localstack/
+sdk/
+Library/
