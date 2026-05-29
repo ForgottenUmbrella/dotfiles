@@ -31,9 +31,12 @@ vim.opt.autocomplete = true
 vim.opt.autocompletedelay = 1000
 vim.opt.complete:append { 'F', 'o' }
 function my.findfunc(cmdarg, cmdcomplete)
-  return vim.fn.systemlist {
-    'fd', '--full-path', '--hidden', '--follow', cmdarg,
-  }
+  if cmdcomplete then
+    return vim.fn.systemlist {
+      'fd', '--full-path', '--hidden', '--follow', cmdarg,
+    }
+  end
+  return { cmdarg }
 end
 if vim.fn.executable 'fd' then
   vim.opt.findfunc = 'v:lua.my.findfunc'
