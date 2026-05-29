@@ -27,6 +27,7 @@ vim.opt.shiftwidth = 4 -- Number of spaces to indent with
 vim.opt.tabstop = 4 -- Render tabs as 4 spaces wide
 -- Completion {{{3
 vim.opt.autocomplete = true
+vim.opt.autocompletedelay = 1000
 vim.opt.complete:append { 'F', 'o' }
 function my.findfunc(cmdarg, cmdcomplete)
   return vim.fn.systemlist {
