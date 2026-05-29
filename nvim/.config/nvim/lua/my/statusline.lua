@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
   group = my.augroup,
   desc = 'Create statusline highlight groups',
   callback = function()
-    local fg = vim.api.nvim_get_hl(0, { name = 'StatusLine' }).fg
+    local fg = vim.api.nvim_get_hl(0, { name = 'StatusLine', link = false }).fg
     local colours = {
       Normal = 'Type',
       Visual = 'Special',
@@ -31,7 +31,7 @@ vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
       Command = 'Identifier',
     }
     for mode, hl_name in pairs(colours) do
-      local bg = vim.api.nvim_get_hl(0, { name = hl_name }).fg
+      local bg = vim.api.nvim_get_hl(0, { name = hl_name, link = false }).fg
       vim.api.nvim_set_hl(0, 'MyStatusLine' .. mode, {
         bg = bg,
         fg = fg,

@@ -10,7 +10,7 @@ local function clear_bg()
   if vim.opt.background:get() ~= term_bg then
     return false
   end
-  original_bg_hl = vim.api.nvim_get_hl(0, { name = 'Normal' })
+  original_bg_hl = vim.api.nvim_get_hl(0, { name = 'Normal', link = false })
   local new_bg_hl = vim.tbl_extend('force', original_bg_hl, {
     ctermbg = 'NONE',
     bg = 'NONE',
