@@ -109,14 +109,14 @@ config.keys = {
     action = wezterm.action.SplitPane { direction = 'Right', top_level = true },
   },
   {
-    mods = mod .. '|CTRL',
+    mods = mod .. '|SHIFT',
     key = 'n',
     action = wezterm.action_callback(function(window, pane)
       pane:move_to_new_window()
     end),
   },
   {
-    mods = mod .. '|CTRL',
+    mods = mod .. '|SHIFT',
     key = 't',
     action = wezterm.action_callback(function(window, pane)
       pane:move_to_new_tab()
@@ -155,7 +155,7 @@ config.keys = {
   {
     mods = mod,
     key = 'x',
-    action = wezterm.action.PaneSelect { mode = 'SwapWithActive' },
+    action = wezterm.action.PaneSelect { mode = 'SwapWithActiveKeepFocus' },
   },
   {
     mods = mod,
