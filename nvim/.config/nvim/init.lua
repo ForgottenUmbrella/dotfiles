@@ -160,9 +160,10 @@ mini_sessions.setup {
   autoread = true,
 }
 -- Auto-update session on a timer in case of crashes
-local session_timer = vim.uv.new_timer()
-session_timer:start(15*60*1000, 15*60*1000, vim.schedule_wrap(function()
-  mini_sessions.write(nil, { force = false, verbose = false })
+my.session_timer = vim.uv.new_timer() -- Global for runtime interaction
+my.session_timer:start(15*60*1000, 15*60*1000, vim.schedule_wrap(function()
+  -- Not an error if no session exists.
+  pcall(mini_sessions.write, nil, { force = false, verbose = false })
 end))
 
 -- Language Server Protocol {{{2
