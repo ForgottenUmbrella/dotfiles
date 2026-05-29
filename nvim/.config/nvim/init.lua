@@ -2,7 +2,7 @@
 -- Reload with `:Restart`.
 
 _G.my = {} -- Namespace for my globals
-my.augroup = vim.api.nvim_create_augroup('my_augroup', {})
+my.augroup = vim.api.nvim_create_augroup('my.augroup', {})
 
 -- Built-in options {{{1
 -- OS/terminal integration {{{2
@@ -216,9 +216,9 @@ require('neogit').setup {
   -- Match Magit keymaps
   mappings = {
     popup = {
-      ['F'] = 'PullPopup',
-      ['p'] = 'PushPopup',
-      ['P'] = false,
+      F = 'PullPopup',
+      p = 'PushPopup',
+      P = false,
     },
   },
 }
@@ -286,7 +286,7 @@ for _, key in ipairs { '<Up>', '<Down>', '<Right>' } do
   end, { expr = true })
 end
 
-vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufReadPost' }, {
   group = my.augroup,
   pattern = '**/nvim/**/*.lua',
   desc = 'Use :help in nvim/init.lua',
@@ -294,7 +294,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   callback = function() vim.opt_local.keywordprg = ':help!' end,
 })
 
-vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost' }, {
+vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
   group = my.augroup,
   pattern = '**/nvim/**/*.lua',
   desc = 'Clean up unused plugins',
