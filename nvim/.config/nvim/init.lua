@@ -110,6 +110,7 @@ vim.pack.add {
 }
 local wk = require 'which-key'
 wk.setup {
+  preset = 'modern',
   icons = {
     mappings = false,
     keys = {
