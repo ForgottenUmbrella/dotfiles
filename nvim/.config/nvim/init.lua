@@ -330,9 +330,9 @@ vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
 
 -- User commands {{{1
 vim.api.nvim_create_user_command('Restart', function()
-  local session = stdpath('run') .. '/restart.vim'
-  vim.cmd.mksession { session, bang = true }
-  vim.cmd.restart('source ' .. session)
+  -- Instead of storing our own temp session, use mini.sessions' functionality
+  -- to avoid clobbering its internal state.
+  mini_sessions.restart()
 end, { desc = 'Reload nvim config' })
 
 vim.api.nvim_create_user_command('Wrap', function(opts)
