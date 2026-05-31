@@ -31,11 +31,15 @@ vim.opt.autocomplete = true
 vim.opt.autocompletedelay = 1000
 vim.opt.complete:append { 'F', 'o' }
 function my.findfunc(cmdarg, cmdcomplete)
-  if cmdcomplete then
-    return vim.fn.systemlist {
-      'fd', '--full-path', '--hidden', '--follow', cmdarg,
-    }
+  local options = vim.fn.systemlist {
+    'fd', '--full-path', '--hidden', '--follow', cmdarg,
+  }
+  -- When querying completion candidates, return all options.
+  -- Or if selecting a candidate, allow partial match if unambiguous.
+  if cmdcomplete or #options == 1 then
+    return options
   end
+  -- If ambiguous, use the exact input.
   return { cmdarg }
 end
 if vim.fn.executable 'fd' then
