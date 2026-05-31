@@ -3,6 +3,7 @@
 site-packages/
 node_modules/
 go/pkg/
+.git/objects/
 sub/objects/
 .local/share/
 .local/state/
