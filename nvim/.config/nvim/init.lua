@@ -33,8 +33,16 @@ vim.opt.autocomplete = true
 vim.opt.autocompletedelay = 1000
 vim.opt.complete:append { 'F', 'o' }
 function my.findfunc(cmdarg, cmdcomplete)
+  local paths = vim.list.unique(vim.opt.path:get())
+  for i, path in ipairs(paths) do
+    if path == '.' then
+      paths[i] = vim.fn.expand '%:p:h'
+    elseif path == '' then
+      paths[i] = vim.fn.getcwd()
+    end
+  end
   local options = vim.fn.systemlist {
-    'fd', '--full-path', '--hidden', '--follow', cmdarg,
+    'fd', '--full-path', '--hidden', '--follow', cmdarg, unpack(paths),
   }
   -- When querying completion candidates, return all options.
   -- Or if selecting a candidate, allow partial match if unambiguous.
