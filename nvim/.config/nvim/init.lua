@@ -155,6 +155,8 @@ wk.setup {
 wk.add {
   { '<Leader>a', group = 'applications' },
   { '<Leader>t', group = 'toggles' },
+  { ']c', desc = 'Next change (diff-mode)' },
+  { '[c', desc = 'Previous change (diff-mode)' },
 }
 vim.keymap.set('n', '<Leader>?', function()
   wk.show { global = false }
