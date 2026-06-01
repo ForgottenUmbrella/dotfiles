@@ -3,6 +3,8 @@
 
 _G.my = {} -- Namespace for my globals
 my.augroup = vim.api.nvim_create_augroup('my.augroup', {})
+-- Source host-specific config if it exists.
+pcall(require, string.format('my.%s-init', vim.fn.hostname():gsub('%.', '-')))
 
 -- Built-in options {{{1
 -- OS/terminal integration {{{2
