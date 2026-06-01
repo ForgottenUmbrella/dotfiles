@@ -282,8 +282,12 @@ vim.api.nvim_create_autocmd({ 'LspAttach' }, {
   group = my.augroup,
   desc = 'Use LSP for folding',
   callback = function(ev)
+    -- Don't override diff-mode folds.
+    if vim.opt.diff:get() then
+      return
+    end
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if not client:supports_method 'textDocument/foldingRange' then
+    if client:supports_method 'textDocument/foldingRange' then
       vim.opt_local.foldmethod = 'expr'
       vim.opt_local.foldexpr = 'v:lua.vim.lsp.foldexpr()'
     end
