@@ -1,4 +1,5 @@
 local wezterm = require 'wezterm'
+local act = wezterm.action
 
 local config = wezterm.config_builder()
 local is_macos = wezterm.target_triple:find 'apple'
@@ -100,27 +101,27 @@ config.keys = {
   {
     mods = 'CTRL',
     key = '[',
-    action = wezterm.action.SendString '\x1b',
+    action = act.SendString '\x1b',
   },
   {
     mods = mod,
     key = 's',
-    action = wezterm.action.SplitVertical {},
+    action = act.SplitVertical {},
   },
   {
     mods = mod .. '|SHIFT',
     key = 's',
-    action = wezterm.action.SplitHorizontal {},
+    action = act.SplitHorizontal {},
   },
   {
     mods = mod .. '|CTRL',
     key = 's',
-    action = wezterm.action.SplitPane { direction = 'Down', top_level = true },
+    action = act.SplitPane { direction = 'Down', top_level = true },
   },
   {
     mods = mod .. '|CTRL|SHIFT',
     key = 's',
-    action = wezterm.action.SplitPane { direction = 'Right', top_level = true },
+    action = act.SplitPane { direction = 'Right', top_level = true },
   },
   {
     mods = mod .. '|SHIFT',
@@ -139,37 +140,37 @@ config.keys = {
   {
     mods = mod,
     key = 'w',
-    action = wezterm.action.CloseCurrentPane { confirm = false },
+    action = act.CloseCurrentPane { confirm = false },
   },
   {
     mods = 'SUPER',
     key = 'w',
-    action = wezterm.action.CloseCurrentPane { confirm = false },
+    action = act.CloseCurrentPane { confirm = false },
   },
   {
     mods = mod,
     key = 'h',
-    action = wezterm.action.ActivatePaneDirection 'Left',
+    action = act.ActivatePaneDirection 'Left',
   },
   {
     mods = mod,
     key = 'j',
-    action = wezterm.action.ActivatePaneDirection 'Down',
+    action = act.ActivatePaneDirection 'Down',
   },
   {
     mods = mod,
     key = 'k',
-    action = wezterm.action.ActivatePaneDirection 'Up',
+    action = act.ActivatePaneDirection 'Up',
   },
   {
     mods = mod,
     key = 'l',
-    action = wezterm.action.ActivatePaneDirection 'Right',
+    action = act.ActivatePaneDirection 'Right',
   },
   {
     mods = mod,
     key = 'x',
-    action = wezterm.action.PaneSelect { mode = 'SwapWithActiveKeepFocus' },
+    action = act.PaneSelect { mode = 'SwapWithActiveKeepFocus' },
   },
   {
     mods = mod,
@@ -185,6 +186,21 @@ config.keys = {
     end),
   },
 }
+if is_macos then
+  -- Select all
+  table.insert(config.keys, {
+    mods = 'CMD',
+    key = 'a',
+    action = act.Multiple {
+      act.ActivateCopyMode,
+      act.CopyMode 'MoveToScrollbackTop',
+      act.CopyMode 'MoveToStartOfLine',
+      act.CopyMode { SetSelectionMode = 'Cell' },
+      act.CopyMode 'MoveToScrollbackBottom',
+      act.CopyMode 'MoveToEndOfLineContent',
+    },
+  })
+end
 -- }}}
 
 return config
