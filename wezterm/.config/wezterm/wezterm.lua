@@ -1,5 +1,4 @@
 local wezterm = require 'wezterm'
-local resurrect = wezterm.plugin.require 'https://github.com/MLFlexer/resurrect.wezterm'
 
 local config = wezterm.config_builder()
 local is_macos = wezterm.target_triple:find 'apple'
@@ -61,8 +60,22 @@ else
 end
 config.window_close_confirmation = 'NeverPrompt'
 
-resurrect.state_manager.periodic_save()
-wezterm.on('gui-startup', resurrect.state_manager.resurrect_on_gui_startup)
+local sessions = wezterm.plugin.require 'https://github.com/abidibo/wezterm-sessions'
+-- Apply to config BEFORE setting our own keybindings so ours take precedence.
+sessions.apply_to_config(config, {
+  git_branch_warn = false,
+  save_state_dir = 'default-user-owned'
+})
+wezterm.on('gui-startup', function(cmd)
+  -- Wezterm deliberately started with a command; respect it.
+  if cmd then
+    return
+  end
+  -- Otherwise restore session and enable autosave.
+  local tab, pane, window = wezterm.mux.spawn_window {}
+  sessions.restore_state(window)
+  sessions.start_autosave(window)
+end)
 
 -- Use a user var to trigger updates from CLI
 wezterm.on('user-var-changed', function(window, pane, name, value)
