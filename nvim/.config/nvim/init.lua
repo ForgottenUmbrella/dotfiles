@@ -38,7 +38,7 @@ function my.findfunc(cmdarg, cmdcomplete)
     if path == '.' then
       paths[i] = vim.fn.expand '%:p:h'
     elseif path == '' then
-      paths[i] = vim.fn.getcwd()
+      paths[i] = '.'
     end
   end
   local options = vim.fn.systemlist {
