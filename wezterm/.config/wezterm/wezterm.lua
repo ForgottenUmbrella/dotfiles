@@ -53,6 +53,7 @@ if is_macos then
 end
 
 -- Behaviour {{{1
+config.scrollback_lines = 10000
 if wezterm.run_child_process { 'infocmp', 'wezterm' } then
   config.term = 'wezterm'
 else
