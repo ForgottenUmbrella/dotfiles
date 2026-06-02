@@ -8,10 +8,12 @@ local function set_config()
   local win_width = math.min(math.max(frame_width - 32, 80), frame_width)
   vim.api.nvim_win_set_config(winid, {
     relative = 'editor',
-    row = 5,
+    anchor = 'NW',
+    row = 2,
     col = (frame_width - win_width) / 2,
     width = win_width,
     height = config.height,
+    border = vim.o.winborder,
   })
 end
 
