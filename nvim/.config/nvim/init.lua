@@ -174,6 +174,7 @@ vim.keymap.del('n', '<C-W><C-D>') -- Clashes with C-d to show more keymaps
 vim.keymap.set('n', '<Leader>w', function()
   wk.show { keys = '<C-w>', loop = true }
 end, { desc = 'Window Hydra Mode' })
+vim.keymap.set('i', '<C-?>', '<Cmd>WhichKey i<CR>')
 
 local mini_sessions = require 'mini.sessions'
 mini_sessions.setup {
