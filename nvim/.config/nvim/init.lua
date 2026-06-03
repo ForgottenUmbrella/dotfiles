@@ -112,7 +112,7 @@ vim.keymap.set('n', '<Leader><Leader>', ':', { desc = 'Run command' })
 -- Built-in plugins {{{2
 vim.cmd.packadd 'cfilter'
 vim.cmd.packadd 'nvim.undotree'
-vim.keymap.set('n', '<Leader>au', '<Cmd>Undotree<CR>')
+vim.keymap.set('n', '<Leader>u', '<Cmd>Undotree<CR>')
 vim.g.markdown_folding = 1
 -- Disable netrw (buggy) {{{3
 vim.g.loaded_netrwPlugin = 1
@@ -164,6 +164,7 @@ wk.setup {
 }
 wk.add {
   { '<Leader>a', group = 'applications' },
+  { '<Leader>f', group = 'files' },
   { '<Leader>t', group = 'toggles' },
   { ']c', desc = 'Next change (diff-mode)' },
   { '[c', desc = 'Previous change (diff-mode)' },
@@ -190,6 +191,11 @@ my.session_timer:start(15*60*1000, 15*60*1000, vim.schedule_wrap(function()
   -- Not an error if no session exists.
   pcall(mini_sessions.write, nil, { force = false, verbose = false })
 end))
+
+if vim.fn.executable 'fzf' then
+  -- fzf comes bundled with a vim plugin that provides :FZF.
+  vim.keymap.set('n', '<Leader>ff', '<Cmd>FZF<CR>')
+end
 
 -- Language Server Protocol {{{2
 require 'my.lsp'
@@ -240,7 +246,7 @@ require('neo-tree').setup {
   },
 }
 require('lsp-file-operations').setup {}
-vim.keymap.set('n', '<Leader>at', '<Cmd>Neotree toggle reveal<CR>')
+vim.keymap.set('n', '<Leader>ft', '<Cmd>Neotree toggle reveal<CR>')
 
 -- Editing {{{2
 vim.pack.add {
