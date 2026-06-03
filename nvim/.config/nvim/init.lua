@@ -83,7 +83,9 @@ vim.opt.winborder = 'single'
 vim.opt.pumblend = 10
 
 -- Lines {{{3
+vim.opt.conceallevel = 2
 vim.opt.cursorline = true
+vim.opt.list = true
 -- Line numbers {{{4
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -101,9 +103,6 @@ vim.opt.linebreak = true
 vim.opt.smoothscroll = true
 vim.opt.textwidth = 80
 
--- Show whitespace {{{3
-vim.opt.list = true
-
 -- Spell-check {{{3
 vim.opt.spell = true
 vim.opt.spelloptions = { 'camel', 'noplainbuffer' }
@@ -117,7 +116,9 @@ vim.keymap.set('n', '<Leader><Leader>', ':', { desc = 'Run command' })
 vim.cmd.packadd 'cfilter'
 vim.cmd.packadd 'nvim.undotree'
 vim.keymap.set('n', '<Leader>u', '<Cmd>Undotree<CR>')
+vim.g.filetype_md = 'pandoc'
 vim.g.markdown_folding = 1
+vim.g['pandoc#syntax#conceal#urls'] = 1
 -- Disable netrw (buggy) {{{3
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
