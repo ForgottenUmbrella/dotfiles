@@ -166,10 +166,6 @@ wk.add {
   { '<Leader>a', group = 'applications' },
   { '<Leader>f', group = 'files' },
   { '<Leader>t', group = 'toggles' },
-  { ']c', desc = 'Next change (diff-mode)' },
-  { '[c', desc = 'Previous change (diff-mode)' },
-  { 'do', desc = 'diffget (diff-mode)' },
-  { 'dp', desc = 'diffput (diff-mode)' },
 }
 vim.keymap.set('n', '<Leader>?', function()
   wk.show { global = false }
