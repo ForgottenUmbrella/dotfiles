@@ -213,6 +213,31 @@ require('neo-tree').setup {
   },
   mappings = {
     ['<Space>'] = { nowait = true },
+    O = {
+      desc = 'open in external application', function(state)
+        local opener
+        local os = vim.uv.os_uname().sysname
+        if os == 'Linux' then
+          opener = 'xdg-open'
+        elseif os == 'Darwin' then
+          opener = 'open'
+        elseif os == 'Windows_NT' then
+          opener = 'start'
+        else
+          vim.notify(
+            string.format('unknown OS %s; cannot open file', os),
+            vim.log.levels.ERROR
+          )
+          return
+        end
+        vim.system { opener, state.tree:get_node().path }
+      end
+    },
+    Y = {
+      desc = 'yank absolute path', function(state)
+        vim.fn.setreg(vim.v.register, state.tree:get_node().path)
+      end,
+    },
   },
 }
 require('lsp-file-operations').setup {}
