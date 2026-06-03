@@ -87,6 +87,7 @@ vim.opt.relativenumber = true
 vim.opt.foldlevelstart = 99 -- Start unfolded
 vim.opt.foldmethod = 'indent' -- Most syntax files don't define folds
 vim.keymap.set('n', '<Tab>', 'za')
+vim.keymap.set('n', '<C-i>', '<C-i>') -- By default <Tab> and <C-i> are the same
 -- Scrolling {{{4
 vim.opt.scrolloff = 2 -- Always show some lines above/below the cursor
 -- Line length {{{4
