@@ -76,7 +76,9 @@ vim.opt.shortmess:append 'W'
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.title = true
-vim.opt.winborder = 'rounded'
+vim.opt.winblend = 10
+vim.opt.winborder = 'single'
+vim.opt.pumblend = 10
 
 -- Lines {{{3
 vim.opt.cursorline = true
@@ -193,7 +195,9 @@ end))
 
 if vim.fn.executable 'fzf' then
   -- fzf comes bundled with a vim plugin that provides :FZF.
-  vim.keymap.set('n', '<Leader>ff', '<Cmd>FZF<CR>')
+  vim.keymap.set('n', '<Leader>ff', '<Cmd>FZF --border=none<CR>', {
+    desc = 'FZF',
+  })
 end
 
 -- Language Server Protocol {{{2
