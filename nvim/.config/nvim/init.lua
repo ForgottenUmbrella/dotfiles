@@ -111,7 +111,6 @@ vim.keymap.set('n', '<Leader><Leader>', ':', { desc = 'Run command' })
 
 -- Built-in plugins {{{2
 vim.cmd.packadd 'cfilter'
-vim.cmd.packadd 'nvim.difftool' -- Diff multiple files in quickfix list
 vim.cmd.packadd 'nvim.undotree'
 vim.keymap.set('n', '<Leader>au', '<Cmd>Undotree<CR>')
 vim.g.markdown_folding = 1
