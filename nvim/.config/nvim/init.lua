@@ -30,7 +30,9 @@ vim.opt.shiftwidth = 4 -- Number of spaces to indent with
 vim.opt.tabstop = 4 -- Render tabs as 4 spaces wide
 -- Completion {{{3
 vim.opt.autocomplete = true
-vim.opt.autocompletedelay = 1000
+-- The autocompletedelay option currently blocks text rendering:
+-- https://github.com/neovim/neovim/issues/40064
+-- vim.opt.autocompletedelay = 1000
 vim.opt.complete:append { 'F', 'o' }
 function my.findfunc(cmdarg, cmdcomplete)
   local paths = vim.list.unique(vim.opt.path:get())
