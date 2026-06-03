@@ -5,8 +5,6 @@
 
 # Synchronise Vim-mode clipboard with system.
 kutsan/zsh-system-clipboard
-# Use fish prompt.
-#robbyrussell/oh-my-zsh path:themes/fishy.zsh-theme
 # Go back quickly.
 Tarrasch/zsh-bd
 # Colourise ls and add the usual aliases.
