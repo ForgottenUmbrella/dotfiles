@@ -135,6 +135,9 @@ vim.pack.add {
 local wk = require 'which-key'
 wk.setup {
   preset = 'modern',
+  win = {
+    border = vim.o.winborder,
+  },
   icons = {
     mappings = false,
     keys = {
