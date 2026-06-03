@@ -74,7 +74,10 @@ wezterm.on('gui-startup', function(cmd)
     return
   end
   -- Otherwise restore session and enable autosave.
-  local tab, pane, window = wezterm.mux.spawn_window {}
+  -- TODO: post to https://github.com/abidibo/wezterm-sessions/issues/5 if it
+  -- works
+  local tab, pane, mux_window = wezterm.mux.spawn_window {}
+  local window = mux_window:gui_window()
   sessions.restore_state(window)
   sessions.start_autosave(window)
 end)
