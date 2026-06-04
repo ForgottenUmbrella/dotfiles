@@ -240,7 +240,7 @@ require('neo-tree').setup {
           opener = 'start'
         else
           vim.notify(
-            string.format('unknown OS %s; cannot open file', os),
+            string.format('Unknown OS %s; cannot open file', os),
             vim.log.levels.ERROR
           )
           return
@@ -402,7 +402,7 @@ vim.api.nvim_create_user_command('Restart', function()
 end, { desc = 'Reload nvim config' })
 
 vim.api.nvim_create_user_command('Wrap', function(opts)
-  local wrap_col = opts.fargs[1] or vim.opt_local.textwidth:get()
+  local wrap_col = opts.fargs[1] or vim.opt.textwidth:get()
 
   -- If already wrapped, undo wrapping
   local is_wrapped = vim.w.my_wrapper_winid and
@@ -410,6 +410,11 @@ vim.api.nvim_create_user_command('Wrap', function(opts)
   if is_wrapped then
     vim.api.nvim_win_close(vim.w.my_wrapper_winid)
     vim.opt_local.colorcolumn = vim.w.my_wrapped_colorcolumn
+    return
+  end
+
+  if wrap_col == 0 then
+    vim.notify('Wrap column cannot be zero', vim.log.levels.ERROR)
     return
   end
 
@@ -422,12 +427,13 @@ vim.api.nvim_create_user_command('Wrap', function(opts)
     StatusLine = 'Normal',
     StatusLineNC = 'Normal',
   }
+  vim.opt_local.bufhidden = 'delete'
   vim.opt_local.modifiable = false
 
   -- Configure the wrapped window
   vim.cmd.wincmd 'p'
   vim.w.my_wrapper_winid = wrapper_winid
-  vim.w.my_wrapped_colorcolumn = vim.opt_local.colorcolumn:get()
+  vim.w.my_wrapped_colorcolumn = vim.opt.colorcolumn:get()
   vim.opt_local.colorcolumn = {}
   vim.cmd.resize { wrap_col, mods = { vertical = true } }
 end, { desc = 'Toggle soft-wrap', nargs = '?' })
