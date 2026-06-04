@@ -31,12 +31,7 @@ local function clear_bg()
   if float_border_hl.fg == float_border_hl.bg then
     -- Mode indicator colour from statusline
     local fg = vim.api.nvim_get_hl(0, { name = 'Type', link = false }).fg
-    mod_hl('FloatBorder', {
-      ctermbg = 'NONE',
-      bg = 'NONE',
-      fg = fg,
-      bold = true,
-    })
+    mod_hl('FloatBorder', { ctermbg = 'NONE', bg = 'NONE', fg = fg })
   end
   return true
 end
