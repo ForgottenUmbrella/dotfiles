@@ -91,12 +91,9 @@ end)
 
 -- Keybindings {{{1
 config.enable_kitty_keyboard = true
-local mod
+local mod = is_macos and 'CMD' or 'ALT'
 if is_macos then
-  mod = 'CMD'
   config.bypass_mouse_reporting_modifiers = 'CMD'
-else
-  mod = 'ALT'
 end
 
 config.keys = {
@@ -109,12 +106,12 @@ config.keys = {
   {
     mods = mod,
     key = 's',
-    action = act.SplitVertical {},
+    action = act.SplitVertical,
   },
   {
     mods = mod .. '|SHIFT',
     key = 's',
-    action = act.SplitHorizontal {},
+    action = act.SplitHorizontal,
   },
   {
     mods = mod .. '|CTRL',
@@ -175,19 +172,6 @@ config.keys = {
     key = 'x',
     action = act.PaneSelect { mode = 'SwapWithActiveKeepFocus' },
   },
-  {
-    mods = mod,
-    key = 'o',
-    action = wezterm.action_callback(function(window, pane)
-      local overrides = window:get_config_overrides() or {}
-      if not overrides.window_background_opacity then
-        overrides.window_background_opacity = config.window_background_opacity
-      else
-        overrides.window_background_opacity = nil
-      end
-      window:set_config_overrides(overrides)
-    end),
-  },
 }
 if is_macos then
   -- Select all
@@ -204,6 +188,25 @@ if is_macos then
     },
   })
 end
+
+-- Custom commands {{{1
+wezterm.on('augment-command-palette', function(window, pane)
+  return {
+    {
+      brief = 'Toggle opacity',
+      action = wezterm.action_callback(function(window, pane)
+        local overrides = window:get_config_overrides() or {}
+        if not overrides.window_background_opacity then
+          overrides.window_background_opacity = config.window_background_opacity
+        else
+          overrides.window_background_opacity = nil
+        end
+        window:set_config_overrides(overrides)
+      end),
+      icon = 'md_square_opacity',
+    }
+  }
+end)
 -- }}}
 
 return config
