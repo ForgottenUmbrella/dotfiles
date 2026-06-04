@@ -101,7 +101,7 @@ config.keys = {
   {
     mods = 'CTRL',
     key = '[',
-    action = act.SendString '\x1b',
+    action = act.SendKey { key = 'Escape' },
   },
   {
     mods = mod,
