@@ -402,8 +402,20 @@ vim.api.nvim_create_user_command('Restart', function()
 end, { desc = 'Reload nvim config' })
 
 vim.api.nvim_create_user_command('Wrap', function(opts)
-  local wrap_col = opts.fargs[1]
+  local wrap_col = opts.fargs[1] or vim.opt_local.textwidth:get()
+
+  -- If already wrapped, undo wrapping
+  local is_wrapped = vim.w.my_wrapper_winid and
+    vim.api.nvim_win_is_valid(vim.w.my_wrapper_winid)
+  if is_wrapped then
+    vim.api.nvim_win_close(vim.w.my_wrapper_winid)
+    vim.opt_local.colorcolumn = vim.w.my_wrapped_colorcolumn
+    return
+  end
+
+  -- Configure the helper window to enforce wrapping
   vim.cmd.vnew()
+  local wrapper_winid = vim.fn.win_getid()
   vim.api.nvim_win_set_config(0, { style = 'minimal' })
   vim.opt_local.statusline = ' '
   vim.opt_local.winhighlight:append {
@@ -411,8 +423,14 @@ vim.api.nvim_create_user_command('Wrap', function(opts)
     StatusLineNC = 'Normal',
   }
   vim.opt_local.modifiable = false
+
+  -- Configure the wrapped window
   vim.cmd.wincmd 'p'
+  vim.w.my_wrapper_winid = wrapper_winid
+  vim.w.my_wrapped_colorcolumn = vim.opt_local.colorcolumn:get()
+  vim.opt_local.colorcolumn = {}
   vim.cmd.resize { wrap_col, mods = { vertical = true } }
-end, { desc = 'Soft-wrap window', nargs = 1 })
+end, { desc = 'Toggle soft-wrap', nargs = '?' })
+vim.keymap.set('n', '<Leader>tw', '<Cmd>Wrap<CR>')
 
 -- vim: foldmethod=marker
