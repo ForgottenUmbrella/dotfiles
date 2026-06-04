@@ -135,6 +135,12 @@ vim.pack.add {
 local wk = require 'which-key'
 wk.setup {
   preset = 'modern',
+  delay = 1000,
+  spec = {
+    { '<Leader>a', group = 'applications' },
+    { '<Leader>f', group = 'files' },
+    { '<Leader>t', group = 'toggles' },
+  },
   win = {
     border = vim.o.winborder,
   },
@@ -169,11 +175,6 @@ wk.setup {
       F12 = '<F12>',
     },
   },
-}
-wk.add {
-  { '<Leader>a', group = 'applications' },
-  { '<Leader>f', group = 'files' },
-  { '<Leader>t', group = 'toggles' },
 }
 vim.keymap.set('n', '<Leader>?', function()
   wk.show { global = false }
@@ -354,7 +355,7 @@ vim.api.nvim_create_autocmd({ 'CmdlineChanged' }, {
   group = my.augroup,
   pattern = '[:/?]',
   desc = 'cmdline-autocompletion',
-  callback = function() vim.fn.wildtrigger() end,
+  callback = function() vim.fn.wildtrigger() end, -- Swallow return
 })
 for _, key in ipairs { '<Up>', '<Down>', '<Right>' } do
   vim.keymap.set('c', key, function()
