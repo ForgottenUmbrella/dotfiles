@@ -116,9 +116,7 @@ vim.keymap.set('n', '<Leader><Leader>', ':', { desc = 'Run command' })
 vim.cmd.packadd 'cfilter'
 vim.cmd.packadd 'nvim.undotree'
 vim.keymap.set('n', '<Leader>u', '<Cmd>Undotree<CR>')
-vim.g.filetype_md = 'pandoc'
 vim.g.markdown_folding = 1
-vim.g['pandoc#syntax#conceal#urls'] = 1
 -- Disable netrw (buggy) {{{3
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
