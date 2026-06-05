@@ -421,6 +421,26 @@ vim.api.nvim_create_user_command('Wrap', function(opts)
   -- Configure the helper window to enforce wrapping
   vim.cmd.vnew()
   local wrapper_winid = vim.fn.win_getid()
+  local wrapper_options = {}
+  vim.api.nvim_create_autocmd({ 'OptionSet' }, {
+    group = my.augroup,
+    buffer = 0,
+    desc = 'Track original window options',
+    callback = function(ev)
+      local option = ev.match
+      table.insert(wrapper_options, option)
+    end,
+  })
+  vim.api.nvim_create_autocmd({ 'BufWinLeave' }, {
+    group = my.augroup,
+    buffer = 0,
+    desc = 'Reset window options',
+    callback = function()
+      for _, option in ipairs(wrapper_options) do
+        vim.opt_local[option] = nil
+      end
+    end,
+  })
   vim.api.nvim_win_set_config(0, { style = 'minimal' })
   vim.opt_local.statusline = ' '
   vim.opt_local.winhighlight:append {
