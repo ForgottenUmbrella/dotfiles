@@ -328,7 +328,7 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
 
 vim.api.nvim_create_autocmd({ 'LspAttach' }, {
   group = my.augroup,
-  desc = 'Set up LSP features (folding, highlighting)',
+  desc = 'Set up LSP features',
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
     local diff = vim.opt.diff:get() -- Don't override diff-mode folds
@@ -336,18 +336,35 @@ vim.api.nvim_create_autocmd({ 'LspAttach' }, {
       vim.opt_local.foldmethod = 'expr'
       vim.opt_local.foldexpr = 'v:lua.vim.lsp.foldexpr()'
     end
+
     if client:supports_method 'textDocument/documentHighlight' then
       vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
         group = my.augroup,
-        buffer = 0,
+        buffer = ev.buf,
         desc = 'Highlight occurrences',
         callback = vim.lsp.buf.document_highlight,
       })
       vim.api.nvim_create_autocmd({ 'CursorMoved' }, {
         group = my.augroup,
-        buffer = 0,
+        buffer = ev.buf,
         desc = 'Remove highlighting on move',
         callback = vim.lsp.buf.clear_references,
+      })
+    end
+
+    if not client:supports_method('textDocument/willSaveWaitUntil')
+      and client:supports_method('textDocument/formatting') then
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        group = my.augroup,
+        buffer = ev.buf,
+        desc = 'lsp-format',
+        callback = function()
+          vim.lsp.buf.format {
+            bufnr = ev.buf,
+            id = client.id,
+            timeout_ms = 1000,
+          }
+        end,
       })
     end
   end,
