@@ -268,7 +268,9 @@ vim.pack.add {
   -- Balanced pairs
   'https://github.com/nvim-mini/mini.pairs',
 }
-require('mini.ai').setup {}
+require('mini.ai').setup {
+  search_method = 'cover', -- mini.ai overrides text object behaviour, reset it.
+}
 local mini_indentscope = require 'mini.indentscope'
 mini_indentscope.setup {
   draw = {
