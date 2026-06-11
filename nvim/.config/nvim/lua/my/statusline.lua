@@ -130,8 +130,8 @@ function my.statusline()
     '%#StatusLineNC# ',
     '%<',
     file, ' ',
-    vim.diagnostic.status():gsub('%%#(%a+)#', '%%$%1$'), ' ', -- Respect bg
-    '%#StatusLineNC#', -- Reset diagnostic styling
+    vim.diagnostic.status():gsub('%%#(%a+)#', '%%$%1$'), -- Respect bg
+    '%#StatusLineNC# ', -- Reset diagnostic styling
     '%=',
     searchcount ~= '' and searchcount .. ' ' or '',
     (vim.w.quickfix_title or '') ~= '' and vim.w.quickfix_title .. ' ' or '',
