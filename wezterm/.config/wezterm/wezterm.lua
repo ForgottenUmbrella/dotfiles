@@ -113,16 +113,18 @@ config.keys = {
     key = 's',
     action = act.SplitHorizontal,
   },
-  {
-    mods = mod .. '|CTRL',
-    key = 's',
-    action = act.SplitPane { direction = 'Down', top_level = true },
-  },
-  {
-    mods = mod .. '|CTRL|SHIFT',
-    key = 's',
-    action = act.SplitPane { direction = 'Right', top_level = true },
-  },
+  -- Top-level splits are broken:
+  -- https://github.com/wezterm/wezterm/issues/4984
+  -- {
+  --   mods = mod .. '|CTRL',
+  --   key = 's',
+  --   action = act.SplitPane { direction = 'Down', top_level = true },
+  -- },
+  -- {
+  --   mods = mod .. '|CTRL|SHIFT',
+  --   key = 's',
+  --   action = act.SplitPane { direction = 'Right', top_level = true },
+  -- },
   {
     mods = mod .. '|SHIFT',
     key = 'n',
