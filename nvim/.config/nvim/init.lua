@@ -327,16 +327,27 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
 
 vim.api.nvim_create_autocmd({ 'LspAttach' }, {
   group = my.augroup,
-  desc = 'Use LSP for folding',
+  desc = 'Set up LSP features (folding, highlighting)',
   callback = function(ev)
-    -- Don't override diff-mode folds.
-    if vim.opt.diff:get() then
-      return
-    end
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if client:supports_method 'textDocument/foldingRange' then
+    local diff = vim.opt.diff:get() -- Don't override diff-mode folds
+    if client:supports_method 'textDocument/foldingRange' and not diff then
       vim.opt_local.foldmethod = 'expr'
       vim.opt_local.foldexpr = 'v:lua.vim.lsp.foldexpr()'
+    end
+    if client:supports_method 'textDocument/documentHighlight' then
+      vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+        group = my.augroup,
+        buffer = 0,
+        desc = 'Highlight occurrences',
+        callback = vim.lsp.buf.document_highlight,
+      })
+      vim.api.nvim_create_autocmd({ 'CursorMoved' }, {
+        group = my.augroup,
+        buffer = 0,
+        desc = 'Remove highlighting on move',
+        callback = vim.lsp.buf.clear_references,
+      })
     end
   end,
 })
@@ -353,7 +364,8 @@ vim.api.nvim_create_autocmd({ 'CmdlineChanged' }, {
   group = my.augroup,
   pattern = '[:/?]',
   desc = 'cmdline-autocompletion',
-  callback = function() vim.fn.wildtrigger() end, -- Swallow return
+  -- Swallow return so autocmd doesn't get deleted on first event
+  callback = function() vim.fn.wildtrigger() end,
 })
 for _, key in ipairs { '<Up>', '<Down>', '<Right>' } do
   vim.keymap.set('c', key, function()
