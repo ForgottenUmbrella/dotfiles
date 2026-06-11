@@ -110,7 +110,7 @@ vim.opt.spelloptions = { 'camel', 'noplainbuffer' }
 -- Plugins {{{1
 -- Set leader key for plugin keymaps
 vim.g.mapleader = ' '
-vim.keymap.set('n', '<Leader><Leader>', ':', { desc = 'Run command' })
+vim.keymap.set({ 'n', 'v' }, '<Leader><Leader>', ':', { desc = 'Run command' })
 
 -- Built-in plugins {{{2
 vim.cmd.packadd 'cfilter'
@@ -174,7 +174,7 @@ wk.setup {
     },
   },
 }
-vim.keymap.set('n', '<Leader>?', function()
+vim.keymap.set({ 'n', 'v' }, '<Leader>?', function()
   wk.show { global = false }
 end, { desc = 'Buffer Local Keymaps (which-key)' })
 vim.keymap.del('n', '<C-W><C-D>') -- Clashes with C-d to show more keymaps
