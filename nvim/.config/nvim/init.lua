@@ -201,9 +201,10 @@ end))
 
 if vim.fn.executable 'fzf' then
   -- fzf comes bundled with a vim plugin that provides :FZF.
-  vim.keymap.set('n', '<Leader>ff', '<Cmd>FZF --border=none<CR>', {
-    desc = 'FZF',
-  })
+  vim.g.fzf_layout = {
+    window = { width = 0.9, height = 0.6, border = 'none' },
+  }
+  vim.keymap.set('n', '<Leader>ff', '<Cmd>FZF<CR>')
 end
 
 -- Language Server Protocol {{{2
