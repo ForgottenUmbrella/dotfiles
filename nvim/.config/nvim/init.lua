@@ -74,7 +74,7 @@ require('vim._core.ui2').enable {
   },
 }
 vim.opt.cmdheight = 0
-vim.opt.shortmess:append 'W'
+vim.opt.shortmess:append 'c'
 
 -- Windows {{{3
 vim.opt.splitbelow = true
