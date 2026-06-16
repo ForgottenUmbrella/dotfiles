@@ -62,6 +62,7 @@ else
 end
 -- Set noselect for cmdline-autocompletion
 vim.opt.wildmode:prepend { 'noselect:lastused', 'longest' }
+vim.opt.wildoptions:append 'fuzzy'
 
 -- UI {{{2
 require 'my.colourscheme'
