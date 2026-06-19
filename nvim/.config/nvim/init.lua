@@ -205,6 +205,9 @@ end))
 
 if vim.fn.executable 'fzf' then
   -- fzf comes bundled with a vim plugin that provides :FZF.
+  vim.g.fzf_action = {
+    ['ctrl-a'] = 'argadd',
+  }
   vim.g.fzf_layout = {
     window = { width = 0.9, height = 0.6, border = 'none' },
   }
