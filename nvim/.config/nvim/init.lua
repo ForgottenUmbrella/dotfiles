@@ -231,7 +231,7 @@ require('neo-tree').setup {
     },
   },
   mappings = {
-    ['<Space>'] = { nowait = true },
+    ['<space>'] = { nowait = true },
     O = {
       desc = 'open in external application', function(state)
         local opener
