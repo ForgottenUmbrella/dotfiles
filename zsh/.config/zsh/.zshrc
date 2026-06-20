@@ -27,6 +27,7 @@ setopt share_history  # Share history across sessions.
 setopt append_history  # Append instead of overwriting sessions' histories.
 setopt inc_append_history  # Update history immediately.
 setopt hist_ignore_dups  # Don't store duplicates.
+setopt hist_ignore_space  # Exclude from history if prefixed with space.
 setopt hist_reduce_blanks  # Don't store blank lines.
 
 # Typos
