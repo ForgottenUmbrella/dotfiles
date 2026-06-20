@@ -95,7 +95,7 @@ function my.statusline()
   local searchcount = ''
   if vim.v.hlsearch == 1 then
     local ok, search = pcall(vim.fn.searchcount)
-    if ok and search.current > 0 then
+    if ok and search.current ~= nil and search.current > 0 then
       local dir = vim.v.searchforward == 1 and '/' or '?'
       local current = search.current > search.maxcount and
         search.current .. '+' or
