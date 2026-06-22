@@ -20,7 +20,7 @@ if vim.fn.executable 'rg' then
 else
   vim.notify('ripgrep not installed; :grep will be slow', vim.log.levels.WARN)
 end
-vim.opt.sessionoptions:remove 'buffers'
+vim.opt.sessionoptions:remove { 'blank', 'buffers' }
 -- Context-dependent case sensitivity (disable with \C flag) {{{3
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -191,6 +191,42 @@ vim.keymap.set('i', '<C-?>', '<Cmd>WhichKey i<CR>')
 local mini_sessions = require 'mini.sessions'
 mini_sessions.setup {
   autoread = true,
+  hooks = {
+    post = {
+      write = function(data)
+        -- Persist quickfix lists.
+        local num_qflists = vim.fn.getqflist { nr = '$' }
+        for i = 1, num_qflists do
+          local qflist = vim.fn.getqflist {
+            nr = i,
+            context = 1,
+            efm = 1,
+            items = 1,
+            title = 1,
+          }
+          for _, entry in ipairs(qflist.items) do
+            -- Use filename instead of bufnr so it can be reloaded.
+            entry.filename = vim.api.nvim_buf_get_name(entry.bufnr)
+            entry.bufnr = nil
+          end
+          local restore_cmd = string.format(
+            [[setqflist([], ' ', %s)]], vim.fn.string(qflist)
+          )
+          vim.fn.writelist({ restore_cmd }, data.path, 'a')
+        end
+        -- Reopen quickfix windows in each tab.
+        local qf_tabs = {}
+        for _, window in ipairs(vim.fn.getwininfo()) do
+          if window.quickfix == 1 then
+            qf_tabs[window.tabnr] = true
+          end
+        end
+        for tabnr in vim.tbl_keys(qf_tabs) do
+          vim.fn.writelist({ tabnr .. 'tabdo copen' }, data.path, 'a')
+        end
+      end,
+    },
+  },
 }
 vim.api.nvim_create_user_command('Mksession', function(opts)
   local file = opts.fargs[1]
