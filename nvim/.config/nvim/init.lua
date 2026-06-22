@@ -390,6 +390,10 @@ vim.api.nvim_create_autocmd({ 'LspAttach' }, {
         desc = 'Highlight occurrences',
         callback = vim.lsp.buf.document_highlight,
       })
+      vim.keymap.set('n', '<C-*>', vim.lsp.buf.document_highlight, {
+        desc = 'Highlight occurrences',
+        buf = 0,
+      })
       vim.api.nvim_create_autocmd({ 'CursorMoved' }, {
         group = my.augroup,
         buffer = ev.buf,
