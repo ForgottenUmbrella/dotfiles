@@ -195,8 +195,8 @@ mini_sessions.setup {
     post = {
       write = function(data)
         -- Persist quickfix lists.
-        local num_qflists = vim.fn.getqflist { nr = '$' }
-        for i = 1, num_qflists do
+        local qfinfo = vim.fn.getqflist { nr = '$' }
+        for i = 1, qfinfo.nr do
           local qflist = vim.fn.getqflist {
             nr = i,
             context = 1,
@@ -221,7 +221,7 @@ mini_sessions.setup {
             qf_tabs[window.tabnr] = true
           end
         end
-        for tabnr in vim.tbl_keys(qf_tabs) do
+        for tabnr in pairs(qf_tabs) do
           vim.fn.writelist({ tabnr .. 'tabdo copen' }, data.path, 'a')
         end
       end,
