@@ -350,7 +350,12 @@ vim.keymap.set('n', '<Leader>gc', '<Cmd>DiffConflicts<CR>')
 
 -- Org mode {{{2
 vim.pack.add { 'https://github.com/nvim-orgmode/orgmode' }
-require('orgmode').setup {}
+require('orgmode').setup {
+  mappings = {
+    -- BUG: https://github.com/nvim-orgmode/orgmode/issues/1166
+    org_return = false
+  },
+}
 vim.lsp.enable 'org'
 wk.add {
   { '<Leader>o', group = 'org mode' },
