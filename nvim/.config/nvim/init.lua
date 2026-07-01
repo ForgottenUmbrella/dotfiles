@@ -33,7 +33,7 @@ vim.opt.autocomplete = true
 vim.keymap.set('i', '<CR>', function()
   return vim.fn.pumvisible() == 0 and '<CR>' or '<C-e><CR>'
 end, { desc = 'Insert newline regardless of completion', expr = true })
--- The autocompletedelay option currently blocks text rendering:
+-- BUG: The autocompletedelay option currently blocks text rendering:
 -- https://github.com/neovim/neovim/issues/40064
 -- vim.opt.autocompletedelay = 1000
 vim.opt.complete:append { 'F', 'o' }
