@@ -76,16 +76,20 @@ wezterm.on('gui-startup', function(cmd)
   -- Otherwise quietly restore session and enable autosave.
   local tab, pane, mux_window = wezterm.mux.spawn_window {}
   local window = mux_window:gui_window()
-  local toast_notification = window.toast_notification
-  window.toast_notification = function() end
-  local ok, err = pcall(function()
-    sessions.restore_state(window)
-    sessions.start_autosave(window)
-  end)
-  window.toast_notification = toast_notification
-  if not ok then
-    wezterm.log_error(err)
-  end
+  local window_proxy = {
+    toast_notification = function() end,
+  }
+  setmetatable(window_proxy, {
+    __index = function(_, key)
+      local val = window[key]
+      if type(val) == 'function' then
+        return function(_, ...) return val(window, ...) end
+      end
+      return val
+    end,
+  })
+  sessions.restore_state(window_proxy)
+  sessions.start_autosave(window_proxy)
 end)
 
 -- Use a user var to trigger updates from CLI
