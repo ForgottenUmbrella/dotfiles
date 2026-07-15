@@ -7,6 +7,3 @@ After=network-online.target graphical-session.target
 OnCalendar=weekly
 Persistent=true
 RandomizedDelaySec=300
-
-[Install]
-WantedBy=timers.target
