@@ -1,8 +1,3 @@
-# NOTE: After updating this file, run
-# antibody bundle < "$ZDOTDIR/.zsh_plugins.txt" > "$ZDOTDIR/.zsh_plugins.sh"
-# (SPC-c-c).
-# NOTE: After removing plugins, run `antibody purge your/plugin`.
-
 # Synchronise Vim-mode clipboard with system.
 kutsan/zsh-system-clipboard
 # Go back quickly.
@@ -22,8 +17,3 @@ zsh-users/zsh-syntax-highlighting
 # Emacs bindings, surround objects, mode cursors and prompt.
 # Must be after zsh-syntax-highlighting.
 softmoth/zsh-vim-mode
-
-# Local Variables:
-# mode: sh
-# compile-command: "antibody bundle < $ZDOTDIR/.zsh_plugins.txt > $ZDOTDIR/.zsh_plugins.sh"
-# End:

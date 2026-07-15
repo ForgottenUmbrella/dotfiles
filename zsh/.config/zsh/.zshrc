@@ -121,8 +121,11 @@ if [ -f "$ZDOTDIR/$(hostname).zshrc" ]; then
 fi
 
 # Load plugins declared in $ZDOTDIR/.zsh_plugins.txt.
-. "${ZDOTDIR:-$HOME}/.zsh_plugins.sh"
-# NOTE: To update plugins, run `antibody update`.
+# NOTE: To update plugins, run `antidote update`.
+if [ -f '/usr/share/zsh-antidote/antidote.zsh' ]; then
+  . '/usr/share/zsh-antidote/antidote.zsh'
+  antidote load
+fi
 
 # Plugin settings
 
