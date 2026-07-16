@@ -60,7 +60,6 @@ if wezterm.run_child_process { 'infocmp', 'wezterm' } then
 else
   wezterm.log_warn 'wezterm terminfo entry not installed; TUIs may produce rendering artifacts'
 end
-config.window_close_confirmation = 'NeverPrompt'
 
 local sessions = wezterm.plugin.require 'https://github.com/abidibo/wezterm-sessions'
 -- Apply to config BEFORE setting our own keybindings so ours take precedence.
