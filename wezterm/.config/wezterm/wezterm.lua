@@ -6,37 +6,44 @@ local is_macos = wezterm.target_triple:find 'apple'
 
 -- Appearance {{{1
 -- Colour scheme {{{2
-if wezterm.gui and wezterm.gui.get_appearance():find 'Light' then
-  config.color_scheme = 'dayfox'
+local light_colourscheme = 'dayfox'
+local dark_colourscheme = 'nightfox'
+local is_light = wezterm.gui and wezterm.gui.get_appearance():find 'Light'
+config.color_scheme = is_light and light_colourscheme or dark_colourscheme
+
+---Derive extra colour options from a colourscheme and add them to the config.
+local function augment_colourscheme(colourscheme, config)
+  local scheme_def = wezterm.color.get_builtin_schemes()[colourscheme]
+  config.colors = {
+    tab_bar = {
+      background = scheme_def.cursor_bg,
+      active_tab = {
+        bg_color = scheme_def.background,
+        fg_color = scheme_def.foreground,
+      },
+      inactive_tab = {
+        bg_color = scheme_def.cursor_bg,
+        fg_color = scheme_def.cursor_fg,
+      },
+      new_tab = {
+        bg_color = scheme_def.cursor_bg,
+        fg_color = scheme_def.cursor_fg,
+      },
+      inactive_tab_hover = {
+        bg_color = scheme_def.selection_bg,
+        fg_color = scheme_def.selection_fg,
+      },
+      new_tab_hover = {
+        bg_color = scheme_def.selection_bg,
+        fg_color = scheme_def.selection_fg,
+      },
+    },
+  }
+  config.command_palette_bg_color = scheme_def.background
+  config.command_palette_fg_color = scheme_def.foreground
 end
-local scheme_def = wezterm.color.get_builtin_schemes()[config.color_scheme]
-config.colors = {
-  tab_bar = {
-    background = scheme_def.cursor_bg,
-    active_tab = {
-      bg_color = scheme_def.background,
-      fg_color = scheme_def.foreground,
-    },
-    inactive_tab = {
-      bg_color = scheme_def.cursor_bg,
-      fg_color = scheme_def.cursor_fg,
-    },
-    new_tab = {
-      bg_color = scheme_def.cursor_bg,
-      fg_color = scheme_def.cursor_fg,
-    },
-    inactive_tab_hover = {
-      bg_color = scheme_def.selection_bg,
-      fg_color = scheme_def.selection_fg,
-    },
-    new_tab_hover = {
-      bg_color = scheme_def.selection_bg,
-      fg_color = scheme_def.selection_fg,
-    },
-  },
-}
-config.command_palette_bg_color = scheme_def.background
-config.command_palette_fg_color = scheme_def.foreground
+
+augment_colourscheme(config.color_scheme, config)
 -- }}}
 
 if not is_macos then
@@ -215,7 +222,22 @@ wezterm.on('augment-command-palette', function(window, pane)
         window:set_config_overrides(overrides)
       end),
       icon = 'md_square_opacity',
-    }
+    },
+    {
+      brief = 'Toggle light/dark mode',
+      action = wezterm.action_callback(function(window, pane)
+        local overrides = window:get_config_overrides() or {}
+        local current_colourscheme = window:effective_config().color_scheme
+        if current_colourscheme == light_colourscheme then
+          overrides.color_scheme = dark_colourscheme
+        else
+          overrides.color_scheme = light_colourscheme
+        end
+        augment_colourscheme(overrides.color_scheme, overrides)
+        window:set_config_overrides(overrides)
+      end),
+      icon = 'md_theme_light_dark',
+    },
   }
 end)
 -- }}}
