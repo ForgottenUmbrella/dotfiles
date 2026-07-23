@@ -127,10 +127,13 @@ if [ -f '/usr/share/zsh-antidote/antidote.zsh' ]; then
   antidote load
 fi
 
-# Plugin settings
+# Only load zsh-system-clipboard if not in TTY (which has no system clipboard).
+if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
+  # Synchronise Vim-mode clipboard with system.
+  antidote bundle kutsan/zsh-system-clipboard
+fi
 
-# trystan2k/zsh-tab-title
-ZSH_TAB_TITLE_CONCAT_FOLDER_PROCESS=true
+# Plugin settings
 
 # zpm-zsh/colorize
 # Fix for differences between BSD and GNU utils.

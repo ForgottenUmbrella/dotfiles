@@ -1,5 +1,3 @@
-# Emacs bindings, surround objects, mode cursors and prompt.
-jeffreytse/zsh-vi-mode
 # Go back quickly.
 Tarrasch/zsh-bd
 # Colourise ls and add the usual aliases.
@@ -14,3 +12,6 @@ zsh-users/zsh-history-substring-search
 zsh-users/zsh-completions
 # Enable syntax highlighting. Must be last plugin.
 zsh-users/zsh-syntax-highlighting
+# Emacs bindings, surround objects, mode cursors and prompt.
+# Must be after zsh-syntax-highlighting.
+softmoth/zsh-vim-mode
