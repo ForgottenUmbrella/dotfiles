@@ -37,15 +37,25 @@ vim.opt.complete:append { 'F', 'o' }
 vim.opt.completeopt:append 'noselect'
 function my.findfunc(cmdarg, cmdcomplete)
   local paths = vim.list.unique(vim.opt.path:get())
+  local find_paths = {}
   for i, path in ipairs(paths) do
-    if path == '.' then
-      paths[i] = vim.fn.expand '%:p:h'
-    elseif path == '' then
-      paths[i] = '.'
+    if path == '' then
+      table.insert(find_paths, '.')
+    elseif path == '.' then
+      local has_cwd = vim.tbl_contains(paths, '')
+      local current_file_dir = vim.fn.expand '%:p:h'
+      local cwd = vim.fn.getcwd() .. '/'
+      local is_cwd_descendent = vim.startswith(current_file_dir, cwd)
+      if not has_cwd or not is_cwd_descendent then
+        -- Only add current file directory if it wouldn't duplicate cwd.
+        table.insert(find_paths, current_file_dir)
+      end
+    else
+      table.insert(find_paths, path)
     end
   end
   local options = vim.fn.systemlist {
-    'fd', '--full-path', '--hidden', '--follow', cmdarg, unpack(paths),
+    'fd', '--full-path', '--hidden', '--follow', cmdarg, unpack(find_paths),
   }
   -- When querying completion candidates, return all options.
   -- Or if selecting a candidate, allow partial match if unambiguous.
