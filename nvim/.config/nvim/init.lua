@@ -30,9 +30,6 @@ vim.opt.shiftwidth = 4 -- Number of spaces to indent with
 vim.opt.tabstop = 4 -- Render tabs as 4 spaces wide
 -- Completion {{{3
 vim.opt.autocomplete = true
-vim.keymap.set('i', '<CR>', function()
-  return vim.fn.pumvisible() == 0 and '<CR>' or '<C-e><CR>'
-end, { desc = 'Insert newline regardless of completion', expr = true })
 -- BUG: The autocompletedelay option currently blocks text rendering:
 -- https://github.com/neovim/neovim/issues/40064
 -- vim.opt.autocompletedelay = 1000
