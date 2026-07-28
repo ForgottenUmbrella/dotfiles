@@ -267,6 +267,7 @@ vim.pack.add {
   'https://github.com/nvim-treesitter/nvim-treesitter-context',
 }
 require('mason').setup {}
+-- Add mason executables to PATH.
 vim.env.PATH = string.format(
   '%s/mason/bin:%s',
   vim.fn.stdpath('data'), vim.env.PATH
