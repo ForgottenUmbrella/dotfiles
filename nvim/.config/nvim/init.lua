@@ -258,8 +258,63 @@ if vim.fn.executable 'fzf' then
   vim.keymap.set('n', '<Leader>ff', '<Cmd>FZF<CR>')
 end
 
--- Language Server Protocol {{{2
+-- Language Server Protocol/tree-sitter {{{2
+vim.pack.add {
+  'https://github.com/mason-org/mason.nvim',
+  'https://github.com/neovim/nvim-lspconfig',
+  'https://github.com/nvim-treesitter/nvim-treesitter',
+  'https://github.com/nvim-treesitter/nvim-treesitter-context',
+}
+require('mason').setup {}
+local registry = require 'mason-registry'
+---Ensure an executable is installed.
+---@param spec string|table If string, the mason package providing the
+---executable to install. Otherwise a full spec with the following fields.
+---@param spec[1] string The mason package providing the executable to install
+---@param spec.exe? string The executable provided by the package. Defaults to
+---spec[1].
+---@param spec.requires? string|string[] Executable(s) that must be available
+---to install the mason package
+---@return boolean Whether the executable is installed
+function my.mason_ensure(spec)
+  if type(spec) == 'string' then
+    spec = { spec }
+  end
+  local pkg_name = spec[1]
+  local exe = spec.exe or pkg_name
+  local requires = type(spec.requires) == 'string' and
+    { spec.requires } or
+    spec.requires or {}
+
+  if not (vim.fn.executable(pkg_name) or registry.is_installed(pkg_name)) then
+    for _, required in ipairs(requires) do
+      if not vim.fn.executable(required) then
+        vim.notify(
+          string.format(
+            'Skipping install of %s; %s is required but not installed',
+            pkg_name, required
+          ),
+          vim.log.levels.WARN
+        )
+        return false
+      end
+    end
+
+    vim.cmd.MasonInstall(pkg_name)
+  end
+
+  return true
+end
+
 require 'my.lsp'
+
+if mason_ensure {
+  'tree-sitter-cli',
+  exe = 'tree-sitter',
+  requires = { 'tar', 'curl', 'cc' },
+} then
+  require('nvim-treesitter').install { 'go', 'typescript' }
+end
 
 -- File tree {{{3
 vim.pack.add {

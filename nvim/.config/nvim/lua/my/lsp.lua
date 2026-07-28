@@ -1,52 +1,25 @@
 -- Set up LSP servers.
 
 vim.pack.add {
-  'https://github.com/neovim/nvim-lspconfig',
-  'https://github.com/mason-org/mason.nvim',
-  'https://github.com/nvim-lua/plenary.nvim', -- Dependency
+  -- Dependency (typescript-tools.nvim)
+  'https://github.com/nvim-lua/plenary.nvim',
   'https://github.com/pmizio/typescript-tools.nvim',
   'https://github.com/creativenull/efmls-configs-nvim',
 }
-
-require('mason').setup {}
-local registry = require 'mason-registry'
+require('typescript-tools').setup {}
 
 ---Ensure an LSP server is installed and enabled.
----@param spec string|table If string, the mason package providing the server
----to install. Otherwise a full spec with the following fields.
----@param spec[1] string The mason package providing the server to install
+---@see my.mason_ensure
 ---@param spec.lspconfig? string The name of the lspconfig to enable. Defaults
 ---to spec[1].
----@param spec.requires? string|string[] Executable(s) that must be available
----to install the server
 local function mason_lsp_ensure(spec)
   if type(spec) == 'string' then
     spec = { spec }
   end
-  local pkg_name = spec[1]
-  local lspconfig = spec.lspconfig or pkg_name
-  local requires = type(spec.requires) == 'string' and
-    { spec.requires } or
-    spec.requires or {}
-
-  if not (vim.fn.executable(pkg_name) or registry.is_installed(pkg_name)) then
-    for _, required in ipairs(requires) do
-      if not vim.fn.executable(required) then
-        vim.notify(
-          string.format(
-            'Skipping install of %s LSP server; \z
-            %s is required but not installed',
-            pkg_name, required
-          ),
-          vim.log.levels.WARN
-        )
-        return
-      end
-    end
-    vim.cmd.MasonInstall(pkg_name)
+  local lspconfig = spec.lspconfig or spec[1]
+  if my.mason_ensure(spec) then
+    vim.lsp.enable(lspconfig)
   end
-
-  vim.lsp.enable(lspconfig)
 end
 
 -- Integrates with non-LSP tools like formatters & linters
@@ -87,5 +60,3 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   end,
   once = true,
 })
-
-require('typescript-tools').setup {}
