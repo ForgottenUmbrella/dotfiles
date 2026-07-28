@@ -329,9 +329,9 @@ vim.pack.add {
   'https://github.com/MunifTanjim/nui.nvim',
   -- Dependency (neo-tree.nvim, nvim-lsp-file-operations)
   'https://github.com/nvim-lua/plenary.nvim',
-  -- Dependency (nvim-lsp-file-operations)
+  -- Dependency (nvim-file-operations)
   'https://github.com/nvim-neo-tree/neo-tree.nvim',
-  'https://github.com/antosha417/nvim-lsp-file-operations',
+  'https://github.com/Crysthamus/nvim-file-operations',
 }
 require('neo-tree').setup {
   filesystem = {
@@ -368,7 +368,7 @@ require('neo-tree').setup {
     },
   },
 }
-require('lsp-file-operations').setup {}
+require('nvim-file-operations').setup {}
 vim.keymap.set('n', '<Leader>ft', '<Cmd>Neotree reveal<CR>')
 
 -- Editing {{{2

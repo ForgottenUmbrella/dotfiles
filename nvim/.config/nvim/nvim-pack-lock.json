@@ -52,9 +52,9 @@
       "rev": "440ec66c2b26470ec97cd4d6667cdd4b51cbc7cb",
       "src": "https://github.com/igorlfs/nvim-dap-view"
     },
-    "nvim-lsp-file-operations": {
-      "rev": "b9c795d3973e8eec22706af14959bc60c579e771",
-      "src": "https://github.com/antosha417/nvim-lsp-file-operations"
+    "nvim-file-operations": {
+      "rev": "d491d763be6686bbb8eae3b26e8e46e431852c29",
+      "src": "https://github.com/Crysthamus/nvim-file-operations"
     },
     "nvim-lspconfig": {
       "rev": "3371bf298c1f56efc26771ee961f461176958fb5",
