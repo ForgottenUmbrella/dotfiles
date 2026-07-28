@@ -277,7 +277,7 @@ require('neo-tree').setup {
     },
   },
   mappings = {
-    ['<space>'] = { nowait = true },
+    ['<space>'] = { 'toggle_node', nowait = true },
     O = {
       desc = 'open in external application', function(state)
         local opener
@@ -306,7 +306,7 @@ require('neo-tree').setup {
   },
 }
 require('lsp-file-operations').setup {}
-vim.keymap.set('n', '<Leader>ft', '<Cmd>Neotree toggle reveal<CR>')
+vim.keymap.set('n', '<Leader>ft', '<Cmd>Neotree reveal<CR>')
 
 -- Editing {{{2
 vim.pack.add {
