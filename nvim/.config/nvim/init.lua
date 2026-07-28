@@ -267,6 +267,10 @@ vim.pack.add {
   'https://github.com/nvim-treesitter/nvim-treesitter-context',
 }
 require('mason').setup {}
+vim.env.PATH = string.format(
+  '%s/mason/bin:%s',
+  vim.fn.stdpath('data'), vim.env.PATH
+)
 local registry = require 'mason-registry'
 ---Ensure an executable is installed.
 ---@param spec string|table If string, the mason package providing the
