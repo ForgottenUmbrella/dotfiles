@@ -42,11 +42,11 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
 vim.api.nvim_create_autocmd({ 'FileType' }, {
   group = my.augroup,
   pattern = { 'javascriptreact', 'typescriptreact' },
-  desc = 'Install tailwind LSP server',
+  desc = 'Install JSX/TSX LSP server',
   callback = function()
     mason_lsp_ensure {
       'tailwindcss-language-server',
-      lspconfig = 'tailwind',
+      lspconfig = 'tailwindcss',
       requires = 'npm',
     }
   end,
