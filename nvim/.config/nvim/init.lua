@@ -272,7 +272,7 @@ vim.pack.add {
 require('mason').setup {}
 require('treesitter-context').setup {
   multiwindow = true,
-  multiline_threshold = 5,
+  multiline_threshold = 1,
   separator = '-',
 }
 
