@@ -75,6 +75,10 @@ vim.opt.wildmode:prepend { 'noselect:lastused', 'longest' }
 vim.opt.wildoptions:append 'fuzzy'
 
 -- UI {{{2
+-- Set leader key for plugin keymaps
+vim.g.mapleader = ' '
+vim.keymap.set({ 'n', 'v' }, '<Leader><Leader>', ':', { desc = 'Run command' })
+
 require 'my.colourscheme'
 require 'my.statusline'
 require('vim._core.ui2').enable {
@@ -120,10 +124,6 @@ vim.opt.spell = true
 vim.opt.spelloptions = { 'camel', 'noplainbuffer' }
 
 -- Plugins {{{1
--- Set leader key for plugin keymaps
-vim.g.mapleader = ' '
-vim.keymap.set({ 'n', 'v' }, '<Leader><Leader>', ':', { desc = 'Run command' })
-
 -- Built-in plugins {{{2
 vim.cmd.packadd 'cfilter'
 vim.cmd.packadd 'nvim.undotree'
