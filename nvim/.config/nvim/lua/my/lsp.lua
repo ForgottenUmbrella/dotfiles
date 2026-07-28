@@ -28,7 +28,7 @@ local efm_languages = require('efmls-configs.defaults').languages()
 vim.lsp.config('efm', {
   filetypes = vim.tbl_keys(efm_languages),
   settings = {
-    rootMarkers = { '.git/' },
+    rootMarkers = { 'go.mod', '.git/' },
     languages = efm_languages,
   },
   init_options = {
