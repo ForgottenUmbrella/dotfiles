@@ -8,10 +8,6 @@
       "rev": "4972d1401e008c5e9afeb703eddd1b2c2a1d1199",
       "src": "https://github.com/whiteinge/diffconflicts"
     },
-    "efmls-configs-nvim": {
-      "rev": "2f5dc31042cc76fc3d5a859842a8416085c4d41f",
-      "src": "https://github.com/creativenull/efmls-configs-nvim"
-    },
     "mason.nvim": {
       "rev": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d",
       "src": "https://github.com/mason-org/mason.nvim"
@@ -39,6 +35,14 @@
     "neogit": {
       "rev": "43ea1a0854052e583f647e0b35879f0158a70a78",
       "src": "https://github.com/NeogitOrg/neogit"
+    },
+    "none-ls-extras.nvim": {
+      "rev": "9a8b8a9aeb43382e5aaf49b00b7cfb5d42d32118",
+      "src": "https://github.com/nvimtools/none-ls-extras.nvim"
+    },
+    "none-ls.nvim": {
+      "rev": "01f8e62ea11603e59ad9ff7afcfa94fd183f76d6",
+      "src": "https://github.com/nvimtools/none-ls.nvim"
     },
     "nui.nvim": {
       "rev": "de740991c12411b663994b2860f1a4fd0937c130",
