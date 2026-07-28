@@ -115,14 +115,22 @@ alias cp='cp --reflink=auto'
 # Follow symlinks.
 alias ls='ls -H'
 
+function has-system-clipboard() {
+  if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
+    return 0
+  fi
+  case "$OSTYPE" in
+    darwin*)
+      return 0
+      ;;
+  esac
+  return 1
+}
+
 # Load per-host config.
 if [ -f "$ZDOTDIR/$(hostname).zshrc" ]; then
   . "$ZDOTDIR/$(hostname).zshrc"
 fi
-
-function has-system-clipboard() {
-  [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]
-}
 
 # Load plugins declared in $ZDOTDIR/.zsh_plugins.txt.
 # NOTE: To update plugins, run `antidote update`.
