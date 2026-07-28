@@ -108,6 +108,7 @@ vim.opt.relativenumber = true
 -- Folding {{{4
 vim.opt.foldlevelstart = 99 -- Start unfolded
 vim.opt.foldmethod = 'indent' -- Most syntax files don't define folds
+vim.opt.foldopen:remove 'block'
 vim.keymap.set('n', '<Tab>', 'za')
 vim.keymap.set('n', '<C-i>', '<C-i>') -- By default <Tab> and <C-i> are the same
 -- Scrolling {{{4
