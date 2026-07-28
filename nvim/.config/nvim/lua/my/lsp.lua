@@ -1,12 +1,21 @@
 -- Set up LSP servers.
 
 vim.pack.add {
-  -- Dependency (typescript-tools.nvim)
+  -- Dependency (typescript-tools.nvim, none-ls.nvim)
   'https://github.com/nvim-lua/plenary.nvim',
+  'https://github.com/nvimtools/none-ls.nvim',
+  'https://github.com/nvimtools/none-ls-extras.nvim',
   'https://github.com/pmizio/typescript-tools.nvim',
-  'https://github.com/creativenull/efmls-configs-nvim',
 }
 require('typescript-tools').setup {}
+local null_ls = require 'null-ls'
+null_ls.setup {
+  sources = {
+    null_ls.builtins.diagnostics.golangci_lint,
+    null_ls.builtins.formatting.prettier,
+    require 'none-ls.diagnostics.eslint',
+  },
+}
 
 ---Ensure an LSP server is installed and enabled.
 ---@see my.mason_ensure
@@ -22,28 +31,11 @@ local function mason_lsp_ensure(spec)
   end
 end
 
--- Integrates with non-LSP tools like formatters & linters
-mason_lsp_ensure 'efm'
-local efm_languages = require('efmls-configs.defaults').languages()
-vim.lsp.config('efm', {
-  filetypes = vim.tbl_keys(efm_languages),
-  settings = {
-    rootMarkers = { 'go.mod', '.git/' },
-    languages = efm_languages,
-  },
-  init_options = {
-    documentFormatting = true,
-    documentRangeFormatting = true,
-  },
-})
-
 vim.api.nvim_create_autocmd({ 'FileType' }, {
   group = my.augroup,
   pattern = 'go',
   desc = 'Install go LSP server',
-  callback = function()
-    mason_lsp_ensure { 'gopls', requires = 'go' }
-  end,
+  callback = function() mason_lsp_ensure { 'gopls', requires = 'go' } end,
   once = true,
 })
 
