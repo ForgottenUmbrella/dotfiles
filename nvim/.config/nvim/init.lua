@@ -239,6 +239,9 @@ mini_sessions.setup {
 }
 vim.api.nvim_create_user_command('Mksession', function(opts)
   local file = opts.fargs[1]
+  if file == nil and vim.v.this_session == '' then
+    file = mini_sessions.config.file
+  end
   mini_sessions.write(file)
 end, { desc = 'Initialise directory session', nargs = '?', complete = 'file' })
 -- Auto-update session on a timer in case of crashes
