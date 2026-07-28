@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
 })
 
 local git_status = ''
-if vim.fn.executable 'git' then
+if vim.fn.executable 'git' == 1 then
   vim.api.nvim_create_autocmd({ 'FocusGained', 'BufWritePost', 'User' }, {
     group = my.augroup,
     pattern = { '*', 'NeogitStatusRefreshed' },

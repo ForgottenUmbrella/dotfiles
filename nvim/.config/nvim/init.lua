@@ -15,7 +15,7 @@ vim.opt.ttimeoutlen = 0 -- Don't ignore Esc immediately after keypress
 -- Behaviour {{{2
 vim.opt.undofile = true -- Allow undoing changes after exit
 vim.opt.gdefault = true -- Replace all occurrences by default
-if vim.fn.executable 'rg' then
+if vim.fn.executable 'rg' == 1 then
   vim.opt.grepprg = 'rg --vimgrep ' -- Remove -uu flags added by default
 else
   vim.notify('ripgrep not installed; :grep will be slow', vim.log.levels.WARN)
@@ -65,7 +65,7 @@ function my.findfunc(cmdarg, cmdcomplete)
   -- If ambiguous, use the exact input.
   return { cmdarg }
 end
-if vim.fn.executable 'fd' then
+if vim.fn.executable 'fd' == 1 then
   vim.opt.findfunc = 'v:lua.my.findfunc'
 else
   vim.notify('fd not installed; :find will be slow', vim.log.levels.WARN)
@@ -218,7 +218,8 @@ mini_sessions.setup {
             entry.bufnr = nil
           end
           local restore_cmd = string.format(
-            [[setqflist([], ' ', %s)]], vim.fn.string(qflist)
+            [[setqflist([], ' ', %s)]],
+            vim.fn.string(qflist)
           )
           vim.fn.writelist({ restore_cmd }, data.path, 'a')
         end
@@ -247,7 +248,7 @@ my.session_timer:start(15*60*1000, 15*60*1000, vim.schedule_wrap(function()
   pcall(mini_sessions.write, nil, { force = false, verbose = false })
 end))
 
-if vim.fn.executable 'fzf' then
+if vim.fn.executable 'fzf' == 1 then
   -- fzf comes bundled with a vim plugin that provides :FZF.
   vim.g.fzf_action = {
     ['ctrl-a'] = 'argadd',
@@ -286,9 +287,11 @@ function my.mason_ensure(spec)
     { spec.requires } or
     spec.requires or {}
 
-  if not (vim.fn.executable(pkg_name) or registry.is_installed(pkg_name)) then
+  local is_installed = vim.fn.executable(exe) == 1 or
+    registry.is_installed(pkg_name)
+  if not is_installed then
     for _, required in ipairs(requires) do
-      if not vim.fn.executable(required) then
+      if vim.fn.executable(required) == 0 then
         vim.notify(
           string.format(
             'Skipping install of %s; %s is required but not installed',
@@ -308,7 +311,7 @@ end
 
 require 'my.lsp'
 
-if mason_ensure {
+if my.mason_ensure {
   'tree-sitter-cli',
   exe = 'tree-sitter',
   requires = { 'tar', 'curl', 'cc' },
