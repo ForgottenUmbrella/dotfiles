@@ -270,6 +270,12 @@ vim.pack.add {
   'https://github.com/nvim-treesitter/nvim-treesitter-context',
 }
 require('mason').setup {}
+require('treesitter-context').setup {
+  multiwindow = true,
+  multiline_threshold = 5,
+  separator = '-',
+}
+
 -- Add mason executables to PATH.
 vim.env.PATH = string.format(
   '%s/mason/bin:%s',
