@@ -75,7 +75,7 @@ vim.opt.wildmode:prepend { 'noselect:lastused', 'longest' }
 vim.opt.wildoptions:append 'fuzzy'
 
 -- UI {{{2
--- Set leader key for plugin keymaps
+-- Set leader key for keymaps
 vim.g.mapleader = ' '
 vim.keymap.set({ 'n', 'v' }, '<Leader><Leader>', ':', { desc = 'Run command' })
 
@@ -367,7 +367,7 @@ vim.g.org_folding = 1
 
 -- Debug Adapter Protocol {{{2
 vim.pack.add {
-  'https://github.com/mfussenegger/nvim-dap', -- Dependency
+  'https://github.com/mfussenegger/nvim-dap', -- Dependency (nvim-dap-view)
   'https://github.com/igorlfs/nvim-dap-view',
 }
 require('dap-view').setup {}

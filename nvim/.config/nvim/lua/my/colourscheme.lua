@@ -6,8 +6,8 @@ local original_hl = {}
 ---Modify a highlight group and remember the original definition.
 ---@param name string The highlight group to modify
 ---@param mods table The changes to apply to the highlight group
----@param override? bool Whether to completely replace the definition. Default
----false.
+---@param override? boolean Whether to completely replace the definition.
+---Default false.
 local function mod_hl(name, mods, override)
   original_hl[name] = vim.api.nvim_get_hl(0, { name = name })
   local full_hl = vim.api.nvim_get_hl(0, { name = name, link = false })
