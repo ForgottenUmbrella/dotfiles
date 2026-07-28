@@ -120,17 +120,15 @@ if [ -f "$ZDOTDIR/$(hostname).zshrc" ]; then
   . "$ZDOTDIR/$(hostname).zshrc"
 fi
 
+function has-system-clipboard() {
+  [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]
+}
+
 # Load plugins declared in $ZDOTDIR/.zsh_plugins.txt.
 # NOTE: To update plugins, run `antidote update`.
 if [ -f '/usr/share/zsh-antidote/antidote.zsh' ]; then
   . '/usr/share/zsh-antidote/antidote.zsh'
   antidote load
-fi
-
-# Only load zsh-system-clipboard if not in TTY (which has no system clipboard).
-if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
-  # Synchronise Vim-mode clipboard with system.
-  antidote bundle kutsan/zsh-system-clipboard
 fi
 
 # Plugin settings
