@@ -389,8 +389,8 @@ vim.pack.add {
   'https://github.com/nvim-mini/mini.ai',
   -- Indentation text object
   'https://github.com/nvim-mini/mini.indentscope',
-  -- Balanced pairs
-  'https://github.com/nvim-mini/mini.pairs',
+  -- Balanced pairs (not mini.pairs, doesn't support multi-character pairs)
+  'https://github.com/windwp/nvim-autopairs',
 }
 require('mini.ai').setup {
   search_method = 'cover', -- mini.ai overrides text object behaviour, reset it.
@@ -401,7 +401,7 @@ mini_indentscope.setup {
     animation = mini_indentscope.gen_animation.none(),
   },
 }
-require('mini.pairs').setup {}
+require('nvim-autopairs').setup {}
 
 -- Git {{{2
 vim.pack.add {
