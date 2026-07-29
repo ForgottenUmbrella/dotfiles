@@ -90,11 +90,13 @@ vim.api.nvim_create_autocmd({ 'LspAttach' }, {
         buffer = ev.buf,
         desc = 'lsp-format',
         callback = function()
-          vim.lsp.buf.format {
-            bufnr = ev.buf,
-            id = client.id,
-            timeout_ms = 1000,
+          vim.lsp.buf.code_action {
+            context = {
+              only = { 'source.organizeImports' },
+            },
+            apply = true,
           }
+          vim.lsp.buf.format { bufnr = ev.buf, id = client.id }
         end,
       })
     end
