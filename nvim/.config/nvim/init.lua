@@ -481,36 +481,45 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufReadPost' }, {
   callback = function() vim.opt_local.keywordprg = ':help!' end,
 })
 
+local function pack_clean()
+  local plugins_to_delete = {}
+  for _, plugin in ipairs(vim.pack.get()) do
+    if not plugin.active then
+      table.insert(plugins_to_delete, plugin.spec.name)
+    end
+  end
+  if #plugins_to_delete > 0 then
+    local choice = vim.fn.confirm(
+      'Remove unused plugins? ' .. vim.inspect(plugins_to_delete),
+      '&Yes\n&No', 1, 'Question'
+    )
+    if choice == 1 then
+      vim.pack.del(plugins_to_delete)
+    end
+  end
+end
+
 vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
   group = my.augroup,
   pattern = '**/nvim/**/*.lua',
   desc = 'Clean up unused plugins',
-  callback = function()
-    local plugins_to_delete = {}
-    for _, plugin in ipairs(vim.pack.get()) do
-      if not plugin.active then
-        table.insert(plugins_to_delete, plugin.spec.name)
-      end
-    end
-    if #plugins_to_delete > 0 then
-      local choice = vim.fn.confirm(
-        'Remove unused plugins? ' .. vim.inspect(plugins_to_delete),
-        '&Yes\n&No', 1, 'Question'
-      )
-      if choice == 1 then
-        vim.pack.del(plugins_to_delete)
-      end
-    end
-  end,
+  callback = pack_clean,
 })
 
 -- User commands {{{1
+-- Remove unused plugins {{{2
+vim.api.nvim_create_user_command('PackClean', pack_clean, {
+  desc = 'Remove unused plugins',
+})
+
+-- Reload nvim config {{{2
 vim.api.nvim_create_user_command('Restart', function()
   -- Instead of storing our own temp session, use mini.sessions' functionality
   -- to avoid clobbering its internal state.
   mini_sessions.restart()
 end, { desc = 'Reload nvim config' })
 
+-- Toggle soft wrap {{{2
 vim.api.nvim_create_user_command('Wrap', function(opts)
   local wrap_col = opts.fargs[1] or vim.opt.textwidth:get()
 
