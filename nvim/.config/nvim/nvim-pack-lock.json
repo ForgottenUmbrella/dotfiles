@@ -20,10 +20,6 @@
       "rev": "942bc13ccc624c825b086373b8bd6787b98245c8",
       "src": "https://github.com/nvim-mini/mini.indentscope"
     },
-    "mini.pairs": {
-      "rev": "db0fac0a25884183650352ccf92b362a41ed2e9c",
-      "src": "https://github.com/nvim-mini/mini.pairs"
-    },
     "mini.sessions": {
       "rev": "7cb2945ccc11323b7ca19796eb42618493e1dc12",
       "src": "https://github.com/nvim-mini/mini.sessions"
@@ -47,6 +43,10 @@
     "nui.nvim": {
       "rev": "de740991c12411b663994b2860f1a4fd0937c130",
       "src": "https://github.com/MunifTanjim/nui.nvim"
+    },
+    "nvim-autopairs": {
+      "rev": "7b9923abad60b903ece7c52940e1321d39eccc79",
+      "src": "https://github.com/windwp/nvim-autopairs"
     },
     "nvim-dap": {
       "rev": "9e848e09a697ee95302a3ef2dd43fd6eb709e570",
