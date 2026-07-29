@@ -92,6 +92,7 @@ function my.statusline()
     hl = '%#MyStatusLineNormal#',
   }
   local cwd_path = vim.split(vim.fn.getcwd(), '/')
+  local diagnostic = vim.diagnostic.status()
   local searchcount = ''
   if vim.v.hlsearch == 1 then
     local ok, search = pcall(vim.fn.searchcount)
@@ -125,13 +126,12 @@ function my.statusline()
       '%#StatusLine# ',
       cwd_path[#cwd_path], ' ',
       git_status ~= '' and git_status .. ' ' or '',
+      diagnostic ~= '' and diagnostic .. ' ' or '',
     } or '',
 
     '%#StatusLineNC# ',
     '%<',
     file, ' ',
-    vim.diagnostic.status():gsub('%%#(%a+)#', '%%$%1$'), -- Respect bg
-    '%#StatusLineNC# ', -- Reset diagnostic styling
     '%=',
     searchcount ~= '' and searchcount .. ' ' or '',
     (vim.w.quickfix_title or '') ~= '' and vim.w.quickfix_title .. ' ' or '',
