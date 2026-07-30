@@ -12,7 +12,7 @@ local null_ls = require 'null-ls'
 null_ls.setup {
   sources = {
     null_ls.builtins.diagnostics.golangci_lint.with {
-      extra_args = { [[--output.text.path='']] },
+      extra_args = { '--output.text.path=/dev/null' },
     },
     null_ls.builtins.formatting.prettier,
     require 'none-ls.diagnostics.eslint',
