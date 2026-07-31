@@ -35,6 +35,7 @@ vim.opt.autocomplete = true
 -- vim.opt.autocompletedelay = 1000
 vim.opt.complete:append { 'F', 'o' }
 vim.opt.completeopt:append { 'noselect', 'fuzzy' }
+vim.opt.pumheight = 5
 function my.findfunc(cmdarg, cmdcomplete)
   local paths = vim.list.unique(vim.opt.path:get())
   local find_paths = {}
@@ -73,6 +74,10 @@ end
 -- Set noselect for cmdline-autocompletion
 vim.opt.wildmode:prepend { 'noselect:lastused', 'longest' }
 vim.opt.wildoptions:append 'fuzzy'
+vim.keymap.set('i', '<C-s>', function()
+  -- Completion popup menu prefers below, so show signature help above.
+  vim.lsp.buf.signature_help { anchor_bias = 'above' }
+end, { desc = 'Show signature help' })
 
 -- UI {{{2
 -- Set leader key for keymaps
@@ -102,6 +107,7 @@ vim.opt.pumblend = 10
 vim.opt.conceallevel = 2
 vim.opt.cursorline = true
 vim.opt.list = true
+vim.opt.scrolloff = 2 -- Always show some lines above/below the cursor
 -- Line numbers {{{4
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -111,8 +117,6 @@ vim.opt.foldmethod = 'indent' -- Most syntax files don't define folds
 vim.opt.foldopen:remove 'block'
 vim.keymap.set('n', '<Tab>', 'za')
 vim.keymap.set('n', '<C-i>', '<C-i>') -- By default <Tab> and <C-i> are the same
--- Scrolling {{{4
-vim.opt.scrolloff = 2 -- Always show some lines above/below the cursor
 -- Line length {{{4
 vim.opt.breakindent = true
 vim.opt.colorcolumn = { 81 }
