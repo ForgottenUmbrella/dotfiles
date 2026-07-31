@@ -272,6 +272,11 @@ vim.pack.add {
   'https://github.com/neovim/nvim-lspconfig',
   'https://github.com/nvim-treesitter/nvim-treesitter',
   'https://github.com/nvim-treesitter/nvim-treesitter-context',
+  -- Dependency (typescript-tools.nvim, none-ls.nvim)
+  'https://github.com/nvim-lua/plenary.nvim',
+  'https://github.com/nvimtools/none-ls.nvim',
+  'https://github.com/nvimtools/none-ls-extras.nvim',
+  'https://github.com/pmizio/typescript-tools.nvim',
 }
 require('mason').setup {}
 require('treesitter-context').setup {
@@ -279,6 +284,17 @@ require('treesitter-context').setup {
   multiline_threshold = 1,
   separator = '-',
 }
+local null_ls = require 'null-ls'
+null_ls.setup {
+  sources = {
+    null_ls.builtins.diagnostics.golangci_lint.with {
+      extra_args = { '--output.text.path=/dev/null' },
+    },
+    null_ls.builtins.formatting.prettier,
+    require 'none-ls.diagnostics.eslint',
+  },
+}
+require('typescript-tools').setup {}
 
 -- Add mason executables to PATH.
 vim.env.PATH = string.format(
@@ -304,7 +320,6 @@ function my.mason_ensure(spec)
   local requires = type(spec.requires) == 'string' and
     { spec.requires } or
     spec.requires or {}
-
   local is_installed = vim.fn.executable(exe) == 1 or
     registry.is_installed(pkg_name)
   if not is_installed then
@@ -320,22 +335,16 @@ function my.mason_ensure(spec)
         return false
       end
     end
-
     vim.cmd.MasonInstall(pkg_name)
   end
-
   return true
 end
 
-require 'my.lsp'
-
-if my.mason_ensure {
+my.mason_ensure {
   'tree-sitter-cli',
   exe = 'tree-sitter',
   requires = { 'tar', 'curl', 'cc' },
-} then
-  require('nvim-treesitter').install { 'go', 'typescript' }
-end
+}
 
 -- File tree {{{3
 vim.pack.add {
@@ -450,6 +459,8 @@ require('dap-view').setup {}
 vim.keymap.set('n', '<Leader>ad', '<Cmd>DapViewOpen<CR>')
 
 -- Autocommands {{{1
+require 'my.lsp'
+
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   group = my.augroup,
   desc = 'Delete trailing whitespace on save',
@@ -476,6 +487,56 @@ for _, key in ipairs { '<Up>', '<Down>', '<Right>' } do
     return vim.fn.wildmenumode() == 1 and '<C-e>' .. key or key
   end, { expr = true })
 end
+
+vim.api.nvim_create_autocmd({ 'LspAttach' }, {
+  group = my.augroup,
+  desc = 'Set up LSP features',
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    local diff = vim.opt.diff:get() -- Don't override diff-mode folds
+    if client:supports_method 'textDocument/foldingRange' and not diff then
+      vim.opt_local.foldmethod = 'expr'
+      vim.opt_local.foldexpr = 'v:lua.vim.lsp.foldexpr()'
+    end
+
+    if client:supports_method 'textDocument/documentHighlight' then
+      vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+        group = my.augroup,
+        buffer = ev.buf,
+        desc = 'Highlight occurrences',
+        callback = vim.lsp.buf.document_highlight,
+      })
+      vim.keymap.set('n', '<C-*>', vim.lsp.buf.document_highlight, {
+        desc = 'Highlight occurrences',
+        buf = 0,
+      })
+      vim.api.nvim_create_autocmd({ 'CursorMoved' }, {
+        group = my.augroup,
+        buffer = ev.buf,
+        desc = 'Remove highlighting on move',
+        callback = vim.lsp.buf.clear_references,
+      })
+    end
+
+    if not client:supports_method('textDocument/willSaveWaitUntil')
+      and client:supports_method('textDocument/formatting') then
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        group = my.augroup,
+        buffer = ev.buf,
+        desc = 'lsp-format',
+        callback = function()
+          vim.lsp.buf.code_action {
+            context = {
+              only = { 'source.organizeImports' },
+            },
+            apply = true,
+          }
+          vim.lsp.buf.format { bufnr = ev.buf, id = client.id }
+        end,
+      })
+    end
+  end,
+})
 
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufReadPost' }, {
   group = my.augroup,
