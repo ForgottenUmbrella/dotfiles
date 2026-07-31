@@ -34,7 +34,7 @@ vim.opt.autocomplete = true
 -- https://github.com/neovim/neovim/issues/40064
 -- vim.opt.autocompletedelay = 1000
 vim.opt.complete:append { 'F', 'o' }
-vim.opt.completeopt:append 'noselect'
+vim.opt.completeopt:append { 'noselect', 'fuzzy' }
 function my.findfunc(cmdarg, cmdcomplete)
   local paths = vim.list.unique(vim.opt.path:get())
   local find_paths = {}
