@@ -99,9 +99,7 @@ vim.opt.shortmess:append 'c'
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.title = true
-vim.opt.winblend = 10
 vim.opt.winborder = 'single'
-vim.opt.pumblend = 10
 
 -- Lines {{{3
 vim.opt.conceallevel = 2
