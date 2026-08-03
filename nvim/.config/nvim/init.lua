@@ -523,12 +523,16 @@ vim.api.nvim_create_autocmd({ 'LspAttach' }, {
         buffer = ev.buf,
         desc = 'lsp-format',
         callback = function()
+          -- Silence messages about no matching action.
+          local notify = vim.notify
+          vim.notify = function() end
           vim.lsp.buf.code_action {
             context = {
               only = { 'source.organizeImports' },
             },
             apply = true,
           }
+          vim.notify = notify
           vim.lsp.buf.format { bufnr = ev.buf, id = client.id }
         end,
       })
