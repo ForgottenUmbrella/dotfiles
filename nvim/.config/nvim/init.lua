@@ -33,7 +33,8 @@ vim.opt.autocomplete = true
 -- BUG: The autocompletedelay option currently blocks text rendering:
 -- https://github.com/neovim/neovim/issues/40064
 -- vim.opt.autocompletedelay = 1000
-vim.opt.complete:append { 'F', 'o' }
+vim.opt.complete:prepend 'o'
+vim.opt.complete:append 'F'
 vim.opt.completeopt:append { 'noselect', 'fuzzy' }
 vim.opt.pumheight = 5
 function my.findfunc(cmdarg, cmdcomplete)
