@@ -25,6 +25,7 @@ vim.opt.sessionoptions:remove { 'blank', 'buffers' }
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 -- Default indentation (overridden by file convention/editorconfig) {{{3
+vim.opt.copyindent = true -- Preserve mixed tab indentation + space alignment
 vim.opt.expandtab = true -- Use spaces for indentation
 vim.opt.shiftwidth = 4 -- Number of spaces to indent with
 vim.opt.tabstop = 4 -- Render tabs as 4 spaces wide
