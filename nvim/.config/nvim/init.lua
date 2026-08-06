@@ -424,6 +424,7 @@ vim.pack.add {
 }
 require('blame').setup {}
 require('neogit').setup {
+  disable_hint = true,
   disable_insert_on_commit = true,
   disable_relative_line_numbers = false,
   -- Match Magit keymaps
