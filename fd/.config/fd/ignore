@@ -1,5 +1,4 @@
 *cache*/
-*log*/
 site-packages/
 node_modules/
 go/pkg/
