@@ -13,23 +13,23 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.ai": {
-      "rev": "cb20f298ebf5ae91924cd0c6c310712de2ef4086",
+      "rev": "25248c6aa002391936a6200f12d1466015987133",
       "src": "https://github.com/nvim-mini/mini.ai"
     },
     "mini.indentscope": {
-      "rev": "942bc13ccc624c825b086373b8bd6787b98245c8",
+      "rev": "92fbaf895f83c59575ec599df532b297ebf62b14",
       "src": "https://github.com/nvim-mini/mini.indentscope"
     },
     "mini.sessions": {
-      "rev": "7cb2945ccc11323b7ca19796eb42618493e1dc12",
+      "rev": "87d068a84abf6d687f7c68de2b496a9bd88bc533",
       "src": "https://github.com/nvim-mini/mini.sessions"
     },
     "neo-tree.nvim": {
-      "rev": "b01ee1769144c4491ea44bc329cb84040e9793be",
+      "rev": "6679b9395526b52ddb2b137fcd5255dab71c5a58",
       "src": "https://github.com/nvim-neo-tree/neo-tree.nvim"
     },
     "neogit": {
-      "rev": "43ea1a0854052e583f647e0b35879f0158a70a78",
+      "rev": "37e0f22a2345bad1bffe01b31970885882f46275",
       "src": "https://github.com/NeogitOrg/neogit"
     },
     "none-ls-extras.nvim": {
@@ -53,7 +53,7 @@
       "src": "https://github.com/mfussenegger/nvim-dap"
     },
     "nvim-dap-view": {
-      "rev": "440ec66c2b26470ec97cd4d6667cdd4b51cbc7cb",
+      "rev": "43a2ccf5618ea26a9b11575ff18ded1cc82746bf",
       "src": "https://github.com/igorlfs/nvim-dap-view"
     },
     "nvim-file-operations": {
@@ -61,7 +61,7 @@
       "src": "https://github.com/Crysthamus/nvim-file-operations"
     },
     "nvim-lspconfig": {
-      "rev": "3371bf298c1f56efc26771ee961f461176958fb5",
+      "rev": "43ed3797b266e1ee8d222e491379ad471c9d3146",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-surround": {
@@ -69,11 +69,11 @@
       "src": "https://github.com/kylechui/nvim-surround"
     },
     "nvim-treesitter": {
-      "rev": "61df84986b4b4ec469ee745a182e433d49f8c27e",
+      "rev": "c9f9ed6c1892f629ea399f4ee7905f2686fa13f2",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {
-      "rev": "b311b30818951d01f7b4bf650521b868b3fece16",
+      "rev": "f3061339b8eaf9fda873600bc425b8d2d8502533",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "orgmode": {
