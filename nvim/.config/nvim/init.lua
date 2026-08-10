@@ -107,7 +107,7 @@ vim.opt.winborder = 'single'
 vim.opt.conceallevel = 2
 vim.opt.cursorline = true
 vim.opt.list = true
-vim.opt.scrolloff = 2 -- Always show some lines above/below the cursor
+vim.opt.scrolloff = 5 -- Always show some lines above/below the cursor
 -- Line numbers {{{4
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -281,6 +281,7 @@ vim.pack.add {
 require('mason').setup {}
 require('treesitter-context').setup {
   multiwindow = true,
+  max_lines = 3,
   multiline_threshold = 1,
   trim_scope = 'inner',
   separator = '-',
