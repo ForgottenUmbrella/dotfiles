@@ -282,6 +282,7 @@ require('mason').setup {}
 require('treesitter-context').setup {
   multiwindow = true,
   multiline_threshold = 1,
+  trim_scope = 'inner',
   separator = '-',
 }
 local null_ls = require 'null-ls'
