@@ -595,6 +595,7 @@ vim.api.nvim_create_user_command('PackClean', pack_clean, {
 })
 
 -- Reload nvim config {{{2
+-- TODO: Remove once upgraded to nvim 0.13, which makes :restart do this by default
 vim.api.nvim_create_user_command('Restart', function()
   -- Instead of storing our own temp session, use mini.sessions' functionality
   -- to avoid clobbering its internal state.
