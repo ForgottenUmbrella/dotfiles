@@ -76,10 +76,21 @@ end
 -- Set noselect for cmdline-autocompletion
 vim.opt.wildmode:prepend { 'noselect:lastused', 'longest' }
 vim.opt.wildoptions:append 'fuzzy'
+-- LSP {{{3
 vim.keymap.set('i', '<C-s>', function()
   -- Completion popup menu prefers below, so show signature help above.
   vim.lsp.buf.signature_help { anchor_bias = 'above' }
 end, { desc = 'Show signature help' })
+local default_rename_handler = vim.lsp.handlers['textDocument/rename']
+-- Auto-save after symbol rename
+vim.lsp.handlers['textDocument/rename'] = function(err, result, ctx, config)
+  default_rename_handler(err, result, ctx, config)
+  if not err and result then
+    vim.schedule(function()
+      vim.cmd.wall { mods = { emsg_silent = true } }
+    end)
+  end
+end
 
 -- UI {{{2
 -- Set leader key for keymaps
