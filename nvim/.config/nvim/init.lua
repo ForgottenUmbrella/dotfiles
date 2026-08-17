@@ -13,6 +13,7 @@ vim.opt.clipboard = { 'unnamedplus' }
 vim.opt.ttimeoutlen = 0 -- Don't ignore Esc immediately after keypress
 
 -- Behaviour {{{2
+vim.opt.autowrite = true
 vim.opt.undofile = true -- Allow undoing changes after exit
 vim.opt.gdefault = true -- Replace all occurrences by default
 if vim.fn.executable 'rg' == 1 then
