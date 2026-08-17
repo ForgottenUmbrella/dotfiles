@@ -456,6 +456,12 @@ require('neogit').setup {
       p = 'PushPopup',
       P = false,
     },
+    status = {
+      ['1'] = 'NOP',
+      ['2'] = 'NOP',
+      ['3'] = 'NOP',
+      ['4'] = 'NOP',
+    },
   },
 }
 wk.add {
