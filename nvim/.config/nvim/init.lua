@@ -457,10 +457,10 @@ require('neogit').setup {
       P = false,
     },
     status = {
-      ['1'] = 'NOP',
-      ['2'] = 'NOP',
-      ['3'] = 'NOP',
-      ['4'] = 'NOP',
+      ['1'] = false,
+      ['2'] = false,
+      ['3'] = false,
+      ['4'] = false,
     },
   },
 }
